@@ -313,6 +313,10 @@ conversation history into a handoff. Production evidence remains owner-only.
 
 ## 8. Relationship to other documents
 
+The [Documentation Language Policy](governance/document-language-policy.md)
+governs document language across this project: Japanese for owner review and
+English for approved canonical documents.
+
 This policy governs task composition for the whole project. The provider
 architecture governs implementation ownership and the mandatory knowledge
 lifecycle. Security rules govern data handling. A migration plan may add

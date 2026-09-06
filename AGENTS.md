@@ -1,5 +1,11 @@
 # Independent development instructions
 
+## Documentation language
+
+Follow the [Documentation Language Policy](docs/governance/document-language-policy.md): prepare owner-review documents in Japanese and publish approved canonical documents in English. Preserve the approved meaning when translating.
+
+## Existing development instructions
+
 SEP-1 addition, 2026-09-06. Source provenance: `/Users/naokikimura/.codex/.chatgpt-projects/g-p-693bd2fb16bc8191ac195f072bb993e2/AGENTS.md` (SHA-256 5fa275027d2927813c33ca650ab515d9b6d3d3d441c4809da9934d77926c1107), the environment-separation SEP-1 brief, and `docs/task-orchestration-policy.md`.
 
 This checkout is the development source candidate. Integrations and schedules are disabled. Source separation does not isolate the Codex host; SEP-2 must verify project routing and actual authority before integrations are enabled.

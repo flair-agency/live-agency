@@ -2,6 +2,8 @@
 
 全体の設計・計画・共通ツールを管理するプロジェクトリポジトリです。
 
+文書は日本語でレビューし、承認後の正本は英語で管理します。[文書言語ポリシー](docs/governance/document-language-policy.md)を参照してください。
+
 - `docs/`：全体文書。最新の[移行レビュー案](docs/v2-migration-plan-review-ja.md)。
 - `tools/`：開発・移行・保守用ツール。
 - `provider-runtime/`：既存Runtimeリポジトリを参照するGit submodule。
