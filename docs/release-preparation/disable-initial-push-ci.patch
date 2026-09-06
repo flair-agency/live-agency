@@ -1,0 +1,5 @@
+diff --git a/.github/workflows/ci.yml b/docs/ci-reference/ci.yml.disabled
+similarity index 100%
+rename from .github/workflows/ci.yml
+rename to docs/ci-reference/ci.yml.disabled
+index 7c130e15bb34ecc8542cbbdd11cce1ce95e33630..7c130e15bb34ecc8542cbbdd11cce1ce95e33630 100644

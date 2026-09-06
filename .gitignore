@@ -1,0 +1,11 @@
+# Local execution settings, temporary evidence, dependencies and credentials.
+/.codex/
+/.sep2-desktop-evidence/
+/tmp/
+/node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc

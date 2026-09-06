@@ -1,0 +1,3 @@
+[submodule "provider-runtime"]
+	path = provider-runtime
+	url = https://github.com/flair-agency/live-agency-provider-runtime.git

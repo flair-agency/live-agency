@@ -1,0 +1,913 @@
+{
+  "version": 1,
+  "scope": "PRIVATE formal artifact harness source selection; inherited broader tests are evidence references only",
+  "root": "/Users/naokikimura/workspace/live-agency-provider-runtime",
+  "skillsCheckpoint": {
+    "path": "/Users/naokikimura/workspace/.live-agency-development/runs/ci-suppressed-source-commit-20260907-01/skills",
+    "commit": "c90c554b2880ffe3f4c21ee621745c42f81ca287",
+    "tree": "1e7eb0452aca676e5e01fa500afb279b73702f5f"
+  },
+  "acceptedReceiptSha256": "512c7b4dd6bcca269e8cc2850861ed755db143bf38c89347198e877ee4c1698f",
+  "privateSelectedSources": [
+    {
+      "path": "scripts/npm-runtime-formal-distribution.test.mjs",
+      "owner": "PRIVATE root",
+      "sha256": "b2b4690087a1fbbcf1d6954afb84584a7a7eb7ee17047748dd021519e2db5c59",
+      "worktreeBlob": "bba53ea71c5dfa8afe3bd9698183868f2a5c2b67",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? scripts/npm-runtime-formal-distribution.test.mjs",
+      "acceptedSha256": "b2b4690087a1fbbcf1d6954afb84584a7a7eb7ee17047748dd021519e2db5c59",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "preimage": {
+        "path": "scripts/npm-runtime-formal-distribution.test.mjs",
+        "exists": false,
+        "sha256": null,
+        "editable": true,
+        "staged": []
+      }
+    },
+    {
+      "path": "package.json",
+      "owner": "PRIVATE root",
+      "sha256": "2135409fb7a66ce50664533e535360826aaeeaad3d3f5dfa93828c86c67f5e91",
+      "worktreeBlob": "7f36d1c4701dcbcf7e64b5640ec9d6dd0b0b42b2",
+      "mode": "0o644",
+      "headEntry": "100644 blob cd4fa6ebf6db78bdb2d00c699ddcfe8063f68b64\tpackage.json",
+      "indexEntry": "100644 cd4fa6ebf6db78bdb2d00c699ddcfe8063f68b64 0\tpackage.json",
+      "status": " M package.json",
+      "acceptedSha256": "2135409fb7a66ce50664533e535360826aaeeaad3d3f5dfa93828c86c67f5e91",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "preimage": {
+        "path": "package.json",
+        "exists": true,
+        "sha256": "6856192cab09d65ab67761939e2ff36e2db74717b75e8c79d3285c1476695e0e",
+        "editable": true,
+        "staged": [
+          {
+            "stage": 0,
+            "mode": "100644",
+            "blob": "cd4fa6ebf6db78bdb2d00c699ddcfe8063f68b64",
+            "sha256": "464928f5f86fd8a093c67b47f458ffafdfbf7913569a86f864dfd5961d1b9177"
+          }
+        ]
+      },
+      "preimageFileSha256": "6856192cab09d65ab67761939e2ff36e2db74717b75e8c79d3285c1476695e0e"
+    },
+    {
+      "path": "package-lock.json",
+      "owner": "PRIVATE root",
+      "sha256": "eeba283a0d3aa01ede3fdaa449b7147ed9f1d2b450dd3d2e2895d0686c66398f",
+      "worktreeBlob": "a264db160bf037fcca1a7d6575d373364003ae31",
+      "mode": "0o644",
+      "headEntry": "100644 blob ca8cdf2334ab5389102a7335db06d8c84b84b02b\tpackage-lock.json",
+      "indexEntry": "100644 ca8cdf2334ab5389102a7335db06d8c84b84b02b 0\tpackage-lock.json",
+      "status": " M package-lock.json",
+      "acceptedSha256": "eeba283a0d3aa01ede3fdaa449b7147ed9f1d2b450dd3d2e2895d0686c66398f",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "preimage": {
+        "path": "package-lock.json",
+        "exists": true,
+        "sha256": "a1cf1fbbd25ec52c7fb038252825673608b67bc79b9bd5f5d3e8f3221a2a1250",
+        "editable": true,
+        "staged": [
+          {
+            "stage": 0,
+            "mode": "100644",
+            "blob": "ca8cdf2334ab5389102a7335db06d8c84b84b02b",
+            "sha256": "a1cf1fbbd25ec52c7fb038252825673608b67bc79b9bd5f5d3e8f3221a2a1250"
+          }
+        ]
+      },
+      "preimageFileSha256": "a1cf1fbbd25ec52c7fb038252825673608b67bc79b9bd5f5d3e8f3221a2a1250"
+    }
+  ],
+  "separatelyOwnedSkillsReferences": [
+    {
+      "path": "skills/live-agency-skills/scripts/assemble-npm-distribution.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "4de73665fb8f68cec9e6d1a7721e62cddd6bb435cd144cc649396339fc24ca4c",
+      "worktreeBlob": "8c79777614cfb53d0a579d24b11b820a9eafb218",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? scripts/assemble-npm-distribution.mjs",
+      "acceptedSha256": "4de73665fb8f68cec9e6d1a7721e62cddd6bb435cd144cc649396339fc24ca4c",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 8c79777614cfb53d0a579d24b11b820a9eafb218\tscripts/assemble-npm-distribution.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/scripts/npm-distribution-payloads.json",
+      "owner": "Skills (reference only)",
+      "sha256": "3073947181fdf710425e9a5b57e72cef74608859bd96325f0b99cd7a28f02286",
+      "worktreeBlob": "982eb3e63b3496d7047c5e45dc24b6e990202058",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? scripts/npm-distribution-payloads.json",
+      "acceptedSha256": "3073947181fdf710425e9a5b57e72cef74608859bd96325f0b99cd7a28f02286",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 982eb3e63b3496d7047c5e45dc24b6e990202058\tscripts/npm-distribution-payloads.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/LICENSE",
+      "owner": "Skills (reference only)",
+      "sha256": "7c49d59dc268bcc5fbe64321a8beda7006a76fa3ce63480e0a20c2f3b050324e",
+      "worktreeBlob": "c30adfd274faf9529e6c4af13ecbec32e2ec3293",
+      "mode": "0o644",
+      "headEntry": "100644 blob c30adfd274faf9529e6c4af13ecbec32e2ec3293\tLICENSE",
+      "indexEntry": "100644 c30adfd274faf9529e6c4af13ecbec32e2ec3293 0\tLICENSE",
+      "status": "--",
+      "acceptedSha256": "7c49d59dc268bcc5fbe64321a8beda7006a76fa3ce63480e0a20c2f3b050324e",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob c30adfd274faf9529e6c4af13ecbec32e2ec3293\tLICENSE",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/coin-expense-reconcile/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "0c85a34255e5938dded1431eb0b5c6fe4fde1031ce64862f5a88d78f4f513f16",
+      "worktreeBlob": "09881b32c83dd0251c1cccf829bbc39b9f6996a2",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? packages/coin-expense-reconcile/package.json",
+      "acceptedSha256": "0c85a34255e5938dded1431eb0b5c6fe4fde1031ce64862f5a88d78f4f513f16",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 09881b32c83dd0251c1cccf829bbc39b9f6996a2\tpackages/coin-expense-reconcile/package.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/private-runtime-files/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "c3fc49dabe41b318a450cc0371d5880e18b45618d0aadc28306775cd17b2ccd9",
+      "worktreeBlob": "b0ccd7e56b256619336a46650388c3398ecca20b",
+      "mode": "0o644",
+      "headEntry": "100644 blob 8279dcea6581b8dd87ad92ac6c3cb249007dc105\tpackages/private-runtime-files/package.json",
+      "indexEntry": "100644 8279dcea6581b8dd87ad92ac6c3cb249007dc105 0\tpackages/private-runtime-files/package.json",
+      "status": " M packages/private-runtime-files/package.json",
+      "acceptedSha256": "c3fc49dabe41b318a450cc0371d5880e18b45618d0aadc28306775cd17b2ccd9",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob b0ccd7e56b256619336a46650388c3398ecca20b\tpackages/private-runtime-files/package.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/private-runtime-files/src/index.js",
+      "owner": "Skills (reference only)",
+      "sha256": "0e23b6d86bb2e675d8069df0a41b89a5010935c53982ac62d043ed785b746679",
+      "worktreeBlob": "c41fed0b9457f8930e3113fc142110f7e09969c5",
+      "mode": "0o644",
+      "headEntry": "100644 blob 4daf5a1f1cdd39bead864aa802f6f72ac1ba0b09\tpackages/private-runtime-files/src/index.js",
+      "indexEntry": "100644 4daf5a1f1cdd39bead864aa802f6f72ac1ba0b09 0\tpackages/private-runtime-files/src/index.js",
+      "status": " M packages/private-runtime-files/src/index.js",
+      "acceptedSha256": "0e23b6d86bb2e675d8069df0a41b89a5010935c53982ac62d043ed785b746679",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob c41fed0b9457f8930e3113fc142110f7e09969c5\tpackages/private-runtime-files/src/index.js",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/source-provider-api/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "4b77cbe8466158c3a1cab2b0fb796ac67d41d3251b9b090193c77ec010983c96",
+      "worktreeBlob": "3d53818e16c196c5c2ee8f06aa10a1fdaad8c3ad",
+      "mode": "0o644",
+      "headEntry": "100644 blob ed6935ff99f62d3625aaeb5dfbc95ed6c50b889b\tpackages/source-provider-api/package.json",
+      "indexEntry": "100644 ed6935ff99f62d3625aaeb5dfbc95ed6c50b889b 0\tpackages/source-provider-api/package.json",
+      "status": " M packages/source-provider-api/package.json",
+      "acceptedSha256": "4b77cbe8466158c3a1cab2b0fb796ac67d41d3251b9b090193c77ec010983c96",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 3d53818e16c196c5c2ee8f06aa10a1fdaad8c3ad\tpackages/source-provider-api/package.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/source-provider-api/src/backup-capability-contract.js",
+      "owner": "Skills (reference only)",
+      "sha256": "094411c6f276c446460ee8b2ccf992d197aecba67c93422ae6d1ec4f52183623",
+      "worktreeBlob": "c92b39c3828da14850fea77fa0af043df3a04af3",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? packages/source-provider-api/src/backup-capability-contract.js",
+      "acceptedSha256": "094411c6f276c446460ee8b2ccf992d197aecba67c93422ae6d1ec4f52183623",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob c92b39c3828da14850fea77fa0af043df3a04af3\tpackages/source-provider-api/src/backup-capability-contract.js",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/source-provider-api/src/index.js",
+      "owner": "Skills (reference only)",
+      "sha256": "857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669",
+      "worktreeBlob": "9a97a930997c0d98d7a4a340b467e8aafe7c60ab",
+      "mode": "0o644",
+      "headEntry": "100644 blob 5e9b38c36ad9e98b95d96fd11c9c1a1a4e350196\tpackages/source-provider-api/src/index.js",
+      "indexEntry": "100644 5e9b38c36ad9e98b95d96fd11c9c1a1a4e350196 0\tpackages/source-provider-api/src/index.js",
+      "status": " M packages/source-provider-api/src/index.js",
+      "acceptedSha256": "857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 9a97a930997c0d98d7a4a340b467e8aafe7c60ab\tpackages/source-provider-api/src/index.js",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/packages/source-provider-api/src/runtime-context.js",
+      "owner": "Skills (reference only)",
+      "sha256": "13b4051bc05918245e97e04b640117ed6d2f9fb43c7b8d6b03c166d7878d1387",
+      "worktreeBlob": "c8fa0c10692cbadd1606738628b920e1aa964809",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? packages/source-provider-api/src/runtime-context.js",
+      "acceptedSha256": "13b4051bc05918245e97e04b640117ed6d2f9fb43c7b8d6b03c166d7878d1387",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob c8fa0c10692cbadd1606738628b920e1aa964809\tpackages/source-provider-api/src/runtime-context.js",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/_shared/is-main.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "da8c958e9fc2e95b7a547ef3991871f115808d913d24d8e1629b74bcbd875c8f",
+      "worktreeBlob": "ad188ff1f90d49650d43c196f10b481043d452f4",
+      "mode": "0o644",
+      "headEntry": "100644 blob ad188ff1f90d49650d43c196f10b481043d452f4\tskills/_shared/is-main.mjs",
+      "indexEntry": "100644 ad188ff1f90d49650d43c196f10b481043d452f4 0\tskills/_shared/is-main.mjs",
+      "status": "--",
+      "acceptedSha256": "da8c958e9fc2e95b7a547ef3991871f115808d913d24d8e1629b74bcbd875c8f",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob ad188ff1f90d49650d43c196f10b481043d452f4\tskills/_shared/is-main.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/SKILL.md",
+      "owner": "Skills (reference only)",
+      "sha256": "472ae50a37c469d5343a03f6c25c27da30a8e34d583fa0e464199e69b6e7a240",
+      "worktreeBlob": "69307e2b72d8ba8267bac8469dc99f0060e02fed",
+      "mode": "0o644",
+      "headEntry": "100644 blob fd5abcf7e268b88c1c75044751de861fbfeff25f\tskills/coin-expense-reconcile/SKILL.md",
+      "indexEntry": "100644 fd5abcf7e268b88c1c75044751de861fbfeff25f 0\tskills/coin-expense-reconcile/SKILL.md",
+      "status": " M skills/coin-expense-reconcile/SKILL.md",
+      "acceptedSha256": "472ae50a37c469d5343a03f6c25c27da30a8e34d583fa0e464199e69b6e7a240",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 69307e2b72d8ba8267bac8469dc99f0060e02fed\tskills/coin-expense-reconcile/SKILL.md",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/agents/openai.yaml",
+      "owner": "Skills (reference only)",
+      "sha256": "c792abf9e94ddf7d8ed3af668d65bc09f1ee8abb82b1443b00a1e6ff5bafe1ac",
+      "worktreeBlob": "867063cfe54042bd04cf1d0824af0f06712ef3dd",
+      "mode": "0o644",
+      "headEntry": "100644 blob 867063cfe54042bd04cf1d0824af0f06712ef3dd\tskills/coin-expense-reconcile/agents/openai.yaml",
+      "indexEntry": "100644 867063cfe54042bd04cf1d0824af0f06712ef3dd 0\tskills/coin-expense-reconcile/agents/openai.yaml",
+      "status": "--",
+      "acceptedSha256": "c792abf9e94ddf7d8ed3af668d65bc09f1ee8abb82b1443b00a1e6ff5bafe1ac",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 867063cfe54042bd04cf1d0824af0f06712ef3dd\tskills/coin-expense-reconcile/agents/openai.yaml",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/references/normalized-contracts.md",
+      "owner": "Skills (reference only)",
+      "sha256": "aeb94869c85e4963c40ea4b35bf2ee7ef621b4cd27757ffb4f3690de302eab22",
+      "worktreeBlob": "1a3c61583baf190d9123c7e3c3b7f1e9c11a0f31",
+      "mode": "0o644",
+      "headEntry": "100644 blob 1a3c61583baf190d9123c7e3c3b7f1e9c11a0f31\tskills/coin-expense-reconcile/references/normalized-contracts.md",
+      "indexEntry": "100644 1a3c61583baf190d9123c7e3c3b7f1e9c11a0f31 0\tskills/coin-expense-reconcile/references/normalized-contracts.md",
+      "status": "--",
+      "acceptedSha256": "aeb94869c85e4963c40ea4b35bf2ee7ef621b4cd27757ffb4f3690de302eab22",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 1a3c61583baf190d9123c7e3c3b7f1e9c11a0f31\tskills/coin-expense-reconcile/references/normalized-contracts.md",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/references/registration.md",
+      "owner": "Skills (reference only)",
+      "sha256": "3c0572f011b0fbdfc280ab7757c6c2353c45b1cd8b3e510dfd1abc7d34cb4f25",
+      "worktreeBlob": "bb087f3fdc130832b05c1031e5d5728bbf7a87f8",
+      "mode": "0o644",
+      "headEntry": "100644 blob bb087f3fdc130832b05c1031e5d5728bbf7a87f8\tskills/coin-expense-reconcile/references/registration.md",
+      "indexEntry": "100644 bb087f3fdc130832b05c1031e5d5728bbf7a87f8 0\tskills/coin-expense-reconcile/references/registration.md",
+      "status": "--",
+      "acceptedSha256": "3c0572f011b0fbdfc280ab7757c6c2353c45b1cd8b3e510dfd1abc7d34cb4f25",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob bb087f3fdc130832b05c1031e5d5728bbf7a87f8\tskills/coin-expense-reconcile/references/registration.md",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "b97846f6b197c7fa9acd91eaaf89487737c686b63b7e08a4910e07aa5d437034",
+      "worktreeBlob": "8c0ebb3c7ccbbc247a2c9eda4eb8242bf50e3437",
+      "mode": "0o644",
+      "headEntry": "100644 blob c66d6d53621215c639b4680e95b363f255ae550b\tskills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+      "indexEntry": "100644 c66d6d53621215c639b4680e95b363f255ae550b 0\tskills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+      "status": " M skills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+      "acceptedSha256": "b97846f6b197c7fa9acd91eaaf89487737c686b63b7e08a4910e07aa5d437034",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 8c0ebb3c7ccbbc247a2c9eda4eb8242bf50e3437\tskills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "fa729008abb016373e688adbee68c10b57199f865758d870eb809f64dc5db1f2",
+      "worktreeBlob": "fee1b57990a0d8a138416792b4cc52ea7881c199",
+      "mode": "0o644",
+      "headEntry": "100644 blob 8c0d0f0c616574804e58042fa093dde11db1eba7\tskills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+      "indexEntry": "100644 8c0d0f0c616574804e58042fa093dde11db1eba7 0\tskills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+      "status": " M skills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+      "acceptedSha256": "fa729008abb016373e688adbee68c10b57199f865758d870eb809f64dc5db1f2",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob fee1b57990a0d8a138416792b4cc52ea7881c199\tskills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "480cf5a56a7c2574db2593ecc54b527e7df83b8c50b2266dec4835c68672bfcc",
+      "worktreeBlob": "55a7b8312b20351fc0d237df57f93937bc903038",
+      "mode": "0o644",
+      "headEntry": "100644 blob eb135259dea899278c09ca650d2053b08557a6ef\tskills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+      "indexEntry": "100644 eb135259dea899278c09ca650d2053b08557a6ef 0\tskills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+      "status": " M skills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+      "acceptedSha256": "480cf5a56a7c2574db2593ecc54b527e7df83b8c50b2266dec4835c68672bfcc",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 55a7b8312b20351fc0d237df57f93937bc903038\tskills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "8e3bfae15c315f09ea5fe95e7568e99464f6068f9b91d6d81560ea9b4d4b876e",
+      "worktreeBlob": "8fd81cf4e8c0c372e4645a8943480ebd0c28e57b",
+      "mode": "0o644",
+      "headEntry": "100644 blob 7d002ed1b3f908a486abd76276aaeb7af04848c3\tskills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+      "indexEntry": "100644 7d002ed1b3f908a486abd76276aaeb7af04848c3 0\tskills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+      "status": " M skills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+      "acceptedSha256": "8e3bfae15c315f09ea5fe95e7568e99464f6068f9b91d6d81560ea9b4d4b876e",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 8fd81cf4e8c0c372e4645a8943480ebd0c28e57b\tskills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/skills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+      "owner": "Skills (reference only)",
+      "sha256": "ee35486fe1d780fbd1ebf5bb76567c8203ffb19b5016f1f9b948aed8c917adab",
+      "worktreeBlob": "4c96a4b479ebb514c4c8238ee2dc2b654ada8d77",
+      "mode": "0o644",
+      "headEntry": "100644 blob e2542f13ff19d327abf2337a3bd0a011f4405a2a\tskills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+      "indexEntry": "100644 e2542f13ff19d327abf2337a3bd0a011f4405a2a 0\tskills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+      "status": " M skills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+      "acceptedSha256": "ee35486fe1d780fbd1ebf5bb76567c8203ffb19b5016f1f9b948aed8c917adab",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 4c96a4b479ebb514c4c8238ee2dc2b654ada8d77\tskills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "d3565d4148c84274ab9a6893b7e470cc736c89355d0b4b69f632ae8cef8eda0b",
+      "worktreeBlob": "cc5d9dc78b43f6244b70cd56ba16269938b9836b",
+      "mode": "0o644",
+      "headEntry": "100644 blob eba2da1b49c4a8f09a08116818b2fd003c3e95f9\tpackage.json",
+      "indexEntry": "100644 eba2da1b49c4a8f09a08116818b2fd003c3e95f9 0\tpackage.json",
+      "status": " M package.json",
+      "acceptedSha256": "d3565d4148c84274ab9a6893b7e470cc736c89355d0b4b69f632ae8cef8eda0b",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob cc5d9dc78b43f6244b70cd56ba16269938b9836b\tpackage.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/package-lock.json",
+      "owner": "Skills (reference only)",
+      "sha256": "97a701264b28b8705312b4ea59a4b89c805e869e6af2c44e0d8090d7a1e9eca1",
+      "worktreeBlob": "1a37266cbd7d87d579adabbf2782f21acb0875f2",
+      "mode": "0o644",
+      "headEntry": "100644 blob f2099b8dcc0445d3bdf1a48a768e3bc9b5d1db79\tpackage-lock.json",
+      "indexEntry": "100644 f2099b8dcc0445d3bdf1a48a768e3bc9b5d1db79 0\tpackage-lock.json",
+      "status": " M package-lock.json",
+      "acceptedSha256": "97a701264b28b8705312b4ea59a4b89c805e869e6af2c44e0d8090d7a1e9eca1",
+      "acceptedBasis": "accepted receipt preservation.before.files",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 1a37266cbd7d87d579adabbf2782f21acb0875f2\tpackage-lock.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/fixtures/coin-purchase-instruction-provider/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "b8734ee5849175b67a05fbef875b94e01ec4a834253e5edc875db71f10fff5b9",
+      "worktreeBlob": "a782c682d652489a2c7481a86060c0cf2a5421c8",
+      "mode": "0o644",
+      "headEntry": "100644 blob ee485242c1299bff2930db539f5cb3c5052ee74b\tfixtures/coin-purchase-instruction-provider/package.json",
+      "indexEntry": "100644 ee485242c1299bff2930db539f5cb3c5052ee74b 0\tfixtures/coin-purchase-instruction-provider/package.json",
+      "status": " M fixtures/coin-purchase-instruction-provider/package.json",
+      "acceptedSha256": "b8734ee5849175b67a05fbef875b94e01ec4a834253e5edc875db71f10fff5b9",
+      "acceptedBasis": "accepted receipt packages.provider.payload",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob a782c682d652489a2c7481a86060c0cf2a5421c8\tfixtures/coin-purchase-instruction-provider/package.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/fixtures/coin-purchase-instruction-provider/descriptor.json",
+      "owner": "Skills (reference only)",
+      "sha256": "1ecadef58a307b61bbb54273a383022024385694871fd55784f3b3f273ffa7dc",
+      "worktreeBlob": "0b3fc1a891f34d7331c792d4ee0699c5ce87f58b",
+      "mode": "0o644",
+      "headEntry": null,
+      "indexEntry": null,
+      "status": "?? fixtures/coin-purchase-instruction-provider/descriptor.json",
+      "acceptedSha256": "1ecadef58a307b61bbb54273a383022024385694871fd55784f3b3f273ffa7dc",
+      "acceptedBasis": "accepted receipt packages.provider.payload",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 0b3fc1a891f34d7331c792d4ee0699c5ce87f58b\tfixtures/coin-purchase-instruction-provider/descriptor.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/fixtures/coin-purchase-instruction-provider/instructions/provider.md",
+      "owner": "Skills (reference only)",
+      "sha256": "1b64737d92a94cce8bf6b7df3d680825bdb6bb685c666fe8fe0499a84f7038d2",
+      "worktreeBlob": "c458340bb5cbe40685ab166be71f5b9124029a26",
+      "mode": "0o644",
+      "headEntry": "100644 blob c458340bb5cbe40685ab166be71f5b9124029a26\tfixtures/coin-purchase-instruction-provider/instructions/provider.md",
+      "indexEntry": "100644 c458340bb5cbe40685ab166be71f5b9124029a26 0\tfixtures/coin-purchase-instruction-provider/instructions/provider.md",
+      "status": "--",
+      "acceptedSha256": "1b64737d92a94cce8bf6b7df3d680825bdb6bb685c666fe8fe0499a84f7038d2",
+      "acceptedBasis": "accepted receipt packages.provider.payload",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob c458340bb5cbe40685ab166be71f5b9124029a26\tfixtures/coin-purchase-instruction-provider/instructions/provider.md",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/fixtures/expense-instruction-provider/package.json",
+      "owner": "Skills (reference only)",
+      "sha256": "cacad870b463b37fc1fb14c56dac81a16876dd0200000ba91448d8a738033db2",
+      "worktreeBlob": "1b90daa366995295d015e377cac84f9685899adb",
+      "mode": "0o644",
+      "headEntry": "100644 blob fbef4ec23c86d25c57cd7137d0da232d15b2215b\tfixtures/expense-instruction-provider/package.json",
+      "indexEntry": "100644 fbef4ec23c86d25c57cd7137d0da232d15b2215b 0\tfixtures/expense-instruction-provider/package.json",
+      "status": " M fixtures/expense-instruction-provider/package.json",
+      "acceptedSha256": "cacad870b463b37fc1fb14c56dac81a16876dd0200000ba91448d8a738033db2",
+      "acceptedBasis": "retained generated legacy fixture; NOT per-file hash-bound in receipt",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 1b90daa366995295d015e377cac84f9685899adb\tfixtures/expense-instruction-provider/package.json",
+      "matchesCheckpoint": true
+    },
+    {
+      "path": "skills/live-agency-skills/fixtures/expense-instruction-provider/instructions/provider.md",
+      "owner": "Skills (reference only)",
+      "sha256": "96553afc7b9c3eadfea487079e3ecea60394dbef49941d1b1ca78bac43cffe38",
+      "worktreeBlob": "1a35f1d838ec31921f6a91cbdd23ff4c11947bb1",
+      "mode": "0o644",
+      "headEntry": "100644 blob 1a35f1d838ec31921f6a91cbdd23ff4c11947bb1\tfixtures/expense-instruction-provider/instructions/provider.md",
+      "indexEntry": "100644 1a35f1d838ec31921f6a91cbdd23ff4c11947bb1 0\tfixtures/expense-instruction-provider/instructions/provider.md",
+      "status": "--",
+      "acceptedSha256": "96553afc7b9c3eadfea487079e3ecea60394dbef49941d1b1ca78bac43cffe38",
+      "acceptedBasis": "retained generated legacy fixture; NOT per-file hash-bound in receipt",
+      "matchesAccepted": true,
+      "checkpointEntry": "100644 blob 1a35f1d838ec31921f6a91cbdd23ff4c11947bb1\tfixtures/expense-instruction-provider/instructions/provider.md",
+      "matchesCheckpoint": true
+    }
+  ],
+  "inheritedTestSelectors": [
+    {
+      "path": "skills/live-agency-skills/test/coin-expense-weekly-application.test.mjs",
+      "currentSha256": "b5052d296f454e2d5f2ac3095aa08ae409cb5fe026e13b356cb93d99b9e42d75",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/activity-sync.test.mjs",
+      "currentSha256": "5ded857ba439431443a10d4dd94425ca8a65633ba525881aad718e5978fd67b6",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/insight-sync.test.mjs",
+      "currentSha256": "a1935af5520b75b36a7165371699f96e4be8e5cf64173235fee6cfb3706eb1e2",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/invitation-status-sync.test.mjs",
+      "currentSha256": "dfa13c488e40cf1b6144eb9e1899fb0e2ba24515a278a418c7b88016557c7dc7",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/invitation-status-compaction.test.mjs",
+      "currentSha256": "1daed62d73d978ddb18532c7a62263ec5db65859f5476e15797bebc42922f1f2",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/live-history-sync.test.mjs",
+      "currentSha256": "82aa833f60cfbb0e3e4914af6719f4a5c65d5b777a50d779eba2a62e2da083ea",
+      "implementationFinalSha256": "82aa833f60cfbb0e3e4914af6719f4a5c65d5b777a50d779eba2a62e2da083ea",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "skills/live-agency-skills/test/live-history-compaction.test.mjs",
+      "currentSha256": "560f25a5a59e78b3bf4ffa27aa7d7f3ccee19887a47aa8adf9b837a87137c675",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/live-metrics-compaction.test.mjs",
+      "currentSha256": "fb49ff9dcbfa05ee45b1436027d69e37d6fc3853d1b9e9036a3452124b4ccade",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/profile-compaction.test.mjs",
+      "currentSha256": "2b1ff5712ac4133408419b5bbe209bfb31ddfd86087de4e865fd19b669da327f",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/profile-sync.test.mjs",
+      "currentSha256": "6627a2267a3434cf3633343313ffae7031e975669b5d57282618f108822b09e3",
+      "implementationFinalSha256": "6627a2267a3434cf3633343313ffae7031e975669b5d57282618f108822b09e3",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "skills/live-agency-skills/test/gift-history-sync.test.mjs",
+      "currentSha256": "3fede2275453fb3bea1fd6ba743a3808197e165ed071ba2f13d0bd1a7ba8aded",
+      "implementationFinalSha256": "3fede2275453fb3bea1fd6ba743a3808197e165ed071ba2f13d0bd1a7ba8aded",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "skills/live-agency-skills/test/lark-base-backup-retention.test.mjs",
+      "currentSha256": "66b685200312f1b17161f5c05cb1d70d739d7e59f660c1af2343b3efeb25ee66",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/lark-base-disaster-recovery-drill.test.mjs",
+      "currentSha256": "66916c0334f8283f447752c510cfd46502faae188239474fdebf05452ce65bb6",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/lark-base-maintenance.test.mjs",
+      "currentSha256": "1ff38a262cafe9c2ed98057ef5bb90e73ae7d346905bc768aba553939e55d980",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/profile-v2-dual-run.test.mjs",
+      "currentSha256": "e9e55c653f9e2680607ed1c56d6ff542543c2754f7e9810575e8aa4e981d834f",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/invitation-v2-dual-run.test.mjs",
+      "currentSha256": "377c332195a3e218cabf1eb53a81061e563b7816ecc488857381f037ca399783",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/live-history-v2-dual-run.test.mjs",
+      "currentSha256": "2dea2a4d61ce784e200b4af46761fc5d0001f56e3ed1c5a2e28b16eabd8dabd8",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "skills/live-agency-skills/test/row-archive-receipt.test.mjs",
+      "currentSha256": "2fd56b74f2fdeb73a43d2ae64779da0f18f5fd869b7f246edc58ab7fe836b7b1",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "mcp/live-agency-operations/test/runtime.test.mjs",
+      "currentSha256": "f9881a6a9176cc64d5349b6be325612587595a5625fdb59d53aec62dbea0d07c",
+      "implementationFinalSha256": "f9881a6a9176cc64d5349b6be325612587595a5625fdb59d53aec62dbea0d07c",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "providers/moneyforward-cloud-expense/test/api-session.test.js",
+      "currentSha256": "0c39368e16c01aefc0d9224fea4b33b3c0518e2b0dddda1898c497d10a171e8c",
+      "implementationFinalSha256": "0c39368e16c01aefc0d9224fea4b33b3c0518e2b0dddda1898c497d10a171e8c",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "providers/tiktok-ios/test/gift-normalizer.test.js",
+      "currentSha256": "4cc747bb3a54d1cef26564403fea7d3ec06889d1df52f04a156826b33f0930af",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "providers/tiktok-web/test/profile-observation-core.test.js",
+      "currentSha256": "434c2c38e97151bd7f28e6e401d65f28fcdfa39977b7d32fd73946e2d93de944",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "providers/google-drive/test/row-archive-storage.test.js",
+      "currentSha256": "e9166731b641212f325df8169254f5d3395cd76db231e477042076272cd2a45b",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/row-archive-storage-adapters.test.mjs",
+      "currentSha256": "30c19b82e91585d57578e72b4f6e2dc04c8fe7917060060d6d617ac15983a2be",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/live-history-compaction-selected-client.test.mjs",
+      "currentSha256": "ca4a05c988f9b1d7a5efa3fb8e00821bfc70d342ea7b60ba9d62e7cdab83ae09",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/invitation-compaction-selected-client.test.mjs",
+      "currentSha256": "4c2b3c8fba7b167417855d7b44bf7410c811f75086021b1aec3faa16eac432e0",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/profile-selected-client.test.mjs",
+      "currentSha256": "b09fcc634bb9523827bae2f217c1396359ff4fa07327f0385ba93c89a600c049",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/live-history-selected-client.test.mjs",
+      "currentSha256": "79d079a4a92ac4b666a64993e738a43fbd8f610b5bfd658f42abbe1a5366709c",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/invitation-selected-client.test.mjs",
+      "currentSha256": "85ee8f8be3bd65c3736be3155fad26795ceab28f5a9f8ed995d0d597bcef3937",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/profile-compaction-selected-client.test.mjs",
+      "currentSha256": "a0feba4adc2b72f6ef820476ef666575655a8ca907208af5fcab7e2a3812ab60",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/live-metrics-compaction-selected-client.test.mjs",
+      "currentSha256": "5b2cad292729e564ab66d6e5a0eb683574d4c1b82076b22315a213682de3ca0a",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/insight-selected-client.test.mjs",
+      "currentSha256": "e125a9bfdfb126b00890e081a2201354f4f9d97fec1828cd174d16cd06a89160",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/gift-projection-selected.test.mjs",
+      "currentSha256": "bb004794fb7f0954d0b91a5b368892dcebf45072c89fc84beab3921600b17b4e",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/creator-activity-sync-runner.test.mjs",
+      "currentSha256": "8111f0baa68e7111baa10cb04e8998cc072d5e6bc7054ed5dbb95753a27edcac",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/gift-projection-launcher.test.mjs",
+      "currentSha256": "63abf910b9aa535743455d3b52eaf742c4d6ae9016d6e215f7728acc301a86c3",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/attachment-acquisition-launcher.test.mjs",
+      "currentSha256": "e4c09dd5db7b0803c308c87fc28bd60d5865759e3b034d06c3232213fbec3d77",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/v2-live-history-dual-run.test.mjs",
+      "currentSha256": "76d924f3cb3978326123519968de18ca3f532990a4a3540e458fd5a45ea66895",
+      "implementationFinalSha256": "76d924f3cb3978326123519968de18ca3f532990a4a3540e458fd5a45ea66895",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "scripts/build-v2-profile-history-write-candidate.test.mjs",
+      "currentSha256": "0a52a1560f8b27f0281b55b537a5af7d02a322117eb4abcb7f45efb0bdcf6931",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/build-v2-invitation-history-write-candidate.test.mjs",
+      "currentSha256": "241db61c2b3bc6c5bfcc0f3846388c27e07c4e28d7296c72be6777053702584f",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/refresh-v2-lark-scouting-parent-profile.test.mjs",
+      "currentSha256": "48b06de2441e5b7455b64cbd666bee44ef93b828bff97801cb56fdf264953dbc",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/promote-v2-invitation-history-write-profile.test.mjs",
+      "currentSha256": "cab68393f0d223c1411082b7e07e4ab79bc5f1ceafe18f76173142c204145a53",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/migrate-v2-lark-active-scouting-profile.test.mjs",
+      "currentSha256": "fe5dd70189ec6d3175c7771b4c400c6f3ec112414664429e55cfb62ad3b4b904",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/verify-v2-invitation-history-write-active-dry-run.test.mjs",
+      "currentSha256": "ce8e8a3376b029a39a5ecec1ea7e1f7dac28ec088033d536757a23628322ae94",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/verify-v2-invitation-history-write-candidate-dry-run.test.mjs",
+      "currentSha256": "4401bc489acb229d89bcaa16da408e350c0f74c9275d03e9da73fdcd0d3e0abd",
+      "implementationFinalSha256": null,
+      "matchesImplementationFinal": null
+    },
+    {
+      "path": "scripts/smoke-test.mjs",
+      "currentSha256": "596307a529735d7be603412a42a3b6677de43f1f7f098fb9211f54fa1296bc6b",
+      "implementationFinalSha256": "596307a529735d7be603412a42a3b6677de43f1f7f098fb9211f54fa1296bc6b",
+      "matchesImplementationFinal": true
+    },
+    {
+      "path": "scripts/v2-contract-test.mjs",
+      "currentSha256": "8f01a850feb81cbd8cb9bbc0a5906e49a0e2057297a2b34d0515b4e2b216c867",
+      "implementationFinalSha256": "8f01a850feb81cbd8cb9bbc0a5906e49a0e2057297a2b34d0515b4e2b216c867",
+      "matchesImplementationFinal": true
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/runs/formal-artifacts-1788719806126-7555/receipt.json",
+      "sha256": "512c7b4dd6bcca269e8cc2850861ed755db143bf38c89347198e877ee4c1698f",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/tmp/formal-distribution-preimages-20260907/before.json",
+      "sha256": "00136a92b2830c4b285677799078924db67c548134c086bf2503dd3da3e5d90b",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/tmp/formal-distribution-preimages-20260907/final-manifest.json",
+      "sha256": "b534dffc61bc89bcfd865ae57997396297a68c039a73409ea9502562672bc060",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/tmp/formal-distribution-preimages-20260907/preservation-review.json",
+      "sha256": "cecf39170de3bfcd3fa7e94f45581d51ea5b0f27e2d5ebb7aee61b96907b873c",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/runs/formal-distribution-20260907/affected-command.json",
+      "sha256": "b2f877f6011db25fb2c58d2749fc342047ab59c1a03f0bab39b91b0e78bd6b97",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/runs/formal-distribution-20260907/affected.tap",
+      "sha256": "c4d41a230554df87cd951be899a281d1a369c29e5dc2e76cfbec368455f6397c",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/runs/formal-distribution-20260907/source-direct-final.tap",
+      "sha256": "16455902ef56d0c75543c731ab273add2445a7941ba0f32cdd8fb780ac83a2b5",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/runs/formal-distribution-20260907/payload-final.tap",
+      "sha256": "52d0f63d993940b03db2c78c83d8c3daedc205a40329777d9f6208f44293a57a",
+      "category": "existing evidence; no source copy"
+    },
+    {
+      "path": "/tmp/formal-distribution-preimages-20260907/links.json",
+      "sha256": "643bfc62caa6484b16bb14aecd8e96279996d2a4c75c4c4b02a373e8344fc022",
+      "category": "existing link-operation evidence; not source"
+    }
+  ],
+  "inheritedToolchain": {
+    "harnessSha256": "b2b4690087a1fbbcf1d6954afb84584a7a7eb7ee17047748dd021519e2db5c59",
+    "assemblerSha256": "4de73665fb8f68cec9e6d1a7721e62cddd6bb435cd144cc649396339fc24ca4c",
+    "node": "/Users/naokikimura/.asdf/installs/nodejs/lts/bin/node",
+    "npm": "/Users/naokikimura/.asdf/installs/nodejs/lts/lib/node_modules/npm/bin/npm-cli.js",
+    "nodeVersion": "v22.22.0",
+    "nodeSha256": "913b144fdb40638b1acef7974ab3c33fbd527cc0974cb5da467ab1e6ac51b4d4",
+    "npmCliSha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+    "npmTreeSha256": "7d2a9fa077b81853e1b31035c35377b43880beaaf4f8f0b7f7e6ab87a5a830d7",
+    "platform": "darwin",
+    "arch": "arm64",
+    "npmVersion": "10.9.4",
+    "currentVerification": "not executed or rehashed; historical receipt identities only; Git executable version/hash absent from historical receipt"
+  },
+  "preservationBefore": {
+    "/Users/naokikimura/workspace/live-agency-provider-runtime": {
+      "head": "6b1f11c17cec53f2adcce5fd88b87666c322f859",
+      "indexSha256": "91b2825ae7f22db1cb5cea37e2c85627f4c3917edcd28779f250a8e4cdcbf7ab",
+      "refsSha256": "027103f6be9fd0be6ebc5d4c7c1e45d6ad5d8d3a058fa933aec294786239765e",
+      "stagedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unstagedDiffSha256": "c8b6bbcd5fa8d50118ca1efdf85ebfdbd6f6d692d475b93514b11a028535cffb"
+    },
+    "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills": {
+      "head": "e78ec0962184fee2b07ea85b3f24545438f232d4",
+      "indexSha256": "60e240d69413599086ea6077734b1510d52e422843a6fcb32191df809c12d353",
+      "refsSha256": "445541fd251902a041aec37d4a4b65b7258d6f42e851165d41846d1fdc21e572",
+      "stagedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unstagedDiffSha256": "ab92f233469fb60c343fc2915054aabc51d09043c6b9aad76c4c21bd678a4b14"
+    }
+  },
+  "installedResolutionReferences": [
+    {
+      "path": "/Users/naokikimura/workspace/live-agency-provider-runtime/node_modules/@flair-agency/source-provider-api",
+      "category": "installed development resolution link; not source",
+      "target": "../../skills/live-agency-skills/packages/source-provider-api",
+      "resolvedPath": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/packages/source-provider-api",
+      "historicalLimit": "current observation only; accepted link operations recorded separately in preimage links.json"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/live-agency-provider-runtime/node_modules/@flair-agency/private-runtime-files",
+      "category": "installed development resolution link; not source",
+      "target": "../../skills/live-agency-skills/packages/private-runtime-files",
+      "resolvedPath": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/packages/private-runtime-files",
+      "historicalLimit": "current observation only; accepted link operations recorded separately in preimage links.json"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/node_modules/@flair-agency/source-provider-api",
+      "category": "installed development resolution link; not source",
+      "target": "../../packages/source-provider-api",
+      "resolvedPath": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/packages/source-provider-api",
+      "historicalLimit": "current observation only; accepted link operations recorded separately in preimage links.json"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/node_modules/@flair-agency/private-runtime-files",
+      "category": "installed development resolution link; not source",
+      "target": "../../packages/private-runtime-files",
+      "resolvedPath": "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills/packages/private-runtime-files",
+      "historicalLimit": "current observation only; accepted link operations recorded separately in preimage links.json"
+    }
+  ],
+  "generatedEvidenceReferences": [
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/fixtures/formal-artifacts-1788719806126-7555/snapshot",
+      "category": "generated 18-source snapshot plus inventory; not authoritative source"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/fixtures/formal-artifacts-1788719806126-7555/staging",
+      "category": "generated package staging; not source"
+    },
+    {
+      "path": "/Users/naokikimura/workspace/.live-agency-development/fixtures/formal-artifacts-1788719806126-7555/lock-candidate/installation/package-lock.json",
+      "sha256": "f5875d2fbed2cb3099528940aceeb23d9ae68205eefefec6d54ccbcb23461521",
+      "category": "generated five-tarball install lock; not root composition lock"
+    }
+  ],
+  "preservationAfter": {
+    "/Users/naokikimura/workspace/live-agency-provider-runtime": {
+      "head": "6b1f11c17cec53f2adcce5fd88b87666c322f859",
+      "indexSha256": "91b2825ae7f22db1cb5cea37e2c85627f4c3917edcd28779f250a8e4cdcbf7ab",
+      "refsSha256": "027103f6be9fd0be6ebc5d4c7c1e45d6ad5d8d3a058fa933aec294786239765e",
+      "stagedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unstagedDiffSha256": "c8b6bbcd5fa8d50118ca1efdf85ebfdbd6f6d692d475b93514b11a028535cffb"
+    },
+    "/Users/naokikimura/workspace/live-agency-provider-runtime/skills/live-agency-skills": {
+      "head": "e78ec0962184fee2b07ea85b3f24545438f232d4",
+      "indexSha256": "60e240d69413599086ea6077734b1510d52e422843a6fcb32191df809c12d353",
+      "refsSha256": "445541fd251902a041aec37d4a4b65b7258d6f42e851165d41846d1fdc21e572",
+      "stagedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unstagedDiffSha256": "ab92f233469fb60c343fc2915054aabc51d09043c6b9aad76c4c21bd678a4b14"
+    }
+  },
+  "preservationUnchanged": true
+}
