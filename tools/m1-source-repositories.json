@@ -81,41 +81,46 @@
       "directory": "providers/backstage",
       "packageName": "@flair-agency/backstage-provider",
       "repository": "flair-agency/live-agency-provider-backstage",
-      "status": "existing-private-repository-association-proposed",
+      "status": "source-pushed-standalone-tests-passed-package-read-grants-required",
       "githubVisibility": "PRIVATE",
-      "manifestRepository": null
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-backstage.git",
+      "sourceCommit": "4eb7bef4de3dfa30088da7be9d530b0234bff6c8"
     },
     {
       "directory": "providers/google-drive",
       "packageName": "@flair-agency/google-drive-provider",
       "repository": "flair-agency/live-agency-provider-google-drive",
-      "status": "existing-private-repository-association-proposed",
+      "status": "source-pushed-standalone-tests-passed-package-read-grants-required",
       "githubVisibility": "PRIVATE",
-      "manifestRepository": null
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-google-drive.git",
+      "sourceCommit": "14cfa1d3425625d3bb66636996c04f9d477e370a"
     },
     {
       "directory": "providers/lark-base",
       "packageName": "@flair-agency/lark-base-provider",
       "repository": "flair-agency/live-agency-provider-lark-base",
-      "status": "existing-private-repository-association-proposed",
+      "status": "source-pushed-standalone-tests-passed-package-read-grants-required",
       "githubVisibility": "PRIVATE",
-      "manifestRepository": null
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-lark-base.git",
+      "sourceCommit": "9a50cef419c4b54f35b5048c0ed1259cad36542a"
     },
     {
       "directory": "providers/lark-chat",
       "packageName": "@flair-agency/lark-chat-provider",
       "repository": "flair-agency/live-agency-provider-lark-chat",
-      "status": "existing-private-repository-association-proposed",
+      "status": "source-pushed-standalone-tests-passed-package-read-grants-required",
       "githubVisibility": "PRIVATE",
-      "manifestRepository": null
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-lark-chat.git",
+      "sourceCommit": "f9f73d87fa60427900e0550152965a666692ea69"
     },
     {
       "directory": "providers/moneyforward-cloud-expense",
       "packageName": "@flair-agency/moneyforward-cloud-expense-provider",
       "repository": "flair-agency/live-agency-provider-moneyforward-cloud-expense",
-      "status": "existing-private-repository-association-proposed",
+      "status": "source-pushed-standalone-tests-passed-package-read-grants-required",
       "githubVisibility": "PRIVATE",
-      "manifestRepository": null
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense.git",
+      "sourceCommit": "5aa52729db62fe46cd3998edb20f6416d1b8dee8"
     },
     {
       "directory": "providers/tiktok-ios",

@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 // Validate published entry points and descriptor resources without invoking
 // Provider methods, legacy Runtime scripts, or production operations.
 export async function verifyInstalledResources(destination) {
+  destination = await fs.realpath(destination);
   const { archives } = JSON.parse(await fs.readFile(path.join(destination, 'installation-receipt.json')));
   const checked = [], imports = [];
   for (const { name } of archives) {

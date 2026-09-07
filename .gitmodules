@@ -3,19 +3,19 @@
 	url = https://github.com/flair-agency/live-agency-provider-runtime.git
 [submodule "providers/backstage"]
 	path = providers/backstage
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/06/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-backstage.git
 [submodule "providers/google-drive"]
 	path = providers/google-drive
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/07/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-google-drive.git
 [submodule "providers/lark-base"]
 	path = providers/lark-base
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/08/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-lark-base.git
 [submodule "providers/lark-chat"]
 	path = providers/lark-chat
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/09/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-lark-chat.git
 [submodule "providers/moneyforward-cloud-expense"]
 	path = providers/moneyforward-cloud-expense
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/10/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense.git
 [submodule "providers/tiktok-ios"]
 	path = providers/tiktok-ios
 	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/11/repository.bundle
