@@ -33,7 +33,7 @@
 	url = ./skills/coin-expense-weekly-application
 [submodule "skills/live-agency-creator-monthly-activity-reconcile"]
 	path = skills/live-agency-creator-monthly-activity-reconcile
-	url = ./skills/live-agency-creator-monthly-activity-reconcile
+	url = https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git
 [submodule "skills/creator-insight-sync"]
 	path = skills/creator-insight-sync
 	url = ./skills/creator-insight-sync
@@ -75,16 +75,16 @@
 	url = ./skills/lark-base-maintenance
 [submodule "packages/cli-utils"]
 	path = packages/cli-utils
-	url = ./packages/cli-utils
+	url = https://github.com/flair-agency/live-agency-cli-utils.git
 [submodule "packages/lark-transport"]
 	path = packages/lark-transport
-	url = ./packages/lark-transport
+	url = https://github.com/flair-agency/live-agency-lark-transport.git
 [submodule "packages/private-files"]
 	path = packages/private-files
-	url = ./packages/private-files
+	url = https://github.com/flair-agency/live-agency-private-files.git
 [submodule "packages/row-archive"]
 	path = packages/row-archive
-	url = ./packages/row-archive
+	url = https://github.com/flair-agency/live-agency-row-archive.git
 [submodule "packages/provider-protocol"]
 	path = packages/provider-protocol
-	url = ./packages/provider-protocol
+	url = https://github.com/flair-agency/live-agency-provider-protocol.git

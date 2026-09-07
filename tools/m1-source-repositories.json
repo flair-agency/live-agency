@@ -1,11 +1,12 @@
 {
   "observedAt": "2026-09-07",
-  "evidence": "gh repo list flair-agency --limit 200 --json nameWithOwner,visibility,url (18 results); read-only metadata",
-  "purpose": "Source association proposal, not a caller inventory or permission to create, push or publish",
+  "evidence": "Approved source setup; gh repository metadata and Actions publication runs recorded in docs/migration/status.md",
+  "purpose": "Current source association and publication status; unresolved target names remain proposals",
   "parent": {
-    "repository": null,
-    "status": "no-parent-repository-in-visible-organization-list",
-    "proposedRepository": "flair-agency/live-agency"
+    "repository": "flair-agency/live-agency",
+    "status": "created-private",
+    "proposedRepository": "flair-agency/live-agency",
+    "githubVisibility": "PRIVATE"
   },
   "historicalSkillMonorepo": {
     "repository": "flair-agency/live-agency-skills",
@@ -24,47 +25,57 @@
     {
       "directory": "packages/cli-utils",
       "packageName": "@flair-agency/cli-utils",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-cli-utils"
+      "repository": "flair-agency/live-agency-cli-utils",
+      "status": "published-private-independent-npm-ci-verified",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-cli-utils.git",
+      "proposedRepository": "flair-agency/live-agency-cli-utils",
+      "sourceCommit": "2ffde2041e063f94ccf923dee62341592c1a049d",
+      "verificationRun": "https://github.com/flair-agency/live-agency-cli-utils/actions/runs/34096906145"
     },
     {
       "directory": "packages/lark-transport",
       "packageName": "@flair-agency/lark-transport",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-lark-transport"
+      "repository": "flair-agency/live-agency-lark-transport",
+      "status": "published-private-independent-npm-ci-verified",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-lark-transport.git",
+      "proposedRepository": "flair-agency/live-agency-lark-transport",
+      "sourceCommit": "17d7c371ffd420013d3d3b410ca08c6d78cc595f",
+      "verificationRun": "https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34097019408"
     },
     {
       "directory": "packages/private-files",
       "packageName": "@flair-agency/private-files",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-private-files"
+      "repository": "flair-agency/live-agency-private-files",
+      "status": "published-private-independent-npm-ci-verified",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-private-files.git",
+      "proposedRepository": "flair-agency/live-agency-private-files",
+      "sourceCommit": "8f97321a3b83306f92d40cdaeeb3866b09034216",
+      "verificationRun": "https://github.com/flair-agency/live-agency-private-files/actions/runs/34097019372"
     },
     {
       "directory": "packages/row-archive",
       "packageName": "@flair-agency/row-archive",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-row-archive"
+      "repository": "flair-agency/live-agency-row-archive",
+      "status": "published-private-independent-npm-ci-verified",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-row-archive.git",
+      "proposedRepository": "flair-agency/live-agency-row-archive",
+      "sourceCommit": "2561f7db2fb4b5ee5b948df40fb292e2cc9c86e8",
+      "verificationRun": "https://github.com/flair-agency/live-agency-row-archive/actions/runs/34097019246"
     },
     {
       "directory": "packages/provider-protocol",
       "packageName": "@flair-agency/provider-protocol",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-provider-protocol"
+      "repository": "flair-agency/live-agency-provider-protocol",
+      "status": "published-private-independent-npm-ci-verified",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-provider-protocol.git",
+      "proposedRepository": "flair-agency/live-agency-provider-protocol",
+      "sourceCommit": "385ebd692b288d8955a56d47b51bf94f30c3ecf6",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-protocol/actions/runs/34097018976"
     },
     {
       "directory": "providers/backstage",
@@ -149,10 +160,10 @@
     {
       "directory": "skills/live-agency-creator-monthly-activity-reconcile",
       "packageName": "@flair-agency/creator-monthly-activity-reconcile",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "repository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
+      "status": "created-private-source-preparing",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git",
       "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
       "targetSkillIdentifier": "live-agency-creator-monthly-activity-reconcile",
       "skillIdentifierStatus": "adopted",

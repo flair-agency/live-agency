@@ -1,22 +1,22 @@
 # Owning repository and private publication were approved in the M1 source setup.
 # GitHub Packages initial visibility is Private (separate from npm private:true).
 # Do not set npm access:public or change visibility as part of publication.
-name: Publish fixed package
+name: Verify published package
 concurrency:
-  group: publish-${{ github.repository }}
+  group: verify-${{ github.repository }}
   cancel-in-progress: false
 on:
   workflow_dispatch:
     inputs:
       expected_sha:
-        description: Reviewed source commit to publish
+        description: Reviewed source commit to verify
         type: string
         required: true
 permissions:
   contents: read
-  packages: write
+  packages: read
 jobs:
-  publish:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,10 +42,6 @@ jobs:
           if (p.publishConfig?.registry !== 'https://npm.pkg.github.com') throw Error('registry missing');
           for (const group of ['dependencies', 'optionalDependencies', 'peerDependencies']) for (const v of Object.values(p[group] ?? {})) if (!exact(v)) throw Error('dependency must be exact');
           JS
-      - run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: npm test
       - name: Inspect actual archive
         run: |
           npm pack --ignore-scripts --json > packed.json
@@ -55,24 +51,6 @@ jobs:
           for (const f of p.files) if (/(^|\/)(node_modules|tmp|\.git)(\/|$)/.test(f.path)) throw Error(`forbidden payload ${f.path}`);
           fs.writeFileSync('archive-name.txt', p.filename);
           JS
-      - name: Check private package target
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node --input-type=module <<'JS'
-          import fs from 'node:fs';
-          const p = JSON.parse(fs.readFileSync('package.json'));
-          const leaf = p.name.split('/')[1];
-          const response = await fetch(`https://api.github.com/orgs/flair-agency/packages/npm/${encodeURIComponent(leaf)}`, { headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' } });
-          if (response.status === 200) {
-            const existing = await response.json();
-            if (existing.visibility !== 'private' || existing.owner?.login !== 'flair-agency' || existing.name !== leaf) throw Error('existing package visibility or organization differs');
-          } else if (response.status !== 404) throw Error(`package preflight failed (${response.status})`);
-          JS
-      - name: Publish inspected archive
-        run: npm publish "$(cat archive-name.txt)" --ignore-scripts --registry=https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify private registry installation
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
