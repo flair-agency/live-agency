@@ -194,7 +194,7 @@ Representative dependencies are Lark Base + BackStage → monthly activity, and 
 
 This work is included in the three stages, not an independent SN/FR programme or a future v3. The sources are the 16 split Skills plus the separately maintained `foreign-revenue-accounting`; final target count depends on accepted splits and frozen/deferred status. External OpenAI/Lark/Canva Skills are not renamed.
 
-Skill identifiers use the business namespace `live-agency`; npm uses the organization scope `@flair-agency`. Keep the Skill directory and `SKILL.md` name identical. Map npm identifiers and Git source URLs explicitly rather than assuming all names must be identical. Installation resolves name, provenance and pinned version, rejects ambiguous same-name sources and preserves unrelated installations.
+Skill identifiers use the business namespace `live-agency`; npm uses the organization scope `@flair-agency`. Keep the source repository basename, Skill directory and `SKILL.md` name identical, including `live-agency-`. Under Flair, the source URL is `https://github.com/flair-agency/<skill-identifier>`. Map npm identifiers explicitly; the npm name is not the source of the Skill repository name. Candidate Skill names imply candidate repository names until the owning responsibility and identifier are adopted. Installation resolves name, provenance and pinned version, rejects ambiguous same-name sources and preserves unrelated installations.
 
 The following inherited candidates remain inputs to D1, not a command to rename every source mechanically:
 

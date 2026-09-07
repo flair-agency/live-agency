@@ -129,7 +129,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-coin-expense-reconcile"
+      "proposedRepository": "flair-agency/live-agency-coin-purchase-expense-reconcile",
+      "targetSkillIdentifier": "live-agency-coin-purchase-expense-reconcile",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-coin-purchase-expense-reconcile"
     },
     {
       "directory": "skills/coin-expense-weekly-application",
@@ -138,7 +141,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-coin-expense-weekly-application"
+      "proposedRepository": "flair-agency/live-agency-weekly-coin-expense-claim-submit",
+      "targetSkillIdentifier": "live-agency-weekly-coin-expense-claim-submit",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-weekly-coin-expense-claim-submit"
     },
     {
       "directory": "skills/live-agency-creator-monthly-activity-reconcile",
@@ -147,7 +153,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile"
+      "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
+      "targetSkillIdentifier": "live-agency-creator-monthly-activity-reconcile",
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-monthly-activity-reconcile"
     },
     {
       "directory": "skills/creator-insight-sync",
@@ -156,7 +165,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-insight-sync"
+      "proposedRepository": "flair-agency/live-agency-creator-assessment-update",
+      "targetSkillIdentifier": "live-agency-creator-assessment-update",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-assessment-update"
     },
     {
       "directory": "skills/creator-invitation-status-compaction",
@@ -165,7 +177,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-invitation-status-compaction"
+      "proposedRepository": "flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate",
+      "targetSkillIdentifier": "live-agency-creator-invitation-eligibility-history-deduplicate",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-history-deduplicate"
     },
     {
       "directory": "skills/creator-invitation-status-sync",
@@ -174,7 +189,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-invitation-status-sync"
+      "proposedRepository": "flair-agency/live-agency-creator-invitation-eligibility-record",
+      "targetSkillIdentifier": "live-agency-creator-invitation-eligibility-record",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-record"
     },
     {
       "directory": "skills/creator-live-history-compaction",
@@ -183,7 +201,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-live-history-compaction"
+      "proposedRepository": "flair-agency/live-agency-creator-live-session-history-prune",
+      "targetSkillIdentifier": "live-agency-creator-live-session-history-prune",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-live-session-history-prune"
     },
     {
       "directory": "skills/creator-live-history-sync",
@@ -192,7 +213,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-live-history-sync"
+      "proposedRepository": "flair-agency/live-agency-creator-live-observation-record",
+      "targetSkillIdentifier": "live-agency-creator-live-observation-record",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-live-observation-record"
     },
     {
       "directory": "skills/creator-live-metrics-compaction",
@@ -201,7 +225,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-live-metrics-compaction"
+      "proposedRepository": "flair-agency/live-agency-creator-live-metric-history-prune",
+      "targetSkillIdentifier": "live-agency-creator-live-metric-history-prune",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-live-metric-history-prune"
     },
     {
       "directory": "skills/creator-profile-compaction",
@@ -210,7 +237,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-profile-compaction"
+      "proposedRepository": "flair-agency/live-agency-creator-profile-history-prune",
+      "targetSkillIdentifier": "live-agency-creator-profile-history-prune",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-profile-history-prune"
     },
     {
       "directory": "skills/creator-profile-sync",
@@ -219,7 +249,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-creator-profile-sync"
+      "proposedRepository": "flair-agency/live-agency-creator-profile-record",
+      "targetSkillIdentifier": "live-agency-creator-profile-record",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-creator-profile-record"
     },
     {
       "directory": "skills/gift-history-sync",
@@ -228,7 +261,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-gift-history-sync"
+      "proposedRepository": "flair-agency/live-agency-gift-history-merge",
+      "targetSkillIdentifier": "live-agency-gift-history-merge",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-gift-history-merge"
     },
     {
       "directory": "skills/lark-base-backup",
@@ -237,7 +273,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-lark-base-backup"
+      "proposedRepository": "flair-agency/live-agency-data-backup-create",
+      "targetSkillIdentifier": "live-agency-data-backup-create",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-data-backup-create"
     },
     {
       "directory": "skills/lark-base-backup-retention",
@@ -246,7 +285,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-lark-base-backup-retention"
+      "proposedRepository": "flair-agency/live-agency-data-backup-prune",
+      "targetSkillIdentifier": "live-agency-data-backup-prune",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-data-backup-prune"
     },
     {
       "directory": "skills/lark-base-disaster-recovery-drill",
@@ -255,7 +297,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-lark-base-disaster-recovery-drill"
+      "proposedRepository": "flair-agency/live-agency-data-recovery-test",
+      "targetSkillIdentifier": "live-agency-data-recovery-test",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-data-recovery-test"
     },
     {
       "directory": "skills/lark-base-maintenance",
@@ -264,7 +309,10 @@
       "status": "no-independent-repository-in-visible-organization-list",
       "githubVisibility": null,
       "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-lark-base-maintenance"
+      "proposedRepository": "flair-agency/live-agency-datastore-maintain",
+      "targetSkillIdentifier": "live-agency-datastore-maintain",
+      "skillIdentifierStatus": "candidate",
+      "proposedDirectory": "skills/live-agency-datastore-maintain"
     }
   ]
 }

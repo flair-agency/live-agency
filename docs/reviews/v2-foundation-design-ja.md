@@ -106,30 +106,37 @@ M1の指示型Providerは合成結果を返すものに限定する。既存のi
 
 GitHubの組織リポジトリ一覧を読み取り確認した結果、RuntimeとProvider7件の既存private repoはある。一方、親・共通5・分割後Skill16の独立repoは見つからない。[対応情報](../../tools/m1-source-repositories.json)は取得先の検討用で、発行許可や呼出し一覧ではない。
 
-推奨は、承認済みの独立したソース管理構成をGitHubにも反映すること。これはGitHub Packages自体の要件ではない。具体的には、親を`flair-agency/live-agency`、共通と各Skillを次表のprivate repoとして作成する。既存Runtime・Provider repoはそのまま使い、既存public Skillモノレポへ戻さない。凍結Skillはソース保全対象のみで、npm発行対象にはしない。
+Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）＝ディレクトリ名**とする。`live-agency-`を含む識別子をそのまま使い、npm名や旧Skill名から別の名前を作らない。例えば月次活動は、`flair-agency/live-agency-creator-monthly-activity-reconcile`となる。
 
-| 対象 | 新設するprivate repo名（`flair-agency/`配下） |
+以下のSkill名は[移行計画の候補表](../migration/v2-plan.md#skill-naming-and-foreign-revenue-migration)に揃えた。月次活動は採用済み。他は業務責務・識別子が確定するまでrepo名も候補であり、旧名に接頭辞を付けたrepoを先に作成しない。凍結Skillは引き続き凍結として扱う。
+
+親は`flair-agency/live-agency`、共通ライブラリーは下表の案を維持する。既存Runtime・Provider repoは再利用する案。
+
+| 現在の配置 | repo名（`flair-agency/`配下）＝移行先Skill識別子 | 状態 |
+| --- | --- | --- |
+| `skills/coin-expense-reconcile` | `live-agency-coin-purchase-expense-reconcile` | 候補 |
+| `skills/coin-expense-weekly-application` | `live-agency-weekly-coin-expense-claim-submit` | 候補・凍結 |
+| `skills/live-agency-creator-monthly-activity-reconcile` | `live-agency-creator-monthly-activity-reconcile` | 採用済み |
+| `skills/creator-insight-sync` | `live-agency-creator-assessment-update` | 候補 |
+| `skills/creator-invitation-status-compaction` | `live-agency-creator-invitation-eligibility-history-deduplicate` | 候補 |
+| `skills/creator-invitation-status-sync` | `live-agency-creator-invitation-eligibility-record` | 候補 |
+| `skills/creator-live-history-compaction` | `live-agency-creator-live-session-history-prune` | 候補 |
+| `skills/creator-live-history-sync` | `live-agency-creator-live-observation-record` | 候補 |
+| `skills/creator-live-metrics-compaction` | `live-agency-creator-live-metric-history-prune` | 候補 |
+| `skills/creator-profile-compaction` | `live-agency-creator-profile-history-prune` | 候補 |
+| `skills/creator-profile-sync` | `live-agency-creator-profile-record` | 候補 |
+| `skills/gift-history-sync` | `live-agency-gift-history-merge` | 候補 |
+| `skills/lark-base-backup` | `live-agency-data-backup-create` | 候補 |
+| `skills/lark-base-backup-retention` | `live-agency-data-backup-prune` | 候補 |
+| `skills/lark-base-disaster-recovery-drill` | `live-agency-data-recovery-test` | 候補 |
+| `skills/lark-base-maintenance` | `live-agency-datastore-maintain` | 候補 |
+
+| 共通ライブラリーの配置 | repo名の案（`flair-agency/`配下） |
 | --- | --- |
 | `packages/cli-utils` | `live-agency-cli-utils` |
 | `packages/lark-transport` | `live-agency-lark-transport` |
 | `packages/private-files` | `live-agency-private-files` |
 | `packages/row-archive` | `live-agency-row-archive` |
 | `packages/provider-protocol` | `live-agency-provider-protocol` |
-| `skills/coin-expense-reconcile` | `live-agency-coin-expense-reconcile` |
-| `skills/coin-expense-weekly-application` | `live-agency-coin-expense-weekly-application` |
-| `skills/live-agency-creator-monthly-activity-reconcile` | `live-agency-creator-monthly-activity-reconcile` |
-| `skills/creator-insight-sync` | `live-agency-creator-insight-sync` |
-| `skills/creator-invitation-status-compaction` | `live-agency-creator-invitation-status-compaction` |
-| `skills/creator-invitation-status-sync` | `live-agency-creator-invitation-status-sync` |
-| `skills/creator-live-history-compaction` | `live-agency-creator-live-history-compaction` |
-| `skills/creator-live-history-sync` | `live-agency-creator-live-history-sync` |
-| `skills/creator-live-metrics-compaction` | `live-agency-creator-live-metrics-compaction` |
-| `skills/creator-profile-compaction` | `live-agency-creator-profile-compaction` |
-| `skills/creator-profile-sync` | `live-agency-creator-profile-sync` |
-| `skills/gift-history-sync` | `live-agency-gift-history-sync` |
-| `skills/lark-base-backup` | `live-agency-lark-base-backup` |
-| `skills/lark-base-backup-retention` | `live-agency-lark-base-backup-retention` |
-| `skills/lark-base-disaster-recovery-drill` | `live-agency-lark-base-disaster-recovery-drill` |
-| `skills/lark-base-maintenance` | `live-agency-lark-base-maintenance` |
 
-新設は親1＋共通5＋Skill16の計22repo。実際の初回pushは、各repoの採用履歴・公開範囲・取得先を確認した具体的な変更として扱う。既存public MCPへの変更・本番設定変更はこの案に含めない。発行前にはnpmの発行禁止フラグ、CIでの依存取得・テスト実行、Actionsからのpackageアクセス権も整える。
+親1＋共通5＋現在のSkill16で数えると22repoに相当するが、これは一括新設する確定数ではない。Skillの分割・統合・凍結の扱いと識別子の確定に合わせて作成対象を決める。この名前の統一は、GitHub作成・push・発行の実施を意味しない。発行準備とM1の残条件は[現在の状況](../migration/status.md)に従う。

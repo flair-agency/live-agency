@@ -13,8 +13,8 @@ of the operating company, implementation service, or current filename.
 
 Use `live-agency` as the namespace. An operator name such as `flair` or an
 implementation technology such as `lark` does not define the business skill
-collection. Public or private repository placement is also separate from the
-skill name.
+collection. Repository visibility is independent of the skill name. The source repository
+basename must equal the Skill identifier.
 
 Use existing names only to identify migration sources. They do not establish
 the new naming rules. Apply the same rules to every skill and consider
@@ -29,7 +29,13 @@ Use `live-agency-<business-or-operational-subject>-<action>`.
   and consecutive hyphens are prohibited.
 - Use 1–63 characters. This is a project convention, not a specification of
   every host's naming limits.
-- Keep the skill directory name and the `name` in `SKILL.md` identical.
+- Keep the source repository basename, skill directory name, and the `name` in
+  `SKILL.md` identical, including the `live-agency-` namespace. For example,
+  `flair-agency/live-agency-creator-monthly-activity-reconcile` contains the Skill
+  `live-agency-creator-monthly-activity-reconcile`.
+- Derive the repository name from the adopted Skill identifier, not the legacy
+  filename or npm package suffix. A candidate Skill identifier yields only a
+  candidate repository name; resolve responsibility splits before creating it.
 - Put the action last. Add only the subject qualifiers needed to distinguish
   the intended task from neighboring tasks.
 - Standardize subject vocabulary in the domain glossary. Do not mechanically
