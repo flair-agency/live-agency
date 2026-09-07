@@ -21,11 +21,18 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-runtime.git",
-      "sourceCommit": "07f40cd4bd0122f73dc85aed151b9f0865691df7",
-      "publishedVersion": "1.0.0",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844",
+      "sourceCommit": "e179e3187d74a9aa795f7c476cfa93ec2db3db8e",
+      "publishedVersion": "1.0.1",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34118777184",
       "publicationAttempt": 1,
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34118777184",
+      "previousPublications": [
+        {
+          "publishedVersion": "1.0.0",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844"
+        }
+      ]
     },
     {
       "directory": "packages/cli-utils",

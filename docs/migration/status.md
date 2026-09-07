@@ -1,5 +1,45 @@
 # Current migration and documentation status
 
+## Current gate: M1 coverage decision
+
+The owner requested the next foundation work. Registry update/rollback and
+coverage verification are now complete for all 16 published packages: five
+libraries, seven Providers, three adopted Skills and Runtime.
+
+Runtime `1.0.1` adds `live-agency --version`, reporting the invoked package
+independently of the caller's working directory. Thirteen focused Runtime and
+monthly CLI tests passed. [Actions run 34118777184](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34118777184)
+passed fixed registry dependency installation, eight owning tests, archive
+preflight, PRIVATE publication and independent npm ci/import verification.
+
+An isolated development destination exercised Runtime `1.0.0 → 1.0.1 → 1.0.0`
+using saved exact registry manifests/locks and npm ci for each switch. All 16
+production package identities resolved from GitHub Packages without source links;
+two existing local tarballs supplied only synthetic test fixtures. Every phase
+resolved 86 resources and imported 54 modules, produced the same two-account
+plan (one change, one unchanged), applied the exact synthetic approved plan and
+confirmed readback. Rollback restored all 16 package versions and the original
+lock SHA-256 `2ba3af5b4266f2a53abc1218c229c79a38c97931ee3e6e6eaca7c0d67865635d`.
+The isolated recovery destination finishes on `1.0.0`; owning development source
+and latest published Runtime are `1.0.1`. No production registration/configuration
+or external service operation was performed.
+
+Evidence: `tmp/m1-foundation/registry-recovery/` contains A/B manifests and locks,
+phase receipts, publication evidence and source identity. Parent baseline before
+this work was `66ab171`, Runtime `07f40cd`. No inherited changes were discarded.
+
+M1 is not yet declared complete because the adopted plan still requires full
+supported-Skill distribution. Eleven existing Skill candidates lack adopted
+formal names/responsibility details and individual publication; the weekly
+prototype remains frozen, maintenance decomposition remains deferred and the
+foreign-revenue split remains undecided outside the sixteen Skill repositories.
+The [Japanese scope review, section 12](../reviews/v2-foundation-design-ja.md#12-m1完了範囲の確認今回のレビュー対象)
+recommends accepting the 16-package foundation and moving remaining Skill
+specification/publication to each M3 preparation. Owner input is pending; do not
+silently narrow the plan or start real M2 operations. After acceptance, update
+the canonical plan and start the leading Lark Base then BackStage M2 with explicit
+service selection and authority. If full Skill publication remains an M1 gate,
+resolve the outstanding Skill responsibility/name decisions first.
 
 ## Active correction: Provider-owned capability contracts
 
@@ -86,9 +126,10 @@ registration or production configuration was changed. Evidence is under
 `tmp/m1-foundation/provider-contract-revision/development-client/`.
 
 The dependency correction and this registry release chain are complete. M1 as a
-whole remains open: registry-based update/rollback of the selected development
-composition and full supported-target coverage remain to be closed. Earlier local
-archive A/B/A evidence is not relabeled as registry-based recovery. The unadopted
+whole was still open at this checkpoint. The subsequent registry update/rollback
+and complete published-package coverage are recorded above; only the outstanding
+Skill scope decision remains at the current M1 gate. Earlier local archive A/B/A
+evidence remains distinct from the subsequent registry-based recovery. The unadopted
 Skill naming/responsibility decisions retain their scope. Do not start real M2
 service operations from this synthetic result or claim M2/M3 acceptance.
 

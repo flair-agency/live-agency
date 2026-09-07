@@ -71,7 +71,7 @@ The parent workspace connects independent repositories for development; it does 
 
 Use `@flair-agency`, GitHub Packages, initial Private visibility and Flair organization GitHub Actions publication. Service-neutral code is not automatically public. Later public visibility is decided per package. Common libraries, all seven Providers, supported Skills and Runtime are required distribution subjects. Include a minimal MCP adapter only if the selected client path needs it; the entire existing operations MCP package is not a foundation requirement; a library-and-coin-only release does not complete the foundation.
 
-Current libraries are `source-provider-api`, `private-runtime-files`, `lark-core`, `cli-utils` and `row-archive`. Their current names and split are not the final v2 design. Legacy Skill shared utilities have moved to their libraries and the Lark Base client to its Provider. Remaining concrete dependencies and cycles still require foundation work.
+The adopted common packages are `provider-protocol`, `private-files`, `lark-transport`, `cli-utils` and `row-archive`. The first three supersede `source-provider-api`, `private-runtime-files` and `lark-core`. Runtime owns discovery/composition; Providers own capability contracts; Skills retain business rules. The corrected published foundation graph has no Provider-to-Skill dependency or package cycle. Unmigrated Skill sources retain their documented migration work.
 
 The 16 Skill sources include the frozen `coin-expense-weekly-application` prototype. Source preservation is distinct from supported distribution and acceptance. Its presence does not reopen development or activate it. See the [README](../../README.md) for directory policy and development setup.
 
