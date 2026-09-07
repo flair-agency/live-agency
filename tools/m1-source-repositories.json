@@ -21,7 +21,7 @@
       "status": "source-pushed-waits-for-adopted-skill-registry-dependencies",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-runtime.git",
-      "sourceCommit": "1cf9d48ebb3c06a66df9b083b33d6a53ecba0e25"
+      "sourceCommit": "57c145b6d771a45cf472801ebf50188dd45944f8"
     },
     {
       "directory": "packages/cli-utils",
@@ -145,7 +145,7 @@
       "status": "source-pushed-waits-for-adopted-skill-registry-dependencies",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-tiktok-ios.git",
-      "sourceCommit": "4854d89ca0ef0d2e095316868a7c20bc446ee6a0"
+      "sourceCommit": "22e9a3f4292a283a566a272ad70b0141b8788f51"
     },
     {
       "directory": "providers/tiktok-web",
@@ -154,7 +154,7 @@
       "status": "source-pushed-waits-for-adopted-skill-registry-dependencies",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-tiktok-web.git",
-      "sourceCommit": "80b19c3ee960d8dc727987cad4a15279109bde3c"
+      "sourceCommit": "14e31ef931dd8f7c95e0ad037e142053f463b5ed"
     },
     {
       "directory": "skills/coin-expense-reconcile",
@@ -285,27 +285,32 @@
       "directory": "skills/live-agency-creator-profile-record",
       "packageName": "@flair-agency/creator-profile-record",
       "repository": "flair-agency/live-agency-creator-profile-record",
-      "status": "source-pushed-awaiting-actions-read-grants",
+      "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-profile-record.git",
       "proposedRepository": "flair-agency/live-agency-creator-profile-record",
       "targetSkillIdentifier": "live-agency-creator-profile-record",
       "skillIdentifierStatus": "adopted",
       "proposedDirectory": "skills/live-agency-creator-profile-record",
-      "sourceCommit": "0401a1699b26e58ea36e40bc508ad9674150a082"
+      "sourceCommit": "0401a1699b26e58ea36e40bc508ad9674150a082",
+      "publishedVersion": "1.0.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34102388058"
     },
     {
       "directory": "skills/live-agency-gift-history-merge",
       "packageName": "@flair-agency/gift-history-merge",
       "repository": "flair-agency/live-agency-gift-history-merge",
-      "status": "source-pushed-awaiting-actions-read-grants",
+      "status": "initial-publication-incomplete-fix-prepared-awaits-read-grants",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-gift-history-merge.git",
       "proposedRepository": "flair-agency/live-agency-gift-history-merge",
       "targetSkillIdentifier": "live-agency-gift-history-merge",
       "skillIdentifierStatus": "adopted",
       "proposedDirectory": "skills/live-agency-gift-history-merge",
-      "sourceCommit": "6ec186668b3708303d4bb67c02305e089f8d2ad2"
+      "sourceCommit": "c683635ef428f5b2ee9e6c06364531e150c60330",
+      "publishedVersion": "1.0.0",
+      "preparedVersion": "1.0.1",
+      "publicationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34102387709"
     },
     {
       "directory": "skills/lark-base-backup",

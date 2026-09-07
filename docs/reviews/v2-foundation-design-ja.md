@@ -154,3 +154,24 @@ Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）
 推奨：この2名を正式採用する。GitHubは`flair-agency`配下に各Private repoを作り、SkillsとProvider側の参照を対応するnpm名へ揃える。既存の`./contracts`公開入口を維持し、独立インストールと合成テストを通してから発行する。接続方式や責務の追加、既存Skillの分割は行わない。残る旧実装経路と実サービスでの動作は、引き続きM2/M3の未完了範囲として記録する。名前の変更を実運用移行の完了とは扱わない。
 
 正式名を採用し、2件のPrivate repo作成と改名を実施。発行は固定lockとActionsの権限・テストを確認して行う。Runtimeの明示的な導入先と固定版パッケージを使うインストール処理、単体テストの独立化は並行して準備できる。
+
+
+## 10. 残る配布チェーンのActions読み取り設定
+
+既存パッケージに追加するRead権限。各Package settingsのManage Actions accessで設定する。すべて`flair-agency`配下。ギフト修正版には未宣言だったLark Base依存を追加したため、その依存先へのReadも必要。既に追加済みの権限は維持する。
+
+| Package settings | Readを追加するリポジトリー |
+| --- | --- |
+| [backstage-provider](https://github.com/orgs/flair-agency/packages/npm/backstage-provider/settings) | `live-agency-provider-runtime` |
+| [cli-utils](https://github.com/orgs/flair-agency/packages/npm/cli-utils/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [creator-monthly-activity-reconcile](https://github.com/orgs/flair-agency/packages/npm/creator-monthly-activity-reconcile/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [creator-profile-record](https://github.com/orgs/flair-agency/packages/npm/creator-profile-record/settings) | `live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [gift-history-merge](https://github.com/orgs/flair-agency/packages/npm/gift-history-merge/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-runtime` |
+| [google-drive-provider](https://github.com/orgs/flair-agency/packages/npm/google-drive-provider/settings) | `live-agency-provider-runtime` |
+| [lark-base-provider](https://github.com/orgs/flair-agency/packages/npm/lark-base-provider/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [lark-transport](https://github.com/orgs/flair-agency/packages/npm/lark-transport/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [moneyforward-cloud-expense-provider](https://github.com/orgs/flair-agency/packages/npm/moneyforward-cloud-expense-provider/settings) | `live-agency-provider-runtime` |
+| [private-files](https://github.com/orgs/flair-agency/packages/npm/private-files/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [provider-protocol](https://github.com/orgs/flair-agency/packages/npm/provider-protocol/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+
+TikTok 2パッケージは未発行なので、その2つからRuntimeへのRead設定は発行後に追加する。それ以外の既存パッケージ分は上表でまとめて設定できる。
