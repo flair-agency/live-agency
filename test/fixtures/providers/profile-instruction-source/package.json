@@ -1,0 +1,22 @@
+{
+  "name": "@fixture/profile-instruction-source",
+  "version": "1.0.0",
+  "private": true,
+  "peerDependencies": {
+    "@flair-agency/source-provider-api": "^1.0.0"
+  },
+  "liveAgencyProvider": {
+    "schemaVersion": 1,
+    "provides": [
+      "creator-profile-observation-source/v2"
+    ],
+    "inputKinds": [
+      "application/vnd.live-agency.creator-profile-targets+json"
+    ],
+    "unattended": false,
+    "execution": {
+      "kind": "instructions",
+      "resource": "./instructions/provider.md"
+    }
+  }
+}

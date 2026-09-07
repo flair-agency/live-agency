@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "name": "@flair-agency/source-provider-api",
+      "directory": "source-provider-api",
+      "files": [
+        {
+          "source": "packages/source-provider-api/package.json",
+          "target": "package.json"
+        },
+        {
+          "source": "packages/source-provider-api/src/index.js",
+          "target": "src/index.js"
+        },
+        {
+          "source": "packages/source-provider-api/LICENSE",
+          "target": "LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "@flair-agency/private-runtime-files",
+      "directory": "private-runtime-files",
+      "files": [
+        {
+          "source": "packages/private-runtime-files/package.json",
+          "target": "package.json"
+        },
+        {
+          "source": "packages/private-runtime-files/src/index.js",
+          "target": "src/index.js"
+        },
+        {
+          "source": "packages/private-runtime-files/LICENSE",
+          "target": "LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "@flair-agency/coin-expense-reconcile",
+      "directory": "coin-expense-reconcile",
+      "files": [
+        {
+          "source": "skills/coin-expense-reconcile/package.json",
+          "target": "package.json"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/SKILL.md",
+          "target": "SKILL.md"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+          "target": "scripts/coin_expense_core.mjs"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+          "target": "scripts/plan_coin_expense.mjs"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+          "target": "scripts/prepare_expense_registration.mjs"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+          "target": "scripts/resolve_coin_expense_provider.mjs"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+          "target": "scripts/verify_expense_registration.mjs"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/references/normalized-contracts.md",
+          "target": "references/normalized-contracts.md"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/references/registration.md",
+          "target": "references/registration.md"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/agents/openai.yaml",
+          "target": "agents/openai.yaml"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/LICENSE",
+          "target": "LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "@flair-agency/cli-utils",
+      "directory": "cli-utils",
+      "files": [
+        {
+          "source": "packages/cli-utils/package.json",
+          "target": "package.json"
+        },
+        {
+          "source": "packages/cli-utils/src/is-main.mjs",
+          "target": "src/is-main.mjs"
+        },
+        {
+          "source": "packages/cli-utils/LICENSE",
+          "target": "LICENSE"
+        }
+      ]
+    }
+  ]
+}

@@ -76,7 +76,7 @@ and storage purpose move from Scouting to Management.
     Accepted on 2026-09-05 as M2U, a required extension of M2L and an M7 exit
     gate. Existing instance-specific restrictions, including M4I's Tenant
     exclusion, remain in force. See the
-    [selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md).
+    [selection design](../../packages/lark-core/docs/principal-selection.md).
 13. Migration execution follows the bounded task policy in Section 5 and the
     current model policy in `../docs/task-orchestration-policy.md`. Work is serial
     by default, and each task produces one reviewable result. Choose reasoning
@@ -330,7 +330,7 @@ exploration drills, cleanup and new features do not join this convergence
 
 #### Gate dispositions and remaining code corrections
 
-- **Implemented and locally verified, 2026-09-06:** [Local correction evidence](../../provider-runtime/docs/archive/backup-gate-local-correction-checkpoint.md). Local corrections remove blanket
+- **Implemented and locally verified, 2026-09-06:** [Local correction evidence](../../runtime/docs/archive/backup-gate-local-correction-checkpoint.md). Local corrections remove blanket
   custom host/session guarantees and separate optional attachment drills from
   unattended backup, capability-validation drills from prior capability
   certification, and restoration success from cleanup. Preserve normal
@@ -780,33 +780,33 @@ contract implemented on 2026-09-05. M2U-2a's selected API-user CLI
 authentication, runtime actor proof and same-actor reauthorization boundary are
 implemented locally with synthetic focused tests; M2U-2b, the remaining M2U-2
 integration, M2U-3 through M2U-5 and production migration remain pending.
-[Checkpoint and verification](../../provider-runtime/docs/archive/v2-m2u-transport-checkpoint.md).
+[Checkpoint and verification](../../runtime/docs/archive/v2-m2u-transport-checkpoint.md).
 Local consumer checkpoint, 2026-09-05: the handoff-selected **M2U-4a gift
 projection consumer** is implemented with explicit selected Provider/profile
 injection and actor/resource/operation-bound approval, fresh preflight and
 receipts. Direct synthetic checks passed 29/29; unchanged gift business checks
 passed 10/10. This does not complete all M2U-4 callers or any M2U-5 rollout.
-See [exact scope and remaining gates](../../provider-runtime/docs/archive/v2-m2u-4a-gift-projection-checkpoint.md).
+See [exact scope and remaining gates](../../runtime/docs/archive/v2-m2u-4a-gift-projection-checkpoint.md).
 The private composition launcher is also complete locally: explicit owner-only
 bundle/config paths, immutable independent caller/actor/resource/operation
 selection, and existing consumer approval/preflight/receipt delegation. Its
 focused direct synthetic suite passed 43/43 with syntax/import checks; no
 consumer, Provider, core, active profile or live route was changed. See the
-[launcher follow-up](../../provider-runtime/docs/archive/v2-m2u-4a-gift-projection-checkpoint.md#composition-launcher-follow-up).
+[launcher follow-up](../../runtime/docs/archive/v2-m2u-4a-gift-projection-checkpoint.md#composition-launcher-follow-up).
 M2U-4b attachment acquisition private composition entry is now complete locally:
 explicit owner-only immutable bundle, exact actor/Base/four-operation selection,
 lazy selected transport injection after consumer validation, and separate
 unauthenticated downloader. Direct synthetic composition passed 59/59 with
 syntax/import/diff/reference checks. Consumer, Provider/core and mixed dirty
 work are preserved; no live, credential, install or commit action occurred.
-See the [composition checkpoint](../../provider-runtime/docs/archive/v2-m2u-4b-attachment-acquisition.md#private-composition-launcher-follow-up).
+See the [composition checkpoint](../../runtime/docs/archive/v2-m2u-4b-attachment-acquisition.md#private-composition-launcher-follow-up).
 M2U-2b attachment four-operation mocked pinned-CLI composition now passes
 16/16 direct synthetic tests for CLI 1.0.93. No production source repair was
 needed; explicit profile/actor, routes, JSON normalization, page and retry
 bounds match the inspected local contracts. Actual CLI/live conformance and
 the production request-authorization factory remain unproved. Factory intake
 identified missing provenance/trusted-evidence inputs. The subsequent
-[evidence handoff decision](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#evidence-handoff-decision)
+[evidence handoff decision](../../runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#evidence-handoff-decision)
 now selects a consumer-issued run-local complete-inventory capability, the same
 frozen acquisition snapshot at the factory, and a trusted composition-injected
 scope/ACL verifier with fail-closed freshness/revocation rules. This is a local
@@ -817,21 +817,21 @@ advertise lifecycle version 1 and synchronously recheck current authorization be
 initial/repeated authentication and every business attempt after awaits/delays.
 Safe terminal denial preserves existing retry limits and actual-actor proof.
 The two direct synthetic suites passed 102/102; syntax/import and scoped diff
-checks passed. See the [implementation checkpoint](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#core-lifecycle-implementation).
+checks passed. See the [implementation checkpoint](../../runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#core-lifecycle-implementation).
 Provider factory/channel and minimal consumer/launcher wiring are now complete
 locally: direct factory 61/61, acquisition 16/16, launcher 59/59 and mocked CLI
 16/16 passed against the real factory with synthetic evidence. See the
-[Provider checkpoint](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#provider-factorychannel-implementation).
+[Provider checkpoint](../../runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#provider-factorychannel-implementation).
 Core 102/102 is inherited, not rerun. No real producer/verifier or live authority
-was supplied. The owner review [decision packet](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md) is now prepared locally.
+was supplied. The owner review [decision packet](../../runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md) is now prepared locally.
 That packet is historical preparation for optional attachment protection (§7),
 not the current migration queue. Authentic sources remain unresolved and no
 live capability is certified. Ordinary selected-actor conformance remains required.
 The [current handoff](v2-task-handoff.md#4-next-work-package) owns the exact scope.
-See the [local conformance checkpoint](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-cli-conformance.md).
+See the [local conformance checkpoint](../../runtime/docs/archive/v2-m2u-2b-attachment-cli-conformance.md).
 
 This work is required for v2 cutover, including cross-domain Lark consumers.
-The [selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md) owns the detailed
+The [selection design](../../packages/lark-core/docs/principal-selection.md) owns the detailed
 contract, coverage inventory, verification and rollout requirements.
 
 Work packages:
@@ -1361,7 +1361,7 @@ Rollback:
 
 ### M6: Account-level membership transition and privileged actions
 
-Status: deferred to [§7](#7-post-migration-improvements). No evidence establishes new
+Status: deferred to [§7](.#7-post-migration-improvements). No evidence establishes new
 account-level transition or initial-DM automation as required to preserve existing
 v1 operations. Their release-required approval is unconfirmed. M3/M5 write
 foundations do not authorize these additional actions. Existing action safety
@@ -1520,12 +1520,12 @@ Consider verification after storage and restoration of sizes and SHA-256 hashes,
 structure, records, links and attachment cell membership (including order and
 empty cells), reporting missing, extra and unresolved correspondence.
 
-Evidence: the [2026-09-06 roundtrip result](../../provider-runtime/docs/archive/backup-roundtrip-result.md#measured-comparison)
+Evidence: the [2026-09-06 roundtrip result](../../runtime/docs/archive/backup-roundtrip-result.md#measured-comparison)
 matched 2 tables, 7 field definitions, 5 records and 4 attachment references with
 0 missing / 0 extra / 0 unresolved after attachment supplementation. Native
 `.base` alone omitted attachment bytes in this fixture. Observed field/record ID
 retention is not a general guarantee, and complete restoration of all Lark
-features is not proven. See the result's [detailed unverified scope](../../provider-runtime/docs/archive/backup-roundtrip-result.md#local-evidence-and-scope).
+features is not proven. See the result's [detailed unverified scope](../../runtime/docs/archive/backup-roundtrip-result.md#local-evidence-and-scope).
 
 This entry records the future backlog only; it does not initiate Provider
 implementation, live testing or external feedback. It adds no new host/session
@@ -1534,7 +1534,7 @@ requirements and does not change existing migration or activation gates.
 ## Backup capability common contract checkpoint (2026-09-05)
 
 The separately approved source-neutral implementation is complete:
-[checkpoint](../../provider-runtime/docs/archive/backup-capability-contract-checkpoint.md). Added pure normalization,
+[checkpoint](../../runtime/docs/archive/backup-capability-contract-checkpoint.md). Added pure normalization,
 execution companion validation and per-target Consumer assessment in the existing
 source-provider-api package; 13/13 direct contract and existing API tests pass.
 This does not complete M2U evidence gates or certify any Provider's live backup or

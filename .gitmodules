@@ -1,3 +1,90 @@
-[submodule "provider-runtime"]
-	path = provider-runtime
+[submodule "runtime"]
+	path = runtime
 	url = https://github.com/flair-agency/live-agency-provider-runtime.git
+[submodule "providers/backstage"]
+	path = providers/backstage
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/06/repository.bundle
+[submodule "providers/google-drive"]
+	path = providers/google-drive
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/07/repository.bundle
+[submodule "providers/lark-base"]
+	path = providers/lark-base
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/08/repository.bundle
+[submodule "providers/lark-chat"]
+	path = providers/lark-chat
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/09/repository.bundle
+[submodule "providers/moneyforward-cloud-expense"]
+	path = providers/moneyforward-cloud-expense
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/10/repository.bundle
+[submodule "providers/tiktok-ios"]
+	path = providers/tiktok-ios
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/11/repository.bundle
+[submodule "providers/tiktok-web"]
+	path = providers/tiktok-web
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/12/repository.bundle
+[submodule "mcp/operations"]
+	path = mcp/operations
+	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/05/repository.bundle
+[submodule "skills/coin-expense-reconcile"]
+	path = skills/coin-expense-reconcile
+	url = ./skills/coin-expense-reconcile
+[submodule "skills/coin-expense-weekly-application"]
+	path = skills/coin-expense-weekly-application
+	url = ./skills/coin-expense-weekly-application
+[submodule "skills/creator-activity-sync"]
+	path = skills/creator-activity-sync
+	url = ./skills/creator-activity-sync
+[submodule "skills/creator-insight-sync"]
+	path = skills/creator-insight-sync
+	url = ./skills/creator-insight-sync
+[submodule "skills/creator-invitation-status-compaction"]
+	path = skills/creator-invitation-status-compaction
+	url = ./skills/creator-invitation-status-compaction
+[submodule "skills/creator-invitation-status-sync"]
+	path = skills/creator-invitation-status-sync
+	url = ./skills/creator-invitation-status-sync
+[submodule "skills/creator-live-history-compaction"]
+	path = skills/creator-live-history-compaction
+	url = ./skills/creator-live-history-compaction
+[submodule "skills/creator-live-history-sync"]
+	path = skills/creator-live-history-sync
+	url = ./skills/creator-live-history-sync
+[submodule "skills/creator-live-metrics-compaction"]
+	path = skills/creator-live-metrics-compaction
+	url = ./skills/creator-live-metrics-compaction
+[submodule "skills/creator-profile-compaction"]
+	path = skills/creator-profile-compaction
+	url = ./skills/creator-profile-compaction
+[submodule "skills/creator-profile-sync"]
+	path = skills/creator-profile-sync
+	url = ./skills/creator-profile-sync
+[submodule "skills/gift-history-sync"]
+	path = skills/gift-history-sync
+	url = ./skills/gift-history-sync
+[submodule "skills/lark-base-backup"]
+	path = skills/lark-base-backup
+	url = ./skills/lark-base-backup
+[submodule "skills/lark-base-backup-retention"]
+	path = skills/lark-base-backup-retention
+	url = ./skills/lark-base-backup-retention
+[submodule "skills/lark-base-disaster-recovery-drill"]
+	path = skills/lark-base-disaster-recovery-drill
+	url = ./skills/lark-base-disaster-recovery-drill
+[submodule "skills/lark-base-maintenance"]
+	path = skills/lark-base-maintenance
+	url = ./skills/lark-base-maintenance
+[submodule "packages/cli-utils"]
+	path = packages/cli-utils
+	url = ./packages/cli-utils
+[submodule "packages/lark-core"]
+	path = packages/lark-core
+	url = ./packages/lark-core
+[submodule "packages/private-runtime-files"]
+	path = packages/private-runtime-files
+	url = ./packages/private-runtime-files
+[submodule "packages/row-archive"]
+	path = packages/row-archive
+	url = ./packages/row-archive
+[submodule "packages/source-provider-api"]
+	path = packages/source-provider-api
+	url = ./packages/source-provider-api

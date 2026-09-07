@@ -221,7 +221,7 @@ Record release/source identity, environment, configuration revision, verificatio
 
 ## 11. Relationship to Existing Plans
 
-- [npm lifecycle design](../../provider-runtime/docs/deployment.md): SEP-0 supplies path/host inventory to RLS-0; SEP-1/2 precede broad RLS implementation. Registry, packaging, full lifecycle CLI, and production state relocation do not block initial separation. The existing Work checkout remains the interim production destination until an independently verified npm cutover.
+- [npm lifecycle design](../../runtime/docs/deployment.md): SEP-0 supplies path/host inventory to RLS-0; SEP-1/2 precede broad RLS implementation. Registry, packaging, full lifecycle CLI, and production state relocation do not block initial separation. The existing Work checkout remains the interim production destination until an independently verified npm cutover.
 - [v2 migration plan](v2-migration-plan.md): preserve completed milestones, accepted contracts, and per-workflow gates. Move unfinished development into the new checkout. Do not wait for M7 to separate environments.
 - [Current v2 handoff](v2-task-handoff.md): retain the latest completed conformance evidence and unfinished candidate, but prioritize SEP-0 before further implementation in the shared checkout. The unfinished candidate resumes in the separated development environment.
 - [Repository reorganization plan](repository-reorganization-plan.md): its deferred cosmetic moves do not defer this urgent environment split. Retain internal repository ownership and layout; leave sibling repositories and business reference directories in place pending inventory.

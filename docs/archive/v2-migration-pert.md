@@ -118,7 +118,7 @@ flowchart TD
   INTEL -. "正式にcutover範囲へ追加した場合のみ" .-> ALL
 ```
 
-M2U-1の呼び出し元棚卸し・選択契約は[実装済み](../../provider-runtime/docs/archive/v2-m2u-inventory-and-contract.md)。当初評価の直近着手は **M2U-2の共通認証・制約付き通信** だったが、現在の次作業は冒頭の承認済みIA順序と引き継ぎで確認する。既存Skillの優先経路は **W2の専用APIアプリ・観測coverage解消 → W2切替 → W3 → W4 → W5 → W6 → M7** として残し、**M2U-1/2 → M2U-3/4 → M2U-5 → M7** を必須経路に追加する。該当する経路の切替にはM2Uの対応部分を満たす必要があるが、W2やM5の準備まで一律に止めない。W3以降の順序は元計画に基づく。**M3 → M6**、**M5 → M6**、backup、component公開が遅れれば、そちらが最長経路になり得る。M3はW6にも合流するため独立した末端作業として扱わない。
+M2U-1の呼び出し元棚卸し・選択契約は[実装済み](../../runtime/docs/archive/v2-m2u-inventory-and-contract.md)。当初評価の直近着手は **M2U-2の共通認証・制約付き通信** だったが、現在の次作業は冒頭の承認済みIA順序と引き継ぎで確認する。既存Skillの優先経路は **W2の専用APIアプリ・観測coverage解消 → W2切替 → W3 → W4 → W5 → W6 → M7** として残し、**M2U-1/2 → M2U-3/4 → M2U-5 → M7** を必須経路に追加する。該当する経路の切替にはM2Uの対応部分を満たす必要があるが、W2やM5の準備まで一律に止めない。W3以降の順序は元計画に基づく。**M3 → M6**、**M5 → M6**、backup、component公開が遅れれば、そちらが最長経路になり得る。M3はW6にも合流するため独立した末端作業として扱わない。
 
 M2Uの汎用Chat Provider対応と、M4IのCreator Networks API本番有効化は別のゲート。M2Uでも現在のM4I instanceはTenant・更新禁止を維持し、外部のapp審査待ちを他組織の資格情報やTenant経路で代替しない。将来のDocs Providerには同じ導入条件を課すが、延期中のDocs機能自体を今回の必須実装へ追加するものではない。
 
@@ -185,9 +185,9 @@ M2U追加のcheckpointは文書のみを更新し、相対リンク、範囲・�
 ## 根拠
 
 - [移行計画](v2-migration-plan.md)：M0–M7、M4の移行順序6項目、各切替ゲート。
-- [Lark User／Tenant選択設計](../../provider-runtime/packages/lark-core/docs/principal-selection.md)：M2U-1〜5、全Provider・間接利用元、操作別対応と本番検証。
+- [Lark User／Tenant選択設計](../../packages/lark-core/docs/principal-selection.md)：M2U-1〜5、全Provider・間接利用元、操作別対応と本番検証。
 - [引継ぎ](v2-task-handoff.md)：W2 blocker、local checkpoint、既存制約。
-- [W1切替記録](../../provider-runtime/docs/archive/v2-m4-wave1-scheduled-cutover.md)：2/2の定義と到達記録。
-- [Backup強化](../../provider-runtime/skills/live-agency-skills/docs/backup-hardening.md)：未コミットの合成checkpointと本番残ゲート。
-- [LIVE比較テスト](../../provider-runtime/skills/live-agency-skills/test/live-history-v2-dual-run.test.mjs)：11件の合成準備。
-- [Management実装](../../provider-runtime/mcp/live-agency-operations/src/creator-management-mcp-server.mjs)：read-only 3ツール。
+- [W1切替記録](../../runtime/docs/archive/v2-m4-wave1-scheduled-cutover.md)：2/2の定義と到達記録。
+- [Backup強化](../architecture/skills/backup-hardening.md)：未コミットの合成checkpointと本番残ゲート。
+- [LIVE比較テスト](../../skills/creator-live-history-sync/test/live-history-v2-dual-run.test.mjs)：11件の合成準備。
+- [Management実装](../../mcp/operations/src/creator-management-mcp-server.mjs)：read-only 3ツール。

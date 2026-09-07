@@ -263,12 +263,12 @@ Astra/low is the requested default; no host setting change is claimed.
 
 | Inspected surface | Actual contract and eligibility result |
 | --- | --- |
-| [Backup Skill](../../provider-runtime/skills/live-agency-skills/skills/lark-base-backup/SKILL.md) and its three direct references | Workflow plus version 1 receipt/attachment/readiness contracts; no full-Base v2 runner or injected caller entry. Installed Skill symlink resolves to this checkout. |
-| [Lark acquisition procedure](../../provider-runtime/providers/lark-base/instructions/full-base-backup.md) and [Provider exports](../../provider-runtime/providers/lark-base/src/index.js) | Retained private browser procedure and `inspectLarkBaseExportArtifact(input, { expectedBaseToken })`; inspecting supplied bytes is not native export acquisition or a selected v2 orchestration. Historical drill claims do not certify a current Provider's general capabilities. |
-| [Storage procedure](../../provider-runtime/providers/google-drive/instructions/backup-storage.md) and [helpers](../../provider-runtime/providers/google-drive/src/index.js) | `inspectBackupCoverage(receipts, query)` and `buildVerifiedBackupReceipt(value)` consume supplied receipts/metadata and readback byte/hash values. They do not perform source acquisition, shared listing, upload or complete storage readback. |
-| [Attachment launcher](../../provider-runtime/scripts/attachment-acquisition-launcher.mjs) | `createOwnerOnlyAttachmentAcquisitionLauncher({ bundlePath, createReadTransport, downloadFetch, now })` is implemented; acquisition input requires `profile`, existing `baseReceipt`, and `restoreMappingContract`. It cannot stand in for creation/storage of that Base receipt. |
-| [Readiness helper](../../provider-runtime/skills/live-agency-skills/skills/lark-base-backup/scripts/unattended_readiness.mjs) | `assessUnattendedBackupReadiness(input)` evaluates normalized evidence; it neither executes backup nor activates a route. |
-| [Consumer checkpoint](../../provider-runtime/docs/archive/backup-consumer-integration-checkpoint.md) | Explicit `backupCapabilityInput` belongs to `buildDrillPreflight`, not backup creation. Optional auxiliary avatars are this Consumer's policy, not general Provider capability or blanket attachment tolerance. |
+| [Backup Skill](../../skills/lark-base-backup/SKILL.md) and its three direct references | Workflow plus version 1 receipt/attachment/readiness contracts; no full-Base v2 runner or injected caller entry. Installed Skill symlink resolves to this checkout. |
+| [Lark acquisition procedure](../../providers/lark-base/instructions/full-base-backup.md) and [Provider exports](../../providers/lark-base/src/index.js) | Retained private browser procedure and `inspectLarkBaseExportArtifact(input, { expectedBaseToken })`; inspecting supplied bytes is not native export acquisition or a selected v2 orchestration. Historical drill claims do not certify a current Provider's general capabilities. |
+| [Storage procedure](../../providers/google-drive/instructions/backup-storage.md) and [helpers](../../providers/google-drive/src/index.js) | `inspectBackupCoverage(receipts, query)` and `buildVerifiedBackupReceipt(value)` consume supplied receipts/metadata and readback byte/hash values. They do not perform source acquisition, shared listing, upload or complete storage readback. |
+| Attachment launcher (historical source: `runtime/scripts/attachment-acquisition-launcher.mjs`; retained with the pre-M1 source-disposition snapshot) | `createOwnerOnlyAttachmentAcquisitionLauncher({ bundlePath, createReadTransport, downloadFetch, now })` is implemented; acquisition input requires `profile`, existing `baseReceipt`, and `restoreMappingContract`. It cannot stand in for creation/storage of that Base receipt. |
+| Readiness helper (historical source: `skills/lark-base-backup/scripts/unattended_readiness.mjs`; retained with the pre-M1 source-disposition snapshot) | `assessUnattendedBackupReadiness(input)` evaluates normalized evidence; it neither executes backup nor activates a route. |
+| [Consumer checkpoint](../../runtime/docs/archive/backup-consumer-integration-checkpoint.md) | Explicit `backupCapabilityInput` belongs to `buildDrillPreflight`, not backup creation. Optional auxiliary avatars are this Consumer's policy, not general Provider capability or blanket attachment tolerance. |
 
 Repository-scoped entry/call-site searches covered root scripts/packages/MCP,
 Lark/Drive exports and the target Skill file inventory. No settled full-Base
@@ -308,7 +308,7 @@ change; pre-edit document copies are in `/tmp/ia3-backup-eligibility/`.
 
 ## Full-Base caller contract decision — 2026-09-06
 
-Completed design-only package: [one caller contract and implementation brief](../../provider-runtime/docs/v2-full-base-backup-caller-contract.md).
+Completed design-only package: [one caller contract and implementation brief](../../runtime/docs/v2-full-base-backup-caller-contract.md).
 Primary class E (ownership/call boundary decision), documentation-only effects.
 Protected boundary: private composition with supporting Provider ports. No new
 shared abstraction, evidence mechanism, source/Skill/settings edit or live IO.
@@ -528,7 +528,7 @@ remain unproved and gated. This intake does not complete those milestones.
 Class G decision-only package; protected Provider IO/authority boundary retained.
 Done: classified four reported gaps, chose inline owner-only correspondence and
 specified local operation semantics plus exact integrated implementation brief in
-[caller contract Sections 6–7](../../provider-runtime/docs/v2-full-base-backup-caller-contract.md#6-minimal-provider-io-decision--2026-09-06).
+[caller contract Sections 6–7](../../runtime/docs/v2-full-base-backup-caller-contract.md#6-minimal-provider-io-decision--2026-09-06).
 No source, running policy, profile, artifact or external service changed.
 
 Counterpart requirement originates in existing public receipt reference and Drive
@@ -640,7 +640,7 @@ The [current handoff](v2-task-handoff.md#4-next-work-package) owns the queue. Th
 
 | Remaining family / coverage | One logical worker outcome | Entry evidence and necessary split |
 | --- | --- | --- |
-| Completed backup gate correction / CP1 | Normal authentication and byte/receipt integrity, explicit unknown-capability validation preparation, independent restoration/cleanup results, direct tests and local wiring | [Fresh local evidence](../../provider-runtime/docs/archive/backup-gate-local-correction-checkpoint.md): 159/159 synthetic tests. Existing dirty and pins preserved. No external test or activation. Do not dispatch this completed correction again. |
+| Completed backup gate correction / CP1 | Normal authentication and byte/receipt integrity, explicit unknown-capability validation preparation, independent restoration/cleanup results, direct tests and local wiring | [Fresh local evidence](../../runtime/docs/archive/backup-gate-local-correction-checkpoint.md): 159/159 synthetic tests. Existing dirty and pins preserved. No external test or activation. Do not dispatch this completed correction again. |
 | M2U残るProvider/consumer / CP1 | 名前を特定したcaller familyの明示actor選択、対応/非対応ケース、必要な配線・関連回帰をまとめる | 完了済みcore/factory/gift/activity/attachment launcherを再実装しない。任意添付復元の完成と既存callerの選択契約適合は別。live検証は権限が変わる境界で分ける |
 | M4 W2 / CP2 | 既知原因の取得修正・試験をまとめ、同一入力coverageとcandidate/preflightを整える | 20件比較済み、8件取得遮断とcandidate未生成。共有Principal個数制限の変更は未承認で判断を残す。別App必須をowner要件と断定しない。activation/apply/scheduleは各権限に従う |
 | M4 W3–W6と必要なM3 write / CP2 | 既存workflow一つのdomain移行・必要なwrite・比較準備・IA-3必須指示・関連回帰 | W3合成準備済み。入力/write/backupなど実依存だけを先行条件とする。削除のexact plan/backup/承認/readback/rollbackは保持。新規継続調査等は§7 |

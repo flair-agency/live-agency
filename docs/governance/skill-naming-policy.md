@@ -1,6 +1,6 @@
 # LIVE Agency Skill Naming Policy
 
-- Status: Reviewed naming policy; no rename batch is adopted by documentation organization. Proposed migration remains in the review index.
+- Status: Naming rules retained; placement and migration references aligned with the owner-approved v2 plan on 2026-09-07. Individual rename mappings remain the D1 implementation-design deliverable.
 - Created: 2026-09-05
 - Scope: Existing and future Skills in the LIVE agency business collection, including business, shared operational, and necessary technical maintenance Skills.
 - Purpose: Define stable naming, responsibility, and repository-boundary rules independently of current skill names or a particular migration version.
@@ -87,8 +87,8 @@ determine what may execute.
 
 | Layer | Decisions and processing it owns | Source placement |
 | --- | --- | --- |
-| Business Skills | Recording, assessment, reconciliation, and business-information retention decisions | Public `live-agency-skills` |
-| Shared operational Skills | Protection scope, recovery requirements, retention, maintenance planning, and verification | Public `live-agency-skills` |
+| Business Skills | Recording, assessment, reconciliation, and business-information retention decisions | Independent `skills/<identifier>/` repository; initially private distribution |
+| Shared operational Skills | Protection scope, recovery requirements, retention, maintenance planning, and verification | Independent `skills/<identifier>/` repository; initially private distribution |
 | Technology-specific implementations and necessary technical maintenance Skills | Service constraints, recognition, and concrete acquisition, restore, or maintenance methods | Corresponding private Provider repository |
 | Runtime composition | Provider selection, pinned versions, and organization-specific operational composition | Private Runtime; live-environment information follows the existing owner-only boundary |
 | Production data, secrets, and execution evidence | Backup payloads, credentials, live identifiers, runtime plans, and related artifacts | Managed storage outside Git |
@@ -138,12 +138,12 @@ implicit selection or duplicate execution of the same task.
 
 This policy owns the rules. Current source inventories, candidate names,
 responsibility splits, dependencies, rollout order, and migration exit criteria
-belong in the [Skill naming and migration plan](../reviews/v2-skill-naming-and-migration-plan.md).
+belong in the [canonical v2 plan](../migration/v2-plan.md#skill-naming-and-foreign-revenue-migration).
 Update that plan when implementation status changes; do not turn the policy
 into a progress log or a legacy-name mapping.
 
 - [Domain model](../domain/model.md): the business vocabulary and invariants that names must represent.
-- [Provider architecture](../../provider-runtime/skills/live-agency-skills/docs/provider-architecture.md): public contracts, private implementations, and production data outside Git.
+- [Provider architecture](../architecture/skills/provider-architecture.md): public contracts, private implementations, and production data outside Git.
 
 The parent project's `AGENTS.md` and the read-only project source titled
 “Private-source integration Skill design guide” remain applicable. This policy

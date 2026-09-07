@@ -25,7 +25,7 @@ as an all-component release programme. No publication or business authority foll
 
 Read applicable AGENTS.md, the complete [Private Source Integration Guide](../governance/private-source-integration-guide.md),
 the [task policy](../governance/development-policy.md), [RLS-0 package gaps](npm-runtime-rls0-checkpoint.md)
-and the full [RLS-1 contract including §11](../../provider-runtime/skills/live-agency-skills/packages/source-provider-api/docs/instruction-resolution.md).
+and the full [RLS-1 contract including §11](../../packages/source-provider-api/docs/instruction-resolution.md).
 The authoritative guide is not duplicated here. RLS-1 coordinator acceptance and
 its **21 direct + 41 integration passes**, denial receipt and preservation record
 are inherited evidence; neither those matrices nor recovery were rerun.

@@ -321,7 +321,7 @@ and `backstageMonthlyLiveMinutes` for Management to prevent accidental reuse.
 
 Write intents, Provider receipts and record histories are audit evidence, not restorable backups. Full Base data protection is independent of an individual domain write client. Frequency, retention and recovery policy belong to Skills; Providers expose the selected acquisition/storage capabilities. Native Base backup does not by itself establish attachment-complete recovery. Required attachment protection needs its own content verification and restore evidence.
 
-Service-specific export and tenant-capability details are in the [Base Provider model](../../provider-runtime/providers/lark-base/knowledge/data-model.md); Runtime owns the [full-Base caller contract](../../provider-runtime/docs/v2-full-base-backup-caller-contract.md). Existing measurements are historical evidence, not current service verification.
+Service-specific export and tenant-capability details are in the [Base Provider model](../../providers/lark-base/knowledge/data-model.md); Runtime owns the [full-Base caller contract](../../runtime/docs/v2-full-base-backup-caller-contract.md). Existing measurements are historical evidence, not current service verification.
 
 ## 5. Scouting strategy assumptions
 
@@ -472,7 +472,7 @@ Omitting non-gift support overstates ROI. In particular, a creator supported thr
 
 ## 10. Implementation ownership
 
-The [architecture](../architecture/overview.md) owns component responsibilities. This model owns business meaning; the [Base Provider](../../provider-runtime/providers/lark-base/knowledge/data-model.md) owns its table/field mappings. Account-decision measurements remain [historical evidence](../archive/v2-identity-model-decision-gate.md).
+The [architecture](../architecture/overview.md) owns component responsibilities. This model owns business meaning; the [Base Provider](../../providers/lark-base/knowledge/data-model.md) owns its table/field mappings. Account-decision measurements remain [historical evidence](../archive/v2-identity-model-decision-gate.md).
 
 ## 12. Unresolved design questions
 

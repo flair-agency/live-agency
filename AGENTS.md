@@ -15,6 +15,6 @@
 
 ## Verification and reporting
 
-- Verify changed links, test references and distribution resources when moving documents or fixtures. From `provider-runtime/`, the independent caller discovery/API-operation check is `node --test scripts/m2u-call-site-inventory.test.mjs`.
+- Verify changed links, test references and distribution resources when moving documents or fixtures. From the project root, the independent caller discovery/API-operation check is `node --test test/m2u-call-site-inventory.test.mjs`.
 - Run focused tests appropriate to the affected owner; broaden checks when a changed contract, pin, release gate or unresolved failure requires it. Existing dependencies do not authorize installation or host registration.
 - Review the scoped diff. Report the completed outcome, changed owners, actual checks and limits, remaining decisions and recovery path in the existing task record. Do not turn historical evidence into a current completion claim.

@@ -1,5 +1,7 @@
 # 文書整理レビュー案
 
+配置追記：文書整理後、ユーザー指示で親直下の`provider-runtime/`を`runtime/`へ改名。本文・一覧の過去の配置記録は当時の名前を保持し、現在の参照リンクは新しい配置に合わせる。
+
 2026年9月7日。**整理案はユーザーがLGTMで承認。承認範囲を実施し、結果を末尾の第7節に記録した。第1〜6節は承認時点の調査・整理方針を保持する。ただしcaller-inventoryは追加承認により固定比較を廃止し、9 JSONを削除する方針へ変更した（第7節）。v2設計・移行案の承認とは区別する。**
 
 以下の第1〜6節は実施前のレビュー記録であり、当時は本案と一覧のみを変更対象としていた。今回の実施範囲・配置と検証は第7節を参照。基準への合意を、未採用の設計や過去の作業指示への承認に読み替えない。
@@ -62,7 +64,7 @@ JSON等は拡張子ではなく、利用目的と参照元で配置する。「�
 
 | 対象 | 件数 | 整理先と扱い |
 | --- | --- | --- |
-| Runtimeの`*caller-inventory.json`（初案、追加承認で廃止） | 9 | [call-site検証テスト](../../provider-runtime/scripts/m2u-call-site-inventory.test.mjs)が読み込む固定データ。Runtimeの既存テスト資源領域へ移し、参照と生成先を同時修正して当該テストを実行する |
+| Runtimeの`*caller-inventory.json`（初案、追加承認で廃止） | 9 | [call-site検証テスト](../../test/m2u-call-site-inventory.test.mjs)が読み込む固定データ。Runtimeの既存テスト資源領域へ移し、参照と生成先を同時修正して当該テストを実行する |
 | Runtimeの`v2-lark-api-call-sites.json` | 1 | 静的調査の生成結果。再生成手順・対象版・必要な結論を記録し、出力本体はGit対象外へ。固有の判断根拠として保存が必要な部分は検証記録に残す |
 | Runtimeの`v2-live-history-compaction-execution-inventory.json` | 1 | 特定実行の対象・ハッシュ記録。必要な再現証跡として所有repoの履歴資料へ。現行仕様やテスト入力とは扱わない |
 | 親の`npm-runtime-private-qualification-source-manifest.json` | 1 | 特定検証のソースmanifest。配布検証の履歴資料として親repoの`docs/archive/`へ |

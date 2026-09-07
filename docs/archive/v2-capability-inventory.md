@@ -193,8 +193,8 @@ blindly retried.
 ## 8. Lark OpenAPI identity migration (M2U)
 
 Accepted on 2026-09-05 as mandatory v2 scope. M2U-1 now has a
-[local source inventory and selection contract](../../provider-runtime/docs/archive/v2-m2u-inventory-and-contract.md);
-transport, consumer migration and rollout remain pending. [The selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md) defines the
+[local source inventory and selection contract](../../runtime/docs/archive/v2-m2u-inventory-and-contract.md);
+transport, consumer migration and rollout remain pending. [The selection design](../../packages/lark-core/docs/principal-selection.md) defines the
 profile contract and M2U-1 through M2U-5. This capability table is complemented by the
 source call-site snapshot and configured-entry classification; neither proves
 that deployed consumers have completed identity migration.

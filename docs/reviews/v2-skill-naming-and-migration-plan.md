@@ -1,267 +1,118 @@
-# LIVE Agency Runtime v2: Skill Naming and Migration Plan
+# v2 Skill命名・移行案
 
-> Status: Review proposal; unapproved portions remain unadopted. Relocation does not approve the design. Current work: [migration status](../migration/status.md).
+> 状態：2026年9月7日、全体再計画の一部として命名・外貨売上移行の組込みを承認済み。日本語のレビュー履歴。正本は[英語のv2移行計画](../migration/v2-plan.md)。候補名・個別の責務分割はD1の具体表で確定する。現在状況は[移行状況](../migration/status.md)。
 
-- Status: Draft companion plan; recommended placement is an independent v2 workstream. Incorporation into the master v2 milestones and exit gates has not been decided.
-- Created: 2026-09-05
-- Governing policy: [LIVE Agency Skill Naming Policy](../governance/skill-naming-policy.md).
-- Scope: All 16 repository Skills, including the frozen prototype, and `foreign-revenue-accounting` currently maintained outside the repository.
-- Accepted direction: Apply the naming policy to every in-scope Skill and migrate the source-neutral foreign-revenue Skill responsibilities into `live-agency-skills` after separating Skill and Provider implementation.
-- Implementation status: Documentation only. No Skill rename, source migration, publication, activation, schedule change, or frozen-workflow reopening has occurred.
+## 1. 全体計画への位置付け
 
-## 1. Version placement and relationship to the active migration
+命名・責務の見直しと外貨売上Skillの移行を、v2の三段階へ組み込む。旧M4・M5・M7へ別の作業系列として追加する案は、この再計画では採用しない。v3を新設する変更でもない。
 
-Recommend an independent v2 workstream rather than a new v3 architecture.
-The [active v2 plan](../archive/v2-migration-plan.md) already separates business-task
-procedures from service-specific Provider implementation and preserves
-incremental cutover and rollback. Naming consistency and the foreign-revenue
-source relocation apply those boundaries to the existing collection. They do
-not introduce a new creator identity model, new creator-domain ownership, or a
-replacement architecture.
+| 段階 | この文書の対象作業 | 判定 |
+| --- | --- | --- |
+| ① 開発基盤 | 配布対象ごとに責務、Skill識別子、npm名、公開入口、所有repo、旧名対応を確定。必要な分離と改名を配布・導入の実装に含める | 固定版をソースへのリンクなしで導入し、名前・出所・版を解決できる。同名衝突を拒否し、既存の無関係な導入物を保つ。更新・差し戻しができる |
+| ② Provider実動作 | 改名・責務分離で利用する取得、更新、保存、復元等の能力を検証する。外貨売上も必要なProvider能力に対応付ける | 対象能力の実動作が契約を満たす。名前や合成入力の検証だけでは合格にしない |
+| ③ Skill受け入れ・本番移行 | 新しい識別子と配布済み構成で業務を受け入れ検証し、呼出し元・導入・必要な自動処理の参照を切り替える | 必要なProvider能力が合格し、業務結果・参照の一意性・復旧手順を確認。頻度や権限を改名の副作用で変更しない |
 
-The namespace remains `live-agency`. Neither the plan's v2 label nor a future
-contract version belongs in a Skill name. Version incompatible capability or
-receipt changes individually; a contract-version change alone does not define
-a new system-wide v3 milestone.
+命名だけを独立タスクへ細分化せず、所有コンポーネントの実装・接続・直接テストまで一つの成果にまとめる。全Skillの業務完成を第一段階へ前倒ししない。旧SN・FR番号は旧計画の参照であり、再開始待ちの工程として扱わない。旧M2U等の契約に必要な検証は、該当するProvider能力・業務操作へ引き継ぐ。
 
-The companion plan has these integration boundaries:
+## 2. 再編後の配置と識別子
 
-- Apply the reviewed naming policy to new and revised Skill designs immediately.
-  Switch installed identifiers only through the rollout packages below.
-- Coordinate Scouting renames with M4 and Management activity renames with M5.
-  Preparation can proceed independently; changes to an active route require
-  evidence for that exact route and a suitable cutover checkpoint.
-- Any changed Lark OpenAPI path remains subject to the existing M2U admission
-  and verification requirements. A rename does not bypass them.
-- Keep foreign-revenue accounting and coin-expense work outside the creator-domain
-  MCPs, as required by accepted v2 decision 8.
-- Track the foreign-revenue migration as independently gated accounting work.
-  Do not make its completion a prerequisite for unrelated M4/M5 routes or
-  automatically add it to the existing M7 exit criteria.
-- Before merging this workstream into the master v2 scope, state exactly which
-  packages must finish for M7 and which may ship as follow-up v2 work. Align the
-  master plan, capability inventory, handoff, and progress network then.
-- Preserve the current next-task priority. This document does not supersede
-  the active handoff or change the existing implementation queue.
+16個の既存Skillは、`skills/<現行識別子>/`ごとの独立Gitリポジトリへ分割済み。共通ライブラリーは`packages/`、サービス固有の実装は`providers/`、MCPは`mcp/operations/`、構成・配備は`runtime/`が所有する。配置の詳細は[親README](../../README.md)を参照する。
 
-The alternative of a v3 program should be reconsidered only if the eventual
-design requires a materially new architecture or if the owner deliberately
-defers this work into a separately scoped release. Neither is established by
-the current naming and migration requirements. Deferral alone can also be
-handled as a v2 follow-up without inventing a new architecture version.
+今回の再編ではSkillの識別子変更、外貨売上Skillの移行、公開、稼働先切替、凍結解除は行っていない。ローカルのGit分割と、それらの実施を区別する。
 
-## 2. Initial review of all 16 repository skills
+[命名方針](../governance/skill-naming-policy.md)の業務上の名前空間は`live-agency`、npm配布のscopeは`@flair-agency`。この二つを区別する。
 
-These are naming and responsibility-design candidates, not an immediate rename
-manifest. The first column identifies existing source material.
+| 項目 | 扱い |
+| --- | --- |
+| Skill識別子 | `live-agency-<業務・運用上の対象>-<動作>`。Skillディレクトリー名と`SKILL.md`の`name`を一致させる。版、公開範囲、デバイス名を機能識別子へ混ぜない |
+| npmパッケージ名 | `@flair-agency/<正式名>`。Skill識別子から機械的に決めず、全体計画D1の責務・正式名・exports・旧名対応表で同時に確定する |
+| Git管理 | 各Skillが独立repo。親のsubmodule参照と開発workspaceを更新する。GitHub repo名・URLはnpm名やSkill名とは別に対応を記録する |
+| 配布の公開範囲 | GitHub Packagesで初期Private。サービス中立なコードであることを公開許可と同一視せず、将来のPublic化はパッケージごとに扱う |
+| 導入時の選択 | 識別子だけでなく出所と固定版を確認する。別の出所の同名Skillを暗黙に選択・上書きしない |
 
-| Current identifier | Actual task | Candidate identifier | Alignment considerations |
+命名方針中の旧`Public live-agency-skills`という配置表記は再編前のもの。今回は再編後の個別repoと初期Privateの配布方針を前提とし、承認済み配置の正本への整合も採用時に行う。業務上の命名規則と公開範囲の判断は分ける。
+
+## 3. 既存16 Skillの候補
+
+各行は現行ソースを識別するための候補表であり、即時改名の指示ではない。現行名は新しい命名の制約にしない。名称・説明・指示・実装・入出力・実際の能力を一緒に整合させる。
+
+| 現行識別子 | 業務 | 候補識別子 | 整合させる点 |
 | --- | --- | --- | --- |
-| `creator-activity-sync` | Reconcile monthly activity results with existing records and apply authorized metric changes | `live-agency-creator-monthly-activity-reconcile` | Distinguish this from scout activity logs and observed LIVE duration; state that only existing records may be updated |
-| `creator-invitation-status-sync` | Record invitation-eligibility observations as transition history | `live-agency-creator-invitation-eligibility-record` | Distinguish eligibility from the progress of a sent invitation; reconcile the existing state contract with v2 vocabulary and migrate the contract if its meaning narrows |
-| `creator-profile-sync` | Record profile observations and avatar evidence as history | `live-agency-creator-profile-record` | Explain that this is neither general current-value editing nor overwriting past history; move Lark-specific routes behind the boundary |
-| `creator-live-history-sync` | Record LIVE sessions and point-in-time metrics from an observation | `live-agency-creator-live-observation-record` | Include the metric snapshots omitted from the current name; two storage destinations alone do not justify two skills |
-| `creator-insight-sync` | Update the current assessment and approved characteristic tags from evidence | `live-agency-creator-assessment-update` | Includes inference rather than simple transfer; do not expand it into all forms of creator assessment |
-| `creator-profile-compaction` | Prune profile-observation history according to retention policy | `live-agency-creator-profile-history-prune` | This is a business decision not to retain some information; distinguish it from resource reclamation or lossless compression and preserve account-continuity review evidence |
-| `creator-live-metrics-compaction` | Retain representative point-in-time LIVE metrics and prune other history | `live-agency-creator-live-metric-history-prune` | Distinguish metric snapshots from session history and specify evidence retained to cover missing values |
-| `creator-live-history-compaction` | Retain required session history and archive selected records before deletion | `live-agency-creator-live-session-history-prune` | Distinguish sessions from metric snapshots; describe archive restoration as a supporting history-management procedure, separate from whole-system production recovery |
-| `creator-invitation-status-compaction` | Remove only adjacent duplicate states while preserving transitions | `live-agency-creator-invitation-eligibility-history-deduplicate` | This is not global deduplication; preserve A → B → A; the eligibility vocabulary requires the same contract review as the recording skill |
-| `gift-history-sync` | Merge partial observations of agency-funded gifts into a master | `live-agency-gift-history-merge` | Distinguish the durable master from derived summaries; this is neither all gifts received by a creator nor accounting expenditure |
-| `coin-expense-reconcile` | Match coin-purchase evidence to existing expense candidates and verify approved registrations | `live-agency-coin-purchase-expense-reconcile` | Distinguish purchases from coin consumption, estimated gift value, and new manual expense entry |
-| `coin-expense-weekly-application` | Frozen prototype that groups weekly coin expenses into a draft or submitted claim | `live-agency-weekly-coin-expense-claim-submit` | Preserve frozen status; the week is the claim unit, not the execution cadence; evaluate separate draft-preparation and submission responsibilities only if development is reopened |
-| `lark-base-backup` | Check coverage, create backups for a requested recovery scope, and verify stored content | `live-agency-data-backup-create` | Reuse equivalent artifacts; separate Base-specific formats and routes from the abstract contract and explicitly define attachment coverage |
-| `lark-base-backup-retention` | Protect retained generations and dependent artifacts while planning and verifying deletion of unneeded backups | `live-agency-data-backup-prune` | Make deletion visible in the name; if the delivered capability only plans, use `live-agency-data-backup-retention-plan` or complete the execution route before advertising pruning |
-| `lark-base-disaster-recovery-drill` | Restore stored artifacts into an isolated environment and verify recovery scope | `live-agency-data-recovery-test` | Does not promise all disaster-response work or production recovery; move technology-specific restore routes and checks into Providers |
-| `lark-base-maintenance` | Coordinate capacity, history pruning, backup coverage, generation retention, and recovery testing | `live-agency-datastore-maintain` for the shared maintenance responsibility | Defer a one-to-one migration; separate protection-policy review, capacity maintenance, and business-history retention; place technology-specific operations in Providers and organization-specific sequencing and cadence in Runtime |
+| `creator-activity-sync` | 月次活動実績と既存レコードを照合し、許可された指標更新を行う | `live-agency-creator-monthly-activity-reconcile` | スカウト活動ログや観測時のLIVE時間と区別する。既存レコードのみ更新する制約を明示する。 |
+| `creator-invitation-status-sync` | 招待資格の観測を状態遷移の履歴として記録する | `live-agency-creator-invitation-eligibility-record` | 送信済み招待の進捗とは区別する。eligibilityへの用語変更で既存の状態契約の意味が狭まらないか確認する。 |
+| `creator-profile-sync` | プロフィールの観測とアバターの証拠を履歴へ記録する | `live-agency-creator-profile-record` | 現在値の汎用編集や過去履歴の上書きとは区別し、Lark固有経路をProviderへ移す。 |
+| `creator-live-history-sync` | 観測したLIVEセッションと、その時点の指標を記録する | `live-agency-creator-live-observation-record` | 現行名に含まれない指標スナップショットも表す。保存先が二つあるだけではSkillを分割しない。 |
+| `creator-insight-sync` | 証拠から現在の評価と承認済み特性タグを更新する | `live-agency-creator-assessment-update` | 単なる転送ではなく推論を含む。あらゆるクリエイター評価へ責務を広げない。 |
+| `creator-profile-compaction` | 保持方針に従ってプロフィール観測履歴を間引く | `live-agency-creator-profile-history-prune` | 情報を保持しない業務判断であり、無損失圧縮や領域回収とは区別する。アカウント継続性の判断に必要な証拠を残す。 |
+| `creator-live-metrics-compaction` | 代表的なLIVE指標スナップショットを保持し、他の履歴を間引く | `live-agency-creator-live-metric-history-prune` | セッション履歴と区別する。値の欠損を補うために保持すべき証拠を定義する。 |
+| `creator-live-history-compaction` | 必要なLIVEセッション履歴を残し、削除対象を事前にアーカイブする | `live-agency-creator-live-session-history-prune` | 指標履歴と区別する。アーカイブ復元は履歴管理の補助手順であり、システム全体の本番復旧とは区別する。 |
+| `creator-invitation-status-compaction` | 状態遷移を保ち、隣接した同一状態のみ除去する | `live-agency-creator-invitation-eligibility-history-deduplicate` | 全体の重複排除ではなく、A → B → Aは保持する。記録側と同じ招待資格の契約レビューが必要。 |
+| `gift-history-sync` | 事務所負担ギフトの部分観測をマスターへ統合する | `live-agency-gift-history-merge` | 永続マスターと派生集計を区別する。受領ギフト全般や会計上の支出を意味しない。 |
+| `coin-expense-reconcile` | コイン購入証拠と既存経費候補を照合し、承認済み登録を確認する | `live-agency-coin-purchase-expense-reconcile` | コイン消費、ギフト推定額、新規の手動経費入力とは区別する。 |
+| `coin-expense-weekly-application` | 週単位のコイン経費を申請の下書き・提出へまとめる凍結試作 | `live-agency-weekly-coin-expense-claim-submit` | 凍結を維持する。週は申請単位であり実行頻度ではない。再開時にのみ下書き準備と提出の分離を判断する。 |
+| `lark-base-backup` | 要求された復旧範囲のバックアップを作成し、保存内容とカバー範囲を確認する | `live-agency-data-backup-create` | 同等の成果物を再利用する。Base固有形式と操作を分離し、添付の対象範囲を明示する。 |
+| `lark-base-backup-retention` | 保持世代と依存成果物を保護し、不要バックアップの削除を計画・確認する | `live-agency-data-backup-prune` | 削除を名前に表す。計画のみの実装なら`live-agency-data-backup-retention-plan`とするか、削除経路を完成させてからpruneを名乗る。 |
+| `lark-base-disaster-recovery-drill` | 隔離した検証先へ保存成果物を復元し、復旧範囲を検証する | `live-agency-data-recovery-test` | 災害対応全般や本番復旧を約束しない。技術固有の復元操作と照合はProviderに置く。 |
+| `lark-base-maintenance` | 容量、履歴保持、バックアップ、世代保持、復旧試験を調整する | `live-agency-datastore-maintain` | 一対一の改名を既定にしない。保護方針、容量保守、業務履歴保持の責務を整理する。技術固有操作はProvider、組織固有の順序・頻度はRuntimeへ置く。 |
 
-Supporting retention or recovery modes alone do not justify additional skills.
-Split when a task needs independent selection and has independent inputs,
-completion conditions, or authority. Conversely, review responsibilities before
-lengthening a name to cover unrelated tasks that users would not expect from it.
+補助的な保持・復元モードがあるだけではSkillを増やさない。独立した選択、入力、完了条件、権限が必要な業務なら分割を検討する。無関係な責務を一つの長い名前へまとめることも避ける。`coin-expense-weekly-application`は候補表に残すが、凍結解除や稼働対象化は含めない。
 
-## 3. Foreign-currency revenue accounting: inclusion and separate migration
+## 4. 外貨売上Skillの移行
 
-`foreign-revenue-accounting` is explicitly in scope for the same naming rules.
-Its target home is `live-agency-skills`; repository ownership is no longer an
-open classification question. The current source is a regular directory at
-`~/.codex/skills/foreign-revenue-accounting`, rather than a symlink to the public
-skill repository as with the other 16 skills.
+`foreign-revenue-accounting`にも同じ命名規則を適用する。旧計画が指定した`live-agency-skills`モノレポへの移動は、再編後の`skills/<確定した識別子>/`の独立repoへの移行に置き換える。
 
-The workflow has two stages: recognizing foreign-currency revenue from a final
-invoice, and later matching a bank receipt and settling the receivable. Because
-their inputs and occurrence times differ, the candidate responsibility split is:
+既存記録上の移行元は`~/.codex/skills/foreign-revenue-accounting`の通常ディレクトリー。今回その実体・稼働状態を再調査したとは扱わず、実装着手時に採用ソースと呼出し元を確認する。
+
+最終請求書による収益認識と、後日の入金照合・債権消込は入力と発生時点が異なるため、次の二つが候補。ただし、1 Skillを維持するか2 Skillへ分けるかは未決定であり、基盤の配布構成レビューで決める。
 
 - `live-agency-foreign-currency-revenue-recognize`
 - `live-agency-foreign-currency-receivable-settle`
 
-The naming rules apply regardless of whether the final design uses one skill
-or two. Confirm that granularity while preparing the separate migration plan.
-
-Migration requires implementation separation, not a directory-only move:
-
-| Responsibility | Intended destination |
+| 責務 | 移行先 |
 | --- | --- |
-| Source-neutral recognition and settlement workflows, normalized contracts, deterministic calculation and reconciliation, reviewed plans, and result validation | Public `live-agency-skills`, with synthetic tests |
-| Invoice-source recognition and parsing, service-specific acquisition, exchange-rate acquisition adapters where needed, accounting-system lookup and mutation, and destination readback normalization | Appropriate private Provider implementations, resolved through versioned capabilities |
-| Organization-specific accounting choices, source and destination selection, and monitor scheduling policy | Private profiles and Runtime composition under the existing configuration boundary |
-| Real invoices, bank details, journals, account identifiers, credentials, plans, and monitor execution state | Approved owner-only storage outside Git |
+| サービス中立な収益認識・消込手順、正規化された契約、確定的な計算・照合、計画と結果の検証 | `skills/<確定名>/`。合成入力によるテストを所有する |
+| 請求書の識別・解析・取得、必要な為替取得アダプター、会計サービスの検索・更新、読み戻しの正規化 | 対応する`providers/<Provider名>/`。必要能力と所有先を確認し、既存Providerで充足すると決めつけない |
+| 組織固有の会計上の選択、利用元・登録先、監視頻度・組合せ | `runtime/`の構成と非公開profile。会計・経費をcreator領域のMCPへ入れない |
+| 実請求書、銀行情報、仕訳、口座識別子、認証情報、実行計画・監視状態 | Git外の許可された保管先 |
 
-The separate plan must inventory the current instructions, scripts, references,
-private profiles, and callers; identify which portions already satisfy these
-boundaries; define the required contracts and Provider ownership; and specify
-synthetic validation, installation and reference updates, cutover, and rollback.
-Include temporary receipt-monitor lifecycle behavior so that migration neither
-duplicates existing monitors nor changes settlement authority.
+指示・スクリプト・参照資源・private profile・呼出し元・一時的な入金監視の依存を確認し、そのまま使えるものと分離すべきものを整理する。第一段階で契約・配布・Runtimeへの接続を整え、第二段階で必要なProvider能力、第三段階で認識・消込の受け入れと稼働参照の切替を扱う。実サービスや監視の準備待ちで、無関係なProvider・Skillを止めない。
 
-The migration direction is agreed. Execution remains separate work; the bounded planning and implementation
-packages below establish the migration sequence. This document does not move the current implementation,
-publish its contents, or change or certify accounting policy.
+外貨売上の移行を対象に含めることと、候補の分割や実装開始の承認は別。会計方針の変更・妥当性認定や、動作証明だけの本番仕訳作成は含まない。外部配布のOpenAI・Lark・Canva等のSkillは、この命名対象に含めない。
 
-Externally distributed OpenAI, Lark, Canva, and similar skills are outside this
-collection and are not renamed under its conventions.
+## 5. レビューで決める点と実装時の確認
 
-## 4. Bounded work packages
+候補表を全体計画D1の対応表へ接続する。移行対象は既存16個と外貨売上の計17個の移行元であり、最終的なSkill数は分割・統合・凍結の判断後に定まる。
 
-Package labels below belong to this companion plan; they are not new master
-v2 milestone numbers. Complete and checkpoint one bounded result at a time.
+| 判断 | 必要な確認 |
+| --- | --- |
+| 招待資格の意味 | 現行状態契約とeligibilityの語義が一致するか。記録と重複除去で同じ意味を用いる |
+| LIVEセッションの識別 | 現行指示のcreator/start/endと業務モデルのaccount/startAtの差を解消する |
+| プロフィール・LIVE指標の保持 | 業務証拠として必要な情報と、Provider具象への依存を整理する |
+| バックアップ・復旧・保守の粒度 | 対応範囲、添付、成果物間の依存、業務保持と技術的保守の境界を明示する |
+| 外貨売上の粒度 | 認識と消込を一つにするか二つにするか、必要なProvider能力とともに決める |
 
-The [M7-2 clean Skill installation gate](../archive/v2-migration-plan.md#m7-2-clean-skill-installation-gate)
-owns the mandatory baseline for every supported release Skill, whether or not
-this naming workstream is adopted. SN-2 adds packaging/distribution, provenance
-collision, existing-installation preservation, and rollback checks. SN-5b
-provides clean-clone installation/regression evidence for the selected naming
-scope. Reuse evidence only when artifact pins, scope, and environment match;
-M7-2 must still cover all other supported release Skills. This does not add
-unselected SN or FR packages to the master release scope.
+第一段階では、採用する各配布対象の旧名・新名・ソース配置・npm名・公開入口・依存・ライフサイクル状態を対応付ける。試作、凍結、実装済み、稼働中を別々に管理し、未解決や延期を完了と報告しない。
 
-| Package | Work and affected sources | Dependencies | Completion evidence |
-| --- | --- | --- | --- |
-| SN-1: Finalize the responsibility and rename manifest | Review all 17 source Skills; resolve the alignment questions in Section 5; record exact source paths, target identifiers, splits or extractions, ownership, lifecycle status, and affected callers | Naming policy | Every source is accounted for, target identifiers are unambiguous, and each target has defined inputs, effects, completion criteria, and required implementation changes |
-| SN-2: Prepare distribution and compatibility | Update public Skill packaging, necessary private Provider Skill packaging, and the Runtime installer; define explicit selected roots, provenance, collision handling, and reference migration | SN-1 target manifest | Synthetic installation proves both public and private sources are found, ambiguous names are rejected, unrelated installed files are preserved, and a rollback mapping exists |
-| SN-3: Rename and align one existing workflow per batch | Update names, directories, descriptions, metadata, relative imports, tests, and callers; extract technology-specific behavior where necessary instead of only changing labels | SN-1; SN-2 for installation; applicable M4/M5/M2U or data-protection dependencies | Focused behavior and contract checks pass; required provider-neutral boundaries are met; frozen prototypes remain frozen |
-| FR-1: Inventory foreign-revenue source and define contracts | Inspect the standalone Skill's scripts, references, private profiles, calculations, connector calls, and monitor dependencies; decide one or two Skills and required Provider capabilities | Naming policy; Section 3 placement | A complete source disposition map, versioned normalized contracts, exact private ownership, synthetic fixtures, and an approved-scope cutover design |
-| FR-2: Separate and package foreign-revenue implementation | Put neutral workflows and logic in the public skill repository; put source parsing, service adapters, and execution in appropriate private Providers; bind them in Runtime | FR-1; SN-2 for installation | Public code runs against synthetic normalized inputs without private service knowledge; composed Provider tests prove contract compatibility and preserve accounting and authorization semantics |
-| FR-3: Cut over foreign-revenue invocation and monitors | Replace the standalone installation and callers with the reviewed packaged Skills; reconcile temporary monitor ownership and current execution state | FR-2; exact installation and runtime inventory | One authoritative installed route, preserved existing journal and receipt evidence, no duplicate monitor, and a documented rollback; no production journal is created solely to prove relocation |
-| SN-4: Cut over renamed existing workflows | Change installation and caller references for one verified batch, including exact automation prompts where applicable | Corresponding SN-3 batch and its existing route gates | The new identifier resolves to the intended pinned source; schedule cadence and authority are unchanged; required operational checks pass and old references are either migrated or deliberately supported |
-| SN-5: Reconcile the workstream and integrate | Reconcile the complete manifest, remaining exceptions, package pins, installation and clean-clone evidence, and the chosen master-plan scope | All packages included in the selected release scope | No unaccounted source or accidental duplicate, reproducible composition, verified rollback instructions, and aligned v2 planning documents |
+実装ではディレクトリー、`SKILL.md`、説明、UIメタデータ、imports、配布資源、インストーラー、呼出し元、テスト、文書を一緒に更新する。Providerが提供する技術的Skillも明示的な導入元選択・衝突検出の対象にする。親Worktreeだけで子repoの変更まで隔離できたとは扱わず、変更する所有repoと統合担当を明確にする。
 
-SN-3 can complete independently for each existing workflow; it does not wait for
-FR-2. FR-1 can be planned while other migration packages continue. Any selected
-scope reduction or deferred target stays explicit in the manifest rather than
-being reported as complete.
+名称だけの変更は、発見・導入・参照解決・既存動作保持を重点的に確認する。契約・操作経路・業務効果が変わる場合は、その能力に必要な比較・実動作・結果照合を追加する。適用条件が一致する既存証拠を使い、無関係な合格済み試験を繰り返さない。既存契約が定める運用周期の検証も該当業務に引き継ぐ。
 
-For a name-only change, use focused discovery, installation, reference, and
-behavior-preservation checks. Reuse existing verified evidence where it still
-applies. When the change alters contracts, provider routes, or effects, run the
-corresponding existing dual-run and operational gates; do not claim a rename
-proves semantic equivalence. Preserve any scheduled-cycle requirements already
-imposed by the affected v2 workflow.
+## 6. 導入切替と差し戻し
 
-### 4.1 Execution task map and model routing
+第三段階の切替前に、旧新の導入元、固定版、Provider構成、呼出し元、対象の自動処理を記録する。新規導入だけでなく既存導入からの更新と差し戻しを確認する。新規repoのローカルURLや未コミット変更に依存する状態は、再現可能な導入の合格にしない。
 
-Run these packages serially within a single affected Skill or distribution
-batch. A task receives only the named source paths, manifest rows, and focused
-verification command; it does not receive the accumulated migration history.
-Apply the [permanent policy](../governance/development-policy.md#6-model-and-reasoning-routing):
-explicit Astra/low for new coordinator and worker tasks. Medium/high require
-a named unresolved decision and an end condition, not a task category. Retain
-the outcomes, stop conditions, authority, and verification gates below. Older
-fixed model assignments are removed; historical evidence is unchanged.
+保存済み計画・receipt内の名前や契約識別子はハッシュ・監査証拠に結びつく場合があるため、履歴を機械的に書き換えない。必要なら旧契約の読取と新契約の生成を区別し、互換参照が二重選択・二重実行を起こさないようにする。
 
-| Task | Bounded outcome | Stop condition |
-| --- | --- | --- |
-| SN-1a | Inventory one source Skill's identifier, callers, contracts, lifecycle, and Provider dependencies. | One source row is complete; no name or code changes. |
-| SN-1b | Classify one source Skill's responsibility, target identifier, split/merge decision, and public/private ownership. | The row is reviewable; unresolved semantic evidence is explicit. |
-| SN-1c | Review one finalized manifest batch for identifier collisions, frozen-state preservation, and authority-boundary conflicts. | The batch is accepted or has a precise decision blocker. |
-| SN-2a | Inventory one installer/source-root path and its selected-source, provenance, and collision behavior. | One installer boundary and its tests are identified. |
-| SN-2b | Implement one bounded packaging or installer compatibility change with synthetic tests. | The selected roots resolve or reject deterministically. |
-| SN-2c | Exercise one collision, rollback, or same-name provenance boundary. | Ambiguous sources fail closed and the rollback mapping is recorded. |
-| SN-3a | Prepare one workflow rename batch with exact files, references, compatibility inputs, and focused checks. | The batch is small enough to implement without unrelated paths. |
-| SN-3b | Rename and align one verified workflow batch, including contracts, metadata, callers, and focused tests. | Behavior remains verified and no Provider-specific detail enters the public Skill. |
-| SN-3c | Review one batch that changes a Provider route, authority, or business effect against its applicable M2U/M4/M5 gate. | The route remains inactive or has the exact evidence required for its existing gate. |
-| FR-1a | Inventory the standalone foreign-revenue source, callers, monitor lifecycle, and service-specific dependencies. | One source-disposition map is complete; no source is moved. |
-| FR-1b | Decide the recognition/settlement split and public-Skill/private-Provider boundary for one accounting workflow. | Authority, accounting semantics, and unresolved source evidence are explicit. |
-| FR-2a | Implement one source-neutral foreign-revenue contract or workflow against synthetic inputs. | Public tests pass without service-specific information. |
-| FR-2b | Implement or review one private Provider capability, including authorization and readback boundary tests. | Unsupported acquisition or mutation paths fail closed. |
-| FR-3a | Prepare one installation/caller/monitor cutover plan with a one-route rollback mapping. | Duplicate monitor or invocation risk is resolved before activation. |
-| FR-3b | Execute one separately approved accounting invocation or monitor cutover/readback gate. | Stop on any uncertain journal, receipt, or monitor state. |
-| SN-4 | Cut over one already-verified rename batch and record exact source selection, caller update, and rollback evidence. | The old route remains recoverable until the batch-specific gate passes. |
-| SN-5a | Reconcile the final manifest, exceptions, and package-pin inventory without rerunning passing work. | Every selected source is accounted for or explicitly deferred. |
-| SN-5b | Run one clean-clone and focused installation/regression gate for the selected workstream scope. | Report one reproducible pass or exact failure; do not broaden scope. |
-| SN-5c | Decide whether the selected workstream scope may be incorporated into the master v2 release evidence. | Keep it independent unless the owner explicitly changes M7 scope. |
+外貨売上の旧ソースは、パッケージ導入後の呼出しと差し戻しを確認するまで保全する。一時監視の識別子・所有・実行状態を照合し、監視の重複作成や収益認識・消込の再実行を防ぐ。コードの差し戻しは会計処理や外部データの取消しを意味しない。結果不明の処理は元の証拠で照合する。
 
-Any task that inspects or changes an authenticated or non-public source must
-first read the project's full private-source integration design guide. A task
-that finds no applicable guide, an ambiguous source boundary, or a missing
-authorization stops with its smallest next decision; it does not widen the
-task or fall back to an ambient identity.
+稼働参照の切替では、対象・操作に有効な既存権限を利用し、変更された範囲だけを判断対象にする。認証済み・非公開ソースの調査や実装には、[Private Source Integration Guide](../governance/private-source-integration-guide.md)を適用する。取得できる認証や成功した合成テストから外部操作の権限を推定しない。
 
-## 5. Alignment review and migration conditions
+## 7. 文書と証拠の参照
 
-For each skill, compare its name, description, instructions, executable code,
-input/output contracts, and actually available capabilities. This initial review
-covers all entrypoint documents, related designs, and representative
-dependencies; it is not a completed conformance review of every code path.
+- [全体の再計画案](v2-migration-plan-review-ja.md)：三段階、完了条件、配布構成の判断。
+- [命名方針](../governance/skill-naming-policy.md)：規則の所有文書。配置・公開範囲の旧表記は2節のとおり。
+- [業務モデル](../domain/model.md)、[能力一覧](../architecture/capabilities.md)：用語・契約・Provider能力。
+- [Skillソース](../../skills)、[インストーラー](../../runtime/scripts/install-codex-skills.mjs)：再編後の実装。現在の実装が本案の導入条件をすべて満たすとは主張しない。
+- [開発方針](../governance/development-policy.md)、[現在状況](../migration/status.md)：作業単位と現在の証拠。
 
-Resolve the following before implementation:
-
-1. The meaning of invitation eligibility and its consistency with the existing
-   state contract.
-2. LIVE-session identity: the current skill instructions use creator/start/end,
-   while the domain document uses account/startAt.
-3. Business evidence that profile and LIVE-metric pruning must retain, and
-   removal of direct Provider dependencies from the public workflows.
-4. Technology-neutral backup, restore, and maintenance contracts, supported
-   scope, and artifact dependencies.
-5. Separate management of frozen, prototype, implemented, and active status.
-   Renaming must not activate a workflow.
-6. An installer that explicitly selects private Provider-supplied skills and
-   detects name collisions.
-7. The detailed `foreign-revenue-accounting` source and dependency inventory,
-   including the Skill/Provider split described in Section 3.
-
-Existing names have no privileged position in naming design. Existing operations
-still matter during migration execution. Use an old-to-new mapping to update
-skill references, relative imports, package distribution contents, descriptions,
-UI metadata, existing automation prompts, installation links, tests, and
-documentation. Renaming does not justify changing automation cadence or
-authority.
-
-Old names and identifier strings in saved plans or receipts may be bound to
-hashes and audit evidence. Do not mechanically rewrite historical artifacts.
-Distinguish display names from contract identifiers and, where needed, separate
-legacy-contract reading from new-contract generation. Compatibility references
-must not cause duplicate implicit selection or execution of the same task.
-
-## 6. Rollback and scope controls
-
-- Planning packages change only reviewed documentation and synthetic artifacts;
-  they do not alter live routes.
-- Before installation cutover, record the exact old and new Skill source paths,
-  package revisions, selected Provider bindings, caller references, and affected
-  automation identifiers in the appropriate private runtime record.
-- Roll back a distribution or rename batch by restoring its previous selected
-  sources and references. Reconcile any writes using the original domain
-  receipts; never interpret a code rollback as undoing a business transaction.
-- Retain the original foreign-revenue source and its references until packaged
-  invocation and rollback are verified. Relocate or retire it through a reviewed
-  installation step without leaving duplicate active entrypoints.
-- Preserve current monitor identities and ownership. Rollback must not spawn a
-  second receipt monitor or repeat a recognition or settlement journal.
-- Do not modify production data, accounting policy, sharing, credentials,
-  existing schedules' cadence, or frozen-development status merely to satisfy
-  this plan.
-
-## 7. Reviewed evidence
-
-- [Domain model](../domain/model.md): business contexts, observations versus monthly activity, coin purchases versus consumption, and data protection.
-- [Existing architecture](../../provider-runtime/skills/live-agency-skills/docs/provider-architecture.md): public contracts, private implementations, and data outside Git.
-- [Repository skill sources](../../provider-runtime/skills/live-agency-skills/skills): all 16 `SKILL.md` entrypoints.
-- [Installer](../../provider-runtime/scripts/install-codex-skills.mjs): the single public skill source root and same-name link handling.
-- [Existing roadmap](live-agency-mcp-roadmap.md): both the business-task definition of a Skill and the cross-domain infrastructure workflows; align these definitions when implementing this convention.
-- Local `foreign-revenue-accounting/SKILL.md`: recognition, settlement, private-profile boundaries, and temporary receipt-monitor lifecycle.
-
-The parent project's `AGENTS.md` and the read-only project source titled
-“Private-source integration Skill design guide” were also consulted. This
-document preserves their service-specific-information and production-data
-boundaries without superseding canonical-source or publication decisions.
+候補表は既存の指示・設計・代表的依存を読んだ時点の評価を継承したもの。今回全コード・実サービス・外貨売上の稼働状態を再検証していない。採用内容と候補一覧は英語の正本へ反映済み。本書はレビュー時点の記録とし、更新する計画を重複管理しない。

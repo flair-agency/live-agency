@@ -71,7 +71,7 @@ Production is its `live-agency-provider-runtime` child. The production
 ledger read at intake. The older development copy is stale and is not overwritten.
 This document owns the new environment/cleanup queue. Relevant plans are
 [environment separation](environment-separation-and-production-stability-plan.md),
-[npm lifecycle](../../provider-runtime/docs/deployment.md),
+[npm lifecycle](../../runtime/docs/deployment.md),
 [reorganization](repository-reorganization-plan.md), and
 [task policy](../governance/development-policy.md). Later owner decisions below supersede
 older queue/dependency statements, without expanding operational authority.

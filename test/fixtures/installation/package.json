@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "dependencies": {
+    "@fixture/activity-pasted-source": "1.0.0",
+    "@fixture/coin-purchase-instruction-provider": "1.0.0",
+    "@fixture/expense-instruction-provider": "1.0.0",
+    "@fixture/gift-history-source": "1.0.0",
+    "@fixture/invitation-instruction-source": "1.0.0",
+    "@fixture/invitation-observation-source": "1.0.0",
+    "@fixture/live-history-instruction-source": "1.0.0",
+    "@fixture/multi-binding-provider": "1.0.0",
+    "@fixture/profile-instruction-source": "1.0.0",
+    "@flair-agency/private-runtime-files": "1.0.0",
+    "@flair-agency/source-provider-api": "1.6.0"
+  }
+}

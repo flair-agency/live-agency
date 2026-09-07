@@ -23,14 +23,14 @@ stored bytes and original expectations, then current restore inspection/rebind.
 Upload/delete retain exact original-plan freshness. Standalone delete/restore
 use independent exact rebind/mutation approvals, immutable ordered batches,
 durable target/attempt consumption and read-only whole-effect reconciliation.
-[Conformance, limits, commands and preservation](../../provider-runtime/docs/archive/v2-live-history-compaction-execution-conformance.md):
+[Conformance, limits, commands and preservation](../../runtime/docs/archive/v2-live-history-compaction-execution-conformance.md):
 **217 distinct passing tests** (72 new executor/Provider/CLI +145 retained).
 Original blocker characterizations now prove success and cross-purpose rejection.
 No live authority or CP1 claim. Coordinated full-backup/parent executor and media
 holds remain.
 
 **2026-09-07 selected avatar media contract decision completed offline; proposed
-for coordinator acceptance.** [Concrete contract and one implementation brief](../../provider-runtime/providers/lark-base/docs/reviews/selected-avatar-media-contract.md)
+for coordinator acceptance.** [Concrete contract and one implementation brief](../../providers/lark-base/docs/reviews/selected-avatar-media-contract.md)
 separate supported User/Tenant stored-byte reads and profile upload-before-create
 from independently unverified `attachments:append`. The additive private row-media
 adapter binds original/stored bytes to creator/field/resource, exact lifecycle
@@ -52,8 +52,8 @@ append support can be promoted; no external retrieval is authorized here.
 
 2026-09-07: **Invitation compaction selected non-avatar preparation completed
 offline; family conformance remains partial.**
-[Conformance/commands](../../provider-runtime/docs/archive/v2-invitation-compaction-caller-conformance.md),
-21-path inventory (retired snapshot; [on-demand investigation](../../provider-runtime/docs/source-runtime-usage.md#on-demand-caller-investigation)).
+[Conformance/commands](../../runtime/docs/archive/v2-invitation-compaction-caller-conformance.md),
+21-path inventory (retired snapshot; [on-demand investigation](../../runtime/docs/source-runtime-usage.md#on-demand-caller-investigation)).
 Direct **68/68** and affected shared factory/export callers **440/440**:
 **508 distinct passing tests, no overlap**. No external operations occurred.
 
@@ -87,7 +87,7 @@ relabel standalone. Profile/metric participants retain their different contract;
 no new row archive/restore requirement is imposed on them.
 
 Inherited LIVE compaction **84/84 +380/380 (464 distinct)** remains accepted
-[checkpoint](../../provider-runtime/docs/archive/v2-live-history-compaction-caller-conformance.md); its selected suite
+[checkpoint](../../runtime/docs/archive/v2-live-history-compaction-caller-conformance.md); its selected suite
 passes as an affected caller here. Metric **120/120 +287/287 (407 distinct)** and
 profile compaction **111/111 +202/202 (313 distinct)** remain accepted. Required
 profile/invitation sync media remains partial; previous non-avatar and completed
@@ -95,9 +95,9 @@ core/backup/gift/activity evidence is retained. Optional recovery improvements
 supply no new migration gate.
 
 **2026-09-07 row-storage implementation accepted offline by coordinator.**
-The coordinator accepted the [complete design](../../provider-runtime/docs/v2-row-archive-storage-contract.md)
+The coordinator accepted the [complete design](../../runtime/docs/v2-row-archive-storage-contract.md)
 before implementation; this supplied no owner approval for live connection.
-[Conformance, commands and preservation](../../provider-runtime/docs/archive/v2-row-archive-storage-conformance.md):
+[Conformance, commands and preservation](../../runtime/docs/archive/v2-row-archive-storage-conformance.md):
 **253 distinct passing tests** (50 Drive, 39 neutral, 38 composition, 61 LIVE
 selected, 51 invitation selected, 7+7 existing pure/legacy). Actual file-journal
 and separate Node-process rehydration tests pass. Full-Base code is preserved.
@@ -143,16 +143,16 @@ App/OAuth/scope, activation and scheduled-cycle gates remain outside scope.
 Future Provider feedback/implementation is outside v2 completion and activation
 requirements; this documentation update initiates no implementation or live test.
 
-**Latest: bounded CLI roundtrip complete.** [Result and assets](../../provider-runtime/docs/archive/backup-roundtrip-result.md): fixture-only PASS with attachment supplement; native .base alone omits attachments. Two Bases retained; no further roundtrip work remains. Prior scope-blocker notes below are historical. Production recovery, backup gate fixes and activation remain separate and unchanged.
+**Latest: bounded CLI roundtrip complete.** [Result and assets](../../runtime/docs/archive/backup-roundtrip-result.md): fixture-only PASS with attachment supplement; native .base alone omits attachments. Two Bases retained; no further roundtrip work remains. Prior scope-blocker notes below are historical. Production recovery, backup gate fixes and activation remain separate and unchanged.
 
 Latest roundtrip: second OAuth (8 scopes) completed; first-table readback succeeds, 0 records. Table constructor now reports two further required User scopes: base:field:update and base:view:write_only. No second table created; reuse existing source. See latest roundtrip checkpoint.
 
-Roundtrip follow-up: OAuth 10 scopes granted; one Flair synthetic source Base created. Eight additional CLI User scopes identified; see latest section of [roundtrip checkpoint](../../provider-runtime/docs/archive/backup-roundtrip-checkpoint.md). Reuse recorded source; no export/import or attachment verification yet.
+Roundtrip follow-up: OAuth 10 scopes granted; one Flair synthetic source Base created. Eight additional CLI User scopes identified; see latest section of [roundtrip checkpoint](../../runtime/docs/archive/backup-roundtrip-checkpoint.md). Reuse recorded source; no export/import or attachment verification yet.
 
-2026-09-06 bounded CLI roundtrip follow-up: [observed scope blockers and prepared fixture](../../provider-runtime/docs/archive/backup-roundtrip-checkpoint.md). Both import and Base-create dry-runs report missing user scopes; zero external writes/assets and no restoration claim. No permission expansion performed. This separate fixture experiment does not alter the inherited backup/activation gates below.
+2026-09-06 bounded CLI roundtrip follow-up: [observed scope blockers and prepared fixture](../../runtime/docs/archive/backup-roundtrip-checkpoint.md). Both import and Base-create dry-runs report missing user scopes; zero external writes/assets and no restoration claim. No permission expansion performed. This separate fixture experiment does not alter the inherited backup/activation gates below.
 
 2026-09-06: **Public-schema host review complete; E2E host still unsupported.**
-[Capability matrix and decision](../../provider-runtime/docs/archive/backup-live-smoke-preflight-checkpoint.md#host-capability-resolution--2026-09-06).
+[Capability matrix and decision](../../runtime/docs/archive/backup-live-smoke-preflight-checkpoint.md#host-capability-resolution--2026-09-06).
 Drive `fetch(download_raw_file:true)` explicitly supports complete raw content,
 with streamed file reference or legacy base64. Missing host guarantees remain:
 operation-bound actual actor, revision-consistent raw materialization, exhaustive
@@ -183,7 +183,7 @@ only checkpoint and handoff; no source, auth, profile or external asset changes.
 ### Inherited adapter implementation
 
 2026-09-06: **Full-Base Provider adapters and local composition implemented.**
-[Contract Sections 6–7](../../provider-runtime/docs/v2-full-base-backup-caller-contract.md#6-minimal-provider-io-decision--2026-09-06)
+[Contract Sections 6–7](../../runtime/docs/v2-full-base-backup-caller-contract.md#6-minimal-provider-io-decision--2026-09-06)
 now have both adapter implementations, direct synthetic tests and the explicit
 `scripts/full-base-backup-adapters.mjs` factory. Stored receipts carry the inline
 owner-only counterpart; existing normalization excludes it from public results.
@@ -208,10 +208,10 @@ recovery and selected Provider capability remain unproved. These samples are
 not Provider execution artifacts and supply no certified Consumer input.
 Any later Provider acquisition/recovery verification is separate work; this
 closure does not initiate live operations or fabricate a certification.
-See [evidence and limits](../../provider-runtime/docs/archive/backup-offline-artifact-evidence-checkpoint.md).
+See [evidence and limits](../../runtime/docs/archive/backup-offline-artifact-evidence-checkpoint.md).
 
 The independent attachment provenance/currentness owner gate also remains open;
-see [owner decision packet](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md). It is
+see [owner decision packet](../../runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md). It is
 not satisfied by the supplied export. W2 and other live gates below are retained.
 
 For remaining work, apply the [grouping map](../governance/development-policy.md)
@@ -231,7 +231,7 @@ entry above owns dispatch; detailed workflow gates remain applicable.
 
 ### Latest bounded package — supplied offline export evidence
 
-2026-09-05: [limited evidence checkpoint](../../provider-runtime/docs/archive/backup-offline-artifact-evidence-checkpoint.md)
+2026-09-05: [limited evidence checkpoint](../../runtime/docs/archive/backup-offline-artifact-evidence-checkpoint.md)
 completed using only the two user-supplied artifacts. Structure/view/formula/link,
 dashboard and automation definitions are present; full source coverage, import
 recovery, selected Provider capabilities and authentic execution/receipt binding
@@ -245,7 +245,7 @@ are historical and do not supply that missing evidence.
 ### Latest bounded package — Base-only capability integration
 
 2026-09-05: authorized local `buildDrillPreflight` integration completed.
-[Checkpoint](../../provider-runtime/docs/archive/backup-consumer-integration-checkpoint.md): explicit companion input,
+[Checkpoint](../../runtime/docs/archive/backup-consumer-integration-checkpoint.md): explicit companion input,
 shared pure assessment, required records/structure, optional auxiliary avatars
 only; non-met/unknown required results return no plan. Separate review preserves
 optional failures and legacy plan/receipt hashes. Direct synthetic drill tests
@@ -258,7 +258,7 @@ owner-review holds remain unchanged. Earlier review below is historical.
 
 2026-09-05: reviewed the existing Base-only `buildDrillPreflight` Consumer in
 `skills/live-agency-skills/skills/lark-base-disaster-recovery-drill/scripts/drill_core.mjs`.
-[Direct review checkpoint](../../provider-runtime/docs/archive/backup-consumer-requirements-review.md): recommend required
+[Direct review checkpoint](../../runtime/docs/archive/backup-consumer-requirements-review.md): recommend required
 records/structure and optional reacquirable auxiliary avatars for this use only.
 Provider capabilities remain uncertified; no integration, business policy, live
 operation or setting change. Existing receipt/approval/readback and attachment
@@ -268,7 +268,7 @@ the bounded synthetic Consumer integration described in the checkpoint.
 ### Latest bounded package — backup capability common contract
 
 2026-09-05: approved source-neutral capability contract implementation completed;
-[checkpoint](../../provider-runtime/docs/archive/backup-capability-contract-checkpoint.md), [schema](../../provider-runtime/skills/live-agency-skills/packages/source-provider-api/docs/backup-capability-contract.md#pure-api).
+[checkpoint](../../runtime/docs/archive/backup-capability-contract-checkpoint.md), [schema](../../packages/source-provider-api/docs/backup-capability-contract.md#pure-api).
 Direct contract/API tests: 13/13. No business adoption, live operation or capability
 certification. Existing attachment evidence/owner-review gates below remain open.
 Next one package: select one Consumer and review its required scopes and tolerated
@@ -288,7 +288,7 @@ checks exact frozen context and run-local inventory membership, and denies
 missing/stale/changed/unknown evidence before authentication or dispatch.
 Direct factory tests passed **61/61**, affected acquisition **16/16**, launcher
 **59/59**, and mocked CLI **16/16**. These are synthetic results, not live proof.
-See [Provider implementation evidence](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#provider-factorychannel-implementation).
+See [Provider implementation evidence](../../runtime/docs/archive/v2-m2u-2b-attachment-authorization-checkpoint.md#provider-factorychannel-implementation).
 The preceding core 102/102 result is inherited; core files were preserved.
 
 - Next one outcome: owner-reviewed identification of the producer/verifier and
@@ -306,7 +306,7 @@ The preceding core 102/102 result is inherited; core files were preserved.
   no setting change is claimed and no task/subagent/worktree was created.
 
 Owner review preparation is complete: see the
-[decision packet](../../provider-runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md).
+[decision packet](../../runtime/docs/archive/v2-m2u-2b-attachment-evidence-owner-review.md).
 Recommended next one action, only after owner supplies the exact target, existing
 local evidence sources and bounded review authority/expiry/storage: one offline
 source-suitability review, external request budget zero. No source/actor/Base was

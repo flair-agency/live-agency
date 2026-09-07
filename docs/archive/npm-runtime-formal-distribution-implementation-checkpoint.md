@@ -5,7 +5,7 @@
 2026-09-07 JST. **Offline implementation and scoped qualification complete;
 coordinator acceptance pending.** Configured host model/effort retained; no override,
 subagents, successor, publication or host registration. The current accepted
-[formal contract](../../provider-runtime/docs/reviews/formal-distribution-contract.md) and
+[formal contract](../../runtime/docs/reviews/formal-distribution-contract.md) and
 [distribution decision](../architecture/distribution.md) govern this package.
 The complete authoritative governance guide and task policy were read.
 

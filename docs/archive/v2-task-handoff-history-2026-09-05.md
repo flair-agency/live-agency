@@ -19,7 +19,7 @@
 - Earlier M2U checkpoint (not the current next-package instruction): M2U requires explicit User/Tenant profile selection
   across every Lark OpenAPI Provider and direct/indirect consumer, including
   cross-domain gift projections. The
-  [selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md), migration plan, PERT
+  [selection design](../../packages/lark-core/docs/principal-selection.md), migration plan, PERT
   and capability inventory are aligned. M2U-1 now has a local source/caller
   inventory, official operation-support baseline, pure selection/binding
   contract and synthetic rejection tests. M2U-2a now has a local selected
@@ -152,7 +152,7 @@ Detailed identity constraints are in
 ### M2U scope and design checkpoint
 
 The owner accepted all-Lark OpenAPI User/Tenant selection on 2026-09-05. The
-[selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md) specifies the existing
+[selection design](../../packages/lark-core/docs/principal-selection.md) specifies the existing
 Principal vocabulary, operation-level support matrix, same-actor refresh,
 constrained semantic reads/writes, audit/intent binding, complete consumer
 inventory and five implementation packages. M7 now requires this coverage.
@@ -823,7 +823,7 @@ feature work remain separately scoped.
 
 The following is retained evidence and technical context, not a current queue
 instruction. Its then-next package was **M2U-2b: one Provider operation-family
-integration around the selected transport**. The [partial transport checkpoint](../../provider-runtime/docs/archive/v2-m2u-transport-checkpoint.md) implements the selected-token HTTP layer, Tenant lease acquisition and M2U-2a's selected API-user CLI authentication/runtime proof. An authentication-rejected read now invalidates cached proof and re-verifies the exact configured app, User, organization and scopes before one retry; actor substitution stops before a second business request. Revoked or interaction-required grants stop before business access, and writes are still never retried. The focused selection/transport suite passes 66/66; no live authorization, protected access or production mutation was used. Resume with one exact Provider operation family and its resource/query/body validator and bounded pagination/process aggregation. Do not redo M2U-1 or M2U-2a. M2U-2 as a whole is not complete, and M2U-3 through M2U-5 remain pending.
+integration around the selected transport**. The [partial transport checkpoint](../../runtime/docs/archive/v2-m2u-transport-checkpoint.md) implements the selected-token HTTP layer, Tenant lease acquisition and M2U-2a's selected API-user CLI authentication/runtime proof. An authentication-rejected read now invalidates cached proof and re-verifies the exact configured app, User, organization and scopes before one retry; actor substitution stops before a second business request. Revoked or interaction-required grants stop before business access, and writes are still never retried. The focused selection/transport suite passes 66/66; no live authorization, protected access or production mutation was used. Resume with one exact Provider operation family and its resource/query/body validator and bounded pagination/process aggregation. Do not redo M2U-1 or M2U-2a. M2U-2 as a whole is not complete, and M2U-3 through M2U-5 remain pending.
 
 Definition of done:
 
@@ -1135,9 +1135,9 @@ Proceed in this order unless the user changes priority:
      was activated.
 
 4. **M2U all-Lark OpenAPI User/Tenant selection — M2U-1 implemented 2026-09-05; transport and rollout pending**
-   - Follow the [selection design](../../provider-runtime/packages/lark-core/docs/principal-selection.md).
+   - Follow the [selection design](../../packages/lark-core/docs/principal-selection.md).
      M2U-1 inventory/profile contract and rejection tests are implemented; see
-     [the checkpoint](../../provider-runtime/docs/archive/v2-m2u-inventory-and-contract.md). M2U-2 shared transport
+     [the checkpoint](../../runtime/docs/archive/v2-m2u-inventory-and-contract.md). M2U-2 shared transport
      is next; Provider conformance, consumer migration and per-profile rollout
      evidence remain M2U-3 through M2U-5.
    - Include every direct/indirect Lark API consumer, especially the shared

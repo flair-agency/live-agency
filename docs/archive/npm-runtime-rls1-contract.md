@@ -1,6 +1,6 @@
 # RLS-1 decision and measured implementation record
 
-Status: historical. Current API is [owned by source-provider-api](../../provider-runtime/skills/live-agency-skills/packages/source-provider-api/docs/instruction-resolution.md); Runtime owns [integration](../../provider-runtime/docs/instruction-resolution.md).
+Status: historical. Current API is [owned by source-provider-api](../../packages/source-provider-api/docs/instruction-resolution.md); Runtime owns [integration](../../runtime/docs/instruction-resolution.md).
 
 ## 1. Change card, scope, and governing decisions
 
@@ -25,7 +25,7 @@ register expenses, or start an MCP. This proves portability of this route only.
 
 Read the complete authoritative [Private Source Integration Guide](../governance/private-source-integration-guide.md)
 and [task policy](../governance/development-policy.md). The guide is not reproduced.
-The [lifecycle design](../../provider-runtime/docs/deployment.md) §§3, 5, 11–15 provides the
+The [lifecycle design](../../runtime/docs/deployment.md) §§3, 5, 11–15 provides the
 larger dependency order: accepted RLS-1 contract → one local implementation proof
 → separately gated artifacts/release/host work. This package does not declare
 RLS-0's registry decisions complete or authorize RLS-2 publication.

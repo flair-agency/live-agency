@@ -1,0 +1,32 @@
+{
+  "contractVersion": "provider-instruction-descriptor/v1",
+  "packageName": "@fixture/coin-purchase-instruction-provider",
+  "packageVersion": "1.0.0",
+  "api": {
+    "minimum": "1.6.0",
+    "maximumExclusive": "2.0.0"
+  },
+  "bindings": [
+    {
+      "id": "default",
+      "provides": [
+        "coin-purchase-evidence-source/v1"
+      ],
+      "inputKinds": [
+        "application/x.synthetic-coin-acquisition+json"
+      ],
+      "knowledgeVersion": null,
+      "unattended": false,
+      "executionKind": "instructions",
+      "resourceId": "synthetic-coin-instructions",
+      "resources": [
+        {
+          "id": "main",
+          "path": "./instructions/provider.md",
+          "mediaType": "text/markdown",
+          "sha256": "1b64737d92a94cce8bf6b7df3d680825bdb6bb685c666fe8fe0499a84f7038d2"
+        }
+      ]
+    }
+  ]
+}

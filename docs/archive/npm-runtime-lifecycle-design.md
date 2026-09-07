@@ -1,6 +1,6 @@
 # Lifecycle design planning record
 
-Status: historical planning and verification; current specification is [Runtime deployment design](../../provider-runtime/docs/deployment.md). Proposed commands do not authorize execution.
+Status: historical planning and verification; current specification is [Runtime deployment design](../../runtime/docs/deployment.md). Proposed commands do not authorize execution.
 
 # npm Runtime Distribution and Environment Separation: Design and Implementation Plan
 

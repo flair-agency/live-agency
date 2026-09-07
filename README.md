@@ -9,7 +9,7 @@ Choose the owner first, then the file's purpose. Neither file extension nor the 
 | Owner | Canonical responsibility |
 | --- | --- |
 | This parent repository | Project requirements, cross-domain model, architecture, governance and migration |
-| `provider-runtime/` | Composition, dependency resolution, startup, deployment and pinned component versions |
+| `runtime/` | Composition, dependency resolution, startup, deployment and pinned component versions |
 | Each Provider repository | Service-specific acquisition, mutation, formats and operating knowledge |
 | Skill repository | Business procedures, decisions, input/output and acceptance criteria |
 | Each MCP repository | Domain operation contracts and their implementation |
@@ -19,10 +19,18 @@ Choose the owner first, then the file's purpose. Neither file extension nor the 
 live-agency/
 ├── README.md          # Overview, structure policy and canonical index
 ├── AGENTS.md          # Concrete agent instructions and policy references
-├── docs/              # Parent-owned documentation
-├── provider-runtime/  # Existing Runtime submodule and component repositories
+├── docs/              # Project-wide requirements, architecture and governance
+├── runtime/           # Runtime composition, startup and deployment repository
+├── skills/            # One independent Git repository per Skill
+├── providers/         # One independent repository per Provider
+├── mcp/operations/    # Existing operations MCP repository
+├── packages/          # Independently owned shared library repositories
+├── tools/             # Shared development, packaging and verification tools
+├── test/              # Cross-component tests and synthetic Provider fixtures
+├── package.json       # Development workspace composition, not a Skill monorepo
+├── package-lock.json  # Reproducible development dependencies
 ├── .codex/            # Local execution settings, excluded from Git
-└── tmp/               # Local temporary output, excluded from Git
+└── tmp/               # Ignored working output and explicitly retained copies
 ```
 
 A reusable project-wide tool belongs in `tools/` only when its purpose, inputs and execution are portable. One-off recovery scripts belong with their recovery record; the existing STAB scripts are historical assets in `docs/archive/recovery-tools/`, not current tools. Historical evidence directories are not a standard project layout. Do not bulk-delete retained evidence merely because it is under a temporary directory.
@@ -51,7 +59,13 @@ Consolidate content used by the same reader for the same decision. A completed t
 - [Architecture and responsibility boundaries](docs/architecture/overview.md), [capability ownership](docs/architecture/capabilities.md), [distribution direction](docs/architecture/distribution.md)
 - [Development procedures](docs/governance/development-policy.md), [Skill naming](docs/governance/skill-naming-policy.md), [private-source integration guide](docs/governance/private-source-integration-guide.md)
 - [Migration plan and decision status](docs/migration/v2-plan.md), [current status and applicable constraints](docs/migration/status.md)
-- [Runtime](provider-runtime/README.md) and [deployment design](provider-runtime/docs/deployment.md)
-- [Unapproved v2 plan revision](docs/reviews/v2-migration-plan-review-ja.md), [documentation review and execution record](docs/reviews/documentation-audit-ja.md)
+- [Runtime](runtime/README.md) and [deployment design](runtime/docs/deployment.md)
+- [Approved v2 review history](docs/reviews/v2-migration-plan-review-ja.md), [documentation review and execution record](docs/reviews/documentation-audit-ja.md)
 
-The existing Git repositories and submodules are retained. Inspect changes in each owner (`git status`, `git -C provider-runtime status`). This parent is local; no publication destination or remote availability of its current pins is established by this documentation work.
+The existing Git repositories and submodules are retained. Inspect changes in each owner (`git status`, `git -C runtime status`). This parent is local. New Skill/library repositories currently use relative local submodule URLs; no GitHub repositories were created for them. Existing Provider/MCP remote URLs are retained. Configure actual remote URLs before publishing the parent or expecting a remote recursive clone to work. Uncommitted component changes are not included in the parent pins.
+
+## Development checkout
+
+The parent owns the development installation across independent Git repositories. Run `npm ci --ignore-scripts`, `npm test`, and `npm run check:public` from this directory. Workspace linkage is local development composition; each Skill has its own Git history and package manifest. Individual component tests run with `npm test` in that component after the shared development installation; synthetic Provider-discovery tests explicitly use `test/fixtures/installation/`.
+
+The previous nested Runtime/Skills checkout is retained intact under `tmp/repository-restructure/runtime-before/`, excluded from Git. It is a preservation copy, not a second active source. Historical documentation and the documentation audit CSV retain their at-the-time paths. Current source locations are the sibling directories above.

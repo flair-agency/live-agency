@@ -2,7 +2,7 @@
 
 > Status: Historical evidence; not current instructions or present operational verification. Current work: [migration status](../migration/status.md).
 
-2026-09-07 JST. **Public capability verification and local source reconciliation complete. First publication is blocked by unbound release commits and actual remote authority/state.** This report resolves the documentation-only placeholders in [formal contract §8](../../provider-runtime/docs/reviews/formal-distribution-contract.md#8-inactive-releaseconfiguration-proposal); it does not amend that contract or approve publication.
+2026-09-07 JST. **Public capability verification and local source reconciliation complete. First publication is blocked by unbound release commits and actual remote authority/state.** This report resolves the documentation-only placeholders in [formal contract §8](../../runtime/docs/reviews/formal-distribution-contract.md#8-inactive-releaseconfiguration-proposal); it does not amend that contract or approve publication.
 
 ## 1. Scope and acceptance basis
 

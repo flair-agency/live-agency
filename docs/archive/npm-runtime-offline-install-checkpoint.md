@@ -27,7 +27,7 @@ identity/manifest decision, publication approval, or completion of the programme
 
 Read applicable AGENTS.md, the [task policy](../governance/development-policy.md), the
 complete authoritative [Private Source Integration Guide](../governance/private-source-integration-guide.md),
-the [RLS-1 contract](../../provider-runtime/skills/live-agency-skills/packages/source-provider-api/docs/instruction-resolution.md) and
+the [RLS-1 contract](../../packages/source-provider-api/docs/instruction-resolution.md) and
 [accepted RLS-2 evidence](npm-runtime-rls2-artifact-checkpoint.md).
 The guide is not duplicated. The separately scoped synthetic lock-generation/ci
 authority in the task brief was used. Filesystem escalation was accepted for the
@@ -200,7 +200,7 @@ rollback guarantee is claimed.
 
 The focused qualification passed on its first execution. `node --check` passed
 before running. Only this new report and
-[standalone verifier](../../provider-runtime/scripts/npm-runtime-offline-install.test.mjs) were authored
+standalone verifier (historical source: `runtime/scripts/npm-runtime-offline-install.test.mjs`; retained with the pre-M1 source-disposition snapshot) were authored
 in the checkout; no test-all wiring or artifact-verifier edit was made. Receipt
 preservation compares all 11 source-closure files, both root/Skills manifests and
 locks, and the prior artifact verifier (16 paths): all unchanged. Root and Skills

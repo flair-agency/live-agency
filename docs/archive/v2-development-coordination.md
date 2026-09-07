@@ -44,8 +44,8 @@ that ledger is stale and must not overwrite the original.
 
 | State | Package | Evidence / next condition |
 | --- | --- | --- |
-| Accepted locally | creator-live-history-sync selected actor/profile/transport | Task `01a0772b-abd6-7472-8811-5df937480007` completed; coordinator accepted 2026-09-07. [Evidence](../../provider-runtime/docs/archive/v2-live-history-caller-conformance.md): 275/275 synthetic tests. |
-| Completed locally; inherited | Shared client and creator-insight conformance | [Checkpoint](../../provider-runtime/docs/archive/v2-insight-caller-conformance.md), inventory (retired snapshot; [on-demand investigation](../../provider-runtime/docs/source-runtime-usage.md#on-demand-caller-investigation)): 43/43 direct, 317/317 regression. Not rerun for coordination. |
+| Accepted locally | creator-live-history-sync selected actor/profile/transport | Task `01a0772b-abd6-7472-8811-5df937480007` completed; coordinator accepted 2026-09-07. [Evidence](../../runtime/docs/archive/v2-live-history-caller-conformance.md): 275/275 synthetic tests. |
+| Completed locally; inherited | Shared client and creator-insight conformance | [Checkpoint](../../runtime/docs/archive/v2-insight-caller-conformance.md), inventory (retired snapshot; [on-demand investigation](../../runtime/docs/source-runtime-usage.md#on-demand-caller-investigation)): 43/43 direct, 317/317 regression. Not rerun for coordination. |
 | Completed locally; inherited | Native backup and backup correction | Existing handoff/checkpoints: 116/116, 194/194 and 159/159. Do not reopen completed experiments. |
 | Completed locally; inherited | Gift/activity/attachment packages | Existing [handoff](v2-task-handoff.md#4-next-work-package) and [grouping record](../governance/development-policy.md). Completion does not imply live rollout. |
 | Accepted subset; media held | creator-invitation-status-sync selected actor conformance | Task `01a0773f-9f33-7cc2-b786-d6a66c534599` completed non-avatar implementation; 173/173 synthetic passes. Full family remains open for media. |

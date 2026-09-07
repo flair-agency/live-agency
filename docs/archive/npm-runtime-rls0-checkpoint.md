@@ -27,7 +27,7 @@ This is a private development decision record, not a public package resource.
   defaults retained. No subagents or cross-task messages.
 
 Read applicable AGENTS.md, the [task policy](../governance/development-policy.md),
-[lifecycle design](../../provider-runtime/docs/deployment.md) (especially §§2–6, 13–15), and
+[lifecycle design](../../runtime/docs/deployment.md) (especially §§2–6, 13–15), and
 complete [Private Source Integration Guide](../governance/private-source-integration-guide.md)
 before reviewing the local Skill contract. The guide is not reproduced here.
 The [cleanup ledger](environment-cleanup-coordination.md) accepts ORG-5 as retained;

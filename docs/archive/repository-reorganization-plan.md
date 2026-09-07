@@ -33,7 +33,7 @@ The previously suggested names `live-agency-runtime-composition` and `live-agenc
 
 ## 2. Current v2 progress and reorganization constraints
 
-Do not infer current progress solely from an older PERT chart or a design document's opening status. The planning baseline below prioritizes the [handoff](v2-task-handoff.md), [M2U checkpoint](../../provider-runtime/docs/archive/v2-m2u-transport-checkpoint.md), and [attachment consumer checkpoint](../../provider-runtime/docs/archive/v2-m2u-4b-attachment-acquisition.md).
+Do not infer current progress solely from an older PERT chart or a design document's opening status. The planning baseline below prioritizes the [handoff](v2-task-handoff.md), [M2U checkpoint](../../runtime/docs/archive/v2-m2u-transport-checkpoint.md), and [attachment consumer checkpoint](../../runtime/docs/archive/v2-m2u-4b-attachment-acquisition.md).
 
 | Current status | Reorganization implication |
 | --- | --- |
@@ -90,7 +90,7 @@ The root Intelligence launcher currently references root-relative private paths 
 - **SN/FR:** Reuse SN-1 (manifest), SN-2 (distribution), and SN-3/4 (workflow change/cutover) from the [Skill migration plan](../reviews/v2-skill-naming-and-migration-plan.md). Foreign-revenue business/Provider separation remains independent and does not automatically become required for M7. Preserve the weekly-expense prototype freeze.
 - **Backup:** Keep M2U actor migration evidence distinct from attachment recovery implementation and proof. Relocating owner-only data does not establish improved recoverability.
 - **M7:** Preserve required published component commits, pins, approvals, and rollback evidence. Explicitly include the basic clean Skill installation guarantee under M7-2, irrespective of naming-workstream adoption. Repository renaming and core separation remain optional. Identify selected R2 batches and deferrals during R3.
-- **Existing changes:** The [commit-boundary proposal](../../provider-runtime/docs/archive/v2-m7-2-commit-boundary-manifest.md) is an earlier snapshot. Refresh the inventory before implementation and keep unrelated changes out of reorganization commits.
+- **Existing changes:** The [commit-boundary proposal](../../runtime/docs/archive/v2-m7-2-commit-boundary-manifest.md) is an earlier snapshot. Refresh the inventory before implementation and keep unrelated changes out of reorganization commits.
 
 Move core into a separate Git repository only for a concrete reason such as independent releases/consumers, different access controls, or standalone distribution. If its contract, dependencies, and tests are independent within the root workspace, that is a valid final placement. If separation is selected, preserve its package name and API initially and design history preservation, dependency acquisition, pinning, and rollback before changing Git structure.
 
