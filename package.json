@@ -27,7 +27,19 @@
   "scripts": {
     "test": "node tools/test-all.mjs",
     "test:skills": "node --test skills/*/test/*.mjs",
-    "check:public": "node tools/check-public-content.mjs"
+    "check:public": "node tools/check-public-content.mjs",
+    "runtime:mcp:start": "node mcp/operations/src/server.mjs",
+    "runtime:mcp:start:scouting": "node mcp/operations/src/creator-scouting-server.mjs",
+    "runtime:mcp:start:scouting-write": "node mcp/operations/src/creator-scouting-write-server.mjs",
+    "runtime:mcp:start:scouting-invitation-write": "node mcp/operations/src/creator-scouting-invitation-write-server.mjs",
+    "runtime:mcp:start:scouting-profile-write": "node mcp/operations/src/creator-scouting-profile-write-server.mjs",
+    "runtime:mcp:start:management": "node mcp/operations/src/creator-management-server.mjs",
+    "runtime:mcp:start:intelligence": "node runtime/scripts/agency-intelligence-mcp-server.mjs",
+    "runtime:test:m4i": "node --test mcp/operations/test/agency-intelligence-mcp.test.mjs mcp/operations/test/conversation-message-contracts.test.mjs providers/lark-chat/test/*.test.js runtime/scripts/agency-intelligence-mcp-runtime.test.mjs runtime/scripts/activate-v2-m4i-creator-networks-browser.test.mjs runtime/scripts/verify-v2-m4i-agency-intelligence-active.test.mjs runtime/scripts/m4i-phase3-conformance.test.mjs",
+    "runtime:test:m2u-4e": "node --test runtime/scripts/creator-activity-sync-runner.test.mjs",
+    "runtime:test:mcp": "node --test mcp/operations/test/*.test.mjs",
+    "runtime:test:smoke": "node --test runtime/scripts/smoke-test.mjs",
+    "runtime:test:backup-gates": "node --test skills/lark-base-disaster-recovery-drill/test/lark-base-disaster-recovery-drill.test.mjs"
   },
   "engines": {
     "node": ">=22"

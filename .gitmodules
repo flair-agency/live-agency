@@ -18,10 +18,10 @@
 	url = https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense.git
 [submodule "providers/tiktok-ios"]
 	path = providers/tiktok-ios
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/11/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-tiktok-ios.git
 [submodule "providers/tiktok-web"]
 	path = providers/tiktok-web
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/12/repository.bundle
+	url = https://github.com/flair-agency/live-agency-provider-tiktok-web.git
 [submodule "mcp/operations"]
 	path = mcp/operations
 	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/05/repository.bundle
@@ -55,12 +55,12 @@
 [submodule "skills/creator-profile-compaction"]
 	path = skills/creator-profile-compaction
 	url = ./skills/creator-profile-compaction
-[submodule "skills/creator-profile-sync"]
-	path = skills/creator-profile-sync
-	url = ./skills/creator-profile-sync
-[submodule "skills/gift-history-sync"]
-	path = skills/gift-history-sync
-	url = ./skills/gift-history-sync
+[submodule "skills/live-agency-creator-profile-record"]
+	path = skills/live-agency-creator-profile-record
+	url = https://github.com/flair-agency/live-agency-creator-profile-record.git
+[submodule "skills/live-agency-gift-history-merge"]
+	path = skills/live-agency-gift-history-merge
+	url = https://github.com/flair-agency/live-agency-gift-history-merge.git
 [submodule "skills/lark-base-backup"]
 	path = skills/lark-base-backup
 	url = ./skills/lark-base-backup

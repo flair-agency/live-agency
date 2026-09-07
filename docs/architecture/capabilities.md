@@ -18,7 +18,7 @@ Status: responsibility inventory based on the existing migration baseline. Plann
 | Skill | Domain | Current sources | Current destination/effect | Approval | Unattended eligibility |
 | --- | --- | --- | --- | --- | --- |
 | `creator-invitation-status-sync` | Creator Scouting | Lark targets; normalized BackStage eligibility observation | Append or extend reviewed invitation-state history in Creator Scouting | Required for writes | Reads and dry runs are unattended-capable; every write still requires exact operation approval |
-| `creator-profile-sync` | Creator Scouting, then Management consumer after handoff | Lark targets; normalized TikTok public-profile observation | Append profile history and verified avatar evidence | Required for writes | Interactive acquisition; scheduled preparation may stop for interaction |
+| `live-agency-creator-profile-record` | Creator Scouting, then Management consumer after handoff | Lark targets; normalized TikTok public-profile observation | Append profile history and verified avatar evidence | Required for writes | Interactive acquisition; scheduled preparation may stop for interaction |
 | `creator-live-history-sync` | Creator Scouting, then Management consumer after handoff | Lark targets; normalized TikTok LIVE observation | Append LIVE history and metric snapshots | Required for writes | Interactive acquisition |
 | `creator-insight-sync` | Creator Scouting | Existing profile and LIVE evidence in Lark | Update reviewed insight and approved tags | Required for writes | Target read and dry-run only |
 | `creator-profile-compaction` | Creator Scouting history maintenance | Existing Lark profile history | Delete exact approved redundant records under the owning backup contract | Explicit destructive approval | Dry-run only |
@@ -30,7 +30,7 @@ Status: responsibility inventory based on the existing migration baseline. Plann
 | `lark-base-disaster-recovery-drill` | Cross-domain data protection | Verified backup; isolated test destination | Restore and reconcile outside production | Explicit test creation/cleanup authority | Preflight only |
 | `lark-base-maintenance` | Cross-domain data protection | Backup receipts, capacity counts, child dry-run summaries, retention and drill status | Coordinated maintenance plan; no direct mutation | Child-specific approval for every destructive action | Read, backup coverage, and dry-run coordination only |
 | `creator-activity-sync` | Creator Management | Normalized BackStage monthly activity; Management targets | Update exact existing creator-month metrics | Required for writes | Acquisition depends on Binding; write remains reviewed |
-| `gift-history-sync` | Cross-domain / Agency Operations | Human-handed-off downloaded snapshot | Append-preserving master and derived purpose projections | Required for downstream writes | Acquisition is human-only |
+| `live-agency-gift-history-merge` | Cross-domain / Agency Operations | Human-handed-off downloaded snapshot | Append-preserving master and derived purpose projections | Required for downstream writes | Acquisition is human-only |
 | `coin-expense-reconcile` | Expense and Accounting | Normalized purchase evidence and expense candidates | Reviewed one-to-one expense registration | Required | No general unattended mutation |
 | `coin-expense-weekly-application` | Expense and Accounting | Frozen prototype only | None while frozen; weekly applications remain manual | Not applicable | Do not invoke, activate, or schedule |
 

@@ -286,3 +286,10 @@ Use the completed source restructuring and preserved original tree. No additiona
 Fixed caller snapshots, source-hash equality and migration-status equality tests remain retired. On-demand caller investigation and independent contract tests remain. Historical CP/M/SEP/RLS numbers are evidence references only. Existing operation-specific safeguards carry forward to the owning capability/workflow; old avatar-first and repair-first queues do not select current work.
 
 New Management cost/reward capabilities, account-transition features, additional intelligence routes, optional complete-attachment recovery, and performance/endurance projects are not added automatically. The [archived migration plan](../archive/v2-migration-plan.md) and associated historical records preserve their evidence without creating another active plan.
+
+
+### Adopted gift and profile package identities
+
+On 2026-09-07 the owner adopted the one-to-one mappings reviewed in foundation design section 9: `gift-history-sync` becomes `live-agency-gift-history-merge` (`@flair-agency/gift-history-merge@1.0.0`), and `creator-profile-sync` becomes `live-agency-creator-profile-record` (`@flair-agency/creator-profile-record@1.0.0`). Directory, Skill identifier and owning private repository basename match. Their `./contracts` exports stay consumer-owned; TikTok iOS/Web use those respective package contracts. Existing unaccepted live routes remain M2/M3 work. These two names are adopted rather than candidates; other candidate mappings retain their documented decision status.
+
+Runtime Skill installation now selects an already installed exact npm package, installation root and client Skill directory explicitly. It validates matching Skill/source provenance and refuses ordinary-directory or unrelated-package replacement. Synthetic local-client installation is intermediate evidence; actual development Codex discovery/invocation and registry-only Runtime update/rollback remain required M1 gates.

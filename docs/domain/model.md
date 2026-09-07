@@ -396,7 +396,7 @@ The current operational spreadsheet derives purpose from the creator's lifecycle
 
 This is lifecycle-based operational attribution, not a recorded statement of the sender's subjective intent. `Relationship` is consequently a residual category and may include gifts outside a currently active scouting or membership interval.
 
-The current `gift-history-sync` workflow maintains gift events and derived projections across more than one domain. It must not be assigned exclusively to Creator Scouting or Creator Management:
+The current `live-agency-gift-history-merge` workflow maintains gift events and derived projections across more than one domain. It must not be assigned exclusively to Creator Scouting or Creator Management:
 
 - Creator Scouting consumes the `Scouting` portion.
 - Creator Management consumes the `Development` portion.

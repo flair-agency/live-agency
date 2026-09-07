@@ -140,3 +140,17 @@ Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）
 | `packages/provider-protocol` | `live-agency-provider-protocol` |
 
 親1＋共通5＋現在のSkill16で数えると22repoに相当するが、これは一括新設する確定数ではない。Skillの分割・統合・凍結の扱いと識別子の確定に合わせて作成対象を決める。この名前の統一は、GitHub作成・push・発行の実施を意味しない。発行準備とM1の残条件は[現在の状況](../migration/status.md)に従う。
+
+
+## 9. TikTok Providerの依存先2件：正式名の確定案
+
+状態：承認済み。2026年9月7日、所有者が「提案の2名を正式採用する」と回答。実コードを確認すると、iOS Providerはギフト入力のvalidator、Web Providerはプロフィール観測のvalidatorを各Skillの`./contracts`から参照している。この所有関係を維持し、2件とも既存Skillを1対1で引き継ぐ。
+
+| 現行Skill | 正式Skill名＝ディレクトリー名＝GitHub repo名（案） | npm名（案）、初回版 | 維持する責務 |
+| --- | --- | --- | --- |
+| gift-history-sync | live-agency-gift-history-merge | @flair-agency/gift-history-merge、1.0.0 | 事務所負担ギフトの部分観測を既存マスターへ統合。入力にない記録の削除は含まない |
+| creator-profile-sync | live-agency-creator-profile-record | @flair-agency/creator-profile-record、1.0.0 | プロフィール観測と証拠を履歴へ記録。履歴の汎用編集・削除は含まない |
+
+推奨：この2名を正式採用する。GitHubは`flair-agency`配下に各Private repoを作り、SkillsとProvider側の参照を対応するnpm名へ揃える。既存の`./contracts`公開入口を維持し、独立インストールと合成テストを通してから発行する。接続方式や責務の追加、既存Skillの分割は行わない。残る旧実装経路と実サービスでの動作は、引き続きM2/M3の未完了範囲として記録する。名前の変更を実運用移行の完了とは扱わない。
+
+正式名を採用し、2件のPrivate repo作成と改名を実施。発行は固定lockとActionsの権限・テストを確認して行う。Runtimeの明示的な導入先と固定版パッケージを使うインストール処理、単体テストの独立化は並行して準備できる。
