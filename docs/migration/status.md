@@ -84,7 +84,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 
 | Provider | Missing execution selection |
 | --- | --- |
-| Lark Chat | Owner supplied one chat and August 20–22 JST; two bounded user reads returned zero messages. Await UI comparison before concluding visibility or real-data conformance |
+| Lark Chat | Owner corrected the year to 2025. Two messages acquired and adapter normalization verified; full selected-user route remains unverified |
 | Google Drive | Backup storage account, shared Drive/artifact/receipt folder IDs and allowed operation; the June Excel is not the backup-storage capability |
 | Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
@@ -93,7 +93,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 Readiness is not counted as M2 success. Shared interfaces and external mutations
 remain serialized by the coordinator.
 
-### Lark Chat M2: empty user-read result, verification incomplete
+### Lark Chat M2: corrected 2025 interval, adapter verification passed
 
 Change card: D verification with F selection of an existing authenticated user;
 read-only access to the owner's exact chat and August 20–22, 2026 in Asia/Tokyo
@@ -110,17 +110,34 @@ Provider path. That package's selected operation contract still declares only
 tenant-token support, consistent with the retained official API documentation.
 The successful user response alone does not resolve that support discrepancy.
 
-Neither response proves that no messages exist in the UI or that message-body,
-attachment, pagination or thread conversion works for this account. M2 remains
-incomplete. The owner was asked whether the selected interval has visible UI
-messages, to distinguish an empty interval from an API visibility difference.
-No alternate identity, expanded interval or additional chat was selected.
-Two message-list requests were made in total, with no message/service writes.
-No product source, package version, host registration or production configuration
-changed. Ignored tmp/m2-lark-chat retains the selection, identity/preview,
-raw and normalized empty responses, probe driver, installed lock and receipt.
-Recovery requires no service rollback; delete the local evidence when no longer
-needed. Monthly M3 acceptance remains a separate pending review.
+The owner subsequently corrected the year to **2025**. That correction supersedes
+the UI-comparison question; the earlier zero result is retained as a run against
+the initially supplied 2026 interval, not evidence of a visibility defect.
+
+For August 20 00:00 through August 23 00:00, 2025 JST, the same selected user and
+tenant were checked again. The same installed 1.0.0 API adapter and bounded
+transport returned two messages on one terminal page: one system message and
+one interactive card, both at approximately August 22 05:29 JST. Independent
+comparison of the raw response with normalized output passed message/chat IDs,
+sender IDs (empty system sender becomes null), timestamps/window, types,
+structured-body SHA-256, thread references and lifecycle. An initial assertion
+incorrectly expected the empty system sender to remain an empty string; the
+verification oracle was corrected to the existing nullable representation.
+No product behavior was changed.
+
+This verifies the installed adapter's real acquisition and normalization for
+these two message types. The full selected-user route remains unverified;
+the selected operation's documented tenant-only support discrepancy remains.
+The sample has no text messages, attachments, threads or multiple pages, so
+those paths are not newly covered. No additional sample selection is inferred.
+
+Three message-list requests were made across both years (two for 2026, one for
+2025), with no service writes, alternate identity or additional chat. No product
+source, package version, host registration or production configuration changed.
+Ignored tmp/m2-lark-chat/2025-08 retains the corrected selection, fresh identity,
+raw and normalized responses, driver and independent validation; its parent
+retains the installed lock and earlier evidence. No service rollback is needed.
+Monthly M3 acceptance remains a separate pending review.
 
 ## Retained leading M2 technical verification
 
