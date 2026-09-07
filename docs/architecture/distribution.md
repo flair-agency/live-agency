@@ -1,44 +1,19 @@
 # Formal distribution direction
 
-2026-09-07 JST. Owner supplied the conversation “正式配布設計の整理”
-(`6a9da09a-1364-83e8-af7c-9e32be036040`) in response to the pending distribution
-choice. Coordinator read the full bounded conversation and adopts the user's
-stated choices as design direction, not the other assistant's operational claims.
+Status: adopted. Implementation and release evidence are owned by [migration status](../migration/status.md).
 
 | Decision | Adopted direction |
 | --- | --- |
-| Package namespace | `@flair-agency` |
+| Namespace | `@flair-agency` |
 | Registry | GitHub Packages |
-| Initial visibility | Private; later public transition individually reviewed |
-| Ownership | Flair GitHub organization (`flair-agency`) |
-| Publication actor | GitHub Actions under organizational ownership |
-| Payload | Skill itself joins npm lifecycle; first representative target is full `coin-expense-reconcile` with its required libraries/resources |
+| Initial visibility | Private; later public transitions decided per package |
+| Owner / publisher | Flair organization / GitHub Actions |
+| Contents | Independently managed libraries, Providers, Skills and Runtime; Skill instructions/resources are package contents |
 
-Runtime composition, individual Skills, shared libraries and private Providers
-retain separate responsibilities. Existing `@live-agency-skills` library names
-need an explicit dependency/import migration; do not apply a global replacement
-or assume aliases/old published packages exist. Target leaf names
-`source-provider-api`, `private-runtime-files`, and `coin-expense-reconcile` are
-concrete planning candidates under the adopted scope. Final versions, repository
-association and exact manifest layout must be established from source evidence.
+The [approved foundation design](../reviews/v2-foundation-design-ja.md) supplies the current package names and public interfaces. Runtime composes fixed versions; Skills own business contracts and Providers implement them. An npm `private: true` flag prevents publication and is distinct from GitHub package visibility. The development root remains nonpublishable.
 
-Initial private distribution does not mean package.json `private: true` is a
-registry visibility control; keep nonpublishable development roots distinct from
-intended publishable artifacts. No current scope rights, repository privacy,
-package availability or Actions permissions have been verified. Do not infer
-credentials, token scopes or publisher authority from a conversation example.
+Source associations must reflect actual owning repositories and adopted child commits. GitHub Packages does not itself require a new repository per package. Mirroring the approved independent source repositories into GitHub is a separate concrete source-management action. Existing Runtime/Provider repositories have been found; missing independent Skill/library repositories require the source association decision recorded in the foundation review. Do not push a private component into the historical public Skill monorepo by inference.
 
-Public/private eligibility follows the authoritative governance guide and actual
-contents, not a package's name. In particular, private-runtime-files is not
-necessarily confidential code and the generic coin Skill must not gain private
-service data just because initial distribution is private. The earlier assistant's
-package-specific visibility opinions are not adopted policy.
+`tools/m1-distribution.mjs` verifies selected package archives and an exact isolated deployment manifest/lock. Internal packages must resolve to the selected archives; approved exact third-party dependencies are integrity-bound to the existing lock/cache. These offline checks are distinct from registry publication/retrieval. `tools/templates/m1-publish.yml` is a preparation template, not an installed or executed workflow; owning source retrieval, dependency locks and cross-repository Actions permissions must be completed before dispatch.
 
-Accepted RLS-1/2/3 evidence remains synthetic instruction-route qualification,
-not full-Skill payload/behavior or final named-package qualification. Reuse it
-where inputs are unchanged; measure affected name/payload changes explicitly.
-
-
-## Ownership and implementation status
-
-This is the adopted distribution direction, not publication or activation evidence. Runtime owns [deployment design](../../runtime/docs/deployment.md) and the [concrete formal-distribution proposal](../../runtime/docs/reviews/formal-distribution-contract.md). The shared library owns [portable instruction resolution](../../packages/source-provider-api/docs/instruction-resolution.md). Current readiness is recorded only in [migration status](../migration/status.md). Package scope/registry/visibility/publication actor do not need a new decision; unapproved package restructuring remains a review proposal.
+Real configuration, credentials, source exports and execution state remain outside Git. Initial private visibility does not change the public Skill information boundary.

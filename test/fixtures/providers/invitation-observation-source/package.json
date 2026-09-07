@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "peerDependencies": {
-    "@flair-agency/source-provider-api": "^1.0.0"
+    "@flair-agency/provider-protocol": "1.0.0"
   },
   "liveAgencyProvider": {
     "schemaVersion": 1,
-    "provides": ["creator-invitation-observation-source/v1"],
-    "inputKinds": ["application/x.synthetic-observation-request+json"],
+    "provides": [
+      "creator-invitation-observation-source/v1"
+    ],
+    "inputKinds": [
+      "application/x.synthetic-observation-request+json"
+    ],
     "unattended": true,
     "execution": {
       "kind": "module",

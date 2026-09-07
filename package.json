@@ -9,7 +9,8 @@
     "providers/*",
     "mcp/*",
     "packages/*",
-    "test/fixtures/providers/*"
+    "test/fixtures/providers/*",
+    "test/fixtures/consumers/*"
   ],
   "dependencies": {
     "@flair-agency/backstage-provider": "1.2.2",
@@ -18,9 +19,9 @@
     "@flair-agency/tiktok-ios-provider": "1.1.0",
     "@flair-agency/tiktok-web-provider": "1.0.0",
     "@larksuite/cli": "1.0.93",
-    "@live-agency-skills/lark-base-client": "2.0.0",
-    "@flair-agency/private-runtime-files": "1.0.0",
-    "@flair-agency/source-provider-api": "1.6.0",
+    "@flair-agency/lark-base-provider": "1.0.0",
+    "@flair-agency/private-files": "1.0.0",
+    "@flair-agency/provider-protocol": "1.0.0",
     "@modelcontextprotocol/sdk": "1.30.0"
   },
   "scripts": {
@@ -40,6 +41,8 @@
     "@fixture/invitation-observation-source": "1.0.0",
     "@fixture/live-history-instruction-source": "1.0.0",
     "@fixture/multi-binding-provider": "1.0.0",
-    "@fixture/profile-instruction-source": "1.0.0"
+    "@fixture/profile-instruction-source": "1.0.0",
+    "@fixture/monthly-foundation-provider": "1.0.0",
+    "@fixture/monthly-foundation-consumer": "1.0.0"
   }
 }

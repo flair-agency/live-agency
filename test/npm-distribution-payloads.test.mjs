@@ -22,7 +22,7 @@ async function setup(change = async () => {}) {
 }
 test('complete independent-package closure, imports, exports, links, agent metadata and exact license', async () => {
   const args = await setup(), result = await assemble(args);
-  assert.deepEqual(result.packages.map(p => p.files.length), [3, 3, 11, 3]);
+  assert.deepEqual(result.packages.map(p => p.files.length), [4, 3, 12, 3]);
   const license = await fs.readFile(path.join(source, 'LICENSE'));
   for (const p of payloadMap.packages) {
     const root = path.join(args.destination, p.directory), targets = new Set(p.files.map(f => f.target));
@@ -53,13 +53,13 @@ for (const [label, change, error] of [
   ['missing helper', s => fs.unlink(path.join(s, 'packages/cli-utils/src/is-main.mjs')), /closure/],
   ['missing reference', s => fs.unlink(path.join(s, 'skills/coin-expense-reconcile/references/registration.md')), /closure/],
   ['extra unrelated Skill', s => fs.writeFile(path.join(s, 'unrelated-SKILL.md'), 'extra'), /closure/],
-  ['changed source', s => fs.appendFile(path.join(s, 'packages/source-provider-api/LICENSE'), 'changed'), /digest/],
-  ['symbolic link', async s => { const p = path.join(s, 'packages/source-provider-api/LICENSE'); await fs.unlink(p); await fs.symlink(path.join(source, 'LICENSE'), p); }, /link/],
-  ['hard link', async s => { const p = path.join(s, 'packages/source-provider-api/LICENSE'); await fs.unlink(p); const original = path.join(path.dirname(s), 'hardlink-original'); await fs.writeFile(original, 'synthetic'); await fs.link(original, p); }, /ordinary/],
+  ['changed source', s => fs.appendFile(path.join(s, 'packages/provider-protocol/LICENSE'), 'changed'), /digest/],
+  ['symbolic link', async s => { const p = path.join(s, 'packages/provider-protocol/LICENSE'); await fs.unlink(p); await fs.symlink(path.join(source, 'LICENSE'), p); }, /link/],
+  ['hard link', async s => { const p = path.join(s, 'packages/provider-protocol/LICENSE'); await fs.unlink(p); const original = path.join(path.dirname(s), 'hardlink-original'); await fs.writeFile(original, 'synthetic'); await fs.link(original, p); }, /ordinary/],
 ]) test(`reject ${label} before destination creation`, async () => {
   const args = await setup(change);
   try { await assert.rejects(assemble(args), error); await assert.rejects(fs.lstat(args.destination), { code: 'ENOENT' }); }
-  finally { if (label === 'hard link') await fs.unlink(path.join(args.snapshot, 'packages/source-provider-api/LICENSE')); }
+  finally { if (label === 'hard link') await fs.unlink(path.join(args.snapshot, 'packages/provider-protocol/LICENSE')); }
 });
 test('reject unbound digest, traversal inventory and linked snapshot root', async () => {
   const args = await setup();

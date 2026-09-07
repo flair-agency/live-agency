@@ -10,12 +10,12 @@ import { LARK_CHAT_API_OPERATIONS } from "../providers/lark-chat/src/m2u-convers
 test("inventory finds direct API, independent activity clients and transitive wrappers while excluding private data", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "m2u-inventory-test-"));
   try {
-    for (const directory of ["packages/lark-core/src", "providers/lark-base/src", "providers/lark-chat/src",
+    for (const directory of ["packages/lark-transport/src", "providers/lark-base/src", "providers/lark-chat/src",
       "mcp/operations/src", "runtime/scripts", "skills", "runtime-data"]) {
       await mkdir(path.join(root, directory), { recursive: true });
     }
     await writeFile(path.join(root, "providers/lark-base/src/index.js"), 'export const route = "/open-apis/synthetic/read";');
-    await writeFile(path.join(root, "runtime/scripts/adapter.mjs"), 'import { route } from "@live-agency-skills/lark-base-client";');
+    await writeFile(path.join(root, "runtime/scripts/adapter.mjs"), 'import { route } from "@flair-agency/lark-base-provider";');
     await writeFile(path.join(root, "runtime/scripts/runner.mjs"), 'import "./adapter.mjs";');
     await writeFile(path.join(root, "runtime/scripts/activity.mjs"), 'const client = await LarkClient.fromEnvironment();');
     await writeFile(path.join(root, "runtime/scripts/ignored.test.mjs"), 'const route = "/open-apis/test/read";');

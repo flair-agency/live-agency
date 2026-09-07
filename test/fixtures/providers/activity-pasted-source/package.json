@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "peerDependencies": {
-    "@flair-agency/source-provider-api": "^1.0.0"
+    "@flair-agency/provider-protocol": "1.0.0"
   },
   "liveAgencyProvider": {
     "schemaVersion": 1,
-    "provides": ["creator-activity-source/v1"],
-    "inputKinds": ["text/markdown"],
+    "provides": [
+      "creator-activity-source/v1"
+    ],
+    "inputKinds": [
+      "text/markdown"
+    ],
     "unattended": false,
     "execution": {
       "kind": "module",

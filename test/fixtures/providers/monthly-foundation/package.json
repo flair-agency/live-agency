@@ -1,0 +1,50 @@
+{
+  "name": "@fixture/monthly-foundation-provider",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "src",
+    "instructions"
+  ],
+  "dependencies": {
+    "@flair-agency/creator-monthly-activity-reconcile": "1.0.0"
+  },
+  "peerDependencies": {
+    "@flair-agency/provider-protocol": "1.0.0"
+  },
+  "liveAgencyProvider": {
+    "schemaVersion": 2,
+    "bindings": [
+      {
+        "id": "source",
+        "provides": [
+          "creator-activity-source/v1"
+        ],
+        "execution": {
+          "kind": "module",
+          "entry": "./src/source.js"
+        }
+      },
+      {
+        "id": "destination",
+        "provides": [
+          "creator-monthly-activity-destination/v1"
+        ],
+        "execution": {
+          "kind": "module",
+          "entry": "./src/destination.js"
+        }
+      },
+      {
+        "id": "instruction-source",
+        "provides": [
+          "creator-activity-source/v1"
+        ],
+        "execution": {
+          "kind": "instructions",
+          "resource": "./instructions/source.md"
+        }
+      }
+    ]
+  }
+}

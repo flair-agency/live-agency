@@ -375,18 +375,18 @@ Providerの実動作検証は以下の環境別に管理します。Larkとい�
 
 下記リンクは今回読んだローカル実装です。ハッシュは調査時の内容を識別するもので、コミット済み・不変・リリース可能であることを意味しません。以後の変更で行番号が変わる可能性があります。
 
-- **E1** [skills/live-agency-skills/packages/source-provider-api/src/index.js:126](../../packages/source-provider-api/src/index.js#L126) — 契約・互換性・探索・動的ロードと、966行の再export。SHA-256: `857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669`
+- **E1** [skills/live-agency-skills/packages/source-provider-api/src/index.js:126](../../packages/provider-protocol/src/index.js#L126) — 契約・互換性・探索・動的ロードと、966行の再export。SHA-256: `857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669`
 - **E2** skills/live-agency-skills/packages/source-provider-api/src/runtime-context.js:6 (historical source: `packages/source-provider-api/src/runtime-context.js`; retained with the pre-M1 source-disposition snapshot) — 公開入口への逆向きimport。SHA-256: `13b4051bc05918245e97e04b640117ed6d2f9fb43c7b8d6b03c166d7878d1387`
 - **E3** [skills/live-agency-skills/skills/coin-expense-reconcile/scripts/coin_expense_core.mjs:3](../../skills/coin-expense-reconcile/scripts/coin_expense_core.mjs#L3) — 業務coreから共通API入口への依存。SHA-256: `b97846f6b197c7fa9acd91eaaf89487737c686b63b7e08a4910e07aa5d437034`
 - **E4** [mcp/live-agency-operations/src/creator-scouting-profile-write-mcp-server.mjs:12](../../mcp/operations/src/creator-scouting-profile-write-mcp-server.mjs#L12) — Lark実装からの出力スキーマimportと37行以降のruntime注入。SHA-256: `f53fbd65c2b080e59d9cdcfbbcd17645cee778236380d20c4661bfed72343edc`
 - **E5** [mcp/live-agency-operations/src/profile-history-lark-write.mjs:427](../../mcp/operations/src/profile-history-lark-write.mjs#L427) — client注入、計画・承認の進行と791行以降のLark書込。SHA-256: `e56f5e84d191594db9a022e586fd8831e0fe04bf0b08968157d5166fa6eaa879`
 - **E6** [skills/live-agency-skills/skills/creator-profile-sync/scripts/profile_lark_runtime.mjs:353](../../skills/creator-profile-sync/scripts/profile_lark_runtime.mjs#L353) — Skill側の計画再検証とLark適用。5行に具象依存。SHA-256: `e10651787df6036e831f6f16c5df785d56e6f9038d10141e15018a76ab361463`
 - **E7** [mcp/live-agency-operations/src/profile-history-write-contracts.mjs:514](../../mcp/operations/src/profile-history-write-contracts.mjs#L514) — 計画作成。711行に承認検証、928行に照合。SHA-256: `ed9e43be547ed7a0538f8629df382845c140154ce50847bfe3823bf69b35045f`
-- **E8** [skills/live-agency-skills/packages/private-runtime-files/src/index.js:8](../../packages/private-runtime-files/src/index.js#L8) — ファイル書込と47行以降の制限付き読取。SHA-256: `0e23b6d86bb2e675d8069df0a41b89a5010935c53982ac62d043ed785b746679`
+- **E8** [skills/live-agency-skills/packages/private-runtime-files/src/index.js:8](../../packages/private-files/src/index.js#L8) — ファイル書込と47行以降の制限付き読取。SHA-256: `0e23b6d86bb2e675d8069df0a41b89a5010935c53982ac62d043ed785b746679`
 - **E9** [skills/live-agency-skills/skills/_shared/row-archive-receipt.mjs:10](../../packages/row-archive/src/receipt.mjs#L10) — 圧縮デコードと48行以降の業務証跡構造検証。SHA-256: `805a801c44dc94fa8550fa350531b032afc5de88b065d025511e45d074938eb4`
-- **E10** [skills/live-agency-skills/packages/source-provider-api/src/index.js:202](../../packages/source-provider-api/src/index.js#L202) — 指示・moduleのロードと279行以降の指示型エラー。SHA-256: `857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669`
+- **E10** [skills/live-agency-skills/packages/source-provider-api/src/index.js:202](../../packages/provider-protocol/src/index.js#L202) — 指示・moduleのロードと279行以降の指示型エラー。SHA-256: `857ce79325b4b792788e0a46a8b573cecd806cc1e50d22b198f5fa5d8c418669`
 - **E11** [skills/live-agency-skills/skills/_shared/lark-base-client.mjs:3](../../providers/lark-base/src/skill-client.mjs#L3) — 旧環境依存生成と28行以降の明示選択入口。SHA-256: `54875abb07854c46e8de65a2da90dce42a00f95d3067016d4d42905b0c12ff56`
 - **E12** [package.json:21](../../runtime/package.json#L21) — postinstallと明示的Skill登録コマンド。SHA-256: `2135409fb7a66ce50664533e535360826aaeeaad3d3f5dfa93828c86c67f5e91`
-- **E13** [packages/lark-core/src/index.js:1](../../packages/lark-core/src/index.js#L1) — Lark共通通信・CLI・選択機構。SHA-256: `eecd9593ccdea02fb0a3852341de16d1df83f4c0a30eadd9b4049b67de4613e3`
+- **E13** [packages/lark-core/src/index.js:1](../../packages/lark-transport/src/index.js#L1) — Lark共通通信・CLI・選択機構。SHA-256: `eecd9593ccdea02fb0a3852341de16d1df83f4c0a30eadd9b4049b67de4613e3`
 
 Providerの実行方式は`providers/*/package.json`の7定義、Skill一覧は16個の`SKILL.md`の配置を照合しました。契約テスト、コード実行、live API検証は今回行っていません。

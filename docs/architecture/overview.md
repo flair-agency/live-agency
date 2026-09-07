@@ -10,7 +10,7 @@ MCPs are external protocol adapters for application operations: they register to
 
 Providers own service-specific acquisition, mutation, normalization and versioned knowledge. Independent TikTok iOS, TikTok Web and BackStage Bindings remain separate repositories. Lark Base remains Base-specific; Chat and any future Docs Binding own their own service contracts. Drivers provide generic execution mechanisms. Shared libraries own only the contract or implementation common to their consumers; repository consolidation is not required.
 
-Runtime selects and connects concrete implementations and pins compatible versions. Source repositories own implementation history; package manifests and lockfiles own distribution composition. Proposed package subdivisions or dependency inversions are not adopted through this documentation cleanup. The [package revision](../reviews/npm-package-architecture-revision.md) and [architecture roadmap](../reviews/live-agency-mcp-roadmap.md) retain unresolved proposals.
+Runtime selects and connects concrete implementations and pins compatible versions. Source repositories own implementation history; package manifests and lockfiles own distribution composition. The owner approved the [M1 concrete design](../reviews/v2-foundation-design-ja.md). Earlier package revision and MCP roadmap documents retain historical proposals; current implementation readiness remains in migration status.
 
 ## Authority and information
 
@@ -25,9 +25,30 @@ Public Skills consume normalized neutral data; private Providers/profiles own se
 | Capability/domain assignment | [Capability inventory](capabilities.md) |
 | Registry, scope, visibility, publisher | [Distribution direction](distribution.md) |
 | Runtime deployment and actual configuration interfaces | [Deployment](../../runtime/docs/deployment.md), [configuration](../../runtime/docs/configuration.md) |
-| Lark Principal/token selection | [Lark core contract](../../packages/lark-core/docs/principal-selection.md) |
+| Lark Principal/token selection | [Lark core contract](../../packages/lark-transport/docs/principal-selection.md) |
 | Lark Base table/field concept mapping | [Base Provider model](../../providers/lark-base/knowledge/data-model.md) |
 | Conversation operations | [MCP contract](../../mcp/operations/docs/conversation-message-contract.md) |
-| Neutral backup capability API | [source-provider-api](../../packages/source-provider-api/docs/backup-capability-contract.md) |
+| Neutral backup capability API | [source-provider-api](../../packages/provider-protocol/docs/backup-capability-contract.md) |
 
 The prior [repository reorganization record](../archive/repository-reorganization-plan.md) retains package-placement options, evidence and release reasoning. The [migration plan](../migration/v2-plan.md) owns dependencies and release gates, not this architecture index.
+
+## Approved M1 foundation interfaces
+
+`@flair-agency/provider-protocol` exports pure generic descriptors and correlated request/result validation. Runtime owns installed package discovery, resource confinement, explicit package/version/binding selection and module loading. `@flair-agency/private-files` owns explicit private file I/O. `@flair-agency/lark-transport` owns selected Lark transport through selection/api/cli exports; its implementation modules no longer import their re-exporting barrel.
+
+The monthly consumer `@flair-agency/creator-monthly-activity-reconcile` exposes pure `./contracts` and `./core`, with orchestration at `./application`. Runtime injects `readActivity`, `readRecords` and `applyChanges`. The Lark Base Provider imports only the consumer contract and owns cell/field conversion, selected API payloads and write preflight. The consumer owns unique matching, exact reviewed plans and readback verification. Other extracted business validators belong to their respective Skill contract exports.
+
+```mermaid
+flowchart TB
+  Runtime --> Application[Monthly Skill application]
+  Application --> Contract[Monthly contracts and core]
+  Runtime --> Base[Lark Base Provider]
+  Base --> Contract
+  Base --> Transport[Lark transport]
+  Runtime --> Protocol[Provider protocol]
+  Runtime --> Files[Private files]
+```
+
+The development CLI is `live-agency monthly-activity` with explicitly supplied installation root, development configuration, private request and state directory. Results distinguish done, interaction-required and failed. Resume validates request ID, capability, version, normalized context and unchanged composition; atomic claim creation prevents replay. Source module handoffs receive correlation metadata as the second `readActivity` argument and must return matching metadata.
+
+The canonical protocol entry has no business validators, filesystem or Runtime imports. The explicit `provider-protocol/legacy` entry preserves old resolution and validation callers during the staged migration; those callers are not evidence that all Skills have adopted v2. The new monthly Skill has no Runtime or concrete Provider package dependency.

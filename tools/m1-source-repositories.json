@@ -1,0 +1,270 @@
+{
+  "observedAt": "2026-09-07",
+  "evidence": "gh repo list flair-agency --limit 200 --json nameWithOwner,visibility,url (18 results); read-only metadata",
+  "purpose": "Source association proposal, not a caller inventory or permission to create, push or publish",
+  "parent": {
+    "repository": null,
+    "status": "no-parent-repository-in-visible-organization-list",
+    "proposedRepository": "flair-agency/live-agency"
+  },
+  "historicalSkillMonorepo": {
+    "repository": "flair-agency/live-agency-skills",
+    "visibility": "PUBLIC",
+    "status": "not-an-independent-skill-source-association"
+  },
+  "entries": [
+    {
+      "directory": "runtime",
+      "packageName": "@flair-agency/live-agency-runtime",
+      "repository": "flair-agency/live-agency-provider-runtime",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "packages/cli-utils",
+      "packageName": "@flair-agency/cli-utils",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-cli-utils"
+    },
+    {
+      "directory": "packages/lark-transport",
+      "packageName": "@flair-agency/lark-transport",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-lark-transport"
+    },
+    {
+      "directory": "packages/private-files",
+      "packageName": "@flair-agency/private-files",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-private-files"
+    },
+    {
+      "directory": "packages/row-archive",
+      "packageName": "@flair-agency/row-archive",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-row-archive"
+    },
+    {
+      "directory": "packages/provider-protocol",
+      "packageName": "@flair-agency/provider-protocol",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-provider-protocol"
+    },
+    {
+      "directory": "providers/backstage",
+      "packageName": "@flair-agency/backstage-provider",
+      "repository": "flair-agency/live-agency-provider-backstage",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/google-drive",
+      "packageName": "@flair-agency/google-drive-provider",
+      "repository": "flair-agency/live-agency-provider-google-drive",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/lark-base",
+      "packageName": "@flair-agency/lark-base-provider",
+      "repository": "flair-agency/live-agency-provider-lark-base",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/lark-chat",
+      "packageName": "@flair-agency/lark-chat-provider",
+      "repository": "flair-agency/live-agency-provider-lark-chat",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/moneyforward-cloud-expense",
+      "packageName": "@flair-agency/moneyforward-cloud-expense-provider",
+      "repository": "flair-agency/live-agency-provider-moneyforward-cloud-expense",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/tiktok-ios",
+      "packageName": "@flair-agency/tiktok-ios-provider",
+      "repository": "flair-agency/live-agency-provider-tiktok-ios",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "providers/tiktok-web",
+      "packageName": "@flair-agency/tiktok-web-provider",
+      "repository": "flair-agency/live-agency-provider-tiktok-web",
+      "status": "existing-private-repository-association-proposed",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": null
+    },
+    {
+      "directory": "skills/coin-expense-reconcile",
+      "packageName": "@flair-agency/coin-expense-reconcile",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-coin-expense-reconcile"
+    },
+    {
+      "directory": "skills/coin-expense-weekly-application",
+      "packageName": "@flair-agency/coin-expense-weekly-application",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-coin-expense-weekly-application"
+    },
+    {
+      "directory": "skills/live-agency-creator-monthly-activity-reconcile",
+      "packageName": "@flair-agency/creator-monthly-activity-reconcile",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile"
+    },
+    {
+      "directory": "skills/creator-insight-sync",
+      "packageName": "@flair-agency/creator-insight-sync",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-insight-sync"
+    },
+    {
+      "directory": "skills/creator-invitation-status-compaction",
+      "packageName": "@flair-agency/creator-invitation-status-compaction",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-invitation-status-compaction"
+    },
+    {
+      "directory": "skills/creator-invitation-status-sync",
+      "packageName": "@flair-agency/creator-invitation-status-sync",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-invitation-status-sync"
+    },
+    {
+      "directory": "skills/creator-live-history-compaction",
+      "packageName": "@flair-agency/creator-live-history-compaction",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-live-history-compaction"
+    },
+    {
+      "directory": "skills/creator-live-history-sync",
+      "packageName": "@flair-agency/creator-live-history-sync",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-live-history-sync"
+    },
+    {
+      "directory": "skills/creator-live-metrics-compaction",
+      "packageName": "@flair-agency/creator-live-metrics-compaction",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-live-metrics-compaction"
+    },
+    {
+      "directory": "skills/creator-profile-compaction",
+      "packageName": "@flair-agency/creator-profile-compaction",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-profile-compaction"
+    },
+    {
+      "directory": "skills/creator-profile-sync",
+      "packageName": "@flair-agency/creator-profile-sync",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-creator-profile-sync"
+    },
+    {
+      "directory": "skills/gift-history-sync",
+      "packageName": "@flair-agency/gift-history-sync",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-gift-history-sync"
+    },
+    {
+      "directory": "skills/lark-base-backup",
+      "packageName": "@flair-agency/lark-base-backup",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-lark-base-backup"
+    },
+    {
+      "directory": "skills/lark-base-backup-retention",
+      "packageName": "@flair-agency/lark-base-backup-retention",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-lark-base-backup-retention"
+    },
+    {
+      "directory": "skills/lark-base-disaster-recovery-drill",
+      "packageName": "@flair-agency/lark-base-disaster-recovery-drill",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-lark-base-disaster-recovery-drill"
+    },
+    {
+      "directory": "skills/lark-base-maintenance",
+      "packageName": "@flair-agency/lark-base-maintenance",
+      "repository": null,
+      "status": "no-independent-repository-in-visible-organization-list",
+      "githubVisibility": null,
+      "manifestRepository": null,
+      "proposedRepository": "flair-agency/live-agency-lark-base-maintenance"
+    }
+  ]
+}

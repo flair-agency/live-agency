@@ -2,7 +2,17 @@
 
 Updated: 2026-09-07. Scope: development source and documented evidence. This is the only current queue/status entry; archive documents retain their original dates and do not issue new work.
 
-## Current authorized work and decisions
+## Current work: M1 local implementation checkpoint
+
+The owner approved and authorized the concrete M1 design. Primary class E, secondary C/D. The renamed protocol/private-files/Lark transport packages, monthly consumer contracts/core/application, Base adapter and installed Runtime CLI are implemented. Selected package identity/version, authority, exact reviewed plans, readback, unknown-write handling and correlated single-use resume are verified with synthetic data. There are no npm package dependency cycles in the inspected graph.
+
+The full adopted suite passes **689 tests**, including new rejection tests; public-content checks pass. Offline installation covers **30 archives**: Runtime, five libraries, seven Providers, fifteen supported split Skills and two synthetic driver/Provider packages. It verifies 119 exported/descriptor/bin resources, 72 module imports, actual CLI dry-run/apply/readback and instruction/resume, and Runtime `1.0.0 → 1.0.1 → 1.0.0` with the original lock restored byte-for-byte. All 379 archived files match current source bytes. Evidence remains local in `tmp/m1-foundation/`; no package has been published and no production registration or real service operation was selected.
+
+**M1 is not complete.** Remaining gates are concrete GitHub source associations, publishable manifest/workflow/lock preparation and Actions permissions, actual private registry delivery, and development client installation/registration demonstration. The `provider-protocol/legacy` entry remains for unmigrated callers; installed resources do not constitute their M2/M3 acceptance. Frozen weekly-claim and operations MCP packages are excluded from the 30-archive delivery check. Separately maintained foreign-revenue source and its one/two-Skill decision remain outside that tested archive set and must be resolved before claiming the plan's full target coverage.
+
+Next action is the source association decision in the [foundation review](../reviews/v2-foundation-design-ja.md#8-github配布元の対応案). GitHub metadata confirms existing private Runtime and seven Provider repositories; independent shared-library and Skill repositories are absent from the visible organization list. No new repository or history push is assumed. The pre-M1 rollback baseline is parent `8dcc6af` with its recorded child pins. Current implementation child checkpoints are recorded in parent pins; no inherited edits were discarded.
+
+## Historical baseline and adopted decisions
 
 The owner subsequently authorized source-repository separation. Runtime, seven Providers, operations MCP, sixteen Skills and five shared libraries are now sibling repositories under the parent (30 component repositories). Skill histories were extracted from the previous repository; current source changes and focused tests were carried into the new owners. The complete prior Runtime tree, nested Git metadata and dirty state remain under `tmp/repository-restructure/runtime-before/`. The parent development workspace supplies local dependencies; this is not a single Skill Git/release repository. New repository remote publication and committing inherited unrelated changes are not claimed complete.
 

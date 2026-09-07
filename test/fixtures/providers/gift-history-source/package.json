@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "peerDependencies": {
-    "@flair-agency/source-provider-api": "^1.0.0"
+    "@flair-agency/provider-protocol": "1.0.0"
   },
   "liveAgencyProvider": {
     "schemaVersion": 1,

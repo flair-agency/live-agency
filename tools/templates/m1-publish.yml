@@ -1,0 +1,50 @@
+# Copy into the verified owning repository only after source association review.
+# GitHub Packages initial visibility is Private (separate from npm private:true).
+# Do not set npm access:public or change visibility as part of publication.
+name: Publish fixed package
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: https://npm.pkg.github.com
+          scope: '@flair-agency'
+      - name: Validate owning repository and fixed dependencies
+        env:
+          EXPECTED_REPOSITORY: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p = JSON.parse(fs.readFileSync('package.json'));
+          const exact = v => /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(v);
+          const url = typeof p.repository === 'string' ? p.repository : p.repository?.url;
+          if (!p.name?.startsWith('@flair-agency/') || !exact(p.version) || p.private === true || p.workspaces) throw Error('invalid publish identity');
+          if (url !== `https://github.com/${process.env.EXPECTED_REPOSITORY}.git`) throw Error('owning source association missing');
+          if (p.publishConfig?.registry !== 'https://npm.pkg.github.com') throw Error('registry missing');
+          for (const group of ['dependencies', 'optionalDependencies', 'peerDependencies']) for (const v of Object.values(p[group] ?? {})) if (!exact(v)) throw Error('dependency must be exact');
+          JS
+      - run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm test
+      - name: Inspect actual archive
+        run: |
+          npm pack --ignore-scripts --json > packed.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const [p] = JSON.parse(fs.readFileSync('packed.json'));
+          for (const f of p.files) if (/(^|\/)(node_modules|tmp|\.git)(\/|$)/.test(f.path)) throw Error(`forbidden payload ${f.path}`);
+          fs.writeFileSync('archive-name.txt', p.filename);
+          JS
+      - name: Publish inspected archive
+        run: npm publish "$(cat archive-name.txt)" --ignore-scripts --registry=https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

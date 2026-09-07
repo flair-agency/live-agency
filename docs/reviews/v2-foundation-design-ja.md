@@ -1,6 +1,6 @@
 # M1：開発基盤の具体設計案
 
-状態：日本語レビュー案。着手前の処置は承認どおり完了し、親`2170115`と30個の子repoの固定版から別ディレクトリーで再現確認済み。本書の命名・公開入口・具体的インターフェイスは実装前レビュー対象。全体の順序・方針は[採用済み計画](../migration/v2-plan.md)に従う。
+状態：承認済み（LGTM）。着手前の処置は承認どおり完了し、親`2170115`と30個の子repoの固定版から別ディレクトリーで再現確認済み。本書の命名・公開入口・具体的インターフェイスを採用してM1を実装中。全体の順序・方針は[採用済み計画](../migration/v2-plan.md)に従う。
 
 ## 1. M1で通す経路
 
@@ -99,3 +99,37 @@ M1の指示型Providerは合成結果を返すものに限定する。既存のi
 今回のレビュー対象は、**2節の正式名・責務、3節の依存と契約の配布方法、4〜5節の代表インターフェイスと受渡し**。合意したM1/M2/M3の順序や、先行M2後の並行化は再選択しない。
 
 レビュー後は、この設計の共通部分と月次の代表経路を一つの基盤作業として実装する。構成が固定した後、Runtime接続とCI準備を競合しない範囲で分担できる。代表操作の成功だけでM1完了にはせず、対象パッケージ全体の導入・資源解決と、計画の五条件まで揃える。
+
+## 8. GitHub配布元の対応案
+
+ローカル実装・配布物だけの動作検証まで完了。全体689テスト、30アーカイブの導入と更新・復帰を確認した。実GitHub Packagesへの発行は未実施で、M1完了ではない。旧互換入口と他SkillのM2/M3は残る。
+
+GitHubの組織リポジトリ一覧を読み取り確認した結果、RuntimeとProvider7件の既存private repoはある。一方、親・共通5・分割後Skill16の独立repoは見つからない。[対応情報](../../tools/m1-source-repositories.json)は取得先の検討用で、発行許可や呼出し一覧ではない。
+
+推奨は、承認済みの独立したソース管理構成をGitHubにも反映すること。これはGitHub Packages自体の要件ではない。具体的には、親を`flair-agency/live-agency`、共通と各Skillを次表のprivate repoとして作成する。既存Runtime・Provider repoはそのまま使い、既存public Skillモノレポへ戻さない。凍結Skillはソース保全対象のみで、npm発行対象にはしない。
+
+| 対象 | 新設するprivate repo名（`flair-agency/`配下） |
+| --- | --- |
+| `packages/cli-utils` | `live-agency-cli-utils` |
+| `packages/lark-transport` | `live-agency-lark-transport` |
+| `packages/private-files` | `live-agency-private-files` |
+| `packages/row-archive` | `live-agency-row-archive` |
+| `packages/provider-protocol` | `live-agency-provider-protocol` |
+| `skills/coin-expense-reconcile` | `live-agency-coin-expense-reconcile` |
+| `skills/coin-expense-weekly-application` | `live-agency-coin-expense-weekly-application` |
+| `skills/live-agency-creator-monthly-activity-reconcile` | `live-agency-creator-monthly-activity-reconcile` |
+| `skills/creator-insight-sync` | `live-agency-creator-insight-sync` |
+| `skills/creator-invitation-status-compaction` | `live-agency-creator-invitation-status-compaction` |
+| `skills/creator-invitation-status-sync` | `live-agency-creator-invitation-status-sync` |
+| `skills/creator-live-history-compaction` | `live-agency-creator-live-history-compaction` |
+| `skills/creator-live-history-sync` | `live-agency-creator-live-history-sync` |
+| `skills/creator-live-metrics-compaction` | `live-agency-creator-live-metrics-compaction` |
+| `skills/creator-profile-compaction` | `live-agency-creator-profile-compaction` |
+| `skills/creator-profile-sync` | `live-agency-creator-profile-sync` |
+| `skills/gift-history-sync` | `live-agency-gift-history-sync` |
+| `skills/lark-base-backup` | `live-agency-lark-base-backup` |
+| `skills/lark-base-backup-retention` | `live-agency-lark-base-backup-retention` |
+| `skills/lark-base-disaster-recovery-drill` | `live-agency-lark-base-disaster-recovery-drill` |
+| `skills/lark-base-maintenance` | `live-agency-lark-base-maintenance` |
+
+新設は親1＋共通5＋Skill16の計22repo。実際の初回pushは、各repoの採用履歴・公開範囲・取得先を確認した具体的な変更として扱う。既存public MCPへの変更・本番設定変更はこの案に含めない。発行前にはnpmの発行禁止フラグ、CIでの依存取得・テスト実行、Actionsからのpackageアクセス権も整える。

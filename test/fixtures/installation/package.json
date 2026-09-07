@@ -10,7 +10,7 @@
     "@fixture/live-history-instruction-source": "1.0.0",
     "@fixture/multi-binding-provider": "1.0.0",
     "@fixture/profile-instruction-source": "1.0.0",
-    "@flair-agency/private-runtime-files": "1.0.0",
-    "@flair-agency/source-provider-api": "1.6.0"
+    "@flair-agency/private-files": "1.0.0",
+    "@flair-agency/provider-protocol": "1.0.0"
   }
 }

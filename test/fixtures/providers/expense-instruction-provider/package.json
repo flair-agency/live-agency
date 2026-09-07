@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "peerDependencies": {
-    "@flair-agency/source-provider-api": "^1.0.0"
+    "@flair-agency/provider-protocol": "1.0.0"
   },
   "liveAgencyProvider": {
     "schemaVersion": 1,

@@ -2,12 +2,16 @@
   "name": "@fixture/invitation-instruction-source",
   "version": "1.0.0",
   "peerDependencies": {
-    "@flair-agency/source-provider-api": "^1.0.0"
+    "@flair-agency/provider-protocol": "1.0.0"
   },
   "liveAgencyProvider": {
     "schemaVersion": 1,
-    "provides": ["creator-invitation-observation-source/v1"],
-    "inputKinds": ["agent/instructions"],
+    "provides": [
+      "creator-invitation-observation-source/v1"
+    ],
+    "inputKinds": [
+      "agent/instructions"
+    ],
     "unattended": false,
     "execution": {
       "kind": "instructions",

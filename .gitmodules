@@ -31,9 +31,9 @@
 [submodule "skills/coin-expense-weekly-application"]
 	path = skills/coin-expense-weekly-application
 	url = ./skills/coin-expense-weekly-application
-[submodule "skills/creator-activity-sync"]
-	path = skills/creator-activity-sync
-	url = ./skills/creator-activity-sync
+[submodule "skills/live-agency-creator-monthly-activity-reconcile"]
+	path = skills/live-agency-creator-monthly-activity-reconcile
+	url = ./skills/live-agency-creator-monthly-activity-reconcile
 [submodule "skills/creator-insight-sync"]
 	path = skills/creator-insight-sync
 	url = ./skills/creator-insight-sync
@@ -76,15 +76,15 @@
 [submodule "packages/cli-utils"]
 	path = packages/cli-utils
 	url = ./packages/cli-utils
-[submodule "packages/lark-core"]
-	path = packages/lark-core
-	url = ./packages/lark-core
-[submodule "packages/private-runtime-files"]
-	path = packages/private-runtime-files
-	url = ./packages/private-runtime-files
+[submodule "packages/lark-transport"]
+	path = packages/lark-transport
+	url = ./packages/lark-transport
+[submodule "packages/private-files"]
+	path = packages/private-files
+	url = ./packages/private-files
 [submodule "packages/row-archive"]
 	path = packages/row-archive
 	url = ./packages/row-archive
-[submodule "packages/source-provider-api"]
-	path = packages/source-provider-api
-	url = ./packages/source-provider-api
+[submodule "packages/provider-protocol"]
+	path = packages/provider-protocol
+	url = ./packages/provider-protocol

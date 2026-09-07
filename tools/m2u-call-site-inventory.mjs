@@ -3,14 +3,14 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOTS = ["packages/lark-core/src", "providers/lark-base/src", "providers/lark-chat/src",
+const ROOTS = ["packages/lark-transport/src", "providers/lark-base/src", "providers/lark-chat/src",
   "mcp/operations/src", "runtime/scripts", "skills"];
 const METHODS = /\b(listFields|listRecords|batchUpdate|batchCreate|batchDelete|appendAttachment|uploadMedia|downloadAttachment|attachmentSha256|temporaryDownloadUrl|fromResolvedApiPrincipal|fromCredentialReference|createLarkBaseClient|createLarkApiTransportForPrincipal|createLarkCliUserApiTransportForPrincipal)\s*\(/g;
 const SIGNAL = /\/open-apis\/|\bLarkClient\b|\blark-cli\b|\bLARK_(?:APP_ID|TENANT_ACCESS_TOKEN)\b/;
 const PACKAGES = {
-  "@flair-agency/lark-core": "packages/lark-core/src/index.js",
+  "@flair-agency/lark-transport": "packages/lark-transport/src/index.js",
   "@flair-agency/lark-chat-provider": "providers/lark-chat/src/index.js",
-  "@live-agency-skills/lark-base-client": "providers/lark-base/src/index.js",
+  "@flair-agency/lark-base-provider": "providers/lark-base/src/index.js",
 };
 const EXCLUDED = new Set(["runtime/scripts/m2u-call-site-inventory.mjs", "runtime/scripts/smoke-test.mjs", "runtime/scripts/v2-contract-test.mjs"]);
 
@@ -26,7 +26,7 @@ async function sourceFiles(root, relative) {
 }
 
 function category(file) {
-  if (file.startsWith("packages/lark-core/")) return "shared-core";
+  if (file.startsWith("packages/lark-transport/")) return "shared-core";
   if (file.startsWith("providers/lark-base/")) return "base-provider";
   if (file.startsWith("providers/lark-chat/")) return "chat-provider";
   if (file.startsWith("mcp/operations/")) return "domain-mcp";

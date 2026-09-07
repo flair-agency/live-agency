@@ -2,37 +2,41 @@
   "version": 1,
   "packages": [
     {
-      "name": "@flair-agency/source-provider-api",
-      "directory": "source-provider-api",
+      "name": "@flair-agency/provider-protocol",
+      "directory": "provider-protocol",
       "files": [
         {
-          "source": "packages/source-provider-api/package.json",
+          "source": "packages/provider-protocol/package.json",
           "target": "package.json"
         },
         {
-          "source": "packages/source-provider-api/src/index.js",
+          "source": "packages/provider-protocol/src/index.js",
           "target": "src/index.js"
         },
         {
-          "source": "packages/source-provider-api/LICENSE",
+          "source": "packages/provider-protocol/LICENSE",
           "target": "LICENSE"
+        },
+        {
+          "source": "packages/provider-protocol/src/protocol.js",
+          "target": "src/protocol.js"
         }
       ]
     },
     {
-      "name": "@flair-agency/private-runtime-files",
-      "directory": "private-runtime-files",
+      "name": "@flair-agency/private-files",
+      "directory": "private-files",
       "files": [
         {
-          "source": "packages/private-runtime-files/package.json",
+          "source": "packages/private-files/package.json",
           "target": "package.json"
         },
         {
-          "source": "packages/private-runtime-files/src/index.js",
+          "source": "packages/private-files/src/index.js",
           "target": "src/index.js"
         },
         {
-          "source": "packages/private-runtime-files/LICENSE",
+          "source": "packages/private-files/LICENSE",
           "target": "LICENSE"
         }
       ]
@@ -84,6 +88,10 @@
         {
           "source": "skills/coin-expense-reconcile/LICENSE",
           "target": "LICENSE"
+        },
+        {
+          "source": "skills/coin-expense-reconcile/src/contracts.mjs",
+          "target": "src/contracts.mjs"
         }
       ]
     },
