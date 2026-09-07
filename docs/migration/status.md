@@ -66,7 +66,7 @@ returned E403:
 
 All other Skill dependency reads passed. The owner has been asked for those five
 grants, plus Read on both newly created TikTok packages for
-live-agency-provider-runtime. Existing old grants are not removed automatically.
+live-agency-provider-runtime. The owner subsequently requested removal of excess Read grants. Foundation review section 10 lists eight packages and up to sixteen obsolete repository grants, checked against the corrected dependency closures. The current GitHub grant list could not be retrieved and no remote removal has been performed. Remove only existing listed grants; old-version workflow replays may require restoring their old dependency access.
 
 Next after confirmed grants: rerun the failed, pre-publication Skill jobs
 34113319327 / 34113325345 / 34113331350, verify receipts, generate Runtime's

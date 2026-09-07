@@ -160,7 +160,7 @@ Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）
 
 ## 10. Actions読み取り設定（依存修正に伴い旧一覧を撤回）
 
-以前の一覧には、TikTokからSkillを経由してLark・月次照合へ到達する不要な依存が含まれていた。旧一覧に沿った追加作業は不要。既存権限の削除はこの作業では行わない。
+以前の一覧には、TikTokからSkillを経由してLark・月次照合へ到達する不要な依存が含まれていた。旧一覧に沿った追加作業は不要。オーナーの追加指示により、下記の余剰Readを削除対象として整理した。
 
 Actionsで追加が必要と確認できたのは次の5件。TikTokの2件には後続Runtime用Readもまとめて追加する。
 
@@ -187,6 +187,23 @@ Actionsで追加が必要と確認できたのは次の5件。TikTokの2件に�
 | `live-agency-provider-runtime` | Runtime manifestが採用するProvider・Skillと、それらの推移的依存 |
 
 TikTokからLark、月次照合、gift/profile SkillへのReadは不要。Provider発行後に必要なSkill側のReadを確定し、Actionsで実際に取得できたものと未確認のものを区別する。
+
+### 削除対象のRead（追加指示に基づく整理）
+
+修正後の各リポジトリーのmanifestと推移的依存を照合済み。以前に追加を依頼した権限のうち、次の8パッケージ・最大16件が不要になった。GitHub設定の現在の登録一覧は取得できていないため、実際に登録されている行だけを削除する。こちらで設定削除を実行したという記録ではない。
+
+| Package settings | Manage Actions accessから削除するリポジトリー |
+| --- | --- |
+| [cli-utils](https://github.com/orgs/flair-agency/packages/npm/cli-utils/settings) | `live-agency-provider-lark-base`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web` |
+| [private-files](https://github.com/orgs/flair-agency/packages/npm/private-files/settings) | `live-agency-provider-lark-base` |
+| [provider-protocol](https://github.com/orgs/flair-agency/packages/npm/provider-protocol/settings) | `live-agency-provider-lark-base` |
+| [creator-monthly-activity-reconcile](https://github.com/orgs/flair-agency/packages/npm/creator-monthly-activity-reconcile/settings) | `live-agency-provider-lark-base`<br>`live-agency-gift-history-merge`<br>`live-agency-creator-profile-record`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web` |
+| [lark-transport](https://github.com/orgs/flair-agency/packages/npm/lark-transport/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web` |
+| [lark-base-provider](https://github.com/orgs/flair-agency/packages/npm/lark-base-provider/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web` |
+| [gift-history-merge](https://github.com/orgs/flair-agency/packages/npm/gift-history-merge/settings) | `live-agency-provider-tiktok-ios` |
+| [creator-profile-record](https://github.com/orgs/flair-agency/packages/npm/creator-profile-record/settings) | `live-agency-provider-tiktok-web` |
+
+この一覧は修正後のmainと採用する新版を基準とする。削除後に旧版のActionsを再実行する場合は、旧依存のため再付与が必要になることがある。Runtimeや未移行Skillなど、表にない利用元のReadは削除対象に含めない。
 
 ## 11. Provider所有contractへの修正（承認済み）
 
