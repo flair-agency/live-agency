@@ -1,6 +1,6 @@
 # Current migration and documentation status
 
-## Current gate: Monthly neutral-contract verification complete; owner review
+## Current gate: Monthly M3 workflow verification complete; acceptance review
 
 The approved monthly architecture is implemented and published privately:
 `contracts@1.0.0`, monthly Skill `2.0.0`, Lark Base `1.2.0`, BackStage `1.4.0`,
@@ -47,10 +47,52 @@ or real records were committed. The previous published monthly Skill 1.1.0,
 Providers and Runtime 1.1.0 remain immutable rollback artifacts; restoring a
 code/configuration pin does not reverse external data.
 
-Next gate: review [the Japanese completion note, section 15](../reviews/v2-foundation-design-ja.md#15-中立contracts月次1経路の実装検証結果).
-After acceptance, proceed to the first monthly Skill M3 and other ready Provider
-M2 work under the approved sequence. Gift/profile and other capabilities still
-need their own neutral-contract migration; this result does not certify them.
+The owner accepted the neutral-monthly completion review (section 15) and
+instructed continuation. The installed monthly Skill M3 workflow has now passed
+an independent instruction-driven operator run. The operator read the installed
+Skill and its schema reference, not product implementation or expected results.
+The coordinator checked returned files against the retained independent business
+baseline and confirmed unchanged inputs and package integrity.
+
+| Acceptance scenario | Observed result |
+| --- | --- |
+| Comparison only | Five source records; four changes and one unchanged; no authorization or apply invocation |
+| Ambiguous destination | One source account matched two records; failed with ambiguity, partial candidates were not applied |
+| Explicitly approved update | Four changes applied once to the isolated test destination; all five record IDs and three metric values verified; zero differences |
+| Uncertain write response | One apply invocation; readback established the expected values; reconciled-after-uncertain-response, no resubmission |
+
+These M3 runs use a synthetic in-memory destination and the same owner-selected
+June workbook. The fixed Runtime 1.2.0 / Skill 2.0.0 / Provider combination's live
+temporary-Base evidence above is reused. The existing Skill regression evidence
+covers unconfirmed readback and substituted identity; the installed live check
+covers stale-plan rejection. This is not a second claim of new real-service M2
+coverage. Apply invocation counts are recorded in the independent operator report;
+returned plans, authorization bindings and readback values were separately checked.
+
+Class D/G acceptance package completed: no product source, publication or pin
+changes. Registration was limited to the isolated test directory. The first
+operator attempts stopped because coordinator-created input files were 0644;
+correcting those fixture permissions to the private-file contract's 0600 left
+all input bytes unchanged and the scenarios passed. Evidence remains under
+ignored `tmp/m3-monthly/`, with the source and package-integrity checks.
+Next is owner acceptance of [review section 16](../reviews/v2-foundation-design-ja.md#16-月次skillのm3受け入れ検証結果).
+Production cutover remains a separate step requiring its concrete destination,
+active invocation/profile and recovery selection. No production registration or
+external data was changed by this M3 package.
+
+Parallel M2 readiness was checked read-only by a separate worker:
+
+| Provider | Missing execution selection |
+| --- | --- |
+| Lark Chat | Exact chat and bounded interval requested from owner; retain the selected App/user and bind the selected route/profile before access |
+| Google Drive | Backup storage account, shared Drive/artifact/receipt folder IDs and allowed operation; the June Excel is not the backup-storage capability |
+| Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
+| TikTok Web | Profile target manifest and browser, or the coin-history account/period |
+| TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
+
+Readiness is not counted as M2 success. Lark Chat M2 awaits the requested target;
+no messages or other service mutations were attempted. Shared interfaces and
+external mutations remain serialized by the coordinator.
 
 ## Retained leading M2 technical verification
 
