@@ -161,13 +161,15 @@
       "directory": "skills/live-agency-creator-monthly-activity-reconcile",
       "packageName": "@flair-agency/creator-monthly-activity-reconcile",
       "repository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
-      "status": "created-private-source-preparing",
+      "status": "source-pushed-local-registry-tests-passed-actions-package-read-grant-required",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git",
       "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
       "targetSkillIdentifier": "live-agency-creator-monthly-activity-reconcile",
       "skillIdentifierStatus": "adopted",
-      "proposedDirectory": "skills/live-agency-creator-monthly-activity-reconcile"
+      "proposedDirectory": "skills/live-agency-creator-monthly-activity-reconcile",
+      "sourceCommit": "98859fddae8f0cff8ec54eb40aeebdfa0006a030",
+      "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34098102833"
     },
     {
       "directory": "skills/creator-insight-sync",
