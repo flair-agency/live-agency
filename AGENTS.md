@@ -1,21 +1,20 @@
-# Independent development instructions
+# Development agent instructions
 
-## Documentation language
+## Policies to read
 
-Follow the [Documentation Language Policy](docs/governance/document-language-policy.md): prepare owner-review documents in Japanese and publish approved canonical documents in English. Preserve the approved meaning when translating.
+- Prepare owner reviews and reports in Japanese; adopt approved canonical documents in English under the [language policy](docs/governance/document-language-policy.md).
+- Apply the [development policy](docs/governance/development-policy.md) for change boundaries, explicit execution selection, verification and task composition. Consult [migration status](docs/migration/status.md) for scoped temporary constraints; historical checkpoints do not select current work.
+- Before creating, changing or reviewing a Skill for an authenticated or publication-uncertain source, read the complete authoritative [Private Source Integration Guide](docs/governance/private-source-integration-guide.md). Report a missing guide or ambiguous applicability; do not invent or duplicate it.
 
-## Existing development instructions
+## Work scope and existing changes
 
-SEP-1 addition, 2026-09-06. Source provenance: `/Users/naokikimura/.codex/.chatgpt-projects/g-p-693bd2fb16bc8191ac195f072bb993e2/AGENTS.md` (SHA-256 5fa275027d2927813c33ca650ab515d9b6d3d3d441c4809da9934d77926c1107), the environment-separation SEP-1 brief, and `docs/task-orchestration-policy.md`.
+- Inspect `git status --short` in this repository and each affected component before editing. Preserve unrelated changes and the original staged/unstaged distinction. Select only owned changes for a checkpoint; update a submodule pin only when adopting a recorded child version.
+- Treat synced `sources/` as read-only reference snapshots, never authoritative originals. Do not edit, move, rename or delete them.
+- Follow the supplied scope and the relevant owning contracts. Do not infer operational authority from installed tools, ambient sessions, a design document or a synthetic test. Use the explicit selection and environment-change procedure in the development policy.
+- Read necessary sections once per relevant revision; expand for a concrete gap or conflict. Keep mandatory full reads intact. Do not run historical recovery scripts as reusable development tools.
 
-This checkout is the development source candidate. Integrations and schedules are disabled. Source separation does not isolate the Codex host; SEP-2 must verify project routing and actual authority before integrations are enabled.
+## Verification and reporting
 
-- Treat all synced `sources/` material as read-only references; never edit, move, rename or delete it. Reference snapshots are not authoritative originals.
-- Keep public Skills, private service-specific Providers/profiles, and real data/credentials in separate layers. Do not put service-specific URLs, schemas, acquisition rules, real data or credentials into public Skills or repositories.
-- Before creating, changing or reviewing a Skill for an authenticated or publication-uncertain source, read the complete authoritative guide titled Private Source Integration Guide at `/Users/naokikimura/workspace/live-agency/docs/governance/private-source-integration-guide.md`. If unavailable or applicability is ambiguous, report the gap; do not invent its content. Do not duplicate or independently rewrite the guide.
-- Require explicit development profiles, actors, target resources and operation allowlists. Fail closed on missing, ambiguous, inactive or changed selection. Never fall back to ambient production credentials, Keychain, CLI/Codex auth, browser sessions or profiles.
-- Use `/Users/naokikimura/workspace/.live-agency-development/config`, `/Users/naokikimura/workspace/.live-agency-development/runs` and `/Users/naokikimura/workspace/.live-agency-development/fixtures` for synthetic configuration, output and fixtures. Checked-in capability/profile examples are reference source, not active development defaults.
-- External reads, writes, MCP starts, live checks, account provisioning and schedules are disabled by default and require separate scoped authority after host isolation. Never run `install:skills` or change global registrations from this candidate.
-- Install dependencies from lockfiles with lifecycle hooks disabled. Do not link code or dependencies into the operational checkout. Follow the task orchestration policy and retain original staged/unstaged distinctions when reviewing restored work.
-
-The proposed `/Users/naokikimura/workspace/.live-agency-development/codex-home` path is reserved for SEP-2 evaluation only; it is not created or asserted to isolate this desktop. Operational business context was deliberately not copied into these instructions.
+- Verify changed links, test references and distribution resources when moving documents or fixtures. From `provider-runtime/`, the independent caller discovery/API-operation check is `node --test scripts/m2u-call-site-inventory.test.mjs`.
+- Run focused tests appropriate to the affected owner; broaden checks when a changed contract, pin, release gate or unresolved failure requires it. Existing dependencies do not authorize installation or host registration.
+- Review the scoped diff. Report the completed outcome, changed owners, actual checks and limits, remaining decisions and recovery path in the existing task record. Do not turn historical evidence into a current completion claim.
