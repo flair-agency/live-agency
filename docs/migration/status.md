@@ -1,6 +1,35 @@
 # Current migration and documentation status
 
-## Current gate: Leading M2 — Lark Base, then BackStage
+## Current gate: Leading M2 — BackStage export verification
+
+Lark Base monthly capability passed seven real-service checks on a temporary
+Base with three synthetic records: reads and month selection, exact update and
+readback, untouched account/month, approval/binding rejection, stale-value
+conflict and replay rejection. A rich-text metadata bug in `1.1.0` was reproduced,
+fixed and covered by a regression; all 100 Provider tests passed.
+`lark-base-provider@1.1.1` was published PRIVATE by
+[Actions 34121826927](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927).
+The fresh registry installation matched publication integrity and passed live
+checks with `lark-transport@1.0.0` and explicitly selected CLI `1.0.93`.
+The temporary Base was deleted; the same Provider API then returned code 1002,
+`note has been deleted`. Evidence and the one-off driver are retained in ignored
+`tmp/m2-leading/lark-base/`. Parent pin and development lock adopt source
+`b83e7690d5db625322304f65ce8c1ebf6823c32b`; Runtime/Skill published pins remain
+unchanged. The direct Provider driver is verified; installed Runtime composition
+must still adopt the tested combination before leading M2 can close.
+
+The final OAuth response included Base and the previously observed Chat/Mail
+scopes; earlier token-scope blockers below are historical. No additional broad
+scope request was issued after the approval-review rejection.
+The owner selected a June 2026 BackStage workbook on Google Drive. Verify the
+actual export via the installed Provider next; this does not establish browser
+acquisition evidence. Other M2 tasks remain gated.
+
+Change class B/D: Provider normalization and real-service verification. Production
+resources were not used. Reverting the child pin restores the known rich-text
+bug; the temporary verification resource has already been removed.
+
+## Historical M1 completion and initial M2 preparation
 
 The owner requested the next foundation work. Registry update/rollback and
 coverage verification are now complete for all 16 published packages: five

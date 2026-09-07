@@ -127,15 +127,20 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-lark-base.git",
-      "sourceCommit": "3c42703a84630fe2b6d343766b9ed29e5dd77285",
-      "publishedVersion": "1.1.0",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319",
+      "sourceCommit": "b83e7690d5db625322304f65ce8c1ebf6823c32b",
+      "publishedVersion": "1.1.1",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34100100565",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34100100565"
+        },
+        {
+          "publishedVersion": "1.1.0",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319"
         }
       ]
     },
