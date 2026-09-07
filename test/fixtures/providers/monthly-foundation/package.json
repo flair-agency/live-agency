@@ -7,7 +7,7 @@
     "instructions"
   ],
   "dependencies": {
-    "@flair-agency/creator-monthly-activity-reconcile": "1.0.0"
+    "@flair-agency/lark-base-provider": "1.1.0"
   },
   "peerDependencies": {
     "@flair-agency/provider-protocol": "1.0.0"

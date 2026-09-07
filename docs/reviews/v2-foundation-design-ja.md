@@ -22,6 +22,8 @@ flowchart LR
 
 ## 2. パッケージ構成・命名の提案
 
+契約の所有・依存方向は承認済みの11節で改訂。以下の当初案より11節を優先する。
+
 以下は既存コードを責務別に組み直す対応表。実装言語は既存のJavaScript ESMを継続し、型システムや契約プログラミングの新規導入を前提にしない。
 
 | 現在の所有元 | 正式npm名・配置案 | 公開入口・責務 | 変更理由 |
@@ -41,7 +43,7 @@ flowchart LR
 
 他のSkillの名前・責務の具体化は[採用計画の候補表](../migration/v2-plan.md#skill-naming-and-foreign-revenue-migration)に対応させる。M1の対象全体から黙って除外しない。招待資格の意味、履歴の識別・保持、backupの対応範囲、maintenanceの責務分解、外貨売上の1／2 Skill分割は対象ごとの仕様確認が残る。本書だけでその判断まで完了したとは扱わない。
 
-## 3. コード依存とリリース単位
+## 3. 当初のコード依存とリリース単位（11節で改訂）
 
 ```mermaid
 flowchart TB
@@ -87,7 +89,7 @@ M1の指示型Providerは合成結果を返すものに限定する。既存のi
 ## 6. 発行・導入・更新
 
 1. 採用した子repoの版と親参照を使い、実際のGitHub配布元・権限・package関連付けを確認する。現時点のProvider/MCP取得元はローカルbundleなので、そのままGitHub CIで取得できるとは扱わない。
-2. 所有repoのActionsから合成テストと配布内容検査を経て、固定版をGitHub Packagesへ発行する。共通インターフェイス → 利用側の契約公開パッケージ → Provider → Runtime／配備構成の依存順に扱う。変更のないパッケージの版は増やさない。
+2. 所有repoのActionsから合成テストと配布内容検査を経て、固定版をGitHub Packagesへ発行する。共通ライブラリー → Provider（能力contractを含む） → Skill → Runtime／配備構成の依存順に扱う。変更のないパッケージの版は増やさない。
 3. npmの`private: true`は発行禁止なので、発行対象manifestでは見直す。これはGitHub Packages側のPrivate公開範囲とは別。親の開発用workspaceは`private: true`を維持する。
 4. 独立した配備manifest/lockfileに固定版を記録し、ソースを参照しない開発用導入先へ取得する。
 5. 開発Codexから代表操作を実行し、更新した版へ切替後、前の検証済み版へ戻せることを確認する。本番の登録・設定・稼働版を変更しない。
@@ -156,22 +158,60 @@ Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）
 正式名を採用し、2件のPrivate repo作成と改名を実施。発行は固定lockとActionsの権限・テストを確認して行う。Runtimeの明示的な導入先と固定版パッケージを使うインストール処理、単体テストの独立化は並行して準備できる。
 
 
-## 10. 残る配布チェーンのActions読み取り設定
+## 10. Actions読み取り設定（依存修正に伴い旧一覧を撤回）
 
-既存パッケージに追加するRead権限。各Package settingsのManage Actions accessで設定する。すべて`flair-agency`配下。ギフト修正版には未宣言だったLark Base依存を追加したため、その依存先へのReadも必要。既に追加済みの権限は維持する。
+以前の一覧には、TikTokからSkillを経由してLark・月次照合へ到達する不要な依存が含まれていた。旧一覧に沿った追加作業は不要。既存権限の削除はこの作業では行わない。
+
+Actionsで追加が必要と確認できたのは次の5件。TikTokの2件には後続Runtime用Readもまとめて追加する。
 
 | Package settings | Readを追加するリポジトリー |
 | --- | --- |
-| [backstage-provider](https://github.com/orgs/flair-agency/packages/npm/backstage-provider/settings) | `live-agency-provider-runtime` |
-| [cli-utils](https://github.com/orgs/flair-agency/packages/npm/cli-utils/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [creator-monthly-activity-reconcile](https://github.com/orgs/flair-agency/packages/npm/creator-monthly-activity-reconcile/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [creator-profile-record](https://github.com/orgs/flair-agency/packages/npm/creator-profile-record/settings) | `live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [gift-history-merge](https://github.com/orgs/flair-agency/packages/npm/gift-history-merge/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-runtime` |
-| [google-drive-provider](https://github.com/orgs/flair-agency/packages/npm/google-drive-provider/settings) | `live-agency-provider-runtime` |
-| [lark-base-provider](https://github.com/orgs/flair-agency/packages/npm/lark-base-provider/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [lark-transport](https://github.com/orgs/flair-agency/packages/npm/lark-transport/settings) | `live-agency-gift-history-merge`<br>`live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [moneyforward-cloud-expense-provider](https://github.com/orgs/flair-agency/packages/npm/moneyforward-cloud-expense-provider/settings) | `live-agency-provider-runtime` |
-| [private-files](https://github.com/orgs/flair-agency/packages/npm/private-files/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
-| [provider-protocol](https://github.com/orgs/flair-agency/packages/npm/provider-protocol/settings) | `live-agency-provider-tiktok-ios`<br>`live-agency-provider-tiktok-web`<br>`live-agency-provider-runtime` |
+| [tiktok-ios-provider](https://github.com/orgs/flair-agency/packages/npm/tiktok-ios-provider/settings) | `live-agency-gift-history-merge`、`live-agency-provider-runtime` |
+| [tiktok-web-provider](https://github.com/orgs/flair-agency/packages/npm/tiktok-web-provider/settings) | `live-agency-creator-profile-record`、`live-agency-provider-runtime` |
+| [backstage-provider](https://github.com/orgs/flair-agency/packages/npm/backstage-provider/settings) | `live-agency-creator-monthly-activity-reconcile` |
+| [lark-base-provider](https://github.com/orgs/flair-agency/packages/npm/lark-base-provider/settings) | `live-agency-creator-monthly-activity-reconcile` |
+| [lark-transport](https://github.com/orgs/flair-agency/packages/npm/lark-transport/settings) | `live-agency-creator-monthly-activity-reconcile` |
 
-TikTok 2パッケージは未発行なので、その2つからRuntimeへのRead設定は発行後に追加する。それ以外の既存パッケージ分は上表でまとめて設定できる。
+
+以下は修正後の必要関係。既に付与されている項目は再追加不要。公開レジストリーの外部依存を除き、実際の固定依存の推移閉包から確認する。すべて`flair-agency`配下。
+
+| 利用するActionsリポジトリー | 読める必要があるPrivateパッケージ |
+| --- | --- |
+| `live-agency-provider-tiktok-ios` | `private-files`, `provider-protocol` |
+| `live-agency-provider-tiktok-web` | `private-files`, `provider-protocol` |
+| `live-agency-provider-backstage` | `provider-protocol` |
+| `live-agency-provider-lark-base` | `lark-transport` |
+| `live-agency-gift-history-merge` | `tiktok-ios-provider`, `lark-base-provider`, `lark-transport`, `cli-utils`, `private-files`, `provider-protocol` |
+| `live-agency-creator-profile-record` | `tiktok-web-provider`, `lark-base-provider`, `lark-transport`, `cli-utils`, `private-files`, `provider-protocol` |
+| `live-agency-creator-monthly-activity-reconcile` | `backstage-provider`, `lark-base-provider`, `lark-transport`, `cli-utils`, `private-files`, `provider-protocol` |
+| `live-agency-provider-runtime` | Runtime manifestが採用するProvider・Skillと、それらの推移的依存 |
+
+TikTokからLark、月次照合、gift/profile SkillへのReadは不要。Provider発行後に必要なSkill側のReadを確定し、Actionsで実際に取得できたものと未確認のものを区別する。
+
+## 11. Provider所有contractへの修正（承認済み）
+
+当初の「利用側がインターフェイスを所有する」を、ProviderがSkillパッケージを取得する設計として実装した。その結果、契約のimportだけでもSkillの全依存が導入される構成になった。公開入口の分離では配布単位の依存は解消されないため、この判断を改める。
+
+| 所有者 | 公開contract | Skillに残す条件 |
+| --- | --- | --- |
+| TikTok iOS | `./contracts/gift-history`：観測履歴の形式・一貫性 | マスターとの照合、マージ、記録計画 |
+| TikTok Web | `./contracts/profile-observation`：観測値・状態・証拠の形式 | 記録先IDの必須性・一意性、対象照合、履歴記録 |
+| BackStage | `./contracts/activity`：月次観測値の形式 | 要求月・対象アカウントとの一致、月の日数などの業務条件 |
+| Lark Base | `./contracts/creator-activity`：記録の取得・変更要求と選択binding | 差分計画、承認済み計画との一致、readbackによる業務結果確認 |
+
+```mermaid
+flowchart TD
+  Gift[ギフト履歴マージSkill] --> IOS[TikTok iOS Provider・contract]
+  Profile[プロフィール記録Skill] --> Web[TikTok Web Provider・contract]
+  Monthly[月次照合Skill] --> BackStage[BackStage Provider・contract]
+  Gift --> Base[Lark Base Provider・contract]
+  Profile --> Base
+  Monthly --> Base
+  Base --> Transport[Lark Transport]
+```
+
+矢印はパッケージ依存。共通ライブラリーへの依存は省略。Runtimeによる実装選択・注入は維持する。ProviderはSkillへ依存せず、contract専用パッケージは新設しない。Skill側の既存`./contracts`入口は互換用に残すが、Providerからは参照しない。
+
+TikTok Webは記録先のない観測入力を受け付ける。既存の`creatorRecordId`は互換のため任意の不透明な相関値として受け渡すだけとし、Lark固有のID書式を要求しない。記録処理を実行するSkillでは必須・一意性を引き続き検証する。
+
+修正完了条件は、合成入力で既存の業務結果・拒否条件を保つこと、全ProviderからSkillへの依存がないこと、TikTok単体の配布物とlockfileにLark・Skillが含まれないこと。共通ライブラリー→Provider→Skill→Runtimeの順に新しい固定版を検証・発行する。既存の公開済み版は上書きせず、本番登録・実サービス操作は行わない。

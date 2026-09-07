@@ -79,7 +79,7 @@ The 16 Skill sources include the frozen `coin-expense-weekly-application` protot
 
 | Decision | Adopted recommendation | Implementation consequence |
 | --- | --- | --- |
-| D1: Contract and business-code distribution | Consumers own their contracts and expose pure entry points. Keep code with the same reason to change and release together; extract a separate contract package only for independent consumers or compatibility management | Produce one concrete table of responsibilities, formal names, exports, dependencies, repositories and old-name mappings as the first foundation deliverable. Do not freeze the existing five-library split or impose eight business packages |
+| D1: Contract and business-code distribution | Providers own capability request/result contracts and expose pure entry points in their own packages. Skills consume those interfaces and retain business validation. Providers must not depend on Skills; a separate contract package is not a prerequisite | Produce one concrete table of responsibilities, formal names, exports, dependencies, repositories and old-name mappings as the first foundation deliverable. Do not freeze the existing five-library split or impose eight business packages |
 | D2: First development client | Use the current local Codex with explicit development startup, configuration and registration | Reuse existing separation work and verify actual configuration/credential resolution. Add another host only for a demonstrated isolation gap; multiple-host support is not an initial prerequisite |
 | D3: First Skill acceptance target | Prioritize `creator-activity-sync` using its monthly inputs/results and existing runner | Prioritize its required Lark Base and BackStage capabilities. Higher business urgency can change the order without blocking foundation work |
 
@@ -99,14 +99,14 @@ flowchart TB
   R --> H[Loading and startup implementations]
   S --> U[Owned use cases and pure business decisions]
   M --> U
-  U --> C[Consumer-owned operation contracts]
+  U --> C[Provider-owned capability contracts]
   P --> C
   P --> I[Service-specific shared transport]
   H --> K[Extension and configuration contracts]
   P --> K
 ```
 
-Arrows represent code/package dependencies, not invocation sequence. The selected invocation is client/Skill → a CLI or optional MCP entry point → consumer-owned application logic → its Provider interface → the injected Provider. An MCP hop is not mandatory. The entry point adapts the call; it does not own business rules or service operations. Runtime selects concrete implementations. Business code must not depend on concrete Providers, and contracts must not depend on loading/I/O implementations. Share the same business implementation where Skill and MCP use the same decision. Each diagram box need not become one package; use cases and contracts remain owned by their business context.
+Arrows represent code/package dependencies, not invocation sequence. The selected invocation is client/Skill → a CLI or optional MCP entry point → consumer-owned application logic → its Provider interface → the injected Provider. An MCP hop is not mandatory. The entry point adapts the call; it does not own business rules or service operations. Runtime selects concrete implementations. Skills may depend on Provider packages through pure capability exports; business decisions must not import transport or loading implementations. Providers must not depend on Skills. Runtime still injects selected implementations. Share the same business implementation where Skill and MCP use the same decision. Each diagram box need not become one package. Use cases belong to Skills; capability contracts belong to Providers. Independent contract packages are reserved for a demonstrated separate release need.
 
 ## Adopted treatment of operations MCP
 
@@ -290,6 +290,6 @@ New Management cost/reward capabilities, account-transition features, additional
 
 ### Adopted gift and profile package identities
 
-On 2026-09-07 the owner adopted the one-to-one mappings reviewed in foundation design section 9: `gift-history-sync` becomes `live-agency-gift-history-merge` (`@flair-agency/gift-history-merge@1.0.0`), and `creator-profile-sync` becomes `live-agency-creator-profile-record` (`@flair-agency/creator-profile-record@1.0.0`). Directory, Skill identifier and owning private repository basename match. Their `./contracts` exports stay consumer-owned; TikTok iOS/Web use those respective package contracts. Existing unaccepted live routes remain M2/M3 work. These two names are adopted rather than candidates; other candidate mappings retain their documented decision status.
+On 2026-09-07 the owner adopted the one-to-one mappings reviewed in foundation design section 9: `gift-history-sync` becomes `live-agency-gift-history-merge` (`@flair-agency/gift-history-merge@1.0.0`), and `creator-profile-sync` becomes `live-agency-creator-profile-record` (`@flair-agency/creator-profile-record@1.0.0`). Directory, Skill identifier and owning private repository basename match. The later approved contract-ownership correction supersedes the initial consumer-owned layout: TikTok iOS/Web own capability contracts; Skill `./contracts` compatibility entries consume those exports and retain business validation. Existing unaccepted live routes remain M2/M3 work. These two names are adopted rather than candidates; other candidate mappings retain their documented decision status.
 
 Runtime Skill installation now selects an already installed exact npm package, installation root and client Skill directory explicitly. It validates matching Skill/source provenance and refuses ordinary-directory or unrelated-package replacement. Synthetic local-client installation is intermediate evidence; actual development Codex discovery/invocation and registry-only Runtime update/rollback remain required M1 gates.

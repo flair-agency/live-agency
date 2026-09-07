@@ -36,19 +36,35 @@ The prior [repository reorganization record](../archive/repository-reorganizatio
 
 `@flair-agency/provider-protocol` exports pure generic descriptors and correlated request/result validation. Runtime owns installed package discovery, resource confinement, explicit package/version/binding selection and module loading. `@flair-agency/private-files` owns explicit private file I/O. `@flair-agency/lark-transport` owns selected Lark transport through selection/api/cli exports; its implementation modules no longer import their re-exporting barrel.
 
-The monthly consumer `@flair-agency/creator-monthly-activity-reconcile` exposes pure `./contracts` and `./core`, with orchestration at `./application`. Runtime injects `readActivity`, `readRecords` and `applyChanges`. The Lark Base Provider imports only the consumer contract and owns cell/field conversion, selected API payloads and write preflight. The consumer owns unique matching, exact reviewed plans and readback verification. Other extracted business validators belong to their respective Skill contract exports.
+Providers expose pure capability contracts in their own packages: BackStage
+`./contracts/activity`, Lark Base `./contracts/creator-activity`, TikTok iOS
+`./contracts/gift-history` and TikTok Web `./contracts/profile-observation`.
+Skills consume these contracts and retain reconciliation, record matching,
+reviewed-plan authorization and readback verification. Runtime continues to
+inject `readActivity`, `readRecords` and `applyChanges` implementations.
+TikTok observation validation does not require destination record identity;
+profile recording validates that additional requirement in the Skill. Legacy
+`creatorRecordId` is accepted by the observation adapter only as optional opaque
+caller correlation, without Lark ID-format validation.
 
 ```mermaid
 flowchart TB
-  Runtime --> Application[Monthly Skill application]
-  Application --> Contract[Monthly contracts and core]
+  Runtime --> Monthly[Monthly Skill application and core]
   Runtime --> Base[Lark Base Provider]
-  Base --> Contract
+  Runtime --> Source[BackStage Provider]
+  Monthly --> BC[Base capability contract]
+  Monthly --> SC[BackStage capability contract]
+  Base --> BC
+  Source --> SC
   Base --> Transport[Lark transport]
   Runtime --> Protocol[Provider protocol]
   Runtime --> Files[Private files]
 ```
 
+Provider packages have no Skill or Runtime dependency. TikTok dependency
+closures exclude Lark and all Skills. Skill compatibility contract exports
+must not be consumed by Providers.
+
 The development CLI is `live-agency monthly-activity` with explicitly supplied installation root, development configuration, private request and state directory. Results distinguish done, interaction-required and failed. Resume validates request ID, capability, version, normalized context and unchanged composition; atomic claim creation prevents replay. Source module handoffs receive correlation metadata as the second `readActivity` argument and must return matching metadata.
 
-The canonical protocol entry has no business validators, filesystem or Runtime imports. The explicit `provider-protocol/legacy` entry preserves old resolution and validation callers during the staged migration; those callers are not evidence that all Skills have adopted v2. The new monthly Skill has no Runtime or concrete Provider package dependency.
+The canonical protocol entry has no business validators, filesystem or Runtime imports. The explicit `provider-protocol/legacy` entry preserves old resolution and validation callers during the staged migration; those callers are not evidence that all Skills have adopted v2. The monthly Skill has no Runtime dependency; its Provider dependencies supply pure interfaces while Runtime supplies selected instances.

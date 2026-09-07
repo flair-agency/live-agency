@@ -1,8 +1,80 @@
 # Current migration and documentation status
 
+
+## Active correction: Provider-owned capability contracts
+
+Owner approved the corrected dependency direction in this task. This supersedes
+consumer-owned Provider contracts and the pending section 10 Actions grant request.
+
+- Primary class E; secondary D. Boundaries: Provider interfaces, three Skill
+  consumers, Runtime composition and package distribution.
+- Invariants: Providers have no Skill dependency; TikTok has no Lark dependency;
+  business matching/approval/readback remains in Skills; explicit authority,
+  instruction handoff and uncertain-write handling remain unchanged.
+- Work package: move capability validation to the owning Providers, wire consumers,
+  preserve business checks, verify synthetic behavior and isolated packed installs.
+- Next gate: passing distribution graph and archive tests before publishing new
+  immutable versions; derive Actions Read grants from the corrected graph.
+- Rollback: parent `77b40a4` and its child commits; no live service operation or
+  production registration. Previously published versions remain immutable.
+- Parallel agents: none. One coherent dependency correction is implemented locally.
+
+
 Updated: 2026-09-07. Scope: development source and documented evidence. This is the only current queue/status entry; archive documents retain their original dates and do not issue new work.
 
-## Current work: M1 GitHub Packages delivery
+## Current correction checkpoint
+
+Implementation is adopted: Provider-owned pure capability exports, consumer wiring,
+profile destination validation separated from acquisition, and explicit Runtime
+composition. All 701 full-suite tests and public-content checks passed; four
+additional CLI import/direct-invocation regressions pass. Provider dependency
+closures exclude Skills and Runtime, and the component graph is acyclic.
+The retired Runtime monorepo lock was preserved under ignored evidence and
+removed from the owning source; generate its standalone registry lock after all
+selected Skill versions exist. The parent development lock is current. Unmigrated consumers retain their existing released pins; older dependency trees in the development workspace are not the corrected M1 distribution graph.
+
+Actual tarball installation passed for each TikTok Provider and the 14-package
+Runtime graph (84 resources, 52 module imports). Import processes exited zero.
+The new archive gate detected two existing unguarded CLI entry points before
+publication; guards and direct-invocation tests were added. No failed archive
+was published. GitHub Actions subsequently published and independently installed:
+
+| Package | Version | Successful Actions run |
+| --- | --- | --- |
+| lark-base-provider | 1.1.0 | [34110946319](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319) |
+| backstage-provider | 1.3.0 | [34112985447](https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447) |
+| tiktok-ios-provider | 1.2.0 | [34110959692](https://github.com/flair-agency/live-agency-provider-tiktok-ios/actions/runs/34110959692) |
+| tiktok-web-provider | 1.1.0 | [34112991119](https://github.com/flair-agency/live-agency-provider-tiktok-web/actions/runs/34112991119) |
+
+Both actual TikTok registry locks contain only the Provider, private-files and
+provider-protocol. Their source-free npm ci/import checks passed. Receipts,
+registry locks and local evidence are under
+`tmp/m1-foundation/provider-contract-revision/`.
+
+Gift, profile and monthly Skills are prepared at `1.1.0`: current exact registry
+locks, standalone tests and pushed source commits. Their Actions checked all
+private dependency reads before installation/publication. Only these grants
+returned E403:
+
+| Package settings | Actions repository requiring Read |
+| --- | --- |
+| tiktok-ios-provider | live-agency-gift-history-merge |
+| tiktok-web-provider | live-agency-creator-profile-record |
+| backstage-provider | live-agency-creator-monthly-activity-reconcile |
+| lark-base-provider | live-agency-creator-monthly-activity-reconcile |
+| lark-transport | live-agency-creator-monthly-activity-reconcile |
+
+All other Skill dependency reads passed. The owner has been asked for those five
+grants, plus Read on both newly created TikTok packages for
+live-agency-provider-runtime. Existing old grants are not removed automatically.
+
+Next after confirmed grants: rerun the failed, pre-publication Skill jobs
+34113319327 / 34113325345 / 34113331350, verify receipts, generate Runtime's
+registry-only lock and complete its independent checks/publication. Never rerun
+a job after its publish step has succeeded. M1 development-client invocation and
+update/rollback remain outstanding; no M2/M3 or production activation is claimed.
+
+## Earlier M1 delivery checkpoints (superseded queue)
 
 The approved M1 implementation is recorded at parent `e1060d9`; Skill repository naming was adopted at `4560e71`. Primary class E, secondary C/D. The full adopted suite passed 689 tests again after moving cross-owner legacy tests to the parent. Five library repositories also passed standalone installation/tests without the parent workspace. The offline checkpoint covered 30 archives, 119 resources, 72 imports and Runtime update/rollback; its 379-file source comparison is evidence for that checkpoint, not a comparison against subsequently changed package metadata.
 
@@ -34,9 +106,9 @@ The owner completed the original two-Skill Actions grants. Profile Skill `@flair
 
 Gift Skill `1.0.0` was published in [run 34102387709](https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34102387709), but post-publication import verification found an undeclared `@flair-agency/lark-base-provider` dependency in `sync_gift_projection.mjs`. Do not select that incomplete version. The corrected `1.0.1` declares the existing Lark Base dependency; its nine tests and exact archive installation/import verification pass locally. TikTok iOS now pins gift `1.0.1`. The publication template and pending gift/TikTok/Runtime workflows now install and import the inspected archive before publishing. The actual incomplete `1.0.0` archive was rejected by that new preflight in a regression check. No published version was replaced or deleted. All 696 project tests still pass.
 
-TikTok Web now has a registry dependency lock; its nineteen standalone tests and archive preflight pass against the published profile Skill. GitHub source commits are pushed. The corrected gift version needs additional Actions Read grants for lark-base-provider, lark-transport and creator-monthly-activity-reconcile. The [consolidated settings list](../reviews/v2-foundation-design-ja.md#10-残る配布チェーンのactions読み取り設定) includes these and the upcoming TikTok/Runtime grants for existing packages, derived from their complete dependency graph. The owner has been asked to add that list; completion has not yet been received. No new PAT scopes are needed. TikTok's own two package-to-Runtime grants can be added after those packages exist.
+TikTok Web now has a registry dependency lock; its nineteen standalone tests and archive preflight pass against the published profile Skill. GitHub source commits are pushed. The corrected gift version needs additional Actions Read grants for lark-base-provider, lark-transport and creator-monthly-activity-reconcile. The [consolidated settings list](../reviews/v2-foundation-design-ja.md#10-actions読み取り設定依存修正に伴い旧一覧を撤回) includes these and the upcoming TikTok/Runtime grants for existing packages, derived from their complete dependency graph. The owner has been asked to add that list; completion has not yet been received. No new PAT scopes are needed. TikTok's own two package-to-Runtime grants can be added after those packages exist.
 
-Next: after the grants, publish/verify gift `1.0.1` and TikTok Web, generate and verify the iOS registry lock, then publish iOS and finish the Runtime registry lock/publication and actual development-client checks. Twelve package names currently have passing private registry delivery evidence; the gift name has an incomplete initial version and a prepared, not-yet-published repair. These foundation checks do not establish M2/M3 completion. Other Skill candidates and the foreign-revenue responsibility decision still limit full target coverage.
+That release order and the previous grant list are superseded by the Provider-owned correction above. Gift `1.0.1` was not published; the selected correction is `1.1.0`.
 
 
 Rollback: pre-M1 baseline remains parent `8dcc6af` with its child pins. Preserve already published immutable versions; workflow fixes do not replace package contents. No production registration, live Lark operation, browser/iPhone operation, or package visibility change was performed. No inherited changes were discarded.
