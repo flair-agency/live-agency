@@ -18,10 +18,14 @@
       "directory": "runtime",
       "packageName": "@flair-agency/live-agency-runtime",
       "repository": "flair-agency/live-agency-provider-runtime",
-      "status": "local-provider-contract-composition-awaits-skill-publication-and-registry-lock",
+      "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-runtime.git",
-      "sourceCommit": "654f3647b726d1942614b0af85a80e3ee4dc3b22"
+      "sourceCommit": "07f40cd4bd0122f73dc85aed151b9f0865691df7",
+      "publishedVersion": "1.0.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844",
+      "publicationAttempt": 1,
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844"
     },
     {
       "directory": "packages/cli-utils",
@@ -204,7 +208,7 @@
       "directory": "skills/live-agency-creator-monthly-activity-reconcile",
       "packageName": "@flair-agency/creator-monthly-activity-reconcile",
       "repository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
-      "status": "provider-contract-revision-prepared-actions-read-grants-required",
+      "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git",
       "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
@@ -213,7 +217,7 @@
       "proposedDirectory": "skills/live-agency-creator-monthly-activity-reconcile",
       "sourceCommit": "3f709d42e8f5d8b8aa9a05b5dcf6cdb340f48690",
       "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350",
-      "publishedVersion": "1.0.0",
+      "publishedVersion": "1.1.0",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
@@ -221,7 +225,8 @@
           "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34098102833/attempts/2"
         }
       ],
-      "preparedVersion": "1.1.0"
+      "publicationAttempt": 2,
+      "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350"
     },
     {
       "directory": "skills/creator-insight-sync",
@@ -311,7 +316,7 @@
       "directory": "skills/live-agency-creator-profile-record",
       "packageName": "@flair-agency/creator-profile-record",
       "repository": "flair-agency/live-agency-creator-profile-record",
-      "status": "provider-contract-revision-prepared-actions-read-grants-required",
+      "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-profile-record.git",
       "proposedRepository": "flair-agency/live-agency-creator-profile-record",
@@ -319,7 +324,7 @@
       "skillIdentifierStatus": "adopted",
       "proposedDirectory": "skills/live-agency-creator-profile-record",
       "sourceCommit": "2a8309b978822465410a1da764f595b4ad7f780b",
-      "publishedVersion": "1.0.0",
+      "publishedVersion": "1.1.0",
       "publicationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34113325345",
       "previousPublications": [
         {
@@ -327,13 +332,14 @@
           "publicationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34102388058"
         }
       ],
-      "preparedVersion": "1.1.0"
+      "publicationAttempt": 2,
+      "verificationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34113325345"
     },
     {
       "directory": "skills/live-agency-gift-history-merge",
       "packageName": "@flair-agency/gift-history-merge",
       "repository": "flair-agency/live-agency-gift-history-merge",
-      "status": "provider-contract-revision-prepared-actions-read-grants-required",
+      "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-gift-history-merge.git",
       "proposedRepository": "flair-agency/live-agency-gift-history-merge",
@@ -341,15 +347,16 @@
       "skillIdentifierStatus": "adopted",
       "proposedDirectory": "skills/live-agency-gift-history-merge",
       "sourceCommit": "115ff25d08ec34a1537dfb23c33b118b088f6b23",
-      "publishedVersion": "1.0.0",
-      "preparedVersion": "1.1.0",
+      "publishedVersion": "1.1.0",
       "publicationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34113319327",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
           "publicationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34102387709"
         }
-      ]
+      ],
+      "publicationAttempt": 2,
+      "verificationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34113319327"
     },
     {
       "directory": "skills/lark-base-backup",

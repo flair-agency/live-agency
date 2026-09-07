@@ -160,9 +160,9 @@ Skill用repoは、**リポジトリ名＝Skill識別子（`SKILL.md`の`name`）
 
 ## 10. Actions読み取り設定（依存修正に伴い旧一覧を撤回）
 
-以前の一覧には、TikTokからSkillを経由してLark・月次照合へ到達する不要な依存が含まれていた。旧一覧に沿った追加作業は不要。オーナーの追加指示により、下記の余剰Readを削除対象として整理した。
+以前の一覧には、TikTokからSkillを経由してLark・月次照合へ到達する不要な依存が含まれていた。旧一覧に沿った追加作業は不要。オーナーは余剰Readの整理を含め設定し直したと報告済み。下記は削除対象の記録であり、GitHubの全設定行をこちらで再取得したという意味ではない。
 
-Actionsで追加が必要と確認できたのは次の5件。TikTokの2件には後続Runtime用Readもまとめて追加する。
+設定変更の連絡後、以下のRead不足はすべて解消。3 SkillとRuntimeのActionsで依存取得・発行・独立インストールが成功した。以下は設定した関係の記録であり、追加作業の依頼ではない。
 
 | Package settings | Readを追加するリポジトリー |
 | --- | --- |
@@ -186,7 +186,7 @@ Actionsで追加が必要と確認できたのは次の5件。TikTokの2件に�
 | `live-agency-creator-monthly-activity-reconcile` | `backstage-provider`, `lark-base-provider`, `lark-transport`, `cli-utils`, `private-files`, `provider-protocol` |
 | `live-agency-provider-runtime` | Runtime manifestが採用するProvider・Skillと、それらの推移的依存 |
 
-TikTokからLark、月次照合、gift/profile SkillへのReadは不要。Provider発行後に必要なSkill側のReadを確定し、Actionsで実際に取得できたものと未確認のものを区別する。
+TikTokからLark、月次照合、gift/profile SkillへのReadは不要。修正後の3 SkillとRuntimeは、上記の必要依存をActionsで実際に取得できることまで確認済み。
 
 ### 削除対象のRead（追加指示に基づく整理）
 

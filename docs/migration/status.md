@@ -30,8 +30,8 @@ composition. All 701 full-suite tests and public-content checks passed; four
 additional CLI import/direct-invocation regressions pass. Provider dependency
 closures exclude Skills and Runtime, and the component graph is acyclic.
 The retired Runtime monorepo lock was preserved under ignored evidence and
-removed from the owning source; generate its standalone registry lock after all
-selected Skill versions exist. The parent development lock is current. Unmigrated consumers retain their existing released pins; older dependency trees in the development workspace are not the corrected M1 distribution graph.
+replaced by the current standalone registry lock after all selected Skill versions
+were published. The parent development lock is current. Unmigrated consumers retain their existing released pins; older dependency trees in the development workspace are not the corrected M1 distribution graph.
 
 Actual tarball installation passed for each TikTok Provider and the 14-package
 Runtime graph (84 resources, 52 module imports). Import processes exited zero.
@@ -51,28 +51,46 @@ provider-protocol. Their source-free npm ci/import checks passed. Receipts,
 registry locks and local evidence are under
 `tmp/m1-foundation/provider-contract-revision/`.
 
-Gift, profile and monthly Skills are prepared at `1.1.0`: current exact registry
-locks, standalone tests and pushed source commits. Their Actions checked all
-private dependency reads before installation/publication. Only these grants
-returned E403:
+The owner reconfigured Read grants. All three Skill workflows succeeded on
+attempt 2, including the complete private-dependency access check, source tests,
+archive preflight, PRIVATE publication and independent registry npm ci:
 
-| Package settings | Actions repository requiring Read |
-| --- | --- |
-| tiktok-ios-provider | live-agency-gift-history-merge |
-| tiktok-web-provider | live-agency-creator-profile-record |
-| backstage-provider | live-agency-creator-monthly-activity-reconcile |
-| lark-base-provider | live-agency-creator-monthly-activity-reconcile |
-| lark-transport | live-agency-creator-monthly-activity-reconcile |
+| Package | Version | Successful Actions run |
+| --- | --- | --- |
+| gift-history-merge | 1.1.0 | [34113319327](https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34113319327/attempts/2) |
+| creator-profile-record | 1.1.0 | [34113325345](https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34113325345/attempts/2) |
+| creator-monthly-activity-reconcile | 1.1.0 | [34113331350](https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350/attempts/2) |
+| live-agency-runtime | 1.0.0 | [34115333844](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34115333844) |
 
-All other Skill dependency reads passed. The owner has been asked for those five
-grants, plus Read on both newly created TikTok packages for
-live-agency-provider-runtime. The owner subsequently requested removal of excess Read grants. Foundation review section 10 lists eight packages and up to sixteen obsolete repository grants, checked against the corrected dependency closures. The current GitHub grant list could not be retrieved and no remote removal has been performed. Remove only existing listed grants; old-version workflow replays may require restoring their old dependency access.
+Runtime's standalone registry lock is now generated and committed at `07f40cd`.
+Its independent source setup installed 121 dependencies and passed seven Runtime
+tests. Its Actions checked every private dependency, published the inspected
+archive and verified independent registry installation. No Read grant blocks
+this release chain. The owner reported the permission reconfiguration; remote
+removal of each obsolete entry was not independently read back.
 
-Next after confirmed grants: rerun the failed, pre-publication Skill jobs
-34113319327 / 34113325345 / 34113331350, verify receipts, generate Runtime's
-registry-only lock and complete its independent checks/publication. Never rerun
-a job after its publish step has succeeded. M1 development-client invocation and
-update/rollback remain outstanding; no M2/M3 or production activation is claimed.
+A fresh development installation obtained Runtime and all application/Provider
+packages from GitHub Packages (122 packages including Runtime). Archive integrity
+matched all eight changed package receipts. Fourteen internal packages resolved
+84 declared resources and imported 52 modules. Two existing synthetic fixtures
+were installed from local tarballs without source links; they are test support,
+not published production packages.
+
+The current Codex task read the installed test Skill and invoked the installed
+Runtime CLI using explicit development paths. A synthetic two-account dry run
+returned one change and one unchanged row. The exact reviewed plan was applied
+to the in-memory destination and readback confirmed it. The instruction path
+returned interaction-required, resumed successfully, and rejected replay with
+EEXIST. This verifies explicit-path client invocation; no host-wide Skill catalog
+registration or production configuration was changed. Evidence is under
+`tmp/m1-foundation/provider-contract-revision/development-client/`.
+
+The dependency correction and this registry release chain are complete. M1 as a
+whole remains open: registry-based update/rollback of the selected development
+composition and full supported-target coverage remain to be closed. Earlier local
+archive A/B/A evidence is not relabeled as registry-based recovery. The unadopted
+Skill naming/responsibility decisions retain their scope. Do not start real M2
+service operations from this synthetic result or claim M2/M3 acceptance.
 
 ## Earlier M1 delivery checkpoints (superseded queue)
 
