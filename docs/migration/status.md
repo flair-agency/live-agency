@@ -1,6 +1,51 @@
 # Current migration and documentation status
 
-## Current gate: Leading M2 — Runtime composition integration
+## Current gate: Leading M2 completion review
+
+Leading M2 technical verification is complete for monthly export handoff and
+selected-user Lark Base access. Runtime `1.1.0` wires BackStage `1.3.1`, Lark Base
+`1.1.1` and transport `1.0.0` through their existing public APIs. Runtime owns
+file/profile/transport composition; business rules remain in the Skill and
+service validation remains in Providers. Exact package version/export selection,
+resource confinement and explicit CLI profile/home selection are enforced.
+
+All 16 focused Runtime/monthly tests passed, including existing instruction
+resume/replay checks and new composition/selection rejection tests.
+[Actions 34123772742](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742)
+published PRIVATE Runtime `1.1.0` from `4a6259a57eab3b199c0b5df25b94632c91f649e9`.
+A fresh registry installation (126 dependencies, no source links) and the pinned
+CLI `1.0.93` native binary executed the installed monthly CLI against another
+owner-authorized temporary Base using the selected June workbook:
+
+- Dry run: five rows, four exact changes and one unchanged row.
+- Apply: the recorded unchanged plan and bound authorization produced confirmed
+  readback; the following dry run showed zero differences across all five rows.
+- Reusing the original plan after application failed before another update.
+- Cleanup: the created Base was deleted, and the previously successful Provider
+  API returned `1002`, `note has been deleted`.
+
+Installed Runtime integrity matches its publication receipt. Evidence, private
+configuration, source reference, plans/results and cleanup receipts are retained
+under ignored `tmp/m2-leading/runtime/`. Parent source pin and development lock
+adopt this combination. Previously fixed Skill dependencies may retain older
+nested Provider copies for their existing interfaces; the tested Runtime selects
+the new top-level versions explicitly. Operational Skill registration and
+production configuration were not changed. Reverting the Runtime pin returns
+to the previous foundation version; both temporary verification Bases are gone.
+
+The [Japanese completion review, section 13](../reviews/v2-foundation-design-ja.md#13-先行m2完了レビュー)
+records the scope and remaining limits. The adopted plan requires readiness
+review at this point before releasing parallel M2 work. Recommended next stage:
+monthly-activity M3 preparation and independent M2 work, with shared changes
+integrated serially. Browser acquisition, iPhone operation, other Principal modes
+and other Lark capabilities retain their own M2 evidence requirements. This is
+not production Skill acceptance.
+
+Change class B/D: Runtime composition and adoption of the verified Provider
+combination; baseline parent `11accb8`, Runtime `e179e31`. No new service
+permission or production authority was introduced by the composition change.
+
+## Completed leading Provider checks and Runtime integration preparation
 
 Lark Base monthly capability passed seven real-service checks on a temporary
 Base with three synthetic records: reads and month selection, exact update and
