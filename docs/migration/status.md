@@ -84,15 +84,43 @@ Parallel M2 readiness was checked read-only by a separate worker:
 
 | Provider | Missing execution selection |
 | --- | --- |
-| Lark Chat | Exact chat and bounded interval requested from owner; retain the selected App/user and bind the selected route/profile before access |
+| Lark Chat | Owner supplied one chat and August 20–22 JST; two bounded user reads returned zero messages. Await UI comparison before concluding visibility or real-data conformance |
 | Google Drive | Backup storage account, shared Drive/artifact/receipt folder IDs and allowed operation; the June Excel is not the backup-storage capability |
 | Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
 | TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
 
-Readiness is not counted as M2 success. Lark Chat M2 awaits the requested target;
-no messages or other service mutations were attempted. Shared interfaces and
-external mutations remain serialized by the coordinator.
+Readiness is not counted as M2 success. Shared interfaces and external mutations
+remain serialized by the coordinator.
+
+### Lark Chat M2: empty user-read result, verification incomplete
+
+Change card: D verification with F selection of an existing authenticated user;
+read-only access to the owner's exact chat and August 20–22, 2026 in Asia/Tokyo
+(start inclusive August 20 00:00, end exclusive August 23 00:00). The selected
+App, current open ID and tenant key matched the prior verified identity.
+No credentials, message content or exact chat ID are committed here.
+
+The pinned CLI 1.0.93 user shortcut returned zero messages and has_more=false.
+An independent registry installation of lark-chat-provider 1.0.0 then ran its
+API adapter through its bounded conformance transport against the same exact
+GET message-list query: one page, zero messages, has_more=false. The adapter
+probe used an explicit user CLI bridge; it is not the full selected-route
+Provider path. That package's selected operation contract still declares only
+tenant-token support, consistent with the retained official API documentation.
+The successful user response alone does not resolve that support discrepancy.
+
+Neither response proves that no messages exist in the UI or that message-body,
+attachment, pagination or thread conversion works for this account. M2 remains
+incomplete. The owner was asked whether the selected interval has visible UI
+messages, to distinguish an empty interval from an API visibility difference.
+No alternate identity, expanded interval or additional chat was selected.
+Two message-list requests were made in total, with no message/service writes.
+No product source, package version, host registration or production configuration
+changed. Ignored tmp/m2-lark-chat retains the selection, identity/preview,
+raw and normalized empty responses, probe driver, installed lock and receipt.
+Recovery requires no service rollback; delete the local evidence when no longer
+needed. Monthly M3 acceptance remains a separate pending review.
 
 ## Retained leading M2 technical verification
 
