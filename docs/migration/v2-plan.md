@@ -83,19 +83,19 @@ capability-specific exports. Skills and Providers depend on those contracts;
 Runtime selects and injects concrete implementations. This replaces the earlier
 Provider-owned capability-contract target. Existing release evidence remains
 valid for its tested versions, but does not establish Skill package independence.
-Before extending M3 or parallel M2 work, review the concrete monthly slice in
-[foundation review section 14](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー):
-formal names, neutral capability semantics, legacy script ownership, compatibility
-and shared review rules. DI tooling is separate; tsyringe installation, a new
-Runner package and repository creation are not authorized by the design handoff.
-After adoption, implement and verify the monthly slice before extending the
-pattern. Preserve the M1–M2–M3 sequence and valid existing service evidence.
+The owner approved [foundation review section 14](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー),
+including `packages/contracts/`, repository `live-agency-contracts`, package
+`@flair-agency/contracts`, monthly capability semantics, compatibility and
+legacy ownership. Adopt tsyringe only inside Runtime composition, using explicit
+registration after asynchronous initialization and a child container per run.
+Keep runner in the Runtime package. Implement and verify this monthly slice
+before extending M3 or parallel M2; preserve the M1–M2–M3 sequence.
 
 ## Adopted decisions
 
 | Decision | Adopted recommendation | Implementation consequence |
 | --- | --- | --- |
-| D1: Contract and business-code distribution | One neutral contracts repository, initially one package with capability-specific exports. Skills and Providers depend on neutral contracts; neither depends on the other's implementation. Runtime composes both | Review the monthly slice's concrete names, capability semantics, legacy entry points and compatibility rules before implementation; tsyringe remains a separate pending choice |
+| D1: Contract and business-code distribution | One neutral contracts repository, initially one package with capability-specific exports. Skills and Providers depend on neutral contracts; neither depends on the other's implementation. Runtime composes both | Implement the approved monthly slice; neutral contracts 1.0.0, Runtime-only tsyringe, and independent package verification before expansion |
 | D2: First development client | Use the current local Codex with explicit development startup, configuration and registration | Reuse existing separation work and verify actual configuration/credential resolution. Add another host only for a demonstrated isolation gap; multiple-host support is not an initial prerequisite |
 | D3: First Skill acceptance target | Prioritize `creator-activity-sync` using its monthly inputs/results and existing runner | Prioritize its required Lark Base and BackStage capabilities. Higher business urgency can change the order without blocking foundation work |
 

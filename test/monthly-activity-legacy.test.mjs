@@ -13,8 +13,8 @@ import {
   normalizeSnapshot,
   resolveFields,
   runSync,
-} from "@flair-agency/creator-monthly-activity-reconcile/legacy-activity";
-import { resolveActivitySource } from "@flair-agency/creator-monthly-activity-reconcile/scripts/resolve_activity_source";
+} from "@flair-agency/live-agency-runtime/legacy/monthly-activity";
+import { resolveActivitySource } from "@flair-agency/live-agency-runtime/legacy/resolve-activity-source";
 import { toCreatorActivitySyncInput } from "@flair-agency/creator-monthly-activity-reconcile/scripts/management_activity_input";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "./fixtures/installation");

@@ -1,32 +1,56 @@
 # Current migration and documentation status
 
-## Current gate: Neutral contract design revision
+## Current gate: Monthly neutral-contract verification complete; owner review
 
-The owner requested transfer of the design discussion from the task
-“確認 Node.js依存解決の探索”. The selected direction is one neutral contracts
-repository, initially one package with capability-specific exports. Skills and
-Providers depend on neutral contracts; Runtime composes their implementations.
-This supersedes extending the Provider-owned contract arrangement. Runtime DI
-alone does not remove concrete package dependencies: the monthly Skill still
-imports Lark/BackStage contract exports, and its legacy scripts retain Base
-schema handling and Provider discovery. The requirement is not yet satisfied.
+The approved monthly architecture is implemented and published privately:
+`contracts@1.0.0`, monthly Skill `2.0.0`, Lark Base `1.2.0`, BackStage `1.4.0`,
+and Runtime `1.2.0`. Runtime uses `tsyringe@4.10.0` only in composition, with
+explicit registrations after async initialization and a child scope per run.
+Skills and Providers depend independently on `contracts/monthly-activity`.
+The monthly Skill archive has no concrete Provider or DI dependency; legacy
+service/schema and discovery entries moved to Runtime's temporary compatibility
+area with retained callers and a monthly-M3 removal condition.
 
-The [Japanese revision review, section 14](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
-separates the selected direction from proposed package names, compatibility and
-review rules, legacy entry-point disposition and DI tooling. `tsyringe` remains
-a candidate, not an adopted dependency. Keep Runtime/runner in one package for
-now as a proposal; no separate Runner repository is selected.
+Change card: primary E, secondary D, with the already-authorized temporary-Base
+verification under F. Boundaries are neutral contract ownership, monthly package
+dependencies and Runtime composition. No production activation occurred.
+There were no parallel workers; the selected monthly change was integrated serially.
 
-Change card: primary E, secondary D; boundaries are contract ownership, monthly
-Skill/Provider package dependencies and Runtime composition. Preserve business
-outcomes, explicit identity/authority, reviewed-plan checks and readback. Current
-work is a documentation-only decision package; no new repository, dependency
-installation, publication or external operation is included. Baseline `15f956c`.
-Implement the reviewed monthly slice only after its concrete design is adopted;
-then compare against retained M2 evidence. No parallel work has been started.
-The previous M2 completion review does not release M3/parallel M2 expansion under
-the superseded dependency direction. Existing successful-version evidence is
-retained below; it proves behavior of those versions, not contract independence.
+Verification:
+
+- Independent registry-only dependency installation and tests: monthly Skill 9,
+  Lark Base 101, BackStage 22; Providers run neutral conformance without a Skill.
+  The Skill installs contracts as its sole dependency and its archive contains
+  no concrete-service schemas/imports. Contracts' four tests passed separately.
+- Runtime's 14 owning tests passed, including execution isolation and rejection
+  of missing, incompatible or substituted contract dependencies before Provider
+  import. After parent adoption, 25 focused integration/caller/DI tests passed.
+- The owner-selected June workbook and recorded initial destination values
+  produced identical complete dry-run output to Runtime 1.1.0: five rows, four
+  changes and one unchanged. Synthetic application/readback also passed.
+- Every owning Actions workflow published and verified its inspected archive
+  with a fresh registry npm ci. A new local installation of Runtime 1.2.0 from
+  the registry (128 dependencies, no source links) passed live temporary-Base
+  execution: four changes, confirmed readback, zero subsequent differences,
+  and rejection of the stale original plan.
+- The first live fixture used bare YYYY-MM text rather than the established
+  YYYY/MM/DD destination-cell representation, so matching stopped before any
+  update. Restoring the baseline fixture format passed without product changes.
+  Both temporary Bases were deleted; the same Provider read then returned
+  upstream code 1002 for both resources. Cleanup verification receipts are retained.
+
+Publication/source SHAs and run links are recorded in
+[the distribution source map](../../tools/m1-source-repositories.json).
+Ignored `tmp/m2-neutral-contracts/` retains publication, independent-install,
+same-input, live verification and cleanup evidence. No real source exports, credentials
+or real records were committed. The previous published monthly Skill 1.1.0,
+Providers and Runtime 1.1.0 remain immutable rollback artifacts; restoring a
+code/configuration pin does not reverse external data.
+
+Next gate: review [the Japanese completion note, section 15](../reviews/v2-foundation-design-ja.md#15-中立contracts月次1経路の実装検証結果).
+After acceptance, proceed to the first monthly Skill M3 and other ready Provider
+M2 work under the approved sequence. Gift/profile and other capabilities still
+need their own neutral-contract migration; this result does not certify them.
 
 ## Retained leading M2 technical verification
 

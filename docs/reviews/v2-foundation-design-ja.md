@@ -274,7 +274,7 @@ GitHub Packagesから新しい導入先へインストールしたRuntimeで、�
 
 ## 14. 中立contractへの設計変更レビュー
 
-状態：設計検討の引継ぎ。中立なcontracts専用リポジトリーを1つ設け、まず1パッケージに複数能力のcontractをまとめる方向はユーザー選択済み。以下の具体化はレビュー案であり、新repo作成・実装・インストール・発行・本番変更はこの引継ぎでは実行しない。
+状態：LGTMにより本節の具体案を採用。DIはtsyringeを今回導入する。月次1経路の実装・配布検証を進め、本番切替は別途扱う。
 
 ### 目標と現状の差
 
@@ -302,7 +302,7 @@ flowchart TB
 | Runtime内部のrunner | 入力、中断・再開、Skill起動、結果の受渡し。Provider選択・生成はcompositionへ委譲する |
 | 既存共通ライブラリー | `provider-protocol`の汎用要求／応答・記述子、`private-files`のI/Oなど。中立contractへの移管と無関係な再編は行わない |
 
-配置・名称の候補は `packages/contracts/`、repo `live-agency-contracts`、npm `@flair-agency/contracts`。まず公開入口 `./monthly-activity` で始める。正式名は未確定。適合テストは同repoに置き、必要なテスト用入口を実行用APIから分離する。新たなRunner repo/packageは設けず、Runtime内のモジュール分離とする案。
+採用した配置・名称は `packages/contracts/`、repo `live-agency-contracts`、npm `@flair-agency/contracts`。まず公開入口 `./monthly-activity` で始める。正式名として確定。適合テストは同repoに置き、必要なテスト用入口を実行用APIから分離する。新たなRunner repo/packageは設けず、Runtime内のモジュール分離とする案。
 
 月次の中立contractは `readActivity`、`readRecords`、`applyChanges` を起点とし、要求月・対象者、観測日時、単位、欠損、対象の曖昧性、競合、書込み結果不明、readbackの意味を規定する。レコード識別子や選択・承認の対応値は不透明値として扱い、LarkのID形式・Base/フィールド構造・BackStage列名・認証情報を持ち込まない。適合テストを通ったことは外部サービスへの実行許可を意味しない。
 
@@ -328,11 +328,11 @@ flowchart TB
 - 共通トークンを採る場合は能力と互換majorを識別できる値にする。重複インストールしたmoduleのオブジェクト同一性に依存せず、Runtimeで同じ実行に参加するcontractの互換性を検査する。
 - 既存の発行版は変更せず、新版へ移行する。互換入口を残すなら旧Provider／Runtime側に限定し、期限と対象呼出し元を記録する。旧版への復帰はコードと構成の復帰であり、外部データの復元とは分ける。
 
-### DIの未決定事項
+### 採用したDI方針
 
-`tsyringe`はユーザー提案の候補であり、導入は未承認。採る場合もRuntime内部に限定し、独自DIコンテナーは作らない。非同期の選択・検証・生成を終えてから実行単位で登録する。パッケージ探索・認証・承認・中断再開はDIコンテナーに代行させない。
+`tsyringe`をRuntime内部に採用する。非同期の選択・検証・生成を終えてから実行単位の子コンテナーへ登録し、Skillに能力の実装を渡す。共有トークンは能力と互換majorを表す文字列とする。探索・認証・承認・中断再開は従来どおりRuntimeとProviderが担当する。
 
-contractの独立性はDIライブラリーなしでも検証できる。推奨は、月次のcontractと依存除去を先に実装し、tsyringeの採否を結線部分の具体案で決めること。全面的なTypeScript化や汎用フレームワーク化は範囲に含めない。
+JavaScript ESMのまま明示登録を使う。全面的なTypeScript化、decorator導入、独自DIコンテナーや汎用フレームワークの開発は行わない。
 
 ### 受入条件と進め方
 
@@ -342,4 +342,38 @@ contractの独立性はDIライブラリーなしでも検証できる。推奨�
 4. Providerの差替えがRuntime構成に収まり、互換性のないcontract／実装・未選択の権限は実行前に拒否される。
 5. 既存M2と同じ入力で計画・結果を比較し、必要な実結合・配布物検証を完了する。既存証跡を新契約の成功として流用しない。
 
-先にレビューする判断は、**正式repo/package名、月次の能力分割と所有範囲、互換性・レビュー運用、tsyringeを今回導入するか後にするか**。実装開始はその具体案の採用後。中立contractが固定できればProvider側とSkill側は独立して開発でき、Runtime統合は直列に進める。この引継ぎでは作業の並行実行を開始しない。
+本節の正式repo/package名、能力分割と所有範囲、互換性・レビュー運用、tsyringe導入は採用済み。まず月次の変更を実装・統合・検証し、その結果をレビューする。
+
+## 15. 中立contracts・月次1経路の実装検証結果
+
+14節の採用案を、月次の1経路で実装・配布・実接続検証しました。
+
+| 所有者 | 発行版 | 変更・確認結果 |
+| --- | --- | --- |
+| contracts | 1.0.0 | 中立な月次インターフェイス、検証関数、互換major付き共有トークン、独立した適合テスト入口 |
+| 月次Skill | 2.0.0 | 依存はcontractsのみ。業務の照合・計画・承認・readback判定を保持。旧CLI入口の削除をmajor変更として配布 |
+| Lark Base Provider | 1.2.0 | 中立contractsへ依存。単独インストールで101テスト成功 |
+| BackStage Provider | 1.4.0 | 中立contractsへ依存。単独インストールで22テスト成功 |
+| Runtime | 1.2.0 | tsyringe 4.10.0をcomposition内に限定。非同期生成後に実行単位で登録。互換性不一致・実装不足を拒否 |
+
+```mermaid
+flowchart TD
+  R[Runtime 1.2.0] --> S[月次Skill 2.0.0]
+  R --> B[BackStage Provider 1.4.0]
+  R --> L[Lark Base Provider 1.2.0]
+  R --> C[contracts 1.0.0 / monthly-activity]
+  S --> C
+  B --> C
+  L --> C
+  R --> D[tsyringe 4.10.0]
+```
+
+矢印はコード・パッケージ依存です。月次Skillの配布物から、具体的Provider・DI・サービスのフィールド構造への参照を除去しました。Skillは独立インストールで9テスト成功し、ProviderはSkillをインストールせずに適合テストを実行できます。
+
+6月の同じ実ファイルと保存済み初期値を使った比較で、旧Runtime 1.1.0と新版のdry-run出力全体が一致しました。GitHub Packagesから新規インストールしたRuntimeでも、一時Baseの5件を照合して4件を更新し、readbackで一致を確認しました。再照合は差分0件、古い計画の再使用は拒否されています。作成した一時Baseは削除しました。
+
+初回の実接続テストでは、私が月セルを既存検証と異なるYYYY-MM表記で作り、対象0件で停止しました。既存Providerが扱うYYYY/MM/DD表記に揃えて成功しています。製品コードを検証に合わせて変更したものではありません。失敗時も更新は実行されず、その一時Baseも削除済みです。
+
+旧サービスCLIと探索CLIはRuntimeの互換領域へ移管し、既存runnerと比較テストの呼出し先を更新しました。新規利用を増やさず、月次M3で旧呼出しがないことを確認後、Runtimeのmajor更新で削除します。旧発行版はコード・構成のロールバック先として保持します。
+
+今回の完了範囲は月次1経路です。ギフト・プロフィールなどの中立contracts化、本番切替、スキルとしてのM3受け入れは含みません。次は本結果を確認後、承認済みの順序に沿って先行月次M3と、準備が整った他ProviderのM2へ進みます。

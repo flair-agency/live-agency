@@ -1,4 +1,4 @@
-import { canonical, assertSelection } from '@flair-agency/lark-base-provider/contracts/creator-activity';
+import { canonical, assertSelection } from '@flair-agency/contracts/monthly-activity';
 
 export function create({ records: initial, selection, uncertainWrite = false }) {
   const records = structuredClone(initial);

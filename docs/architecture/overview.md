@@ -1,12 +1,14 @@
 # Architecture and responsibility boundaries
 
-The selected contract direction has changed: one neutral contracts repository
-and initially one package, with capability-specific exports consumed by both
-Skills and Providers. Runtime composes the implementations. Existing
-Provider-owned contract descriptions below document the published baseline,
-not the target for further expansion. The [revision gate](../migration/v2-plan.md#neutral-contract-revision-gate)
-and [Japanese proposal](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
-separate this selected direction from unapproved implementation details.
+The adopted monthly architecture uses `@flair-agency/contracts` from
+`packages/contracts/` (repository `live-agency-contracts`). Skill and Providers
+independently depend on its `./monthly-activity` interface. Runtime composes
+implementations using execution-scoped tsyringe registration after asynchronous
+selection and validation; Skills and Providers never resolve container entries.
+The [revision gate](../migration/v2-plan.md#neutral-contract-revision-gate) and
+[approved Japanese review](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
+record ownership and compatibility. Provider-owned contracts described below
+remain the released baseline for capabilities outside this first monthly slice.
 
 Status: canonical index of adopted responsibilities. Scope: project-wide boundaries; implementation and deployment readiness are owned by [migration status](../migration/status.md). The [business model](../domain/model.md) owns business meaning and identity.
 

@@ -13,13 +13,13 @@
     "test/fixtures/consumers/*"
   ],
   "dependencies": {
-    "@flair-agency/backstage-provider": "1.3.0",
+    "@flair-agency/backstage-provider": "1.4.0",
     "@flair-agency/google-drive-provider": "1.0.0",
     "@flair-agency/moneyforward-cloud-expense-provider": "1.5.0",
     "@flair-agency/tiktok-ios-provider": "1.2.0",
     "@flair-agency/tiktok-web-provider": "1.1.0",
     "@larksuite/cli": "1.0.93",
-    "@flair-agency/lark-base-provider": "1.1.0",
+    "@flair-agency/lark-base-provider": "1.2.0",
     "@flair-agency/private-files": "1.0.0",
     "@flair-agency/provider-protocol": "1.0.0",
     "@modelcontextprotocol/sdk": "1.30.0"

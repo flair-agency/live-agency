@@ -88,3 +88,6 @@
 [submodule "packages/provider-protocol"]
 	path = packages/provider-protocol
 	url = https://github.com/flair-agency/live-agency-provider-protocol.git
+[submodule "packages/contracts"]
+	path = packages/contracts
+	url = https://github.com/flair-agency/live-agency-contracts.git

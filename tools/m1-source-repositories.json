@@ -21,11 +21,11 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-runtime.git",
-      "sourceCommit": "4a6259a57eab3b199c0b5df25b94632c91f649e9",
-      "publishedVersion": "1.1.0",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742",
+      "sourceCommit": "2d1356ec7a74a9473fac9347d5256192ce2fac06",
+      "publishedVersion": "1.2.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34133862888",
       "publicationAttempt": 1,
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34133862888",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
@@ -36,6 +36,12 @@
           "publishedVersion": "1.0.1",
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34118777184",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34118777184"
+        },
+        {
+          "publishedVersion": "1.1.0",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742",
+          "sourceCommit": "4a6259a57eab3b199c0b5df25b94632c91f649e9"
         }
       ]
     },
@@ -101,10 +107,10 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-backstage.git",
-      "sourceCommit": "743fe3b8a3f8f66d15afa3ac297bdbe8a22a7240",
-      "publishedVersion": "1.3.1",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
+      "sourceCommit": "b8999d1f957e9337eda65204ed2250a226a9b50d",
+      "publishedVersion": "1.4.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34133766037",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34133766037",
       "previousPublications": [
         {
           "publishedVersion": "1.2.2",
@@ -115,8 +121,15 @@
           "publishedVersion": "1.3.0",
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447"
+        },
+        {
+          "publishedVersion": "1.3.1",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
+          "sourceCommit": "743fe3b8a3f8f66d15afa3ac297bdbe8a22a7240"
         }
-      ]
+      ],
+      "publicationAttempt": 1
     },
     {
       "directory": "providers/google-drive",
@@ -137,10 +150,10 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-lark-base.git",
-      "sourceCommit": "b83e7690d5db625322304f65ce8c1ebf6823c32b",
-      "publishedVersion": "1.1.1",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
+      "sourceCommit": "a0eb9e5e6c8ea78895f971427138af5028871c6d",
+      "publishedVersion": "1.2.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34133758847",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34133758847",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
@@ -151,8 +164,15 @@
           "publishedVersion": "1.1.0",
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34110946319"
+        },
+        {
+          "publishedVersion": "1.1.1",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34121826927",
+          "sourceCommit": "b83e7690d5db625322304f65ce8c1ebf6823c32b"
         }
-      ]
+      ],
+      "publicationAttempt": 1
     },
     {
       "directory": "providers/lark-chat",
@@ -237,18 +257,24 @@
       "targetSkillIdentifier": "live-agency-creator-monthly-activity-reconcile",
       "skillIdentifierStatus": "adopted",
       "proposedDirectory": "skills/live-agency-creator-monthly-activity-reconcile",
-      "sourceCommit": "3f709d42e8f5d8b8aa9a05b5dcf6cdb340f48690",
-      "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350",
-      "publishedVersion": "1.1.0",
+      "sourceCommit": "86c2f70f95002ac54c679bc83b36eecede69e0f6",
+      "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34133752521",
+      "publishedVersion": "2.0.0",
       "previousPublications": [
         {
           "publishedVersion": "1.0.0",
           "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34098102833",
           "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34098102833/attempts/2"
+        },
+        {
+          "publishedVersion": "1.1.0",
+          "publicationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350",
+          "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350",
+          "sourceCommit": "3f709d42e8f5d8b8aa9a05b5dcf6cdb340f48690"
         }
       ],
-      "publicationAttempt": 2,
-      "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34113331350"
+      "publicationAttempt": 1,
+      "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34133752521"
     },
     {
       "directory": "skills/creator-insight-sync",
@@ -427,6 +453,19 @@
       "targetSkillIdentifier": "live-agency-datastore-maintain",
       "skillIdentifierStatus": "candidate",
       "proposedDirectory": "skills/live-agency-datastore-maintain"
+    },
+    {
+      "directory": "packages/contracts",
+      "packageName": "@flair-agency/contracts",
+      "repository": "flair-agency/live-agency-contracts",
+      "githubVisibility": "PRIVATE",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-contracts.git",
+      "status": "published-private-independent-registry-install-verified",
+      "sourceCommit": "46a0c89bf1ad9dbc318b50c5e8e0748c8068c204",
+      "publishedVersion": "1.0.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-contracts/actions/runs/34132271467",
+      "publicationAttempt": 1,
+      "verificationRun": "https://github.com/flair-agency/live-agency-contracts/actions/runs/34132271467"
     }
   ]
 }
