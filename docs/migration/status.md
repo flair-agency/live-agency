@@ -1,6 +1,34 @@
 # Current migration and documentation status
 
-## Current gate: Leading M2 completion review
+## Current gate: Neutral contract design revision
+
+The owner requested transfer of the design discussion from the task
+“確認 Node.js依存解決の探索”. The selected direction is one neutral contracts
+repository, initially one package with capability-specific exports. Skills and
+Providers depend on neutral contracts; Runtime composes their implementations.
+This supersedes extending the Provider-owned contract arrangement. Runtime DI
+alone does not remove concrete package dependencies: the monthly Skill still
+imports Lark/BackStage contract exports, and its legacy scripts retain Base
+schema handling and Provider discovery. The requirement is not yet satisfied.
+
+The [Japanese revision review, section 14](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
+separates the selected direction from proposed package names, compatibility and
+review rules, legacy entry-point disposition and DI tooling. `tsyringe` remains
+a candidate, not an adopted dependency. Keep Runtime/runner in one package for
+now as a proposal; no separate Runner repository is selected.
+
+Change card: primary E, secondary D; boundaries are contract ownership, monthly
+Skill/Provider package dependencies and Runtime composition. Preserve business
+outcomes, explicit identity/authority, reviewed-plan checks and readback. Current
+work is a documentation-only decision package; no new repository, dependency
+installation, publication or external operation is included. Baseline `15f956c`.
+Implement the reviewed monthly slice only after its concrete design is adopted;
+then compare against retained M2 evidence. No parallel work has been started.
+The previous M2 completion review does not release M3/parallel M2 expansion under
+the superseded dependency direction. Existing successful-version evidence is
+retained below; it proves behavior of those versions, not contract independence.
+
+## Retained leading M2 technical verification
 
 Leading M2 technical verification is complete for monthly export handoff and
 selected-user Lark Base access. Runtime `1.1.0` wires BackStage `1.3.1`, Lark Base

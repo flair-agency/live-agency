@@ -71,15 +71,31 @@ The parent workspace connects independent repositories for development; it does 
 
 Use `@flair-agency`, GitHub Packages, initial Private visibility and Flair organization GitHub Actions publication. Service-neutral code is not automatically public. Later public visibility is decided per package. The approved M1 distribution scope is 16 packages: five common libraries, all seven Providers, Runtime and the three adopted Skills (creator-monthly-activity-reconcile, gift-history-merge and creator-profile-record). Remaining supported Skills retain their v2 migration scope; finalize their names, business specifications and individual package distribution during each Skill's M3 preparation. Include a minimal MCP adapter only if the selected client path needs it; the entire existing operations MCP package is not a foundation requirement; a library-and-coin-only release does not complete the foundation.
 
-The adopted common packages are `provider-protocol`, `private-files`, `lark-transport`, `cli-utils` and `row-archive`. The first three supersede `source-provider-api`, `private-runtime-files` and `lark-core`. Runtime owns discovery/composition; Providers own capability contracts; Skills retain business rules. The corrected published foundation graph has no Provider-to-Skill dependency or package cycle. Unmigrated Skill sources retain their documented migration work.
+The adopted common packages are `provider-protocol`, `private-files`, `lark-transport`, `cli-utils` and `row-archive`. The first three supersede `source-provider-api`, `private-runtime-files` and `lark-core`. Runtime owns discovery/composition. The published baseline has Provider-owned capability contracts; the neutral contract revision gate below replaces that target. Skills retain business rules. The corrected published foundation graph has no Provider-to-Skill dependency or package cycle. Unmigrated Skill sources retain their documented migration work.
 
 The 16 Skill sources include the frozen `coin-expense-weekly-application` prototype. Source preservation is distinct from supported distribution and acceptance. Its presence does not reopen development or activate it. See the [README](../../README.md) for directory policy and development setup.
+
+## Neutral contract revision gate
+
+Following the owner-selected direction transferred from the design discussion,
+use one neutral contracts repository and initially one package with
+capability-specific exports. Skills and Providers depend on those contracts;
+Runtime selects and injects concrete implementations. This replaces the earlier
+Provider-owned capability-contract target. Existing release evidence remains
+valid for its tested versions, but does not establish Skill package independence.
+Before extending M3 or parallel M2 work, review the concrete monthly slice in
+[foundation review section 14](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー):
+formal names, neutral capability semantics, legacy script ownership, compatibility
+and shared review rules. DI tooling is separate; tsyringe installation, a new
+Runner package and repository creation are not authorized by the design handoff.
+After adoption, implement and verify the monthly slice before extending the
+pattern. Preserve the M1–M2–M3 sequence and valid existing service evidence.
 
 ## Adopted decisions
 
 | Decision | Adopted recommendation | Implementation consequence |
 | --- | --- | --- |
-| D1: Contract and business-code distribution | Providers own capability request/result contracts and expose pure entry points in their own packages. Skills consume those interfaces and retain business validation. Providers must not depend on Skills; a separate contract package is not a prerequisite | Produce one concrete table of responsibilities, formal names, exports, dependencies, repositories and old-name mappings as the first foundation deliverable. Do not freeze the existing five-library split or impose eight business packages |
+| D1: Contract and business-code distribution | One neutral contracts repository, initially one package with capability-specific exports. Skills and Providers depend on neutral contracts; neither depends on the other's implementation. Runtime composes both | Review the monthly slice's concrete names, capability semantics, legacy entry points and compatibility rules before implementation; tsyringe remains a separate pending choice |
 | D2: First development client | Use the current local Codex with explicit development startup, configuration and registration | Reuse existing separation work and verify actual configuration/credential resolution. Add another host only for a demonstrated isolation gap; multiple-host support is not an initial prerequisite |
 | D3: First Skill acceptance target | Prioritize `creator-activity-sync` using its monthly inputs/results and existing runner | Prioritize its required Lark Base and BackStage capabilities. Higher business urgency can change the order without blocking foundation work |
 

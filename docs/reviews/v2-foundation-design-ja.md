@@ -270,3 +270,76 @@ GitHub Packagesから新しい導入先へインストールしたRuntimeで、�
 今回の完了範囲は「既に取得した月次Excelを渡す経路」と「選択したユーザーによるLark Baseの月次操作」。実ブラウザーからの取得、指示型の実観測、iPhone、他の認証主体・操作は各M2で検証する。本番への切替とSkillの業務受け入れはM3に残る。
 
 **推奨：先行M2のこの範囲を完了として、月次照合のM3準備と、独立した他ProviderのM2を並行して進める。** 共通部分の変更は統合担当が直列に取り込む。これは採用済み計画の先行M2完了レビューポイントであり、新しいアーキテクチャ判断は追加していない。
+
+
+## 14. 中立contractへの設計変更レビュー
+
+状態：設計検討の引継ぎ。中立なcontracts専用リポジトリーを1つ設け、まず1パッケージに複数能力のcontractをまとめる方向はユーザー選択済み。以下の具体化はレビュー案であり、新repo作成・実装・インストール・発行・本番変更はこの引継ぎでは実行しない。
+
+### 目標と現状の差
+
+目標は、Skillのリポジトリーと配布物が具体的Providerを知らず、SkillとProviderをcontractに対して独立開発・検証できること。現在の手動DIは実装の受渡しを実現したが、パッケージの独立までは実現していない。11節のProvider所有contract方針はこの目標に対して改訂する。13節の実接続結果は有効な既存版の証跡であり、設計要件を満たした証拠とは扱わない。
+
+```mermaid
+flowchart TB
+  R[Runtime：実装選択・生成・実行管理] --> S[Skill：業務処理]
+  R --> P[Provider：サービス固有処理]
+  R --> C[contracts：中立な能力仕様]
+  S --> C
+  P --> C
+```
+
+矢印はコード・パッケージ依存。SkillからProvider、ProviderからSkillへの依存を持たせない。実行時にはRuntimeがcontractに適合する実装をSkillへ渡す。Providerの差替えはRuntimeの構成に収める。
+
+### 所有範囲の案
+
+| 所有者 | 保持・移管するもの |
+| --- | --- |
+| 中立contracts | 能力インターフェイス、入力・結果の型／検証、欠損・失敗・副作用・互換性の仕様、共有トークン、合成データによる適合テスト |
+| Skill | 対象月・対象者の業務判断、照合・計画・承認・結果判定。具体的ProviderやDIコンテナーへの依存を持たない |
+| Provider | 外部スキーマ、セル・ファイル解析、サービス操作、認証・対象選択の検証。中立contractを実装する |
+| Runtime内部のcomposition | インストール済み版・能力・権限の選択と検証、Provider生成、必要ならDI登録。Skill業務処理を持たない |
+| Runtime内部のrunner | 入力、中断・再開、Skill起動、結果の受渡し。Provider選択・生成はcompositionへ委譲する |
+| 既存共通ライブラリー | `provider-protocol`の汎用要求／応答・記述子、`private-files`のI/Oなど。中立contractへの移管と無関係な再編は行わない |
+
+配置・名称の候補は `packages/contracts/`、repo `live-agency-contracts`、npm `@flair-agency/contracts`。まず公開入口 `./monthly-activity` で始める。正式名は未確定。適合テストは同repoに置き、必要なテスト用入口を実行用APIから分離する。新たなRunner repo/packageは設けず、Runtime内のモジュール分離とする案。
+
+月次の中立contractは `readActivity`、`readRecords`、`applyChanges` を起点とし、要求月・対象者、観測日時、単位、欠損、対象の曖昧性、競合、書込み結果不明、readbackの意味を規定する。レコード識別子や選択・承認の対応値は不透明値として扱い、LarkのID形式・Base/フィールド構造・BackStage列名・認証情報を持ち込まない。適合テストを通ったことは外部サービスへの実行許可を意味しない。
+
+### 月次1経路で変更する具体的範囲
+
+| 現行箇所 | 必要な変更 |
+| --- | --- |
+| 月次Skill `package.json`、`src/contracts.js` | Lark／BackStage packageへの依存と再exportを中立contract依存に置換。業務の月・暦・対象範囲の判定はSkillに残す |
+| 月次Skill `scripts/lark_activity_sync.mjs` | 残っている `field_id`／`field_name`／`record_id` の解釈と具体的選択Providerへの呼出しを整理。Provider処理を公開Skillへ残したまま完了にしない |
+| 月次Skill `scripts/resolve_activity_source.mjs` | `provider-protocol/legacy`経由の探索・実装選択をRuntimeへ移管。旧CLIの入力・出力・呼出し元の移行も含める |
+| Lark／BackStage Provider | 中立contractを参照し、既存の解析・操作実装を適合させる。現行contractファイルを丸ごと移すのではなく、サービス固有部分を除いて定義する |
+| Runtime | 具体的APIの結線とrunnerを内部で分離。Skill／Providerにコンテナー操作を持ち込まない |
+| Skillのinstructions・tests・配布入口 | `src/`だけでなく配布物全体で具体的Provider参照を確認。旧入口を残す場合はその所有先と廃止条件を示す |
+| ギフト／プロフィールほか | 同様のProvider-owned contract依存を後続対象として追跡。月次と同時に一括変更しない |
+
+依存宣言だけを削除して上位 `node_modules` に依存させることや、Skill内にサービス名付きの互換shimを残すことは受入条件を満たさない。
+
+### 互換性と管理の推奨案
+
+- 当面は1つのnpmパッケージ版で管理する。破壊的変更は影響する能力を明示してmajor更新し、旧版を残す。実行構成ごとに互換なcontract版とProvider版を固定し、互換性未確認の版を自動混在させない。
+- 能力別の入口は維持するが、パッケージmajor更新の影響は他の能力の利用者にも及ぶ。この負担が実測で大きくなった場合にのみ分割を検討する。
+- contractの変更には利用するSkillと実装するProvider双方のレビューを必要とする。仕様・validator・適合テスト・互換性の説明を一緒に変更する。
+- 共通トークンを採る場合は能力と互換majorを識別できる値にする。重複インストールしたmoduleのオブジェクト同一性に依存せず、Runtimeで同じ実行に参加するcontractの互換性を検査する。
+- 既存の発行版は変更せず、新版へ移行する。互換入口を残すなら旧Provider／Runtime側に限定し、期限と対象呼出し元を記録する。旧版への復帰はコードと構成の復帰であり、外部データの復元とは分ける。
+
+### DIの未決定事項
+
+`tsyringe`はユーザー提案の候補であり、導入は未承認。採る場合もRuntime内部に限定し、独自DIコンテナーは作らない。非同期の選択・検証・生成を終えてから実行単位で登録する。パッケージ探索・認証・承認・中断再開はDIコンテナーに代行させない。
+
+contractの独立性はDIライブラリーなしでも検証できる。推奨は、月次のcontractと依存除去を先に実装し、tsyringeの採否を結線部分の具体案で決めること。全面的なTypeScript化や汎用フレームワーク化は範囲に含めない。
+
+### 受入条件と進め方
+
+1. 月次Skillのコード・manifest・配布物から具体的Lark／BackStage Provider参照を除く。Skill単独のcheckoutと宣言依存だけでテストとpack/installが通る。
+2. 同じSkillを変更せず、テスト用Providerと実Providerで実行できる。
+3. ProviderはSkill実装をインストールせず、中立contractの適合テストを実行できる。
+4. Providerの差替えがRuntime構成に収まり、互換性のないcontract／実装・未選択の権限は実行前に拒否される。
+5. 既存M2と同じ入力で計画・結果を比較し、必要な実結合・配布物検証を完了する。既存証跡を新契約の成功として流用しない。
+
+先にレビューする判断は、**正式repo/package名、月次の能力分割と所有範囲、互換性・レビュー運用、tsyringeを今回導入するか後にするか**。実装開始はその具体案の採用後。中立contractが固定できればProvider側とSkill側は独立して開発でき、Runtime統合は直列に進める。この引継ぎでは作業の並行実行を開始しない。
