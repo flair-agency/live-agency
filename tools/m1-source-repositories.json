@@ -96,15 +96,20 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-backstage.git",
-      "sourceCommit": "a2c4176e7a0b90755b714ba12651f1eb1c22f63e",
-      "publishedVersion": "1.3.0",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447",
+      "sourceCommit": "743fe3b8a3f8f66d15afa3ac297bdbe8a22a7240",
+      "publishedVersion": "1.3.1",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884",
       "previousPublications": [
         {
           "publishedVersion": "1.2.2",
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34100178343",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34100178343"
+        },
+        {
+          "publishedVersion": "1.3.0",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34112985447"
         }
       ]
     },

@@ -1,6 +1,6 @@
 # Current migration and documentation status
 
-## Current gate: Leading M2 — BackStage export verification
+## Current gate: Leading M2 — Runtime composition integration
 
 Lark Base monthly capability passed seven real-service checks on a temporary
 Base with three synthetic records: reads and month selection, exact update and
@@ -21,9 +21,33 @@ must still adopt the tested combination before leading M2 can close.
 The final OAuth response included Base and the previously observed Chat/Mail
 scopes; earlier token-scope blockers below are historical. No additional broad
 scope request was issued after the approval-review rejection.
-The owner selected a June 2026 BackStage workbook on Google Drive. Verify the
-actual export via the installed Provider next; this does not establish browser
-acquisition evidence. Other M2 tasks remain gated.
+The owner-selected June 2026 workbook was located through Drive metadata and
+its synchronized local file (size matched; independently read workbook values
+matched the connector preview). The preserved source has a leading filename
+space and a second exact 19-column ordering with Incremental revenue incentive
+last. BackStage `1.3.0` rejected that observed layout before producing output.
+`1.3.1` supports both exact known orders and ignores only outer filename
+whitespace; unknown ordering and internal filename changes remain rejected.
+The source knowledge profile is now `backstage-activity-export/2026-09-07.1`.
+
+All 21 BackStage tests passed. All five real workbook rows matched expected
+monthly metrics and whole-minute conversion; independent XLSX XML/decimal
+extraction confirmed every promoted metric. Wrong-month input was rejected.
+[Actions 34122945884](https://github.com/flair-agency/live-agency-provider-backstage/actions/runs/34122945884)
+published PRIVATE `1.3.1`; a fresh source-free registry installation produced the
+same normalized snapshot, rejected the wrong month, and matched publication
+integrity. Parent source/lock adopts the published revision; data, source hash,
+normalized snapshot and installation receipts remain in ignored
+`tmp/m2-leading/backstage/`.
+
+Leading Provider checks have now run sequentially: Lark Base temporary-resource
+read/update/readback, then BackStage actual-file normalization. This verifies the
+export handoff path; live browser acquisition and instruction-based observation
+remain unverified. No additional Lark writes occurred for the BackStage file.
+Next: wire the verified Provider interfaces and versions into installed Runtime
+monthly composition, verify that combination, then review the leading-M2 gate.
+The current CLI's fixture-oriented factory loading is not proof of real Provider
+composition. Other M2 execution and the first M3 remain behind that gate.
 
 Change class B/D: Provider normalization and real-service verification. Production
 resources were not used. Reverting the child pin restores the known rich-text
