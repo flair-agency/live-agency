@@ -62,8 +62,14 @@ Actual selectors and identifiers remain outside Git.
 
 A dry run confirms Base creation with a five-field monthly table is available.
 Cleanup preflight reports missing `space:document:delete`; self-ID lookup reports
-missing `contact:user.basic_profile:readonly`. Request only these additional user
-scopes on the selected profile before creating the temporary Base. No Base has
+missing `contact:user.basic_profile:readonly`. The owner completed the two-scope authorization. The resulting token omitted
+previously observed Base scopes; creation dry-run failed before resource creation.
+A corrected authorization explicitly requests the required Base create/schema/
+record scopes, bitable access and the two additions together. Automatic approval
+review rejected restoration of the wider historical Chat/Mail/Docs scope set
+as beyond the explicitly approved scope; that restoration was not performed.
+Current token verification does not show those previous unrelated workflow
+scopes. The pending request is limited to this M2 task. No new Base exists. No Base has
 been created and no business records have been accessed or changed. The live
 auth check exercised refresh of the existing user authorization successfully;
 it is connection evidence, not a completed Provider behavior test.
