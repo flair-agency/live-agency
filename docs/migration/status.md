@@ -54,16 +54,24 @@ its existing fixtures; selecting the real named Provider factory and credential
 transport still requires Runtime composition for M2. Do not treat the synthetic
 CLI receipt as proof that this real connection is already wired.
 
-The local development configuration search found other workflow fixtures but no
-selected monthly-activity development Base/table/Principal. The owner has been
-asked for the target URL and actor, or an existing selected configuration path.
-After selection, use the installed Provider directly as the M2 test subject:
-read field IDs and normalize bounded month/account records, compare an exact
-test-record update plan, execute the permitted update and verify readback.
-Existing synthetic tests cover wrong actors, stale bindings, conflicting data
-and uncertain writes; record actual authentication and service responses
-separately. Wire the selected transport in its owning Runtime boundary and
-verify the installed combination before closing leading M2.
+The owner supplied the organization, App ID and named user, and authorized a
+new or copied temporary Base plus cleanup. The selected existing CLI profile
+matches the App ID; server verification confirms the named user, Open ID and
+tenant key. Exact user-ID mapping requires the contact basic-profile scope.
+Actual selectors and identifiers remain outside Git.
+
+A dry run confirms Base creation with a five-field monthly table is available.
+Cleanup preflight reports missing `space:document:delete`; self-ID lookup reports
+missing `contact:user.basic_profile:readonly`. Request only these additional user
+scopes on the selected profile before creating the temporary Base. No Base has
+been created and no business records have been accessed or changed. The live
+auth check exercised refresh of the existing user authorization successfully;
+it is connection evidence, not a completed Provider behavior test.
+
+After authorization, create the temporary Base with synthetic records, bind its
+actual table/field IDs and the verified actor to the installed Provider, test
+read/normalization, an exact bounded update and readback, then delete the created
+Base. Use Lark Base before BackStage; other real M2 execution remains gated.
 
 Change record: class D (migration scope/status), following owner approval;
 parent baseline `0323aeb`. Preserve the 16 published versions and existing
