@@ -1,6 +1,6 @@
 # Current migration and documentation status
 
-## Current gate: M1 coverage decision
+## Current gate: Leading M2 — Lark Base, then BackStage
 
 The owner requested the next foundation work. Registry update/rollback and
 coverage verification are now complete for all 16 published packages: five
@@ -28,20 +28,49 @@ Evidence: `tmp/m1-foundation/registry-recovery/` contains A/B manifests and lock
 phase receipts, publication evidence and source identity. Parent baseline before
 this work was `66ab171`, Runtime `07f40cd`. No inherited changes were discarded.
 
-M1 is not yet declared complete because the adopted plan still requires full
-supported-Skill distribution. Eleven existing Skill candidates lack adopted
-formal names/responsibility details and individual publication; the weekly
-prototype remains frozen, maintenance decomposition remains deferred and the
-foreign-revenue split remains undecided outside the sixteen Skill repositories.
-The [Japanese scope review, section 12](../reviews/v2-foundation-design-ja.md#12-m1完了範囲の確認今回のレビュー対象)
-recommends accepting the 16-package foundation and moving remaining Skill
-specification/publication to each M3 preparation. Owner input is pending; do not
-silently narrow the plan or start real M2 operations. After acceptance, update
-the canonical plan and start the leading Lark Base then BackStage M2 with explicit
-service selection and authority. If full Skill publication remains an M1 gate,
-resolve the outstanding Skill responsibility/name decisions first.
+The owner approved the 16-package completion scope and progression to leading
+M2. **M1 is complete.** Remaining Skill names, business specifications and
+individual distribution move to each Skill's M3 preparation; they are not
+cancelled or accepted by this foundation result. The weekly prototype remains
+frozen, maintenance decomposition deferred and the foreign-revenue split open.
+The decision is adopted in [the plan](v2-plan.md) and
+[Japanese scope review, section 12](../reviews/v2-foundation-design-ja.md#12-m1完了範囲の確認今回のレビュー対象).
 
-## Active correction: Provider-owned capability contracts
+Leading M2 is started with local environment and adapter inspection. Scope:
+Lark Base monthly-activity fields/records, normalization, bounded updates and
+readback; then BackStage acquisition and normalized result transfer. Record
+real-service results separately from the existing synthetic evidence. The next
+execution input is an explicitly selected development Base/table and Principal;
+reference profiles and historical production receipts do not select them.
+No real service request or mutation has been performed in this step.
+
+Inspection confirms that Lark Base `1.1.0` exports
+`createLarkBaseCreatorMonthlyActivityProvider`, which accepts selected profiles,
+immutable Base/table/field bindings and injected transports. Read capability
+uses `fields:list` and `records:search`; updates use a separate
+`records:batch-update` selection. The shared transport supports explicit API or
+pinned CLI composition. The M1 monthly CLI currently loads `module.create` and
+its existing fixtures; selecting the real named Provider factory and credential
+transport still requires Runtime composition for M2. Do not treat the synthetic
+CLI receipt as proof that this real connection is already wired.
+
+The local development configuration search found other workflow fixtures but no
+selected monthly-activity development Base/table/Principal. The owner has been
+asked for the target URL and actor, or an existing selected configuration path.
+After selection, use the installed Provider directly as the M2 test subject:
+read field IDs and normalize bounded month/account records, compare an exact
+test-record update plan, execute the permitted update and verify readback.
+Existing synthetic tests cover wrong actors, stale bindings, conflicting data
+and uncertain writes; record actual authentication and service responses
+separately. Wire the selected transport in its owning Runtime boundary and
+verify the installed combination before closing leading M2.
+
+Change record: class D (migration scope/status), following owner approval;
+parent baseline `0323aeb`. Preserve the 16 published versions and existing
+production installation. Only documentation changes are adopted at this
+checkpoint. Other real M2 execution remains behind the leading-M2 gate.
+
+## Completed correction: Provider-owned capability contracts
 
 Owner approved the corrected dependency direction in this task. This supersedes
 consumer-owned Provider contracts and the pending section 10 Actions grant request.
@@ -60,7 +89,7 @@ consumer-owned Provider contracts and the pending section 10 Actions grant reque
 - Parallel agents: none. One coherent dependency correction is implemented locally.
 
 
-Updated: 2026-09-07. Scope: development source and documented evidence. This is the only current queue/status entry; archive documents retain their original dates and do not issue new work.
+Updated: 2026-09-07. Scope: development source and documented evidence. The leading-M2 entry above is the current queue. Subsequent checkpoints and archive documents retain historical outcomes and do not issue new work.
 
 ## Current correction checkpoint
 
