@@ -85,7 +85,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 | Provider | Missing execution selection |
 | --- | --- |
 | Lark Chat | Selected-user main-message M2 passed with published 1.1.0; two messages across three pages, same-input equality verified |
-| Google Drive | Installed instruction Binding and 294-byte storage fixture prepared; await owner-selected account/shared-drive folder and test-object lifecycle authorization |
+| Google Drive | Owner-selected development My Drive storage M2 passed: artifact/receipt complete readback, coverage and exact pairing; three created objects removed. Shared-drive and unattended paths remain unverified |
 | Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
 | TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
@@ -152,33 +152,50 @@ required. The next package is another selected Provider M2; monthly M3 acceptanc
 and production cutover remain separate pending steps.
 
 
-### Google Drive M2: prepared, awaiting exact development destination
+### Google Drive M2: development My Drive storage verification complete
 
-The owner instructed the next package after Chat M2. Change card: primary F,
-secondary D/G; verify backup-artifact-storage/v1 through the existing interactive
-Google Drive Binding. No product change is currently needed. Reuse the registry
-installation of Runtime 1.2.0 and google-drive-provider 1.0.0; Runtime discovery
-resolved logs-backup-storage and loaded its installed instructions and policy.
-The connector profile read succeeded, but the connected account is not treated
-as a substitute for the owner's execution selection.
+The owner authorized creating a test folder in My Drive, following the proposed
+artifact/receipt create-read-verify-cleanup workflow. This is an explicit
+**development-only override** of the installed Provider's shared-drive routing
+instruction; it does not change production storage policy or assert shared-drive
+verification. The selected connected account was checked before creating the
+folder. Its stable ID and My Drive metadata were bound in the private selection.
 
-A 294-byte synthetic logical snapshot and deterministic file name are staged.
-The installed Provider rejects byte-count and hash mismatches; empty receipt
-coverage is missing. These preparation checks are not real-service M2 results.
-The execution sequence is exact account/shared-drive/folder binding, coverage
-read, artifact upload and complete-byte readback, receipt publication/readback,
-coverage and one-to-one inventory validation, then separately authorized removal
-of this run's objects with cleanup verification. The fixture does not establish
-Base export/restore correctness, and unattended operation is not claimed.
+Change card: primary F, secondary D/G. Runtime 1.2.0 resolved the installed
+`google-drive-provider@1.0.0` / `logs-backup-storage` instruction Binding.
+No product source, package publication or production pin changed. The same
+installed Provider core performed all content and receipt checks.
 
-The owner was asked for the Google account, shared-drive test folder URL and
-permission to create/read/remove only the isolated artifact and receipt. No
-external objects have been created or modified. The existing Provider's
-shared-drive requirement will be checked against actual folder metadata.
-Ignored tmp/m2-google-drive retains the installed instruction handoff, fixture,
-manifest, coverage query and preparation receipt. Continue this package on the
-owner's target reply; do not repeat preparation or select a different account,
-folder or production backup route implicitly. Integration remains serial.
+Completed interactive connector verification:
+
+- Created one isolated My Drive folder and confirmed it was empty.
+- Uploaded the staged 294-byte synthetic logical fixture, checked the exact
+  folder, absence of a shared-drive ID and byte count, downloaded complete raw
+  bytes and verified equality and SHA-256 against the local artifact.
+- Only after that readback, generated and uploaded the Provider's 651-byte
+  verified receipt. Full stored-receipt readback matched bytes, SHA-256 and
+  receipt_sha256; no preview or metadata-only check supplied proof.
+- Relisted the exact folder and verified exactly the created artifact/receipt.
+  Provider coverage was covered; inventory returned one verified pair, zero
+  orphans and zero invalid receipts.
+- Deleted only the two created files, confirmed the folder was empty, deleted
+  the folder and verified NOT_FOUND by metadata read. No test objects remain.
+
+The streamed raw-file response returned a sediment reference without a local
+materialization tool in this environment. The existing 1.0.0 raw-fetch caller
+used its bounded legacy compatibility response for only the 294/651-byte
+synthetic files, then hashed the decoded full bytes. This is not proof that the
+streamed-file or unattended route works. Folder deletion initially rejected the
+folder-form URL before execution; using the same verified ID in the connector's
+accepted file-form URL succeeded. No uncertain write was repeated.
+
+This completes the selected **interactive My Drive storage** M2 scope. It does
+not verify shared-drive access, unattended backups, real Base export or restore.
+Ignored tmp/m2-google-drive retains the explicit selection and owner override,
+installed instructions, manifest, readback bytes, receipts, inventory and
+cleanup verification. The user-supplied test-destination override required no
+additional permission request. The next package is another selected Provider
+M2 or a dependent Skill's preparation; monthly M3 acceptance remains separate.
 
 ## Retained leading M2 technical verification
 
