@@ -1,5 +1,22 @@
 # Current migration and documentation status
 
+## Gift concrete-Provider dependency: deferred maintenance request
+
+Under the adopted Skill maintenance policy, the owner requested either immediate
+work if it reduces migration effort or an owning Skill Issue otherwise. Inspection
+confirmed that the Skill's contract export directly imports the iOS Provider, but
+acquisition automation is already outside the migration gates. Extraction now adds
+contract/package/composition changes and release verification without removing
+remaining migration work. Keep the current verified composition for this migration.
+
+[Gift Skill Issue #1](https://github.com/flair-agency/live-agency-gift-history-merge/issues/1)
+records the desired neutral contract/export separation, normal non-blocking priority,
+owning roles, deferral rationale, resumption conditions and production-verification
+completion criteria. The private repository and Issues permission were verified;
+no duplicate existed and the new Issue was read back OPEN. No implementation,
+publication or rollout occurred. Project linkage remains pending the separately
+tracked Project setup/authentication; no new Project or public summary was created.
+
 ## Gift acquisition scope: human handoff confirmed
 
 Owner-confirmed scope correction (G): TikTok JSON request, readiness checking,
