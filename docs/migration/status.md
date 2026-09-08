@@ -1,5 +1,7 @@
 # Current migration and documentation status
 
+Money Forward candidate M2 selection is recorded in ignored `tmp/m2-moneyforward/selection.json`. No live identity, candidate coverage or API office ID was inferred from the supplied business number. Current tools expose Cloud Accounting, not Cloud Expense candidate browsing; no service calls or credential changes were made. The selected calendar month is not yet complete, so future month-end coverage is not claimed. Next prerequisite: an available authenticated browser execution path; receipt-ID lookup additionally requires the source transaction list before planning.
+
 ## Gift concrete-Provider dependency: deferred maintenance request
 
 Under the adopted Skill maintenance policy, the owner requested either immediate
@@ -233,7 +235,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 | --- | --- |
 | Lark Chat | Selected-user main-message M2 passed with published 1.1.0; two messages across three pages, same-input equality verified |
 | Google Drive | Owner-selected development My Drive storage M2 passed: artifact/receipt complete readback, coverage and exact pairing; three created objects removed. Shared-drive and unattended paths remain unverified |
-| Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
+| Money Forward | Owner selected company/user and September 2026. Selection saved privately; candidate M2 awaits authenticated browser tooling. GET-only API diagnostics cannot substitute for unregistered candidate evidence |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
 | TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
 
