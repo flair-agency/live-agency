@@ -1,5 +1,26 @@
 # Current migration and documentation status
 
+## Gift Skill M3: local planning and commit preparation verified
+
+Change card: primary D, secondary G. The boundary is the installed gift Skill's
+normalized-input reconciliation workflow. Preserve partial-observation semantics,
+exact reviewed-plan binding and private data. This serial package uses the existing
+registry installation at Skill 1.1.0 / TikTok iOS Provider 1.2.0; no product code,
+pin, deployment or external authority changed. No worker was dispatched.
+
+The owner-selected normalized export passed five CLI workflow checks against local
+test masters: complete initial event/amount equality, unchanged repeated import,
+retention of a synthetic master-only event, stale-master rejection without a commit
+payload, and blocking a same-date different-source hash. Initial commit preparation
+matched the plan's complete target. Evidence and the executable verification script
+are owner-only under ignored `tmp/m3-gifts/`; real data is not committed.
+
+This is partial M3 evidence, not destination acceptance. Next: select a disposable
+canonical destination and its schema/configuration for supported write/readback
+verification, and establish the export timestamp meaning using an independent
+reference before business acceptance. Existing +9-hour representation was preserved.
+No real master was read or changed; rollback requires no operational action.
+
 ## TikTok gift export M2: selected-file ingestion verified
 
 Change card: F verification, G evidence; no product implementation or package change.
