@@ -12,6 +12,50 @@ It is a working model rather than an authoritative statement of contracts, accou
 
 The document intentionally excludes creator identities, credentials, production records, private URLs, and internal external-system identifiers.
 
+## 1.1 Business concepts, platform rules and agency choices
+
+Keep three kinds of knowledge distinguishable:
+
+- Business concepts describe the purpose of acquisition, creator development,
+  audience experience and agency operations. They are an analytical abstraction,
+  not a claim that every platform uses the same business model.
+- Platform-specific knowledge describes eligibility, invitation and departure
+  procedures, reward policies, capabilities and support channels. Bind it to
+  the platform, region, applicable period and authoritative source. Service
+  details remain with their existing Provider owners.
+- Agency choices describe Flair's positioning, staffing, resource allocation
+  and objectives. They are neither universal industry rules nor proof of
+  implemented automation.
+
+An overview or historical example does not resolve conflicting eligibility or
+reward conditions. Verify the applicable source rather than selecting a
+convenient threshold. This distinction does not expand the TikTok-only v2 scope
+or introduce a multi-platform schema.
+
+## 1.2 Value creation and the two operating functions
+
+LIVE content creates value through real-time interaction, entertainment and
+participation for viewers. Creator development concerns the ability to deliver
+that experience sustainably; observed duration and reward amounts are useful
+signals but do not exhaust its meaning.
+
+Scouting brings creators into the agency, while Management supports their
+activity and development after membership. Affiliated creator count and each
+creator's activity and results are two business growth factors. Their product
+is a conceptual explanation, not a contractual reward formula or a guarantee
+that revenue scales linearly.
+
+The owner describes Flair's current revenue model as platform-paid agency
+rewards linked to affiliated creators' results. Do not generalize this into the
+only possible agency revenue source, conflate creator earnings with agency
+rewards, or assume participation in other revenue programmes.
+
+Business oversight coordinates acquisition and development capacity, costs,
+revenue and priorities. This is a cross-cutting responsibility, not a fourth
+bounded context or a requirement for separate employees. One operator may hold
+multiple roles. Agency-specific allocation targets are planning choices, not
+universal optimal ratios.
+
 ## 2. Core business contexts
 
 The current model has three business contexts.
@@ -26,9 +70,22 @@ for accounts on other LIVE platforms are not managed in the initial model.
 Supporting another platform requires a later explicit scope and migration decision; the current
 schema must not be generalized merely for hypothetical future use.
 
+Acquisition design can distinguish new and experienced creators, and direct
+outreach, referrals or other acquisition channels. These describe possible
+business approaches, not channels currently operated by Flair or capabilities
+implemented in v2. Channel choice and prospect evaluation remain distinct from
+platform invitation eligibility.
+
 ### 2.2 Creator Management
 
 Creator Management covers affiliated creators from confirmed membership until departure or the end of management. It includes creator activity, management work, incentives, rewards, support, development cost, and management performance analysis.
+
+Management work can include initial onboarding and broadcast preparation,
+content and audience-interaction development, promotion planning, post-LIVE
+review, production-quality support and issue coordination. The appropriate
+support depends on the creator's stage, wishes and available agency resources.
+Describing this work neither establishes that Flair provides every service nor
+authorizes new automated actions.
 
 ### 2.3 Expense and Accounting
 
@@ -512,3 +569,20 @@ This model was informed by:
 - business explanations supplied during the architecture discussion.
 
 The spreadsheet and Base exports are snapshots or operational artifacts. Their formulas and schemas support the model but do not override live-system state, canonical company records, or future reviewed policy decisions.
+
+### External business-context review, 2026-09-08
+
+The explanatory business additions draw on an owner discussion and browser
+review of two external TikTok agency documents: the 2023 TikTok LIVE Japan
+Onepage (displayed update 2024-03-21) and the agency guideline (displayed update
+September 1, without a year in that display; its body includes 2026 notices).
+The Onepage presents non-binding industry observations and examples. The
+guideline combines an overview with links to detailed rules.
+
+The reviewed scope was the major text sections, not every embedded image or
+linked source. Generalized business concepts are an interpretation of that
+material, not independently verified cross-platform findings. Historical
+statistics, success examples and conflicting overview thresholds do not become
+current operating rules. No raw source text, private URLs, policy thresholds
+or programme terms are reproduced here. This review does not establish
+implementation, deployment or current production health.
