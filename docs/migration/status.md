@@ -85,7 +85,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 | Provider | Missing execution selection |
 | --- | --- |
 | Lark Chat | Selected-user main-message M2 passed with published 1.1.0; two messages across three pages, same-input equality verified |
-| Google Drive | Backup storage account, shared Drive/artifact/receipt folder IDs and allowed operation; the June Excel is not the backup-storage capability |
+| Google Drive | Installed instruction Binding and 294-byte storage fixture prepared; await owner-selected account/shared-drive folder and test-object lifecycle authorization |
 | Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
 | TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
@@ -150,6 +150,35 @@ approval-review credit rejection was resolved by the owner's resume instruction;
 Git integration and publication subsequently succeeded. No service rollback is
 required. The next package is another selected Provider M2; monthly M3 acceptance
 and production cutover remain separate pending steps.
+
+
+### Google Drive M2: prepared, awaiting exact development destination
+
+The owner instructed the next package after Chat M2. Change card: primary F,
+secondary D/G; verify backup-artifact-storage/v1 through the existing interactive
+Google Drive Binding. No product change is currently needed. Reuse the registry
+installation of Runtime 1.2.0 and google-drive-provider 1.0.0; Runtime discovery
+resolved logs-backup-storage and loaded its installed instructions and policy.
+The connector profile read succeeded, but the connected account is not treated
+as a substitute for the owner's execution selection.
+
+A 294-byte synthetic logical snapshot and deterministic file name are staged.
+The installed Provider rejects byte-count and hash mismatches; empty receipt
+coverage is missing. These preparation checks are not real-service M2 results.
+The execution sequence is exact account/shared-drive/folder binding, coverage
+read, artifact upload and complete-byte readback, receipt publication/readback,
+coverage and one-to-one inventory validation, then separately authorized removal
+of this run's objects with cleanup verification. The fixture does not establish
+Base export/restore correctness, and unattended operation is not claimed.
+
+The owner was asked for the Google account, shared-drive test folder URL and
+permission to create/read/remove only the isolated artifact and receipt. No
+external objects have been created or modified. The existing Provider's
+shared-drive requirement will be checked against actual folder metadata.
+Ignored tmp/m2-google-drive retains the installed instruction handoff, fixture,
+manifest, coverage query and preparation receipt. Continue this package on the
+owner's target reply; do not repeat preparation or select a different account,
+folder or production backup route implicitly. Integration remains serial.
 
 ## Retained leading M2 technical verification
 
