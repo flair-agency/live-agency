@@ -133,14 +133,14 @@ function selectedChatInput(mode = "tenant") {
   };
 }
 
-test("M2U selected Chat operation contract contains only the reviewed Tenant main-message read", () => {
+test("selected Chat operation contract contains the reviewed user and tenant main-message read", () => {
   assert.deepEqual(
     LARK_CHAT_API_OPERATIONS.map((operation) => operation.operationId),
     ["conversation-messages:read"],
   );
   assert.deepEqual(
     LARK_CHAT_API_OPERATIONS[0].supportedTokenTypes,
-    ["tenant"],
+    ["tenant", "user"],
   );
 });
 
@@ -578,10 +578,10 @@ test("selected transport admits only the Tenant main-message read with its exact
   assert.equal(requests.length, 1);
 });
 
-test("selected Chat read rejects User selection, actor substitution, threads, and widened pagination before transport", async () => {
+test("selected Chat read rejects insufficient User scopes, actor substitution, threads, and widened pagination before transport", async () => {
   assert.throws(
     () => resolveLarkApiSelection(selectedChatInput("user")),
-    (error) => error.code === "API_OPERATION_TOKEN_UNSUPPORTED",
+    (error) => error.code === "USER_API_SCOPE_MISSING",
   );
   const selection = resolveLarkApiSelection(selectedChatInput());
   assert.throws(
@@ -764,7 +764,7 @@ test("selected Chat read rejects spoofed actor bindings and substituted or write
   const substitutedInput = selectedChatInput();
   substitutedInput.operationContracts = substitutedInput.operationContracts.map((operation) =>
     operation.operationId === "conversation-messages:read"
-      ? { ...operation, scopeAlternatives: { tenant: [[]] } }
+      ? { ...operation, scopeAlternatives: { ...operation.scopeAlternatives, tenant: [[]] } }
       : operation,
   );
   const substitutedSelection = resolveLarkApiSelection(substitutedInput);

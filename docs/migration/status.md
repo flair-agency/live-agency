@@ -84,7 +84,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 
 | Provider | Missing execution selection |
 | --- | --- |
-| Lark Chat | Owner corrected the year to 2025. Two messages acquired and adapter normalization verified; full selected-user route remains unverified |
+| Lark Chat | Selected-user main-message M2 passed with published 1.1.0; two messages across three pages, same-input equality verified |
 | Google Drive | Backup storage account, shared Drive/artifact/receipt folder IDs and allowed operation; the June Excel is not the backup-storage capability |
 | Money Forward | Company/user, bounded candidate interval and browser or existing OAuth request selection |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
@@ -93,51 +93,63 @@ Parallel M2 readiness was checked read-only by a separate worker:
 Readiness is not counted as M2 success. Shared interfaces and external mutations
 remain serialized by the coordinator.
 
-### Lark Chat M2: corrected 2025 interval, adapter verification passed
+### Lark Chat M2: selected-user main-message verification complete
 
-Change card: D verification with F selection of an existing authenticated user;
-read-only access to the owner's exact chat and August 20–22, 2026 in Asia/Tokyo
-(start inclusive August 20 00:00, end exclusive August 23 00:00). The selected
-App, current open ID and tenant key matched the prior verified identity.
-No credentials, message content or exact chat ID are committed here.
+Change card: primary B, secondary D/F. The owner instructed the selected-user
+integration after the corrected 2025 adapter probe. The Chat-owned operation
+matrix and selected adapter now admit explicitly selected users as well as the
+existing tenant actor. App/user/tenant checks, scopes, exact-chat authorization,
+read-only authority and continuation limits remain enforced. Changes were made
+in one isolated Chat Git worktree and integrated serially, without another worker.
+The common transport and production profiles were not changed.
 
-The pinned CLI 1.0.93 user shortcut returned zero messages and has_more=false.
-An independent registry installation of lark-chat-provider 1.0.0 then ran its
-API adapter through its bounded conformance transport against the same exact
-GET message-list query: one page, zero messages, has_more=false. The adapter
-probe used an explicit user CLI bridge; it is not the full selected-route
-Provider path. That package's selected operation contract still declares only
-tenant-token support, consistent with the retained official API documentation.
-The successful user response alone does not resolve that support discrepancy.
+`@flair-agency/lark-chat-provider@1.1.0` is published privately from
+`ac1e6380f034ce6f83a81bbd1990529094d824d2` through
+[Actions run 34178101749](https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34178101749).
+The owning workflow verified the inspected archive, private visibility and a
+fresh registry npm ci. The isolated local install matched that archive integrity.
+The parent submodule and workspace lock record 1.1.0; 1.0.0 and its source remain
+immutable rollback artifacts. Runtime's monthly package was not republished.
 
-The owner subsequently corrected the year to **2025**. That correction supersedes
-the UI-comparison question; the earlier zero result is retained as a run against
-the initially supplied 2026 interval, not evidence of a visibility defect.
+Verification passed:
 
-For August 20 00:00 through August 23 00:00, 2025 JST, the same selected user and
-tenant were checked again. The same installed 1.0.0 API adapter and bounded
-transport returned two messages on one terminal page: one system message and
-one interactive card, both at approximately August 22 05:29 JST. Independent
-comparison of the raw response with normalized output passed message/chat IDs,
-sender IDs (empty system sender becomes null), timestamps/window, types,
-structured-body SHA-256, thread references and lifecycle. An initial assertion
-incorrectly expected the empty system sender to remain an empty string; the
-verification oracle was corrected to the existing nullable representation.
-No product behavior was changed.
+- Nine owning tests, including the full user profile → API selection → CLI
+  preflight → selected adapter → Provider pipeline with two synthetic pages;
+  changed user, missing user scope, different chat/window, thread widening and
+  Bot responses are rejected without fallback. The private-boundary check passed.
+- Eighteen parent Chat integration and caller/operation-matrix tests, including
+  the existing tenant and browser paths. One contract-substitution fixture was
+  updated to retain the new user scope alternative while tampering with tenant
+  scopes, preserving the intended rejection test.
+- A fresh registry-installed 1.1.0 used the same exact owner-selected chat and
+  August 20 00:00 through August 23 00:00, **2025 JST**. The real pinned CLI
+  1.0.93 verified the selected App, user, tenant and required grants. With page
+  size one, the full Provider read three pages (including the terminal empty
+  page), returned two unique messages, exhausted pagination and produced a
+  matching user-route audit. Every normalized message matched the prior 1.0.0
+  adapter result exactly; quality grade A is Provider-assigned, not source truth.
 
-This verifies the installed adapter's real acquisition and normalization for
-these two message types. The full selected-user route remains unverified;
-the selected operation's documented tenant-only support discrepancy remains.
-The sample has no text messages, attachments, threads or multiple pages, so
-those paths are not newly covered. No additional sample selection is inferred.
+User support follows the pinned official CLI implementation and real read
+verification. The older public API document lists only tenant tokens; the
+Provider knowledge explicitly records this difference and its additional
+[official CLI evidence](https://github.com/larksuite/cli/blob/v1.0.93/shortcuts/im/im_chat_messages_list.go).
+The user scope set includes message readonly and group/direct get-as-user grants;
+no additional OAuth grant was needed. Reaction enrichment is not requested.
 
-Three message-list requests were made across both years (two for 2026, one for
-2025), with no service writes, alternate identity or additional chat. No product
-source, package version, host registration or production configuration changed.
-Ignored tmp/m2-lark-chat/2025-08 retains the corrected selection, fresh identity,
-raw and normalized responses, driver and independent validation; its parent
-retains the installed lock and earlier evidence. No service rollback is needed.
-Monthly M3 acceptance remains a separate pending review.
+This completes the selected-user **main-message read** M2 scope. The real sample
+contains one system notification and one interactive card. Attachment content,
+thread expansion and other message types are not newly verified. No service
+write, production activation or operational registration occurred. The initial
+2026 zero-result probes remain historical evidence; the owner's year correction
+resolved that input issue and the UI-comparison question is no longer pending.
+
+Ignored tmp/m2-lark-chat/selected-user retains configuration, installed lock,
+publication receipt, complete observation, transport audit and same-input
+receipt. Exact chat IDs and message bodies remain outside Git. The temporary
+approval-review credit rejection was resolved by the owner's resume instruction;
+Git integration and publication subsequently succeeded. No service rollback is
+required. The next package is another selected Provider M2; monthly M3 acceptance
+and production cutover remain separate pending steps.
 
 ## Retained leading M2 technical verification
 

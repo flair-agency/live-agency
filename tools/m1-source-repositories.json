@@ -181,10 +181,18 @@
       "status": "published-private-independent-registry-install-verified",
       "githubVisibility": "PRIVATE",
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-lark-chat.git",
-      "sourceCommit": "f9f73d87fa60427900e0550152965a666692ea69",
-      "publishedVersion": "1.0.0",
-      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330"
+      "sourceCommit": "ac1e6380f034ce6f83a81bbd1990529094d824d2",
+      "publishedVersion": "1.1.0",
+      "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34178101749",
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34178101749",
+      "previousPublications": [
+        {
+          "publishedVersion": "1.0.0",
+          "sourceCommit": "f9f73d87fa60427900e0550152965a666692ea69",
+          "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330",
+          "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330"
+        }
+      ]
     },
     {
       "directory": "providers/moneyforward-cloud-expense",
