@@ -1,5 +1,23 @@
 # Current migration and documentation status
 
+## Gift Skill M3: selected live master read and no-op reconciliation verified
+
+The owner supplied the canonical spreadsheet. Read-only connector metadata and
+bounded Journal A:E / synchronization-log reads established its current schema.
+The selected export's JSON hash already appears in a successful same-date replacement
+entry. Installed Skill 1.1.0 returned unchanged: zero additions or recipient updates.
+An independent comparison verified all 46,100 input events, including timestamps,
+against the 47,183-row master; the complete target preserves the 1,083 master-only
+events and total amount. Existing +9-hour representation is compatible across all
+input events; this does not independently prove the source timezone.
+
+Private evidence is under `tmp/m3-gifts/live-*.json`. A local serialization initially
+failed strict timestamp validation on single-digit hours; canonical ISO formatting
+fixed the adapter input without changing timestamps or product code. No source sheet,
+formula, log or other external object was changed. No redundant write was attempted.
+Destination write/readback on a disposable copy remains unverified. Unrelated parent
+README and review-document edits were observed and preserved.
+
 ## Gift Skill M3: local planning and commit preparation verified
 
 Change card: primary D, secondary G. The boundary is the installed gift Skill's
