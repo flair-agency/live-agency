@@ -1,5 +1,27 @@
 # Current migration and documentation status
 
+## Gift Skill M3: disposable-copy write/readback passed
+
+Class F verification under the owner's continuation: copied the selected workbook
+to My Drive, verified distinct identity/schema, and prepared a fixture missing one
+event with an empty test sync log. Installed Skill 1.1.0 generated a one-addition,
+zero-recipient-update plan and exact-SHA commit payload. A fresh complete copy read
+matched the local fixture before execution. A bounded connector batch restored the
+missing canonical row and recorded the successful synchronization atomically.
+
+Complete canonical readback matched all 47,183 expected events and total 18,539,733.
+The changed row and adjacent row retained their original formulas and formatting;
+API metadata was used for the best-effort layout check, not a browser render.
+No original-workbook writes occurred. The temporary copy was deleted; Drive files.get
+returned NOT_FOUND. Sheets metadata still returned a stale-looking resource after
+delete, so it was not used as cleanup proof. Private evidence: `tmp/m3-gifts/copy-*`.
+
+This passes the bounded addition/commit/readback path using the supported connector.
+It does not prove full staged-range rewriting, all derived-summary reconciliation,
+Lark projections, or production activation. No product version/pin changed. Next:
+review the gift path's scoped acceptance and prioritize remaining Provider M2 inputs;
+retain these limits rather than repeating this successful connection check.
+
 ## Gift Skill M3: selected live master read and no-op reconciliation verified
 
 The owner supplied the canonical spreadsheet. Read-only connector metadata and
