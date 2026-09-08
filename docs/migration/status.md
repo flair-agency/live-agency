@@ -7,7 +7,9 @@ and compare both installed Skill output and the selected live Summary A:E range.
 All 485 event-backed recipient/account groups match amount, first timestamp and
 last timestamp; no missing or mismatched groups. The live Summary has 487 rows:
 two additional zero-amount rows have historical placeholder first dates and no last
-date. Preserve them as existing non-event rows; do not infer deletion from the
+date. Their identities exactly match the two accounts subsequently accepted by the
+owner; the private verification receipt records that match. These zero amounts are
+accepted, not an unresolved discrepancy. Preserve them as existing non-event rows; do not infer deletion from the
 Skill's event-only summary. Adjacent Scout/lifecycle lookup columns are user-owned
 and must remain intact. No sheet edits or product/pin changes occurred.
 
