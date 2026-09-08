@@ -1,5 +1,17 @@
 # Current migration and documentation status
 
+## Gift acquisition scope: human handoff confirmed
+
+Owner-confirmed scope correction (G): TikTok JSON request, readiness checking,
+SMS authentication and app-to-Safari download are human tasks. Their automation
+is excluded from gift M2/M3 completion, not an outstanding migration item. The
+owner reports unresolved SMS and iPhone Mirroring redirection constraints.
+Source instructions and installed Skill 1.1.0 / Provider 1.2.0 already agree;
+byte comparisons of the Skill instructions and Provider gift surface profile
+passed. Only migration/review documentation changed; no release or retest is needed.
+The automated entry remains local ZIP/JSON plus confirmed account and request date.
+Independent LIVE device capabilities retain their own M2 scope.
+
 ## Gift Skill M3: full managed-range restoration passed
 
 Class F/D verification on a second disposable workbook copy. Server-side staging

@@ -184,12 +184,28 @@ Use Stage 1 packages and Runtime, reusing the established integration methods.
 | --- | --- |
 | Lark API/CLI and required browser | Base/Chat selection, reads, mutations, attachments, normalization and relevant errors |
 | Web browser | BackStage, TikTok Web and applicable Lark workflows: selected screens, acquisition, normalization and result transfer |
-| iPhone | TikTok iOS: selected device/account, required operations and result transfer |
+| iPhone | TikTok iOS LIVE capabilities: selected device/account, required operations and result transfer. Gift export acquisition is a human task, as specified below |
 | Existing service-specific paths | Google Drive and Money Forward: required storage, retrieval, registration and related capabilities |
 
 Specify configuration, identity, allowed development targets and capabilities. First verify the monthly-activity requirements sequentially: Lark Base, then BackStage. Do not start other M2 execution in parallel before this leading M2 passes. Record and incorporate shared interface/Runtime fixes and verify the corrected pinned combination. At the leading-M2 review, confirm that the connection method and verification procedure are established before releasing independent M2 tasks. Preparatory environment checks do not count as completed M2 execution. Verify success, normalized results, target selection, authentication expiry and relevant failures. Read back authorized mutations. Include manual browser/device steps when required by the contract; added automation is not a prerequisite.
 
 Existing attachment append and browser/iPhone methods are not new spikes. Complete missing implementations or operational evidence per capability. No mandatory spike is currently justified by a specific technical uncertainty. Propose a bounded experiment only for a concrete uncertain question with an exit condition.
+
+### Gift-history acquisition: human task (owner-confirmed)
+
+For gift history, a human requests the JSON export in TikTok, checks readiness,
+completes any SMS authentication and downloads the attached JSON/ZIP on the iPhone.
+The owner reports unresolved SMS and TikTok-to-Safari redirection issues with iPhone
+Mirroring; acquisition automation is excluded from this migration, not a deferred
+M2/M3 completion requirement. Do not add polling, authentication, app navigation or
+download automation to the gift Skill or its Provider binding.
+
+The automated boundary starts with an existing local ZIP/JSON plus the human-confirmed
+source account and request date. The Provider binds and normalizes that artifact;
+the Skill validates, plans reconciliation and performs approved destination work.
+Installed gift Skill 1.1.0 and TikTok iOS Provider 1.2.0 already implement this boundary.
+No package change is required for this decision. This exclusion is gift-specific;
+it does not remove device verification for independent LIVE capabilities.
 
 Record success by Provider version, capability, operation, path and scope. Read success does not imply write success. Block only dependent work when an environment or capability is unavailable.
 
