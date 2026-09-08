@@ -1,5 +1,21 @@
 # Current migration and documentation status
 
+## TikTok gift export M2: selected-file ingestion verified
+
+Change card: F verification, G evidence; no product implementation or package change.
+The owner supplied an existing ZIP, account and request date. Installed
+`tiktok-ios-provider@1.2.0` prepared an artifact-hash-bound request and normalized
+it from the registry-only Runtime installation. An independent Python ZIP reader
+verified every event, grouped amount, recipient, event key, source JSON hash and
+unchanged original archive. Private inputs and aggregate results are retained only
+under ignored `tmp/m2-tiktok-gifts/`.
+
+This passes the existing-export ingestion path, not iPhone acquisition or the gift
+Skill merge. The established timestamp representation adds nine hours and emits
+an ISO UTC suffix. Output compatibility was verified; the export timezone and
+semantic correctness of that convention were not independently established and
+remain an explicit gift M3 acceptance check. No service writes or activation ran.
+
 ## Current gate: Monthly M3 workflow verification complete; acceptance review
 
 The approved monthly architecture is implemented and published privately:
