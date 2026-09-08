@@ -197,6 +197,23 @@ cleanup verification. The user-supplied test-destination override required no
 additional permission request. The next package is another selected Provider
 M2 or a dependent Skill's preparation; monthly M3 acceptance remains separate.
 
+
+### TikTok iOS gift-history M2: installed handoff route prepared
+
+The owner selected Astra/low and instructed continuation. Primary D, with F
+limited to handling the owner's supplied private export. The next bounded
+capability is gift-history-snapshot-source/v1: read an already downloaded ZIP
+or JSON, bind its hash to the owner-confirmed account/request date, normalize
+with the installed Provider, and compare the result to its source. No acquisition
+request, device operation, Lark write or gift-master update is included.
+
+Runtime 1.2.0 resolved tiktok-ios-provider 1.2.0 / gift-history from the existing
+registry installation; its preparation and normalization exports are available.
+The owner was asked for the exact local file path, source account and export
+request date. No artifact was selected implicitly and no real normalization has
+run. Resume directly from that input; do not repeat installation or prior tests.
+Preparation evidence is under ignored tmp/m2-tiktok-gifts. No code or pin change.
+
 ## Retained leading M2 technical verification
 
 Leading M2 technical verification is complete for monthly export handoff and
