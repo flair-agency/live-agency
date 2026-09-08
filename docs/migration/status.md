@@ -1,5 +1,27 @@
 # Current migration and documentation status
 
+## Gift Skill M3: full managed-range restoration passed
+
+Class F/D verification on a second disposable workbook copy. Server-side staging
+copied the canonical and summary ranges, then complete reads established equality
+with the verified Skill target and the two owner-accepted zero-event rows. A fixture
+removed one canonical event, corrupted one summary amount and cleared the test log.
+Fresh complete canonical read matched the local fixture; installed Skill 1.1.0
+prepared the exact reviewed one-addition commit. One connector batch replaced both
+complete A:E data ranges and wrote the synchronization log, preserving adjacent
+formula columns and formatting.
+
+Complete readback matched all 47,183 canonical events and all 487 summary rows.
+Formula/format and pivot display samples matched the original copy. Cleanup passed:
+copy deletion succeeded and Drive files.get returned NOT_FOUND. No original workbook,
+product source or package pin changed. Evidence: ignored `tmp/m3-gifts/full-*`.
+
+This closes full-range restoration coverage for the existing final state, using
+verified server-side staging rather than uploading a newly generated full dataset.
+Novel-event row growth, complete pivot reconciliation, Lark projections and production
+activation remain outside this result. See Japanese review section 19 for the
+consolidated gift acceptance scope. Unrelated maintenance-policy edits were preserved.
+
 ## Gift Skill M3: recipient/account summary reconciliation passed
 
 Read-only follow-up (D/G): independently aggregate the recorded canonical master
