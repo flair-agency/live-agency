@@ -1,5 +1,22 @@
 # Current migration and documentation status
 
+## Gift Skill M3: recipient/account summary reconciliation passed
+
+Read-only follow-up (D/G): independently aggregate the recorded canonical master
+and compare both installed Skill output and the selected live Summary A:E range.
+All 485 event-backed recipient/account groups match amount, first timestamp and
+last timestamp; no missing or mismatched groups. The live Summary has 487 rows:
+two additional zero-amount rows have historical placeholder first dates and no last
+date. Preserve them as existing non-event rows; do not infer deletion from the
+Skill's event-only summary. Adjacent Scout/lifecycle lookup columns are user-owned
+and must remain intact. No sheet edits or product/pin changes occurred.
+
+Evidence: ignored `tmp/m3-gifts/summary-verification.json` and `live-summary.json`.
+This verifies existing aggregate values, not full summary rewrite or pivot refresh.
+A production writer must retain these two non-event rows and formula anchors under
+an explicit private workspace mapping. Whole-range replacement with only the 485
+Skill-generated rows is not accepted. Remaining write coverage is unchanged.
+
 ## Gift Skill M3: disposable-copy write/readback passed
 
 Class F verification under the owner's continuation: copied the selected workbook
