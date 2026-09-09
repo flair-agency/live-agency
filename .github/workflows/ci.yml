@@ -6,13 +6,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Check CI read credentials
+        env:
+          SOURCE_TOKEN: ${{ secrets.CI_SOURCE_READ_TOKEN }}
+          PACKAGES_TOKEN: ${{ secrets.CI_PACKAGES_READ_TOKEN }}
+        run: |
+          node -e 'for (const name of ["SOURCE_TOKEN", "PACKAGES_TOKEN"]) { if (!process.env[name]) { console.error(`Missing CI credential: ${name}; see docs/development/ci.md`); process.exitCode = 1; } }'
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.CI_SOURCE_READ_TOKEN }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: '@flair-agency'
       - run: npm ci --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.CI_PACKAGES_READ_TOKEN }}
       - run: npm test
       - run: npm run check:public

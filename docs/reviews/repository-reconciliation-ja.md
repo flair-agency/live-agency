@@ -60,3 +60,10 @@
 所有者の依頼で skills/README.md に全18 Skillの概要・関係を4分類と2つの図で整理。主分類G、対象は親の案内文書と公開内容checkのディレクトリー列挙のみ。正規文書は既存の承認済み契約を英語で要約し、個別Skillの意味・実装・権限は変更しない。外貨計画candidateと週次申請frozenを明示。親READMEから導線を追加し、古いローカル限定の説明を是正済み状態へ更新した。
 
 検証：実ディレクトリー18件との一対一照合、相対リンクの存在確認、公開内容check、diffチェックが成功。skills直下のREADMEをSkillディレクトリーとして扱わないよう検査ツールを調整した。新規の業務実行や全体再テストは不要。独立作業ブランチ codex/skill-catalog で保存し、親の先行PRへの追加レビューとして扱う。復旧はこの文書・列挙変更のcommitのrevertで可能。
+
+
+## PR #35 CI修正 — 2026-09-09
+
+主分類E、境界は親CIの読み取り認証。ユーザーの「まずはCIを通して」を実行選択とし、非公開子リポジトリーと固定lockのGitHub Packages取得を対象とする。業務権限・公開・本番は変更しない。構成はsource読取とpackage読取を別secretに束縛し、checkout後にgit認証を残さず、package tokenはhooks無効の導入stepだけに渡す。テストと公開内容checkを省略しない。
+
+GitHubの失敗はcheckoutの非公開repo取得でRepository not found。repo secretとvariableは空、org secret一覧は権限不足で取得不可。CLIの個人認証をCIへ転用しない。CI_SOURCE_READ_TOKENとCI_PACKAGES_READ_TOKENの具体的設定を docs/development/ci.md に記録。現時点ではsecret登録待ちで、GitHub CI成功は未確認。復旧はworkflow変更のrevertと専用secretの削除。独立agentなし。
