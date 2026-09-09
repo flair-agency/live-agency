@@ -132,3 +132,22 @@ test('private eligibility normalizer feeds the complete mixed workflow without i
  const output=JSON.stringify(f.c.state.history);assert(!output.includes('プレミアム'));assert(!output.includes('example.invalid/private'));
  assert(f.c.state.history.every(r=>r.fields.Eligibility==='対象'));
 });
+
+test('reviewed source region restriction coexists with unknown rows without destination access', async () => {
+  const observations = normalizeInvitationEligibilityLookup({ observedAt: '2030-01-02T03:04:05Z', rows: [
+    { accountKey: 'synthetic_region', eligibilityLabel: 'サポートされていない地域' },
+    { accountKey: 'synthetic_missing', eligibilityLabel: '見つかりません' },
+    { accountKey: 'synthetic_ok', eligibilityLabel: '対象', invitationSubtype: '一般' },
+  ] });
+  const manifest = { version: 1, targetMode: 'selected', rowCount: 3,
+    rows: observations.creators.map((r,i) => ({ accountKey: r.accountKey, creatorRecordId: `recSynthetic${i}` })) };
+  let calls = 0;
+  const client = new Proxy({}, { get() { return () => { calls++; throw new Error('unexpected destination operation'); }; } });
+  const prepared = await prepareEligibilityRefresh({ client, config: {}, manifest, observations });
+  assert.equal(calls, 0);
+  assert.equal(prepared.blocked, true);
+  assert.deepEqual(prepared.counts, { create: 0, update: 0, attach: 0, alreadyApplied: 0 });
+  assert.equal(prepared.observations.creators[0].eligibility, 'サポートされていない地域');
+  assert.equal(prepared.eligibilityIssues.length, 1);
+  assert.equal(prepared.eligibilityIssues[0].result, 'not_found');
+});

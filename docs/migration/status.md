@@ -4,7 +4,7 @@
 
 The owner approved the exact public source selection: 18 Skills are now public (15 new repositories and 3 visibility changes), and the existing public operations MCP has the approved development branch. All 34 component HEADs were verified on their selected GitHub remotes before parent adoption. Thirteen pending Skill identities were adopted in source, npm metadata and direct caller references; frozen and protected operational scopes are unchanged. The exact map is in `tools/skill-source-identities.json`; current repository/branch/commit evidence is in `tools/m1-source-repositories.json`.
 
-PR #35 was approved and merged into `codex/project-root` at `0da30c3`. Use that baseline for the integrated source checkpoint. Both GitHub CI runs at `ae3fbb4` passed checkout, online dependency installation, 1,013 tests and public-content checks after CI read credentials were configured. Registry release and production activation remain separate. The next #31 preparation reconciles final package names and proposed dependency versions; #13 scoped development acceptance is complete by explicit owner approval; #6/#14 execution selection and acceptance remain open. Source review and the full development runner passed 1,013 tests; the final clean-clone check is recorded in the reconciliation record. Profile image-resume approval was consumed successfully; no further image approval is pending. BackStage execution-time environment/targets remain owner input for #6/#14.
+PR #35 was approved and merged into `codex/project-root` at `0da30c3`. Use that baseline for the integrated source checkpoint. Both GitHub CI runs at `ae3fbb4` passed checkout, online dependency installation, 1,013 tests and public-content checks after CI read credentials were configured. Registry release and production activation remain separate. The next #31 preparation reconciles final package names and proposed dependency versions; #13 scoped development acceptance is complete by explicit owner approval; #6/#14 execution selection is complete; source and workflow acceptance remain open. Source review and the full development runner passed 1,013 tests; the final clean-clone check is recorded in the reconciliation record. Profile image-resume approval was consumed successfully; no further image approval is pending. The owner selected the internal BackStage browser and nine targets, and confirmed their displayed eligibility results. See the current source correction below.
 
 See [repository reconciliation](../reviews/repository-reconciliation-ja.md) and [public source approval](../reviews/skill-public-source-publication-ja.md). Older local-only and private-source statements below describe earlier checkpoints.
 
@@ -28,6 +28,14 @@ Use native labels, parent/sub-issue relationships and blocked-by/blocking links.
 
 A execution chain: [[A][M2] Verify Lark capabilities required by invitation and profile synchronization](https://github.com/flair-agency/live-agency/issues/30) → profile/invitation acceptance → [[A][Release] Verify invitation and profile package readiness](https://github.com/flair-agency/live-agency/issues/31) → [[A][Cutover] Activate and verify invitation and profile workflows](https://github.com/flair-agency/live-agency/issues/32). The A workflows depend on the A Lark child, not completion of the whole shared Provider backlog. B–D remain queued.
 
+## Invitation source correction — 2026-09-09
+
+BackStage candidate 5890962 admits the exact reviewed standalone region-restriction label in typed eligibility output, with knowledge version 2026-09-09.2. Unrecognized labels still stop; not-found remains unknown rather than ineligible. Full Provider plus independent caller checks passed 29 tests; focused mixed integration and typed Skill checks passed 13 tests. Six packaged resources match source bytes. These are unpublished development candidates.
+
+The retained nine-row observation replay preserves seven observed outcomes and two not-found outcomes, and the complete batch stops before destination access. A new read-only lookup in the selected internal tab returned the same nine results. Its seven row avatars were not present in the page-assets inventory; no substitute images or image binaries were accepted. Agency-header verification, avatar handoff and destination acceptance remain unproven. No invitation, follow, destination write or production activation occurred. See the [development evidence record](../reviews/development-base-verification-ja.md).
+
+PR #38 established document-policy self-review before owner review. Project #39 tracks A documentation and actual human takeover verification; #31 depends on that scoped acceptance as well as #14. Independent AI PR review remains deferred and is not a release gate.
+
 ## Current A checkpoint — 2026-09-09
 
 The scoped Lark capability work in #30 is complete at Provider 6ecd8c9.
@@ -48,8 +56,8 @@ link and export checks without changing the tested code. Profile retains its
 explicit nested Lark 1.1.0 dependency pending final release selection.
 
 #13 completed its approved one-image development resume: zero new rows, one
-image, preserved other rows and zero-write replanning. #6 awaits the owner's
-execution-time BackStage environment and target selection, then #14 acceptance.
+image, preserved other rows and zero-write replanning. #6 now has the owner-selected BackStage environment and nine targets. The owner
+confirmed the displayed eligibility results. Source handoff completion and #14 acceptance remain open.
 Source-profile M2 #4 remains accepted and is not reopened. A proposed release graph also passed an offline fixed-lock simulation (24 packages, no nested old Lark), 42 execution checks and two source-selection checks. Package-only upgrade and rollback passed 15 checks each and restored the exact original lock. These are unpublished temporary consumers. #31 retains final
 version/dependency/pin/publication selection, and #32 retains operational cutover.
 That earlier candidate window made no live writes; the separately approved image
