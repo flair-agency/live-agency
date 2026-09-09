@@ -1,11 +1,10 @@
 # Current migration and documentation status
 
-## Profile-first release checkpoint — 2026-09-10
+## Profile-first release and main reconciliation — 2026-09-10
 
-M1 #42 is accepted. The owner selected the first profile target in the current task; its exact account and destination are retained outside Git. #31 is In Progress for the profile slice only. Lark transport 1.1.0 (`9499ce1`, publication run 34390278398) and Lark Base Provider 1.3.0 (`771d18f`, run 34390488130) passed their owning publication gates. Profile Skill 1.2.0 (`0a9b50e`) is prepared and pushed, but publication run 34390754264 stopped before publishing: its Actions token cannot read the newly required `@flair-agency/contracts` dependency (E403). The owner has been asked to grant Read under that package's Manage Actions access to `live-agency-creator-profile-record`; no new token is required. Do not retry until access changes.
+M1 #42 is accepted. The owner selected the first profile target, retained in the private execution configuration. After the owner granted contracts package Actions Read access, Profile Skill 1.2.0 publication run 34390754264 succeeded. Lark transport 1.1.0 (9499ce1, run34390278398), Lark Base Provider 1.3.0 (771d18f, run34390488130) and Profile1.2.0 (0a9b50e) are available. Existing M1 installation is unchanged; selected production service connection and plan/readback remain next.
 
-Existing M1 installation and active configuration remain unchanged. No service read, write or schedule switch has occurred in this package. After dependency access is fixed, rerun the failed publication, then prepare the fixed profile composition and connect the already selected production read identity. Profile registration still requires the actual plan approval. Other A releases and B–D do not gate this slice.
-
+At the owner's request, published sources for Runtime, Lark transport, Lark Base Provider and Profile were merged into each owner's main via PR1. All13 latest successful publication-workflow commits found across34 components are now contained in main. Other unreleased component work remains on work branches. Parent live-agency main was created from the adopted codex/project-root commit39b33b8 and made default; existing PR3 and PR40 now target main. PR43 aligns the canonical-document location and release-integration policy without importing unreviewed migration changes.
 
 ## Designated Work host verified — 2026-09-10
 
