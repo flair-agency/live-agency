@@ -151,3 +151,10 @@ test('multi-batch writer preserves mixed image ordering through the Skill',async
 test('multi-batch preflight checks downstream image bytes before any write',async t=>{
  const f=await fixture(t,'success',{multi:true});fs.writeFileSync(f.secondFile,'changed');await assert.rejects(f.apply());assert.equal(writes(f).length,0);
 });
+
+test('checkpoint candidate rejects image plans before mutation instead of dropping attachments',async t=>{
+ const {createLarkBaseCheckpointedHistoryAdapter}=await import('../providers/lark-base/src/index.js');
+ const f=await fixture(t,'success',{multi:true});
+ assert.throws(()=>createLarkBaseCheckpointedHistoryAdapter({...f.intentArgs,intent:f.intent,approvedIntentSha256:f.intent.intentSha256}),/image-stage recovery/);
+ assert.equal(writes(f).length,0);
+});
