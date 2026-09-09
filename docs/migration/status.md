@@ -1,5 +1,11 @@
 # Current migration and documentation status
 
+## Runtime-first production delivery — owner direction, 2026-09-10
+
+The immediate priority is a usable production Runtime, followed by the first working Skill. M1 (Runtime), M2 (Provider) and M3 (Skill) are incremental delivery boundaries; completing every Provider, Skill or both A workflows is not a prerequisite for releasing the Runtime. Reduce redundant or implementation-mirroring tests while retaining required behavior and deployment verification. Do not repeat unchanged validation without a concrete reason.
+
+The [Japanese delivery plan](../reviews/runtime-first-production-plan-ja.md) proposes profile synchronization as the first Skill and records the current entry-point gap, staged outcomes and proposed Project changes. Those implementation choices remain a proposal. This update records planning only, not a production installation or activation. Older bundled A release checkpoints below do not override this current priority.
+
 ## Source synchronization checkpoint — 2026-09-09
 
 The owner approved the exact public source selection: 18 Skills are now public (15 new repositories and 3 visibility changes), and the existing public operations MCP has the approved development branch. All 34 component HEADs were verified on their selected GitHub remotes before parent adoption. Thirteen pending Skill identities were adopted in source, npm metadata and direct caller references; frozen and protected operational scopes are unchanged. The exact map is in `tools/skill-source-identities.json`; current repository/branch/commit evidence is in `tools/m1-source-repositories.json`.
