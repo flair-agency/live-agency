@@ -2,6 +2,8 @@
 
 ## Policies to read
 
+- Apply the [document and Skill knowledge policy](docs/governance/document-knowledge-policy.md): preserve rationale and human takeover knowledge, with company originals as the source of authority.
+
 - Prepare owner reviews and reports in Japanese; adopt approved canonical documents in English under the [language policy](docs/governance/document-language-policy.md).
 - Apply the [development policy](docs/governance/development-policy.md) for change boundaries, explicit execution selection, verification and task composition. Consult [migration status](docs/migration/status.md) for scoped temporary constraints; historical checkpoints do not select current work.
 - Before creating, changing or reviewing a Skill for an authenticated or publication-uncertain source, read the complete authoritative [Private Source Integration Guide](docs/governance/private-source-integration-guide.md). Report a missing guide or ambiguous applicability; do not invent or duplicate it.
@@ -14,6 +16,8 @@
 - Read necessary sections once per relevant revision; expand for a concrete gap or conflict. Keep mandatory full reads intact. Do not run historical recovery scripts as reusable development tools.
 
 ## Verification and reporting
+
+- Before requesting owner review or approval, perform and record the AI policy review required by [the knowledge policy](docs/governance/document-knowledge-policy.md#ai-review-before-requesting-owner-approval), correct resolvable findings, and present remaining human decisions.
 
 - Verify changed links, test references and distribution resources when moving documents or fixtures. From the project root, the independent caller discovery/API-operation check is `node --test test/m2u-call-site-inventory.test.mjs`.
 - Run focused tests appropriate to the affected owner; broaden checks when a changed contract, pin, release gate or unresolved failure requires it. Existing dependencies do not authorize installation or host registration.

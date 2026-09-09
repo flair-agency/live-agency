@@ -313,6 +313,8 @@ conversation history into a handoff. Production evidence remains owner-only.
 
 ## 8. Relationship to other documents
 
+The [document and Skill knowledge policy](document-knowledge-policy.md) applies the owner-selected company policies. Skill changes and acceptance must preserve understandable business reasoning and a documented human takeover route; tests alone do not establish human comprehension.
+
 The [Documentation Language Policy](document-language-policy.md)
 governs document language across this project: Japanese for owner review and
 English for approved canonical documents.

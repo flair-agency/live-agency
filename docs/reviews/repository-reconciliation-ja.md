@@ -67,3 +67,8 @@
 主分類E、境界は親CIの読み取り認証。ユーザーの「まずはCIを通して」を実行選択とし、非公開子リポジトリーと固定lockのGitHub Packages取得を対象とする。業務権限・公開・本番は変更しない。構成はsource読取とpackage読取を別secretに束縛し、checkout後にgit認証を残さず、package tokenはhooks無効の導入stepだけに渡す。テストと公開内容checkを省略しない。
 
 GitHubの失敗はcheckoutの非公開repo取得でRepository not found。repo secretとvariableは空、org secret一覧は権限不足で取得不可。CLIの個人認証をCIへ転用しない。CI_SOURCE_READ_TOKENとCI_PACKAGES_READ_TOKENの具体的設定を docs/development/ci.md に記録。現時点ではsecret登録待ちで、GitHub CI成功は未確認。復旧はworkflow変更のrevertと専用secretの削除。独立agentなし。
+
+
+## CI完了・基準branchへの統合 — 2026-09-09
+
+所有者が2つのCI secretを登録後、ae3fbb4のpush/PR両CIでcheckout、online固定lock導入、1,013テスト、公開内容checkが成功。証跡はGitHub Actions run 34315658065 / 34315655117。PR #35へのLGTMを受け、承認HEAD一致を確認してmerge commit 0da30c3でcodex/project-rootへ統合し、ローカルも同期した。以前のsecret登録待ちは解消。次は#31の正式名配布案の再照合。パッケージ公開・本番変更なし。

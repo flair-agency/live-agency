@@ -1,5 +1,34 @@
 # v2配布・導入カバレッジの準備確認
 
+## 現在のA配布準備 — PR #35統合後（2026-09-09）
+
+正式名の候補を再構築し、24パッケージを一時環境へoffline固定lock・hooks無効で導入。8ファイル42テストが成功、128配布ファイルが候補元と一致し、Lark Providerは1個のみ。招待の正式npm名はcreator-invitation-eligibility-record、候補にはGitHub Packagesの公開先を明示。ソースの版・依存や既存インストールは変更していない。lock SHA-256: 9aa4c1ccef9c3377447432ea504f7b5a3138c40aef84da11e64e3c7c02c3c6ed。証跡は/private/tmp/a-formal-name-check-4dEm2A/a-release-simulation-result.json。旧名時点のsource-discovery/更新復帰結果を今回のfresh結果とは扱わない。
+
+| タイトル | 担当 | 期日 | 概要 | 完了条件 | 関連資料 |
+| --- | --- | --- | --- | --- | --- |
+| BackStage実接続対象の指定 | 木村直樹 | TBD | 参照するエージェンシー/環境と正確なアカウント一覧を指定 | 読取り検証の対象が一意に確定 | #6/#14 |
+
+
+主分類G。対象は#31の配布案・registry読取り・状態記録。公開先はGitHub Packages、既存のパッケージ取得認証を読み取りに限定して使用。完了条件は正式名の候補表と未解決ゲートの更新。ソースの版・依存、公開、導入、本番操作は変更しない。並列agentなし。復旧はこの記録commitのrevert。
+
+PR #35は基準branch codex/project-rootへ統合済み（0da30c3）。CI修正ae3fbb4はGitHubのpush/PR両方で1,013件と公開内容checkに成功。以下の古いorigin未設定・画像承認待ち・旧招待名の記述は履歴である。
+
+| 正式npm名（@flair-agency/以下） | 現在取得可能な最新版 | 提案版 | 直接依存の提案 |
+| --- | --- | --- | --- |
+| lark-transport | 1.0.0 | 1.1.0 | 維持 |
+| lark-base-provider | 1.2.0 | 1.3.0 | lark-transport 1.1.0 |
+| backstage-provider | 1.4.0 | 1.5.0 | 維持 |
+| creator-invitation-eligibility-record | 今回の認証で404 | 1.0.0 | lark-base-provider 1.3.0 |
+| creator-profile-record | 1.1.0 | 1.2.0 | lark-base-provider 1.3.0 |
+| tiktok-web-provider | 1.1.0 | 1.1.0維持 | 維持 |
+
+上表は2026-09-09の明示的なGitHub Packages照会結果。404はこの認証による未確認であり、全アクセス主体に対する不存在の証明ではない。招待の正式ソース保存先は公開済みで解決している。ただし招待package.jsonにpublishConfig.registryがないため、公開準備時には既存所有者と同じGitHub Packagesを明示する必要がある。実行環境の既定registryに公開先を委ねない。
+
+Profileは今もLark 1.1.0を直接要求する。ソース同期・CI成功でこの配布依存は自動更新されない。旧名で行った24packageの配布シミュレーションと復帰検証は履歴として保持し、正式名と採用版を反映したarchive/lock検証を公開前に行う。
+
+残る判断と作業：#13は承認済み画像1枚の登録・readback完了を含む開発検証範囲を所有者が受入れ済み。#6/#14は実施時のBackStage環境・対象指定と受入れ。#31では上表の版・依存・配布先を確定後に候補を検証し、具体的な公開対象を提示する。#32の本番切替は別。今回のPR承認をこれらの承認として消費しない。
+
+
 2026-09-08。現行開発インストールとローカルアーカイブの棚卸し。レジストリ全体や本番環境を調査したものではない。
 
 変更カード：G分類。対象は16の所有者ソースの読取りと一時アーカイブ、移行Project・記録。凍結・保留状態を維持し、新規インストール・公開・本番変更を行わない。完了条件は選択済み開発インストールとの対応と未導入候補の配布内容確認。次のゲートは各Skillの正式名・責務・配布版の確定と個別M3。並列作業なし。取り消しは一時成果物と記録のみ。
