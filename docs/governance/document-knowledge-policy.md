@@ -44,6 +44,14 @@ At review, use the documentation and a representative example to check whether t
 
 Humans retain purpose, value choices, final adoption and accountability. AI-generated recommendations remain subject to verification. Previously authorized bounded execution can continue under the development policy; this principle does not introduce repeated approvals for unchanged authorized actions.
 
+# AI review before requesting owner approval
+
+Owner direction, 2026-09-09: before asking the owner to review or approve AI-produced changes, the working agent reviews the scoped changes against the applicable project document policies and corrects deficiencies it can resolve within the authorized scope. This is part of preparing the work, independent of GitHub, Copilot, Actions or a separate AI reviewer.
+
+Read the applicable policy sources and inspect the actual changed content, including relevant supporting documents. Check meaning and rationale, responsibility boundaries, human reading and takeover routes, terminology, adoption status and language, diagrams against their accompanying procedures, links and required distribution resources, and public/private information boundaries where applicable. Apply adopted rules and explicit owner directions; do not elevate unapproved review proposals into requirements. When the policy itself changes, compare the change with the prior authority and recorded owner direction rather than validating it solely against itself.
+
+Fix supported findings before presenting the work. In the existing review or task record, briefly identify the policy basis, actual checks, material corrections and remaining uncertainties. State unavailable evidence explicitly. Present the owner with a concrete result and the business or policy decisions that still require human judgment; do not use the approval request as a substitute for the agent's own review. A self-review is not an independent review and does not establish human comprehension or authorize execution, publication or integration.
+
 # Ownership and information boundaries
 
 Public Skills document neutral business knowledge. Service-specific acquisition, authenticated procedures, schemas and troubleshooting remain with the owning private Provider, with discoverable references for authorized operators. Composition and installation details belong to Runtime/project documentation. Apply the [Private Source Integration Guide](private-source-integration-guide.md) without moving private knowledge into public repositories to make a Skill self-contained.
