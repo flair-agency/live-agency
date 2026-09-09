@@ -1,3 +1,4 @@
+import { buildLarkBaseMultiHistoryWriteIntent, createLarkBaseSelectedMultiHistoryWriter } from '../providers/lark-base/src/selected-multi-history-writer.js';
 import test from 'node:test';
 import { normalizeInvitationEligibilityLookup } from '../providers/backstage/src/invitation-eligibility.js';
 import assert from 'node:assert/strict';
@@ -65,13 +66,14 @@ async function fixture(t, writeOutcome = 'success', options = {}) {
   const appendIntents=payloads.appendExisting.map(x=>buildLarkBaseImageAppendIntent({appendSelection,uploadSelection,tableId:config.invitationStateTableId,
     avatarField:prepared.bindings.state.avatar,baselineRecord:c.state.history.find(r=>r.record_id===x.recordId),baselineAttachments:[],avatar:x.avatar,planSha256:plan.planSha256}));
   const intentArgs={createSelection:c.writeSelection,updateSelection:c.updateSelection,appendSelection,uploadSelection,createIntent,updateIntent,appendIntents};
-  const intent=buildLarkBaseHistoryWriteIntent(intentArgs),events=[];
+  const multiArgs={...intentArgs,updateIntents:updateIntent?[updateIntent]:[],createIntents:createIntent?[createIntent]:[]};
+  const intent=options.multi?buildLarkBaseMultiHistoryWriteIntent(multiArgs):buildLarkBaseHistoryWriteIntent(intentArgs),events=[];
   const transportFactory=opts=>{
     const transport=c.transportFactory(opts),request=transport.request.bind(transport),preflight=transport.preflight.bind(transport);
     return {...transport,async preflight(){if(options.deny===opts.selection.binding.operationContracts[0].operationId)throw Error('denied downstream');return preflight();},
       async request(id,args){const result=await request(id,args);if(id==='records:batch-update'&&options.wrongUpdate)c.state.history[1].fields.Nickname='Changed';return result;}};
   };
-  const writer=createLarkBaseSelectedHistoryWriter({...intentArgs,readSelection:c.selection,mediaSelection,transportFactory,intent,approvedIntentSha256:intent.intentSha256,
+  const writer=(options.multi?createLarkBaseSelectedMultiHistoryWriter:createLarkBaseSelectedHistoryWriter)({...intentArgs,...(options.multi?multiArgs:{}),readSelection:c.selection,mediaSelection,transportFactory,intent,approvedIntentSha256:intent.intentSha256,
     authorizeIntent:actual=>actual.intentSha256===intent.intentSha256,onEvent:event=>{events.push(event);if(options.eventFailure===event.stage)throw Error('event unavailable');}});
   const client = { ...reader, ...writer };
   return { c, reader, plan, events, file, prepared, intentArgs, intent, writer, payloads, secondFile,
@@ -113,7 +115,7 @@ test('mixed intent rejects changed plan/destination, overlapping targets and mod
   assert.throws(()=>buildLarkBaseHistoryWriteIntent({...f.intentArgs,updateIntent}));
  }
  assert.throws(()=>buildLarkBaseHistoryWriteIntent({...f.intentArgs,appendIntents:[...f.intentArgs.appendIntents,...f.intentArgs.appendIntents]}));
- assert.throws(()=>buildInvitationHistoryWritePayloads({prepared:{...f.prepared,corePlan:{...f.prepared.corePlan,creates:Array(101).fill(f.prepared.corePlan.creates[0])}}}));
+ assert.equal(buildInvitationHistoryWritePayloads({prepared:{...f.prepared,corePlan:{...f.prepared.corePlan,creates:Array(101).fill(f.prepared.corePlan.creates[0])}}}).creates.length,101);
  assert.equal(writes(f).length,0);
 });
 
@@ -139,4 +141,13 @@ test('displayed account-not-found does not block other observed rows and is reco
  assert.equal((await f.apply()).verified,true);
  assert(f.c.state.history.some(r=>r.fields.Eligibility==='見つかりません'));
  assert(f.c.state.history.some(r=>r.fields.Eligibility==='対象'));
+});
+
+test('multi-batch writer preserves mixed image ordering through the Skill',async t=>{
+ const f=await fixture(t,'success',{multi:true});assert.equal((await f.apply()).verified,true);
+ assert.deepEqual(writes(f).map(x=>x[2].split('/').at(-1)),['batch_update','batch_create','upload_all','append_attachments','upload_all','append_attachments']);
+ assert.deepEqual((await f.replan()).counts,{create:0,update:0,attach:0,alreadyApplied:3});
+});
+test('multi-batch preflight checks downstream image bytes before any write',async t=>{
+ const f=await fixture(t,'success',{multi:true});fs.writeFileSync(f.secondFile,'changed');await assert.rejects(f.apply());assert.equal(writes(f).length,0);
 });

@@ -1314,3 +1314,7 @@ Provider 281025d (knowledge 2026-09-10.1) restores owner-described source/intern
 ### Displayed account-not-found correction — 2026-09-10
 
 Provider 4d72c97 / knowledge 2026-09-10.2 supersedes the earlier not-found mapping: the known displayed source status remains observed and does not trigger the generic unknown-result batch stop. All 44 focused tests pass, including mixed recording/readback and retained unknown-acquisition rejection. No live mutation or completed #6 acceptance is claimed.
+
+### Invitation multi-batch development — 2026-09-10
+
+Lark Provider d1523b5 and invitation Skill 4a9a7dc support full payloads and ordered multi-batch writes under one parent plan. 251 focused tests pass. Runtime restart integration and subtype retention remain unfinished; #6 remains In Progress. No production activation or registry publication. See A migration parity audit.
