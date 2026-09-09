@@ -1,0 +1,31 @@
+# 復旧検証と後片付けの結果を分離する案
+
+2026-09-08。オーナーはversion 2による結果分離と旧receiptの読取り互換を採用。実復元・削除・稼働設定の変更なし。
+
+採用済み移行計画は、復元結果と後片付け結果を分け、後片付け成功をv2全体の必須ゲートにしない。一方、現行version 1のverified receiptはcleanup verifiedを必須とする。既存receiptの条件を緩めず、次のversion 2を別APIとして追加する案を推奨する。
+
+- 復元結果はschema・件数・対応する論理hash・明示的に必須とした添付検証で判定する。
+- cleanupは未実施／承認待ち／検証済み／不明／失敗を別に記録する。復元成功から削除許可を推定しない。
+- version 2の計画と結果は、元backup receipt、計画hash、明示的に選択した本番参照と隔離先参照へ束縛する。参照が変われば承認を使い回せない。
+- version 1の読取り・hash・cleanup必須条件は保持する。新しい結果を旧形式へ黙って変換しない。
+- 保持側は復元が検証されたbackupをcleanup状態によらず保護する。coverage不明では削除候補を生成しない。
+
+現在のpreflightは参照の相違を検査するものの、出力にその参照を含めないため、隔離先だけを変えても計画hashが変わらない構造になっている。またattachment_checkがrequiredでも現行receipt生成関数は添付の検証結果を入力として持たない。新契約ではこれらの束縛も直接テストする。これは実運用で誤復元が起きたとの主張ではない。
+
+変更対象は復旧Skillのcore・参照文書・直接テスト、および親所有の保持側統合検証。完了条件は旧receipt互換性、新しい復元／cleanupの独立判定、宛先変更と必須添付不足の拒否、保持側の参照保護を合成入力で示すこと。実行Providerや運用cleanupは別ゲート。
+
+採用後の変更カード：主分類D、副分類E。復旧Skillに別exportでversion 2結果と、検証済み復元が参照するbackup hash集合を生成する中立APIを追加する。保持Skillの既存boolean境界へRuntimeが明示的に渡す構成とし、Skill間依存を追加しない。順序は結果契約→旧形式との同時検証→親統合テスト→梱包資源検証。計画・結果はprivate参照を含むためowner-onlyで扱う。未知のcoverage・壊れたreceipt・必須添付不足は保護条件を弱めない。並列なし、ソース差分を戻して復旧可能。JavaScriptを使用する（Node >=22の全対応版とnpm内配布でnative TypeScriptを保証できないため）。
+
+## 分離案と独立した既存preflightの修正
+
+変更カード：主分類B。既存preflightの承認hashが隔離先変更を区別しない点と、非booleanの承認フラグでready表示になる点のみを修正する。これは新しい結果receiptの採用を待たず、現行の明示的な隔離先・承認束縛を満たすための修正。生成計画に本番／隔離先参照を含め、参照なしの旧preflightは再計画を要求する。version 1の完成済みreceiptの読取り・hash・cleanup条件は不変。完了条件は宛先差hash、旧計画の拒否、非boolean拒否と既存5件の回帰。実復元・削除・公開・導入は行わず、所有差分を戻して復旧できる。その後、version 2の結果分離もオーナーが採用した。
+
+## 検証・checkpoint
+
+現行preflightを対象参照へ束縛し、非boolean承認と参照なしの旧preflightを拒否した。完成済みversion 1 receiptの読取り・hash・cleanup条件は維持。新しいversion 2は復元をverified／incomplete／failed、cleanupを独立5状態で表し、明示的な必須添付の未確認を成功扱いにしない。完全な同一Baseの証拠だけから保護するbackup hash集合を生成し、保持Skillに依存させずRuntimeの引渡し境界を用意した。実Runtimeへの組込みは未実施。
+
+所有者21件、保持側7件＋親統合5件が成功。新規一時consumerを明示選択し、外貨売上候補と復旧候補を固定lock・scripts無効で導入（6packages）、55件成功。配布25ファイルはsource byte一致、公開内容・Skill形式・差分検査も成功。実復元・削除・公開・稼働導入はしていない。
+
+所有者commitは `c18a8d204d9cb42f5604f255f613dccdbeb0d085`（`codex/recovery-result-v2`）。親indexのsubmodule pinは未採用、元の稼働配布物は維持。戻す場合はこの候補commitと親統合テスト／記録の所有差分だけを対象とする。元のversion 1 receiptを変換・削除する必要はない。次のゲートは正式名・版・親pinの選択と、明示的な隔離先／Providerでの実復元受入。証拠はignored `hour-final-candidate-archives.json`、`hour-final-installed-tests.json`。
+
+最終レビューで未知のattachment_checkが暗黙にdocument-limitationsへ落ちないよう拒否を追加した。専用テストを含む所有者21件、再packした最新候補の一時導入55件が成功した。

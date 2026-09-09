@@ -12,6 +12,49 @@ It is a working model rather than an authoritative statement of contracts, accou
 
 The document intentionally excludes creator identities, credentials, production records, private URLs, and internal external-system identifiers.
 
+### 1.1 Adopted scouting vocabulary
+
+Owner-approved on 2026-09-08. Use consistent meanings within the business
+context, rather than treating platform labels as universal business terms.
+The Japanese terms below are the adopted owner-facing vocabulary; English
+equivalents describe the concepts, not newly adopted API identifiers.
+
+| Japanese term | English equivalent | Business meaning |
+| --- | --- | --- |
+| 招待可否 | Invitation eligibility | Whether the platform permits an invitation at the observation time; not the agency's decision to approach the creator |
+| スカウト対象判断 | Scouting target decision | The agency's decision whether to approach the candidate |
+| 招待種別 | Invitation type | The kind of invitation, separate from eligibility and progress |
+| 招待状況 | Invitation progress | Progress of an invitation that has been sent; not a pre-invitation eligibility observation |
+| 所属状況 | Membership status | The observed platform membership relationship; not proof of an agency contract's legal formation |
+
+An account can be eligible for an invitation on the platform while the agency
+decides not to scout it. A not-found result or an unavailable observation does
+not establish ineligibility. Avoid using 招待資格 or 招待対象判定 as synonyms
+for the adopted eligibility term, because they obscure these distinctions.
+
+Creator Network in a platform context and LIVE agency as a business must not
+automatically be treated as identical entities or relationships. Keep platform
+membership and the agency's contractual relationship distinct.
+
+Provider-owned knowledge retains source labels and their reviewed mappings.
+The saved BackStage observations distinguish eligibility labels from invitation
+types; this vocabulary adoption does not establish the current live UI or a
+complete invitation-progress vocabulary. It does not rename packages, change
+contracts, reinterpret historical records, or generalize the initial TikTok scope.
+
+### 1.2 Adopted invitation observation boundary
+
+Owner-approved with LGTM on 2026-09-08. New inputs to the invitation eligibility
+recording contract are eligibility observations only; sent-invitation progress
+must not be mixed into them. Not-found and unavailable observations must not
+be converted to ineligible results.
+
+Preserve existing history without automatic conversion. Inspect its meanings
+under a separately selected read scope before presenting any necessary migration
+proposal. This decision does not establish that historical states are uniformly
+eligibility observations, adopt a final package name, or authorize live reads,
+data migration, publication or operational cutover.
+
 ## 2. Core business contexts
 
 The current model has three business contexts.

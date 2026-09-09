@@ -93,8 +93,8 @@ determine what may execute.
 
 | Layer | Decisions and processing it owns | Source placement |
 | --- | --- | --- |
-| Business Skills | Recording, assessment, reconciliation, and business-information retention decisions | Independent `skills/<identifier>/` repository; initially private distribution |
-| Shared operational Skills | Protection scope, recovery requirements, retention, maintenance planning, and verification | Independent `skills/<identifier>/` repository; initially private distribution |
+| Business Skills | Recording, assessment, reconciliation, and business-information retention decisions | Independent public `skills/<identifier>/` source repository; registry-package visibility is separate |
+| Shared operational Skills | Protection scope, recovery requirements, retention, maintenance planning, and verification | Independent public `skills/<identifier>/` source repository; registry-package visibility is separate |
 | Technology-specific implementations and necessary technical maintenance Skills | Service constraints, recognition, and concrete acquisition, restore, or maintenance methods | Corresponding private Provider repository |
 | Runtime composition | Provider selection, pinned versions, and organization-specific operational composition | Private Runtime; live-environment information follows the existing owner-only boundary |
 | Production data, secrets, and execution evidence | Backup payloads, credentials, live identifiers, runtime plans, and related artifacts | Managed storage outside Git |

@@ -1,0 +1,123 @@
+{
+  "adoptedAt": "2026-09-09",
+  "scope": "Development source identity; no runtime activation or registry release",
+  "entries": [
+    {
+      "oldPath": "skills/coin-expense-reconcile",
+      "newPath": "skills/live-agency-coin-purchase-expense-reconcile",
+      "oldId": "coin-expense-reconcile",
+      "newId": "live-agency-coin-purchase-expense-reconcile",
+      "oldPackage": "@flair-agency/coin-expense-reconcile",
+      "newPackage": "@flair-agency/coin-purchase-expense-reconcile",
+      "repository": "flair-agency/live-agency-coin-purchase-expense-reconcile"
+    },
+    {
+      "oldPath": "skills/coin-expense-weekly-application",
+      "newPath": "skills/live-agency-weekly-coin-expense-claim-submit",
+      "oldId": "coin-expense-weekly-application",
+      "newId": "live-agency-weekly-coin-expense-claim-submit",
+      "oldPackage": "@flair-agency/coin-expense-weekly-application",
+      "newPackage": "@flair-agency/weekly-coin-expense-claim-submit",
+      "repository": "flair-agency/live-agency-weekly-coin-expense-claim-submit"
+    },
+    {
+      "oldPath": "skills/creator-insight-sync",
+      "newPath": "skills/live-agency-creator-assessment-update",
+      "oldId": "creator-insight-sync",
+      "newId": "live-agency-creator-assessment-update",
+      "oldPackage": "@flair-agency/creator-insight-sync",
+      "newPackage": "@flair-agency/creator-assessment-update",
+      "repository": "flair-agency/live-agency-creator-assessment-update"
+    },
+    {
+      "oldPath": "skills/creator-invitation-status-compaction",
+      "newPath": "skills/live-agency-creator-invitation-eligibility-history-deduplicate",
+      "oldId": "creator-invitation-status-compaction",
+      "newId": "live-agency-creator-invitation-eligibility-history-deduplicate",
+      "oldPackage": "@flair-agency/creator-invitation-status-compaction",
+      "newPackage": "@flair-agency/creator-invitation-eligibility-history-deduplicate",
+      "repository": "flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate"
+    },
+    {
+      "oldPath": "skills/creator-invitation-status-sync",
+      "newPath": "skills/live-agency-creator-invitation-eligibility-record",
+      "oldId": "creator-invitation-status-sync",
+      "newId": "live-agency-creator-invitation-eligibility-record",
+      "oldPackage": "@flair-agency/creator-invitation-status-sync",
+      "newPackage": "@flair-agency/creator-invitation-eligibility-record",
+      "repository": "flair-agency/live-agency-creator-invitation-eligibility-record"
+    },
+    {
+      "oldPath": "skills/creator-live-history-compaction",
+      "newPath": "skills/live-agency-creator-live-session-history-prune",
+      "oldId": "creator-live-history-compaction",
+      "newId": "live-agency-creator-live-session-history-prune",
+      "oldPackage": "@flair-agency/creator-live-history-compaction",
+      "newPackage": "@flair-agency/creator-live-session-history-prune",
+      "repository": "flair-agency/live-agency-creator-live-session-history-prune"
+    },
+    {
+      "oldPath": "skills/creator-live-history-sync",
+      "newPath": "skills/live-agency-creator-live-observation-record",
+      "oldId": "creator-live-history-sync",
+      "newId": "live-agency-creator-live-observation-record",
+      "oldPackage": "@flair-agency/creator-live-history-sync",
+      "newPackage": "@flair-agency/creator-live-observation-record",
+      "repository": "flair-agency/live-agency-creator-live-observation-record"
+    },
+    {
+      "oldPath": "skills/creator-live-metrics-compaction",
+      "newPath": "skills/live-agency-creator-live-metric-history-prune",
+      "oldId": "creator-live-metrics-compaction",
+      "newId": "live-agency-creator-live-metric-history-prune",
+      "oldPackage": "@flair-agency/creator-live-metrics-compaction",
+      "newPackage": "@flair-agency/creator-live-metric-history-prune",
+      "repository": "flair-agency/live-agency-creator-live-metric-history-prune"
+    },
+    {
+      "oldPath": "skills/creator-profile-compaction",
+      "newPath": "skills/live-agency-creator-profile-history-prune",
+      "oldId": "creator-profile-compaction",
+      "newId": "live-agency-creator-profile-history-prune",
+      "oldPackage": "@flair-agency/creator-profile-compaction",
+      "newPackage": "@flair-agency/creator-profile-history-prune",
+      "repository": "flair-agency/live-agency-creator-profile-history-prune"
+    },
+    {
+      "oldPath": "skills/lark-base-backup",
+      "newPath": "skills/live-agency-data-backup-create",
+      "oldId": "lark-base-backup",
+      "newId": "live-agency-data-backup-create",
+      "oldPackage": "@flair-agency/lark-base-backup",
+      "newPackage": "@flair-agency/data-backup-create",
+      "repository": "flair-agency/live-agency-data-backup-create"
+    },
+    {
+      "oldPath": "skills/lark-base-backup-retention",
+      "newPath": "skills/live-agency-data-backup-retention-plan",
+      "oldId": "lark-base-backup-retention",
+      "newId": "live-agency-data-backup-retention-plan",
+      "oldPackage": "@flair-agency/live-agency-data-backup-retention-plan",
+      "newPackage": "@flair-agency/data-backup-retention-plan",
+      "repository": "flair-agency/live-agency-data-backup-retention-plan"
+    },
+    {
+      "oldPath": "skills/lark-base-disaster-recovery-drill",
+      "newPath": "skills/live-agency-data-recovery-test",
+      "oldId": "lark-base-disaster-recovery-drill",
+      "newId": "live-agency-data-recovery-test",
+      "oldPackage": "@flair-agency/lark-base-disaster-recovery-drill",
+      "newPackage": "@flair-agency/data-recovery-test",
+      "repository": "flair-agency/live-agency-data-recovery-test"
+    },
+    {
+      "oldPath": "skills/lark-base-maintenance",
+      "newPath": "skills/live-agency-datastore-maintain",
+      "oldId": "lark-base-maintenance",
+      "newId": "live-agency-datastore-maintain",
+      "oldPackage": "@flair-agency/lark-base-maintenance",
+      "newPackage": "@flair-agency/datastore-maintain",
+      "repository": "flair-agency/live-agency-datastore-maintain"
+    }
+  ]
+}

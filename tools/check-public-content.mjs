@@ -24,7 +24,11 @@ async function files(directory) {
 }
 
 const findings = [];
-const roots = process.argv.slice(2).length ? process.argv.slice(2).map(p => path.resolve(p)) : (await readdir(path.join(rootDir, 'skills'))).map(name => path.join(rootDir, 'skills', name));
+const roots = process.argv.slice(2).length
+  ? process.argv.slice(2).map(p => path.resolve(p))
+  : (await readdir(path.join(rootDir, 'skills'), { withFileTypes: true }))
+      .filter(entry => entry.isDirectory())
+      .map(entry => path.join(rootDir, 'skills', entry.name));
 for (const owner of roots) for (const filePath of await files(owner)) {
   const content = await readFile(filePath, "utf8").catch(() => null);
   if (content === null) continue;

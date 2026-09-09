@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { INSIGHT_PROPOSAL_KIND, INSIGHT_RULE_VERSION } from "../../skills/creator-insight-sync/scripts/insight_sync_core.mjs";
+import { INSIGHT_PROPOSAL_KIND, INSIGHT_RULE_VERSION } from "../../skills/live-agency-creator-assessment-update/scripts/insight_sync_core.mjs";
 const NOW = Date.parse("2030-01-31T03:04:05.000Z");
 const CREATOR_ID = "recCreator0001";
 const PROFILE_ID = "recProfile0001";

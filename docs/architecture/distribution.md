@@ -16,7 +16,7 @@ Status: adopted. Implementation and release evidence are owned by [migration sta
 | --- | --- |
 | Namespace | `@flair-agency` |
 | Registry | GitHub Packages |
-| Initial visibility | Private; later public transitions decided per package |
+| Initial registry package visibility | Private; later public transitions decided per package |
 | Owner / publisher | Flair organization / GitHub Actions |
 | Contents | Independently managed libraries, Providers, Skills and Runtime; Skill instructions/resources are package contents |
 
@@ -27,3 +27,21 @@ Source associations must reflect actual owning repositories and adopted child co
 `tools/m1-distribution.mjs` verifies selected package archives and an exact isolated deployment manifest/lock. Internal packages must resolve to the selected archives; approved exact third-party dependencies are integrity-bound to the existing lock/cache. These offline checks are distinct from registry publication/retrieval. `tools/templates/m1-publish.yml` is a preparation template, not an installed or executed workflow; owning source retrieval, dependency locks and cross-repository Actions permissions must be completed before dispatch.
 
 Real configuration, credentials, source exports and execution state remain outside Git. Initial private visibility does not change the public Skill information boundary.
+
+## Source repository visibility and synchronization
+
+Owner clarification, 2026-09-09: business and shared operational Skill source
+repositories are public. The initial private registry-package decision above
+does not make their source repositories permanently private. Providers and
+organization-specific Runtime composition remain private. Review Skill content
+and Git history before public creation or visibility changes; record any pending
+publication explicitly. Public source does not imply that private package
+dependencies can be installed anonymously.
+
+Keep coherent development checkpoints on remote work branches under the
+[development synchronization policy](../governance/development-policy.md#local-and-remote-source-synchronization).
+Branch publication, default-branch integration, registry release and production
+activation are separate states. Source naming and repository association can be
+completed before live workflow acceptance. The adopted source identities and
+remaining synchronization state are recorded in `tools/m1-source-repositories.json`
+and [the reconciliation record](../reviews/repository-reconciliation-ja.md).

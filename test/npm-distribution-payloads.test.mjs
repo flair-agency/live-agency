@@ -43,15 +43,15 @@ test('complete independent-package closure, imports, exports, links, agent metad
       }
     }
   }
-  const yaml = await fs.readFile(path.join(args.destination, 'coin-expense-reconcile/agents/openai.yaml'), 'utf8');
-  assert.match(yaml, /\$coin-expense-reconcile/);
-  const md = await fs.readFile(path.join(args.destination, 'coin-expense-reconcile/SKILL.md'), 'utf8');
-  assert.match(md, /^---\nname: coin-expense-reconcile\n/);
+  const yaml = await fs.readFile(path.join(args.destination, 'live-agency-coin-purchase-expense-reconcile/agents/openai.yaml'), 'utf8');
+  assert.match(yaml, /\$live-agency-coin-purchase-expense-reconcile/);
+  const md = await fs.readFile(path.join(args.destination, 'live-agency-coin-purchase-expense-reconcile/SKILL.md'), 'utf8');
+  assert.match(md, /^---\nname: live-agency-coin-purchase-expense-reconcile\n/);
   await assert.rejects(assemble(args), /destination reuse/);
 });
 for (const [label, change, error] of [
   ['missing helper', s => fs.unlink(path.join(s, 'packages/cli-utils/src/is-main.mjs')), /closure/],
-  ['missing reference', s => fs.unlink(path.join(s, 'skills/coin-expense-reconcile/references/registration.md')), /closure/],
+  ['missing reference', s => fs.unlink(path.join(s, 'skills/live-agency-coin-purchase-expense-reconcile/references/registration.md')), /closure/],
   ['extra unrelated Skill', s => fs.writeFile(path.join(s, 'unrelated-SKILL.md'), 'extra'), /closure/],
   ['changed source', s => fs.appendFile(path.join(s, 'packages/provider-protocol/LICENSE'), 'changed'), /digest/],
   ['symbolic link', async s => { const p = path.join(s, 'packages/provider-protocol/LICENSE'); await fs.unlink(p); await fs.symlink(path.join(source, 'LICENSE'), p); }, /link/],
