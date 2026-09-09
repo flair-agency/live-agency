@@ -46,3 +46,10 @@
 ## 公開承認後の実行
 
 所有者の一覧への明示承認を受け、全18 SkillのPublicと承認SHAのremote保存を確認。既存公開MCPの指定branchも保存。全34コンポーネントの現在HEADが選択したGitHub remoteのbranchから取得可能であることを確認してから親の参照を採用する。既存3パッケージのregistry visibility再確認はread:packages不足の403で未確認。package設定変更・releaseは実行していない。公開処理の自動承認blockは明示承認により解消済み。
+
+
+## 最終検証
+
+親commit `268aef1f9266acdbefedd0c6209d4c3e54f3a90d` をGitHubから全submodule付きで新規cloneし、既存registry cacheを用いた `npm ci --ignore-scripts --offline`、正式な全体test runner（1,013件）、公開内容checkがすべて成功した。これはsource取得を含む開発compositionの再現検証であり、匿名registry導入や本番検証ではない。元のcheckout・全34子・新規cloneはいずれもGit statusがcleanだった。以降の更新はこの検証記録とチケットのみ。
+
+親は `codex/source-reconciliation-20260909`、GitHubで保存済み。既存remoteの執筆引継ぎcommit `6c4fa75` を履歴を保持してmergeした。mainへの統合なし。既存の運用環境・公開済みpackage version・データは変更していない。旧branch/commitは復旧参照として保持。参照する最新情報はこの親branchと記録された子commit。
