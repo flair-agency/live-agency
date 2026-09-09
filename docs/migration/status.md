@@ -1,10 +1,16 @@
 # Current migration and documentation status
 
+## Designated Work host verified — 2026-09-10
+
+Production is the owner's local ChatGPT Work project **C|OPS|エージェンシー運営** (`g-p-693bd2fb16bc8191ac195f072bb993e2`). Its existing task `定期運用実行｜LIVEエージェンシー` (`01a05397-d1d0-7ed0-8c7a-c271aee04a4f`) discovered the installed `live-agency-runtime` Skill and invoked its fixed launcher with `--instructions` at 03:10:58 JST. Turn `01a0875d-5091-7861-a4f5-e6a440182c74` returned Runtime 1.3.0, profile Skill 1.1.0, TikTok Web Provider 1.1.0 and Lark Base Provider 1.2.0, with `ready`, zero external operations and `businessWorkflowVerified: false`. No reinstall or business operation was needed.
+
+The earlier Codex-only proof was insufficient and its production-completion claim was retracted. This separate execution in the designated project's actual task supplies the missing host evidence. #42 is ready for owner acceptance of M1 resource loading, not completed business synchronization. New-task implicit selection and cloud Work are not covered. See the [execution and self-review record](../reviews/runtime-first-production-plan-ja.md).
+
 ## Runtime-first production delivery — owner direction, 2026-09-10
 
 The immediate priority is a usable production Runtime, followed by the first working Skill. M1 (Runtime), M2 (Provider) and M3 (Skill) are incremental delivery boundaries; completing every Provider, Skill or both A workflows is not a prerequisite for releasing the Runtime. Reduce redundant or implementation-mirroring tests while retaining required behavior and deployment verification. Do not repeat unchanged validation without a concrete reason.
 
-The owner approved the [delivery order](runtime-first-delivery.md) and a 90-minute execution limit. Runtime 1.3.0 was published privately from `052a2a4` and installed independently on the local production host. The registered Codex entry loaded the selected profile Skill, TikTok Web instructions and Lark Base API from outside the development checkout; published and installed integrity matched, with no external source links. [#42](https://github.com/flair-agency/live-agency/issues/42) tracks owner acceptance. Fresh-task automatic Skill selection remains unverified. Service access and profile registration are subsequent M2/M3 outcomes, not established by this resource-loading result. See the [Japanese execution record](../reviews/runtime-first-production-plan-ja.md). Older bundled A release checkpoints below do not override this current priority.
+The owner approved the [delivery order](runtime-first-delivery.md) and a 90-minute execution limit. Runtime 1.3.0 was published privately from `052a2a4` and installed independently on the local device. The registered Codex entry loaded the selected profile Skill, TikTok Web instructions and Lark Base API from outside the development checkout; published and installed integrity matched, with no external source links. [#42](https://github.com/flair-agency/live-agency/issues/42) tracks owner acceptance. Fresh-task automatic Skill selection remains unverified. Service access and profile registration are subsequent M2/M3 outcomes, not established by this resource-loading result. See the [Japanese execution record](../reviews/runtime-first-production-plan-ja.md). Older bundled A release checkpoints below do not override this current priority.
 
 ## Source synchronization checkpoint — 2026-09-09
 
