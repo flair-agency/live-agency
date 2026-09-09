@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { RETENTION_POLICY as PROFILE_RETENTION_POLICY } from "../skills/creator-profile-compaction/scripts/lark_profile_compact.mjs";
+import { RETENTION_POLICY as PROFILE_RETENTION_POLICY } from "../skills/live-agency-creator-profile-history-prune/scripts/lark_profile_compact.mjs";
 import {
   RETENTION_POLICY,
   applyPlan,
@@ -9,7 +9,7 @@ import {
   calculateCompactionPlanSha256,
   inspectPlan,
   resolveFields,
-} from "../skills/creator-live-metrics-compaction/scripts/lark_live_metrics_compact.mjs";
+} from "../skills/live-agency-creator-live-metric-history-prune/scripts/lark_live_metrics_compact.mjs";
 
 const NOW = Date.parse("2030-08-28T12:00:00+09:00");
 const DAY_MS = 24 * 60 * 60 * 1000;

@@ -24,37 +24,37 @@
 	url = https://github.com/flair-agency/live-agency-provider-tiktok-web.git
 [submodule "mcp/operations"]
 	path = mcp/operations
-	url = /Users/naokikimura/workspace/.live-agency-development/checkpoints/sep0-20260906-090722-sep1-8606/repos/05/repository.bundle
+	url = https://github.com/flair-agency/live-agency-operations-mcp.git
 [submodule "skills/coin-expense-reconcile"]
-	path = skills/coin-expense-reconcile
-	url = ./skills/coin-expense-reconcile
+	path = skills/live-agency-coin-purchase-expense-reconcile
+	url = https://github.com/flair-agency/live-agency-coin-purchase-expense-reconcile.git
 [submodule "skills/coin-expense-weekly-application"]
-	path = skills/coin-expense-weekly-application
-	url = ./skills/coin-expense-weekly-application
+	path = skills/live-agency-weekly-coin-expense-claim-submit
+	url = https://github.com/flair-agency/live-agency-weekly-coin-expense-claim-submit.git
 [submodule "skills/live-agency-creator-monthly-activity-reconcile"]
 	path = skills/live-agency-creator-monthly-activity-reconcile
 	url = https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git
 [submodule "skills/creator-insight-sync"]
-	path = skills/creator-insight-sync
-	url = ./skills/creator-insight-sync
+	path = skills/live-agency-creator-assessment-update
+	url = https://github.com/flair-agency/live-agency-creator-assessment-update.git
 [submodule "skills/creator-invitation-status-compaction"]
-	path = skills/creator-invitation-status-compaction
-	url = ./skills/creator-invitation-status-compaction
+	path = skills/live-agency-creator-invitation-eligibility-history-deduplicate
+	url = https://github.com/flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate.git
 [submodule "skills/creator-invitation-status-sync"]
-	path = skills/creator-invitation-status-sync
-	url = ./skills/creator-invitation-status-sync
+	path = skills/live-agency-creator-invitation-eligibility-record
+	url = https://github.com/flair-agency/live-agency-creator-invitation-eligibility-record.git
 [submodule "skills/creator-live-history-compaction"]
-	path = skills/creator-live-history-compaction
-	url = ./skills/creator-live-history-compaction
+	path = skills/live-agency-creator-live-session-history-prune
+	url = https://github.com/flair-agency/live-agency-creator-live-session-history-prune.git
 [submodule "skills/creator-live-history-sync"]
-	path = skills/creator-live-history-sync
-	url = ./skills/creator-live-history-sync
+	path = skills/live-agency-creator-live-observation-record
+	url = https://github.com/flair-agency/live-agency-creator-live-observation-record.git
 [submodule "skills/creator-live-metrics-compaction"]
-	path = skills/creator-live-metrics-compaction
-	url = ./skills/creator-live-metrics-compaction
+	path = skills/live-agency-creator-live-metric-history-prune
+	url = https://github.com/flair-agency/live-agency-creator-live-metric-history-prune.git
 [submodule "skills/creator-profile-compaction"]
-	path = skills/creator-profile-compaction
-	url = ./skills/creator-profile-compaction
+	path = skills/live-agency-creator-profile-history-prune
+	url = https://github.com/flair-agency/live-agency-creator-profile-history-prune.git
 [submodule "skills/live-agency-creator-profile-record"]
 	path = skills/live-agency-creator-profile-record
 	url = https://github.com/flair-agency/live-agency-creator-profile-record.git
@@ -62,17 +62,17 @@
 	path = skills/live-agency-gift-history-merge
 	url = https://github.com/flair-agency/live-agency-gift-history-merge.git
 [submodule "skills/lark-base-backup"]
-	path = skills/lark-base-backup
-	url = ./skills/lark-base-backup
+	path = skills/live-agency-data-backup-create
+	url = https://github.com/flair-agency/live-agency-data-backup-create.git
 [submodule "skills/lark-base-backup-retention"]
-	path = skills/lark-base-backup-retention
-	url = ./skills/lark-base-backup-retention
+	path = skills/live-agency-data-backup-retention-plan
+	url = https://github.com/flair-agency/live-agency-data-backup-retention-plan.git
 [submodule "skills/lark-base-disaster-recovery-drill"]
-	path = skills/lark-base-disaster-recovery-drill
-	url = ./skills/lark-base-disaster-recovery-drill
+	path = skills/live-agency-data-recovery-test
+	url = https://github.com/flair-agency/live-agency-data-recovery-test.git
 [submodule "skills/lark-base-maintenance"]
-	path = skills/lark-base-maintenance
-	url = ./skills/lark-base-maintenance
+	path = skills/live-agency-datastore-maintain
+	url = https://github.com/flair-agency/live-agency-datastore-maintain.git
 [submodule "packages/cli-utils"]
 	path = packages/cli-utils
 	url = https://github.com/flair-agency/live-agency-cli-utils.git
@@ -91,3 +91,12 @@
 [submodule "packages/contracts"]
 	path = packages/contracts
 	url = https://github.com/flair-agency/live-agency-contracts.git
+[submodule "packages/foreign-revenue-core"]
+	path = packages/foreign-revenue-core
+	url = https://github.com/flair-agency/live-agency-foreign-revenue-core.git
+[submodule "skills/live-agency-foreign-currency-revenue-recognize"]
+	path = skills/live-agency-foreign-currency-revenue-recognize
+	url = https://github.com/flair-agency/live-agency-foreign-currency-revenue-recognize.git
+[submodule "skills/live-agency-foreign-currency-receivable-settle"]
+	path = skills/live-agency-foreign-currency-receivable-settle
+	url = https://github.com/flair-agency/live-agency-foreign-currency-receivable-settle.git

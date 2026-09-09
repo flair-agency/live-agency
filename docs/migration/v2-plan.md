@@ -73,7 +73,7 @@ Use `@flair-agency`, GitHub Packages, initial Private visibility and Flair organ
 
 The adopted common packages are `provider-protocol`, `private-files`, `lark-transport`, `cli-utils` and `row-archive`. The first three supersede `source-provider-api`, `private-runtime-files` and `lark-core`. Runtime owns discovery/composition. The published baseline has Provider-owned capability contracts; the neutral contract revision gate below replaces that target. Skills retain business rules. The corrected published foundation graph has no Provider-to-Skill dependency or package cycle. Unmigrated Skill sources retain their documented migration work.
 
-The 16 Skill sources include the frozen `coin-expense-weekly-application` prototype. Source preservation is distinct from supported distribution and acceptance. Its presence does not reopen development or activate it. See the [README](../../README.md) for directory policy and development setup.
+The 16 Skill sources include the frozen `live-agency-weekly-coin-expense-claim-submit` prototype. Source preservation is distinct from supported distribution and acceptance. Its presence does not reopen development or activate it. See the [README](../../README.md) for directory policy and development setup.
 
 ## Neutral contract revision gate
 
@@ -228,9 +228,9 @@ This work is included in the three stages, not an independent SN/FR programme or
 
 Skill identifiers use the business namespace `live-agency`; npm uses the organization scope `@flair-agency`. Keep the source repository basename, Skill directory and `SKILL.md` name identical, including `live-agency-`. Under Flair, the source URL is `https://github.com/flair-agency/<skill-identifier>`. Map npm identifiers explicitly; the npm name is not the source of the Skill repository name. Candidate Skill names imply candidate repository names until the owning responsibility and identifier are adopted. Installation resolves name, provenance and pinned version, rejects ambiguous same-name sources and preserves unrelated installations.
 
-The following inherited candidates remain inputs to D1, not a command to rename every source mechanically:
+On 2026-09-09 the owner adopted the pending source identifiers during repository reconciliation. The mapping below records previous identifiers and adopted targets. This adopts names and source associations, not additional functionality, registry releases, or production routes. Frozen weekly claims remain frozen; coordinated maintenance retains its existing bounded planning scope. See tools/skill-source-identities.json for the exact migration map.
 
-| Current identifier | Actual task | Candidate identifier | Alignment considerations |
+| Previous identifier | Actual task | Adopted identifier | Alignment considerations |
 | --- | --- | --- | --- |
 | `creator-activity-sync` | Reconcile monthly activity results with existing records and apply authorized metric changes | `live-agency-creator-monthly-activity-reconcile` | Distinguish this from scout activity logs and observed LIVE duration; state that only existing records may be updated |
 | `creator-invitation-status-sync` | Record invitation-eligibility observations as transition history | `live-agency-creator-invitation-eligibility-record` | Distinguish eligibility from the progress of a sent invitation; reconcile the existing state contract with v2 vocabulary and migrate the contract if its meaning narrows |
@@ -245,7 +245,7 @@ The following inherited candidates remain inputs to D1, not a command to rename 
 | `coin-expense-reconcile` | Match coin-purchase evidence to existing expense candidates and verify approved registrations | `live-agency-coin-purchase-expense-reconcile` | Distinguish purchases from coin consumption, estimated gift value, and new manual expense entry |
 | `coin-expense-weekly-application` | Frozen prototype that groups weekly coin expenses into a draft or submitted claim | `live-agency-weekly-coin-expense-claim-submit` | Preserve frozen status; the week is the claim unit, not the execution cadence; evaluate separate draft-preparation and submission responsibilities only if development is reopened |
 | `lark-base-backup` | Check coverage, create backups for a requested recovery scope, and verify stored content | `live-agency-data-backup-create` | Reuse equivalent artifacts; separate Base-specific formats and routes from the abstract contract and explicitly define attachment coverage |
-| `lark-base-backup-retention` | Protect retained generations and dependent artifacts while planning and verifying deletion of unneeded backups | `live-agency-data-backup-prune` | Make deletion visible in the name; if the delivered capability only plans, use `live-agency-data-backup-retention-plan` or complete the execution route before advertising pruning |
+| `lark-base-backup-retention` | Plan retained generations and deletion candidates while protecting recoverable backups and dependent artifacts | `live-agency-data-backup-retention-plan` | Owner adopted planning-only acceptance on 2026-09-08; deletion execution is a separate follow-up |
 | `lark-base-disaster-recovery-drill` | Restore stored artifacts into an isolated environment and verify recovery scope | `live-agency-data-recovery-test` | Does not promise all disaster-response work or production recovery; move technology-specific restore routes and checks into Providers |
 | `lark-base-maintenance` | Coordinate capacity, history pruning, backup coverage, generation retention, and recovery testing | `live-agency-datastore-maintain` for the shared maintenance responsibility | Defer a one-to-one migration; separate protection-policy review, capacity maintenance, and business-history retention; place technology-specific operations in Providers and organization-specific sequencing and cadence in Runtime |
 

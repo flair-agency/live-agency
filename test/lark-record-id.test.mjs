@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { isRecordId as isInsightRecordId } from "../skills/creator-insight-sync/scripts/insight_sync_core.mjs";
-import { isRecordId as isLiveRecordId } from "../skills/creator-live-history-sync/scripts/live_history_sync_core.mjs";
-import { isRecordId as isMetricCompactionRecordId } from "../skills/creator-live-metrics-compaction/scripts/lark_live_metrics_compact.mjs";
-import { isRecordId as isProfileCompactionRecordId } from "../skills/creator-profile-compaction/scripts/lark_profile_compact.mjs";
+import { isRecordId as isInsightRecordId } from "../skills/live-agency-creator-assessment-update/scripts/insight_sync_core.mjs";
+import { isRecordId as isLiveRecordId } from "../skills/live-agency-creator-live-observation-record/scripts/live_history_sync_core.mjs";
+import { isRecordId as isMetricCompactionRecordId } from "../skills/live-agency-creator-live-metric-history-prune/scripts/lark_live_metrics_compact.mjs";
+import { isRecordId as isProfileCompactionRecordId } from "../skills/live-agency-creator-profile-history-prune/scripts/lark_profile_compact.mjs";
 import { isRecordId as isProfileRecordId } from "../skills/live-agency-creator-profile-record/scripts/profile_sync_core.mjs";
 
 test("current and legacy Lark record IDs are accepted consistently", () => {

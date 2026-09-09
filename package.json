@@ -39,7 +39,7 @@
     "runtime:test:m2u-4e": "node --test runtime/scripts/creator-activity-sync-runner.test.mjs",
     "runtime:test:mcp": "node --test mcp/operations/test/*.test.mjs",
     "runtime:test:smoke": "node --test runtime/scripts/smoke-test.mjs",
-    "runtime:test:backup-gates": "node --test skills/lark-base-disaster-recovery-drill/test/lark-base-disaster-recovery-drill.test.mjs"
+    "runtime:test:backup-gates": "node --test skills/live-agency-data-recovery-test/test/lark-base-disaster-recovery-drill.test.mjs"
   },
   "engines": {
     "node": ">=22"

@@ -1,6 +1,353 @@
 # Current migration and documentation status
 
-Money Forward candidate M2 selection is recorded in ignored `tmp/m2-moneyforward/selection.json`. No live identity, candidate coverage or API office ID was inferred from the supplied business number. Current tools expose Cloud Accounting, not Cloud Expense candidate browsing; no service calls or credential changes were made. The selected calendar month is not yet complete, so future month-end coverage is not claimed. Next prerequisite: an available authenticated browser execution path; receipt-ID lookup additionally requires the source transaction list before planning.
+## Source synchronization checkpoint — 2026-09-09
+
+The owner approved the exact public source selection: 18 Skills are now public (15 new repositories and 3 visibility changes), and the existing public operations MCP has the approved development branch. All 34 component HEADs were verified on their selected GitHub remotes before parent adoption. Thirteen pending Skill identities were adopted in source, npm metadata and direct caller references; frozen and protected operational scopes are unchanged. The exact map is in `tools/skill-source-identities.json`; current repository/branch/commit evidence is in `tools/m1-source-repositories.json`.
+
+Use the parent `codex/source-reconciliation-20260909` work branch for this source checkpoint. Default-branch integration, registry release and production activation remain separate. Source review and the full development runner passed 1,013 tests; the final clean-clone check is recorded in the reconciliation record. Profile image-resume approval was consumed successfully; no further image approval is pending. BackStage execution-time environment/targets remain owner input for #6/#14.
+
+See [repository reconciliation](../reviews/repository-reconciliation-ja.md) and [public source approval](../reviews/skill-public-source-publication-ja.md). Older local-only and private-source statements below describe earlier checkpoints.
+
+## Owner-selected delivery priorities — 2026-09-08
+
+| Priority | Workflow |
+| --- | --- |
+| A | Invitation status synchronization (the adopted invitation-eligibility scope); profile synchronization |
+| B | LIVE metric synchronization; coin expense processing |
+| C | Revenue recognition and receipt settlement; gift history synchronization |
+| D | Lark Base maintenance, backup and restoration |
+
+Deliver A first, including only the shared capabilities, release checks and per-workflow cutover needed for A. Shared Project items marked A apply only to that slice, not completion of all downstream workflows. Reuse verified evidence; do not repeat broad checks without a changed dependency or unresolved failure. The owner subsequently authorized resuming A implementation; this does not authorize production changes. B–D remain queued. Required data protection for an A operation remains a prerequisite even when the broader maintenance workflow is D. Assessment updates and already accepted monthly work are not assigned a new priority by this instruction. Backup deletion execution remains a separate post-migration follow-up.
+
+
+## Issue organization — 2026-09-08
+
+All 26 existing Project drafts were converted in place to issues in the private `flair-agency/live-agency` repository, preserving Project item identity, status, priority and prior evidence. Two accepted items are closed issues. Three A-only child issues isolate shared Lark readiness, release readiness and cutover; the Project now contains 29 issues.
+
+Use native labels, parent/sub-issue relationships and blocked-by/blocking links. There are 15 parent edges and 30 directed prerequisite edges, verified without dependency cycles. Dependency links gate acceptance; they do not prohibit independent preparation. The `Work size` field is a rough remaining-work estimate (Complete, S, M, L, XL), not elapsed time or credits. Shared/parent sizes overlap child work and must not be summed. `Affected repositories` distinguishes implementation owners from the central issue repository; local owners without an origin remote are explicitly identified.
+
+A execution chain: [[A][M2] Verify Lark capabilities required by invitation and profile synchronization](https://github.com/flair-agency/live-agency/issues/30) → profile/invitation acceptance → [[A][Release] Verify invitation and profile package readiness](https://github.com/flair-agency/live-agency/issues/31) → [[A][Cutover] Activate and verify invitation and profile workflows](https://github.com/flair-agency/live-agency/issues/32). The A workflows depend on the A Lark child, not completion of the whole shared Provider backlog. B–D remain queued.
+
+## Current A checkpoint — 2026-09-09
+
+The scoped Lark capability work in #30 is complete at Provider 6ecd8c9.
+Invitation now composes timestamp updates, batched creates, existing-image resumes
+and new-image appends; Profile preserves existing-image resumes followed by all
+new-image uploads and one token-bearing create batch. All downstream preflights
+run before mutation, intermediate outcomes are read back, and uncertain writes
+stop successors. Earlier selected development live evidence is retained; new
+mixed paths were verified synthetically rather than presented as fresh live scans.
+
+Current Skill source checkpoints are invitation 2b9b929 and Profile 82ccb40,
+including the reviewed instruction/test/dependency changes. Final candidate
+Provider tests: 209; invitation tests: 22; Profile tests: 19. Six candidate archives
+were installed with registry dependencies in an isolated fixed-lock consumer:
+128 files matched, 42 tests passed, and both interactive source resolvers rejected
+unattended execution. The later Skill instruction-only additions passed archive,
+link and export checks without changing the tested code. Profile retains its
+explicit nested Lark 1.1.0 dependency pending final release selection.
+
+#13 completed its approved one-image development resume: zero new rows, one
+image, preserved other rows and zero-write replanning. #6 awaits the owner's
+execution-time BackStage environment and target selection, then #14 acceptance.
+Source-profile M2 #4 remains accepted and is not reopened. A proposed release graph also passed an offline fixed-lock simulation (24 packages, no nested old Lark), 42 execution checks and two source-selection checks. Package-only upgrade and rollback passed 15 checks each and restored the exact original lock. These are unpublished temporary consumers. #31 retains final
+version/dependency/pin/publication selection, and #32 retains operational cutover.
+That earlier candidate window made no live writes; the separately approved image
+resume above subsequently completed. No production activation occurred.
+B–D remain queued. See the current conclusion in the
+[image/history evidence record](../reviews/lark-append-evidence-source-ja.md).
+
+## Earlier local migration preparation checkpoints
+
+The owner-selected development App now has two isolated Bases: normal
+development and recovery testing. Bot metadata readback and owner user access
+are verified. Two profile tables, exact field bindings and two synthetic
+creator rows are prepared in the normal development Base. The single-value
+duplex relation required by the profile Skill is verified; the CLI shortcut's
+default relation is retained only as a negative fixture. No production resource
+is selected. App/resource identifiers remain in private task evidence.
+
+The owner applied both requested development App scopes. Selected Bot preflight,
+field reads and the two-creator target export now succeed. A complete-empty
+record response omitted items; the local parser was repaired without relaxing
+unknown/partial response checks. The same selected composition now produces a
+synthetic Profile plan with two creates, zero attachments and zero conflicts or
+target issues. Selected single-batch create support and Profile integration now
+pass source and fixed-lock archive checks. The owner approved the concrete two-row plan; both records were created and
+verified by readback, and repeat planning returned zero creates. No additional
+owner App permission is currently requested. Empty attachment inventories and
+three-table LIVE read preparation are also locally verified; avatar and complete
+workflow acceptance remain open.
+The local image-at-creation candidate (Provider 04b834f / Profile 6a5e834) now
+passes synthetic upload/create/API-byte readback checks. Development Bot upload
+and media-read preflight passed. The owner approved the concrete image-backed
+synthetic create: one upload and one new record succeeded, stored bytes matched,
+the two existing rows were unchanged, and repeat planning returned zero writes.
+See the [development verification record](../reviews/development-base-verification-ja.md).
+
+Backup retention scope is owner-approved as planning only, with the selected
+target name `live-agency-data-backup-retention-plan`. Acceptance must verify
+retained backups, deletion candidates and reasons while protecting the last
+recoverable backup and recovery-protected generations. Actual storage deletion
+is a separate implementation and acceptance item, outside this migration
+acceptance scope. The local package, Skill metadata and maintenance caller now
+use the selected name; the source checkout path and version 1 plan vocabulary
+are retained. No release or operational installation rename is adopted.
+
+Scouting vocabulary is owner-approved: 招待可否 (invitation eligibility),
+スカウト対象判断 (scouting target decision), 招待種別 (invitation type),
+招待状況 (invitation progress), and 所属状況 (membership status). The
+[domain model](../domain/model.md#11-adopted-scouting-vocabulary) owns the
+definitions. The owner subsequently approved eligibility-only new inputs,
+unknown-result preservation and no automatic historical conversion. See the
+[adopted contract boundary](../domain/model.md#12-adopted-invitation-observation-boundary).
+The local typed implementation now exists; live acceptance and historical
+meaning inspection remain open. This is not M3 completion.
+
+### A invitation checkpoint — 2026-09-09
+
+Local candidates: Lark `90ce5f0` adds baseline-bound timestamp-only updates;
+invitation Skill `021222b` adds typed eligibility observations and destination/
+field-bound version 3 plans; BackStage `43665d4` adds an explicitly selected
+typed handoff from new lookup results. Unknown outcomes remain null and block
+the plan; legacy history is not converted. The trusted caller must review the
+actual history meaning. Synthetic source-to-destination checks cover creation,
+timestamp extension, readback, replay, response loss and rejected drift.
+
+Provider 169, Skill 22 and BackStage 26 source tests passed. The final focused
+parent checks passed 26 tests. Three unpublished archives matched 74 packaged
+files and passed 66 tests with existing development dependencies; this is not
+a new fixed-lock installation. Existing dirty instructions and dependency
+edits remain separate from the narrow code checkpoints. No parent pins,
+publication, schedules or operational routes changed.
+
+The selected development invitation-history table is now created and readback-verified
+with seven fields and a single-valued Creator relation plus its reverse field.
+The five existing development records are preserved. Lark table-create knowledge
+is checkpointed at `7d52a25`. The owner approved an exact version 3 synthetic
+plan: two no-avatar invitation rows were created once and business-readback
+verified. Replay returns zero writes and two already-applied observations.
+The owner separately approved the two-row timestamp-only plan. One batch update
+succeeded, all non-timestamp fields were preserved, and replay returned zero
+writes and two already-applied observations. Retained actual development snapshots also
+reproduce the reviewed plans through the previously unpacked Skill candidate.
+
+The owner approved immutable official CLI source as a distinct implementation
+evidence kind with troubleshooting provenance. Shared transport 48dd77e binds
+repository/commit/file/content hash/date to selection; Lark 0fab06a implements
+one-image append with byte-level preservation, durable provenance events and
+no automatic uncertain-write replay. Transport 83, Provider 178 and related
+integration/inventory 18 tests passed. Two candidate archives matched 55 files
+and passed 38 tests with existing development dependencies.
+
+The owner-approved development append completed once: one existing image was
+preserved and one test image added, with both byte hashes and all other record
+fields verified by readback. No records were created or deleted. Private approval,
+intent, five provenance events and result are retained under append-development-*.
+Invitation's normal avatar-create path still needs integration; Profile new-image
+creation already uses a token-bearing create. Neither Skill's full avatar workflow
+is newly accepted by this Provider test. #14 and #30 are Todo for remaining
+integration/acceptance. The owner then resumed A-only work. Profile missing-image
+resume now passes selected-CLI synthetic integration from the Skill entry point,
+including lost acknowledgment, exact replay rejection, preserved fields, and
+zero writes for missing approval, changed files or stale plans. Eight focused
+Profile/inventory checks passed. Product code changes were unnecessary. Invitation image-create composition now exists at Provider e588027 / Skill
+b9f3889. It binds one create, upload and append to a reviewed parent intent,
+verifies the returned record before upload, and stops after uncertain outcomes.
+Provider 185, Skill 22 and A integration 26 checks passed; three archives matched
+74 files and passed 52 isolated checks. Retained development input reproduces
+the exact image-create plan through the archived candidate. The owner-approved one-row live
+image-create plan completed once: one row and image created, byte readback matched,
+both prior records were preserved, and replay yields zero writes and one
+already-applied observation. The approval is consumed; private events and
+readback are retained. Invitation multi-row image creation is now implemented at Provider c32c7b5 /
+Skill f7b1516: a single create batch retains image-free rows and verifies all
+returned row mappings before sequential image attachment. Provider 191, Skill 22
+and related integration 29 tests passed; three archives matched 76 files and
+passed 61 checks. Mixed invitation operations, Profile multi-image creation and
+source-to-destination acceptance remain open; B–D remain queued. This does not
+constitute live Skill acceptance.
+No publication, parent pin adoption or operational route change occurred.
+
+Current local candidates include the owner-selected LIVE identity rule and the
+foreign-revenue split. Existing operational installations, profiles and monitors
+remain unchanged. The new foreign-revenue owners and recovery candidate have local source commits; recorded parent pins, publication and operational cutover are not adopted.
+
+Seven Lark consumers now declare the already adopted Provider 1.2.0, matching
+the parent lockfile. Their local archives were installed in an isolated consumer
+with registry transitive dependencies using a fixed lockfile and disabled
+scripts. All 88 tests passed; the old monthly-Skill dependency is absent. See the
+[dependency alignment record](../reviews/lark-consumer-dependency-alignment-ja.md).
+This supersedes the earlier 1.0.0 dependency-preflight blocker for these local
+candidates, but not final package or workflow acceptance.
+
+The LIVE Skill now matches creator plus normalized start time. Different end
+times block the entire plan, including metric writes; old approvals cannot be
+reused under the new identity rule. Owning 37 tests and 11 direct integration
+checks passed, and the installed 88-test check includes this candidate. See the
+[LIVE identity record](../reviews/live-session-identity-ja.md). Actual history and
+legacy Provider/MCP distributions remain unchanged.
+
+The owner selected two foreign-revenue Skills and a shared neutral calculation
+package. Three independent local source candidates retain valid legacy plan
+hashes and reject wrong operations, malformed dates and unsafe numeric results.
+The final temporary installation passes 34 foreign-revenue tests and both Skills pass standard metadata
+validation. The original six operational files retain their hashes. See the
+[adopted boundary](foreign-revenue-split.md) and
+[Japanese verification record](../reviews/foreign-revenue-m3-scope-ja.md).
+Accounting Provider acceptance, monitor mapping, final publication and cutover
+are still open. Candidate manifests are private and not adopted into parent pins.
+
+Earlier preparation remains valid within its scope: profile instructions and 19
+owning tests; shared discovery tests moved into the parent; four assessment and
+two profile-pruning safety cases; and removal of backup retention's unused
+recovery-Skill dependency. See the [profile review](../reviews/profile-m3-readiness-ja.md),
+[remaining readiness](../reviews/remaining-m3-readiness-ja.md), and
+[release inventory](../reviews/v2-release-readiness-ja.md).
+The [remaining contract questions](../reviews/remaining-m3-contract-decisions-ja.md)
+continue to distinguish local verification from live data and capability acceptance.
+
+Recovery result version 2 is now owner-selected and implemented locally. It
+separates restoration from cleanup, preserves legacy receipt validation, binds
+preflight destination references and protects verified recovery sources even
+when cleanup is pending or uncertain. Owning 21 tests and 12 retention/integration
+checks passed; the final four-candidate installation passed 55 tests. The owning
+commit is c18a8d204d9cb42f5604f255f613dccdbeb0d085, not adopted into the parent
+index pin. See the [recovery result record](../reviews/recovery-result-v2-scope-ja.md).
+Two additional compaction owners pass 22 safety tests against their installed
+candidates, including eight new response-loss and approval rejection cases.
+
+## Remaining-work queue: private migration Project
+
+The owner created [LIVE Agency v2 Migration](https://github.com/orgs/flair-agency/projects/3)
+and selected it for remaining-work tracking on 2026-09-08. Use that private
+Project for queue/status updates; this document retains detailed evidence and
+scope decisions. Historical next-action paragraphs below do not select new work.
+
+Tracking setup completed (class F/G): confirmed private visibility and an empty
+Project, corrected the title, added the README and 25 remaining-work Drafts,
+and set all to Todo. These comprise seven M2 coverage/acceptance items, fifteen
+M3 items, one maintenance-boundary decision, one release-coverage check and one
+per-workflow cutover coordination item. Monthly/gift acceptance is included in M3.
+Individual assignees remain unset. Draft bodies contain outcomes, responsible
+components, gates and evidence references; registration does not authorize live
+operations or reopen completed tests. Frozen weekly claims, human gift-export
+acquisition and post-migration maintenance remain excluded from migration gates.
+
+Independent readback verified private visibility, title/README, all 25 unique
+Draft titles and exact bodies, and Todo state. Setup inputs and verification
+receipts are retained under ignored `tmp/v2-project/`. Product tests were not
+needed; no source package, pin, installation or production state changed.
+Existing parent changes and index were preserved. Recovery is limited to the
+recorded Project items/settings; no external data rollback is required. Next:
+select the next bounded migration package from this queue using its evidence.
+
+## Post-migration browser knowledge maintenance: deferred
+
+Owner-selected intake only (class G, supporting external tracking operation):
+[parent Issue #1](https://github.com/flair-agency/live-agency/issues/1) records
+the divergent BackStage and TikTok Web image-acquisition instructions. It is
+linked to the existing maintenance Project, with migration completion and
+explicit maintenance selection as resumption conditions. Shared ownership and
+implementation remain undecided; this is not a migration gate. No Provider,
+package, permission or production change is selected. The issue was read back
+as OPEN; recovery is limited to editing or closing the tracking item.
+
+## TikTok Web profile M2: selected evidence acceptance complete
+
+Profile M3 synthetic readiness now passed 12 checks against installed Skill
+1.1.0 (nine retained regressions and three additional approval/drift/uncertain
+response scenarios). No live destination operation ran. The Japanese
+[readiness review](../reviews/profile-m3-readiness-ja.md) records the legacy
+MCP instruction scope, test limits and explicit destination prerequisites.
+The Project item remains In Progress; this is not full M3 acceptance.
+
+On migration resumption, the coordinator completed the selected-account
+evidence review (class D/G; no source or external-data mutation). Independent
+checks passed for manifest/output identity, rounded follower semantics,
+post-ID timestamps and 30-day boundary, promoted/feature value agreement,
+feature size, owner-only files, JPEG signature, image byte length and SHA-256.
+The installed Provider is 1.1.0, knowledge `tiktok-web-profile/2026-08-31.7`.
+The earlier successful normalizer run is reused. The private acceptance receipt
+is retained with the selected-target artifacts. Avatar export was supplemented
+later through the owner-selected browser route, not a fresh complete scan.
+
+This accepts only the selected interactive profile observation and normalized
+handoff. It does not accept unattended operation, coin acquisition, destination
+history writes or production activation. Browser knowledge consolidation remains
+post-migration maintenance Issue #1. No acquired data or source URL is added to
+GitHub. Recovery retains the earlier evidence alongside the augmented output.
+
+Profile M3 preparation found installed Skill 1.1.0 still describing an older
+Creator Scouting MCP dual-run/scheduled-cycle path. Its applicability must be
+reconciled with the adopted non-MCP migration plan before installed acceptance;
+do not manufacture full MCP deployment as a prerequisite. A current destination
+manifest with stable creator record IDs and verified field bindings is also
+required before a destination plan. The source-only M2 manifest supplies no
+destination authority. No profile Skill, package or production route was changed.
+
+### Historical acquisition attempts (superseded by scoped acceptance above)
+
+Avatar recovery subsequently succeeded through the in-app browser's observed
+page-asset export, after the owner requested a browser-based alternative. The
+selected image was saved owner-only outside Git, and the installed CLI accepted
+`evidence-with-avatar.json` into `observations-with-avatar.json`. These artifacts
+supplement the earlier profile/post observation time; they do not represent a
+fresh post scan. The export manifest containing source URLs was removed. The
+earlier shell attempt was interrupted; no shell download success is claimed.
+No Lark write or production cutover ran. The image-acquisition blocker is resolved.
+
+The owner subsequently selected a distinct public profile and enabled the
+TikTok CDN wildcard origin. The in-app browser verified the profile and the
+newest-first public grid. Three matching post details established two posts in
+the trailing 30 days and an older July 21 boundary; visible date labels passed
+the installed Provider 1.1.0 timestamp validation. The CLI normalizer accepted
+one row with nickname, rounded follower count, introduction and post metrics.
+Owner-only evidence and output are in the selected-target subdirectory under
+`/private/tmp/live-agency-m2-tiktok-profile/`.
+
+The avatar opened successfully on the permitted CDN origin, but the Provider's
+bounded image acquisition helper exited 1 without a captured diagnostic. It is
+recorded as `not_available`; full image-path acceptance remains open. Recovery
+is to diagnose that acquisition step under the owning Provider instructions,
+without repeating successful profile/post reads. No Lark writes, package
+changes or production cutover ran. Validation: installed normalization CLI
+passed, and the normalized output was read back. The earlier self-profile
+attempt below remains historical partial evidence.
+
+The owner selected one account and enabled the TikTok origin before restarting
+Codex. Installed Provider 1.1.0 read the matching profile in the in-app browser;
+its v2 normalizer accepted the one-row manifest and observations. Evidence is
+owner-only under `/private/tmp/live-agency-m2-tiktok-profile/`.
+
+Nickname and follower count were observed. The self-profile grid includes a
+lock-marked card; the reviewed public-profile instructions do not define this
+mixed-visibility case. Post scanning stopped with `schema_changed`, retaining
+null latest-post and 30-day count. An avatar context-menu attempt did not expose
+a save action in the returned browser state; acquisition remains unavailable.
+This is partial evidence and successful unavailable-value normalization, not
+full profile M2 acceptance. No Lark write, account change or package change ran.
+Next: resolve the public-post visibility case and avatar acquisition under the
+owning Provider contract, or select a distinct public-profile test target.
+
+Money Forward candidate M2 preliminary browser read succeeded after the owner
+added the selected origin permission and restarted Codex. The in-app browser
+verified the selected organization/business number and user identity. Both
+linked/imported views were inspected for the selected September range; the
+all-imported view contained 37 rows on one page and the unregistered view
+contained one coin-expense candidate. Owner-only observation:
+`/private/tmp/live-agency-m2-moneyforward/preliminary-inventory.json`.
+
+This is preliminary browser evidence, not a validated `expense-candidate-source/v1`
+document or completed registration acceptance. Source-transaction lookup remains
+incomplete; accounting-profile binding and normalized contract validation remain
+outstanding. No registration plan, external write, authentication change, API
+office-ID inference, or future month-end completeness is claimed. No product or
+package pin changed. The owner closed this selected preliminary-read package and moved on; receipt
+acquisition is not required for that result. Registration acceptance remains open.
+Next package: TikTok Web public-profile M2, using installed Provider 1.1.0 and
+its v2 normalizer. Require an owner-selected target and permitted in-app browser
+origin before acquisition; no Lark writes or production cutover are selected.
 
 ## Gift concrete-Provider dependency: deferred maintenance request
 
@@ -235,7 +582,7 @@ Parallel M2 readiness was checked read-only by a separate worker:
 | --- | --- |
 | Lark Chat | Selected-user main-message M2 passed with published 1.1.0; two messages across three pages, same-input equality verified |
 | Google Drive | Owner-selected development My Drive storage M2 passed: artifact/receipt complete readback, coverage and exact pairing; three created objects removed. Shared-drive and unattended paths remain unverified |
-| Money Forward | Owner selected company/user and September 2026. Selection saved privately; candidate M2 awaits authenticated browser tooling. GET-only API diagnostics cannot substitute for unregistered candidate evidence |
+| Money Forward | Selected September preliminary in-app browser read passed; normalized contract/profile validation, receipt-ID lookup and registration acceptance remain separate |
 | TikTok Web | Profile target manifest and browser, or the coin-history account/period |
 | TikTok iOS | Device/account/target manifest for LIVE, or handed-off gift export with its selected source account/date |
 
@@ -728,3 +1075,226 @@ Class G audit supporting the planned baseline adoption: inspect source purpose w
 31 repositories produced 510 status records including parent gitlinks. Current staged/unstaged patches, index files and untracked contents are retained under `tmp/v2-source-disposition/snapshot/`; file-level classification is `tmp/v2-source-disposition/changes.csv`. Required approved restructuring is separated from inherited v2 additions and old package experiments. The review recommends selective adoption of the monthly-activity chain and rollback of unadopted additions with their dependencies, after preservation. Source dispositions are applied and component commits recorded; independent reproduction of parent `2170115` and all 30 pinned components passed below.
 
 The audit found three restructuring follow-ups: the provider resource-prefix check changed from `./` to `.`, two new library HEADs tracked node_modules links, and the backup test command retains old paths. Existing Provider/MCP origins and parent URLs point to local SEP bundles, not GitHub; remote-source setup remains necessary. The earlier passing test count did not establish these properties. The owner approved those dispositions. The adopted suite passed 662 tests, public-content checks passed, and 21 Skill/library dry-run payload checks passed. Removed additions and qualification files remain under the ignored preservation area. New component versions are in `tmp/v2-source-disposition/adopted-commits.json` and parent submodule pins. Independent reproduction passed: a fresh checkout with explicit local submodule URL overrides, offline npm ci without lifecycle hooks, 662 tests and public-content checks. The reproduced source tree is clean. This does not verify remote GitHub retrieval or registry-only deployment. The parent baseline is `2170115`; reproduction details remain under `tmp/v2-source-disposition/reproduction.json`. The [M1 concrete design](../reviews/v2-foundation-design-ja.md) is now ready for the planned design review; its specific names and interfaces are proposals, not implemented APIs.
+
+## Project status organization — owner-selected, 2026-09-08
+
+Change card: class G with scoped external Project metadata updates. The owner adopted Todo, In Progress, Blocked, Awaiting Review, Ready for Acceptance and Done. Reclassify the 25 existing Project items from recorded evidence, preserve all dated evidence and completed scope, and put the next action and waiting reason first. No implementation, release or operational authority is added. Verify exact field options, all item states/bodies and unchanged item identities. Recovery uses the saved before-state under ignored tmp/v2-project/. No parallel work.
+
+Verified Project readback: Todo 12, In Progress 0, Blocked 8, Awaiting Review 4, Ready for Acceptance 0, Done 1. Existing option IDs, all 25 item identities and original bodies were preserved. Each body now starts with its current status, next action and waiting reason. In Progress is reserved for active work; a completed preparation step alone does not qualify. Awaiting Review requires a concrete review package. Ready for Acceptance requires actual acceptance prerequisites, not merely synthetic success. No item was promoted to Done without its completion evidence. No source or production change ran.
+
+## Monthly M3 owner acceptance — 2026-09-08
+
+The owner explicitly approved the presented section 16 acceptance with LGTM. Monthly Skill 2.0.0 / Runtime 1.2.0 M3 is accepted within the documented instruction-driven synthetic scenarios and reused fixed-package live temporary-Base evidence. The monthly Project item is Done. Production registration, cutover and schedule changes remain separate. Class G tracking-only update; prior evidence and unrelated edits are preserved. No source or operational action is authorized by this acceptance record.
+
+## Gift M3 acceptance scope approved — 2026-09-08
+
+The owner approved the presented scope with LGTM: novel-event additions, corresponding summary updates and readback are required before gift M3 completion. Comprehensive all-pivot reconciliation and derived Lark projections are excluded from this acceptance scope. Export acquisition remains a human task; production cutover remains separate. Existing section 19 evidence is retained. The Project item returns to Todo for the additional verification, not Done. Class G tracking-only update; no source change or external business operation ran. Scope approval does not select an actual write destination or change production authority.
+
+## Scouting vocabulary adoption — 2026-09-08
+
+Change card: class G, documentation only. Adopt the owner's approved vocabulary
+in the English domain model and retain the Japanese review history. Preserve
+platform-versus-agency authority, unknown observations, existing contracts and
+historical data. Definition of done is matching definitions and valid local
+links with a scoped diff review. No parallel work, component change or external
+operation is selected. Recovery is removal of only this documentation addition.
+At that checkpoint the next package was invitation contract owner review;
+the subsequent approval is recorded below. Verification:
+scoped diff and whitespace checks plus local link/anchor inspection; no runtime
+tests are needed for this documentation-only adoption.
+
+## Invitation contract direction approved — 2026-09-08
+
+Class G documentation and previously authorized Project tracking update. The
+owner approved the three presented rules with LGTM: eligibility-only new input,
+no conversion of not-found/unavailable to ineligible, and preservation of legacy
+history pending meaning inspection and any necessary migration proposal. Adopt
+these rules in the domain model and Japanese review record; return the invitation
+recording item to Todo for implementation and acceptance. Preserve other Project
+items and historical evidence. Verify the scoped diff, links and exact Project
+readback; recovery uses the saved before-state in tmp/v2-project/. No component,
+live business data, package name, release or operational route changes. Next:
+present the final queued owner review on backup retention scope. No parallel work.
+
+## Backup retention scope approved — 2026-09-08
+
+Class G documentation and authorized Project tracking. The owner approved the
+presented planning-only scope and target Skill name with LGTM. Record the
+selection in this canonical status and Japanese review history, return the
+retention item to Todo for implementation alignment and installed acceptance,
+and track deletion execution separately. Deletion requires its own approval,
+immediate pre-execution reconciliation and result verification; this decision
+does not select storage resources or authorize deletion. Existing safety and
+recovery protection rules remain intact. Verify exact Project readback,
+unchanged unrelated items and the scoped documentation diff. Before-state is
+saved under tmp/v2-project/ for metadata recovery. No component or operational
+changes, no parallel work. The four queued owner reviews are resolved; remaining
+implementation and acceptance work is not thereby complete.
+
+## Development Bases created — 2026-09-08
+
+The owner subsequently selected a newly created development-only App. Its named CLI profile was registered without switching the default profile. After the owner enabled the missing create scope, bot creation and exact ID/name readback succeeded for separate development and recovery-test Bases. Private creation/readback receipts are retained in tmp/v2-project/. This supersedes the earlier scope blocker. Both Bases have default initial schemas; workflow schema setup, Provider profile binding and acceptance remain outstanding. No production resources or operational routes changed. Automatic owner access grants were skipped because this App has no logged-in user identity; bot access was verified. No retry or deletion was performed.
+
+## Active development verification window — 2026-09-08
+
+Owner selected one hour starting 09:35:06 UTC. Class F/G: selected development App and Base only, create synthetic schema resources, bind immutable IDs and prepare Provider acceptance; no production, TikTok LIVE, deletion or cutover. Two tables and a single-valued duplex relation were created and read back. The profile Skill accepts actual field bindings and rejects the default incompatible relation. Private configuration is mode 0600. The selected Tenant preflight currently needs tenant:tenant:readonly; owner action requested while preparation continues.
+
+Supporting class B transport diagnosis: the observed app_scope_not_applied error was previously flattened into generic LARK_CLI_API_ERROR. The clean shared transport owner now preserves API_APP_SCOPE_NOT_APPLIED, distinct from missing user grants, without exposing private payloads or changing retry/authority behavior. Focused 18 transport tests pass, including both actors and no retry on this rejection. Source candidate only; remove the two-file scoped change to roll back. No package release or pin adoption.
+
+Selected history read wiring (class A/B, accepted explicit-Principal design): Provider owns exact fields:list/records:list mapping and finite Base/table/view authorization; trusted composition injects the selected transport. No mutation method, actor fallback or generic query is exposed. Source owner was clean before this package. Provider tests pass 110; shared transport tests pass 81; independent caller checks pass 2. The actual CLI connection currently stops at missing tenant scope; source success is not live acceptance. Existing verified organization mapping matches the newly authenticated development user tenant key.
+
+Retention naming alignment (class C/G): adopted planning-only Skill/npm identity is live-agency-data-backup-retention-plan. Maintenance caller instructions and emitted target now use it; parent lock and source inventory match. Legacy plan_type/mode bytes remain unchanged for compatibility. Existing source checkout path is retained pending recorded child adoption; no remote repository or operational registration is renamed. Focused retention/recovery/maintenance checks pass 19. Archive verification follows. No storage deletion or publication is authorized.
+
+### Gift normalized readback verification candidate
+
+Class B, with G documentation: implement the existing gift Skill's post-write
+verification requirement as a pure normalized-input verifier. Its owner remains
+`live-agency-gift-history-merge`; no source acquisition, destination adapter,
+write authority or projection scope changes. Rebuild the reviewed plan against
+the saved pre-write master, compare the complete normalized event set and
+managed summary, and require the corresponding successful synchronization log
+entry without dropping previous entries. Done means synthetic novel-event,
+partial-write and tampering cases pass. Actual destination verification remains
+a separate selected operation. Rollback removes only this additive local helper;
+the current installed Skill and master remain unchanged. No parallel agents.
+
+The current selected-history reader is also being checked at the parent-owned
+profile Skill/Provider composition boundary (class G verification). Synthetic
+actor preflight, field resolution, due-view selection and profile planning must
+compose without exposing a write method. This adds no runtime dependency from
+the Provider to a Skill, and does not replace selected live readback evidence.
+
+### Current development checkpoint — 2026-09-08
+
+The local development work is recorded in
+[the Japanese verification report](../reviews/development-base-verification-ja.md).
+The [history-operation gap map](lark-history-operation-gaps.md) distinguishes
+reviewed endpoint knowledge, selected adapters, remaining legacy Skill entry
+points and live conformance. In particular, attachment append remains
+unverified; no nearby endpoint or ambient client was substituted.
+
+Four owning source commits record the transport diagnosis, selected reader,
+gift normalized readback verifier and retention-plan caller. Parent adoption
+pins and operational installations remain unchanged. Six private Project items
+were updated and independently read back; the other twenty items are unchanged.
+Current counts are Done 2, Todo 15 and Blocked 9, with no item left In Progress.
+The development Lark item is Blocked on the two requested App scopes. This is
+not full M2/M3 acceptance or a release checkpoint.
+
+### Development App scope follow-up
+
+After the owner applied the requested App scopes, the same selected Bot reader
+successfully exported two synthetic creator targets. Profile planning then
+stopped on the empty history table: the successful record-list response has
+`has_more: false` and `total: 0`, with `items` omitted. Class B compatible parser
+repair: accept only that explicit complete-empty record response; missing items
+with unknown/nonzero totals or continuation must still stop. No write authority
+or endpoint scope changes. Verify rejection cases and rerun the same read-only
+plan; rollback is the previous reader source checkpoint.
+
+### Second one-hour development window — selected create preparation
+
+Class A with B/G support: add one bounded selected batch-create adapter in the
+Lark Base Provider, plus parent-owned no-avatar Profile integration. The adapter
+must bind the exact write selection, Base/table, current field definitions,
+reviewed payload/count and an externally authorized intent. It exposes no other
+mutation, consumes a batch at most once, validates returned new record IDs, and
+leaves business readback/reconciliation with the caller. Begin with one batch
+of at most 100 records; do not infer broader history or attachment authority.
+Done means focused rejection/uncertainty tests, archive verification and a
+concrete synthetic owner-review package. Actual create waits for exact plan
+approval. Existing empty-page repair and unrelated source edits are preserved.
+No parallel agents, parent pin adoption or operational installation change.
+JavaScript is selected for the existing node >=22 distribution range. Default
+routing remains Astra/low; no unsupported in-turn model setting change is claimed.
+
+Supporting wiring is now scoped to the Profile Skill's owning runtime: expose
+a pure no-avatar create-payload preparation function so the private composition
+does not duplicate business field mapping inside the Provider. It validates a
+nonblocked plan and supplies no execution authority. Existing apply semantics
+and default CLI route remain unchanged; parent integration owns cross-component
+tests. The prior Profile Skill documentation/test edits are preserved.
+
+Supporting class G attachment coverage investigation: while the concrete
+synthetic create approval is pending, inspect the existing selected attachment
+components and official/native CLI knowledge. Produce an owning capability-gap
+record; do not infer operation support from a registered shortcut, add a fallback,
+or perform media upload/append. The create review remains immutable. No parallel
+agents or live data changes; documentation-only recovery is the scoped addition.
+
+Attachment investigation found a concrete class B compatibility gap: the
+existing selected attachment inventory reader rejects the same complete-empty
+records response already observed in the selected development Base. Scope the
+repair to that reader's records operation and direct empty/uncertain pagination
+regressions; preserve strict field/table pages, total consistency, actor binding,
+byte/origin budgets and all mutation gates. Verify acquisition with an empty
+mapped table. No attachment request or live write is selected. The reviewed
+no-avatar create sources and hashes remain unchanged; rollback this reader-only
+checkpoint independently. No parallel agents.
+
+Supporting class G LIVE preparation: verify parent-owned selected read
+composition through the existing LIVE target export and plan builder, using
+synthetic three-table data only. Preserve the adopted creator/start identity and
+end-time conflict stop, due-view scope and independent session/metric counts.
+Correct one stale Skill sentence that still describes creator/start/end as the
+identity; this adopts the already approved rule and changes no business code.
+Done means focused integration and packaged instruction checks; actual LIVE
+acquisition and mutation remain unselected. Existing LIVE source changes stay
+unstaged. Recovery removes only the new parent test and that wording correction.
+No parallel agents or dependency/pin changes.
+
+Supporting class G foreign-revenue inventory: map the owner-adopted recognition
+and settlement planners to required Provider operations and retained caller /
+monitor responsibilities. Inspect existing source manifests and selected old
+Skill instructions without contacting accounting services or changing monitor
+state. Done means a concrete missing-capability and resumption record; do not
+reopen the approved two-Skill split, create journals, add broad accounting to the
+expense Provider, or publish/register candidates. Documentation-only recovery;
+no parallel agents.
+
+Supporting class B/G distribution repair: the independent installed Markdown
+closure check found two attachment instructions linking to synthetic fixtures
+excluded from the Provider package, plus a parent-repository relative domain
+link. Include only the directly required synthetic fixture closure and repair
+that source-reference link after verifying its target. Preserve actual write
+contracts and exclude unrelated tests. Done means payload-relative closure,
+export/resource loading and relevant isolated attachment tests pass. No release
+or parent pin adoption; rollback this manifest/document checkpoint separately.
+
+### Second-window local verification checkpoint
+
+No-avatar create preparation is complete and the exact two-row review remains
+pending; no external Profile create has run. Source checkpoints are Provider
+270da56 / 6f7c43f / c69f1ee and Profile 2761937. The later attachment inventory
+and distribution changes do not alter the four reviewed execution-file hashes.
+The final ten local archives pass 214 isolated owner/integration tests, 106
+source-file comparisons, 26 relative documentation links, 47 resources and 37
+export imports; fixed-lock reconstruction has been checked. Parent composition
+and caller checks pass 19. The standard Skill validator cannot start because
+PyYAML is absent; no dependency installation was performed to bypass that limit.
+
+LIVE selected read preparation and the approved identity wording are verified;
+actual device acquisition and session/metric writes remain open. The
+[foreign-revenue Provider inventory](../reviews/foreign-revenue-provider-readiness-ja.md)
+records missing declared accounting capabilities and the unchanged matching
+local heartbeat. No accounting or monitor operation ran.
+
+Five Project items were updated and independently read back; the other 21 are
+unchanged. Current states: Done 2, Todo 16, Awaiting Review 1, Blocked 7,
+In Progress 0. The concrete Profile review is the one owner response currently
+requested. Candidate verification is not complete M2/M3 acceptance, publication,
+parent pin adoption or operational activation. Private receipts and resumption
+instructions remain under tmp/v2-project/; the source and development data are
+retained without unapproved cleanup.
+
+
+### Approved development profile creation — 2026-09-08 12:14 UTC
+
+The owner approved the presented two-create, zero-attachment synthetic development plan. Selected Bot execution created two records, verified both by business readback, and repeat planning returned zero creates / two already applied. One batch-create succeeded without ambiguous-response recovery. Evidence rows are retained; no updates or deletions occurred. The Profile approval wait is resolved; remaining avatar and installed instruction-driven acceptance work is Todo. Full M3 acceptance, publication and parent pin adoption remain open. See [development verification](../reviews/development-base-verification-ja.md) for current evidence and recovery boundaries.
+
+
+### Selected history attachment comparison — local checkpoint e32da64
+
+The Lark Base Provider now exposes a bounded, read-only history attachment composition. Descriptors issued by selected table reads are bound to stable field IDs, record membership, file tokens and sizes. It checks membership before and after byte acquisition and serializes concurrent Profile hydration. Provider tests: 148 passed; related parent integration/regression checks: 31 passed; final archive checks: 14 passed. Public export and packaged source bytes were verified using existing parent dependencies, not a new fixed-lock installed acceptance.
+
+Synthetic selected-CLI serialization through Profile preparation recognizes matching image bytes and blocks drift, unreviewed origins and incomplete inventories. No real image read/write, publication, operational activation or parent pin adoption occurred. Next: bind avatar upload outcomes to reviewed local-byte intents for new-record creation; keep the dedicated append contract unverified. [Owner evidence](../reviews/development-base-verification-ja.md) records scope and recovery.

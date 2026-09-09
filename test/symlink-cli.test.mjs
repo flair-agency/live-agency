@@ -11,9 +11,9 @@ const repositoryRoot = path.resolve(import.meta.dirname, "..");
 test("a skill CLI starts when invoked through an installed skill symlink", async () => {
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "live-agency-symlink-cli-"));
   try {
-    const installedSkill = path.join(temporaryRoot, "creator-invitation-status-sync");
+    const installedSkill = path.join(temporaryRoot, "live-agency-creator-invitation-eligibility-record");
     await symlink(
-      path.join(repositoryRoot, "skills", "creator-invitation-status-sync"),
+      path.join(repositoryRoot, "skills", "live-agency-creator-invitation-eligibility-record"),
       installedSkill,
       "dir",
     );

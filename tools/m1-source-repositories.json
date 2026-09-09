@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-09-07",
+  "observedAt": "2026-09-09",
   "evidence": "Approved source setup; gh repository metadata and Actions publication runs recorded in docs/migration/status.md",
-  "purpose": "Current source association and publication status; unresolved target names remain proposals",
+  "purpose": "Current source associations and remotely saved development checkpoints; registry release status is separate",
   "parent": {
     "repository": "flair-agency/live-agency",
     "status": "created-private",
@@ -43,7 +43,10 @@
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34123772742",
           "sourceCommit": "4a6259a57eab3b199c0b5df25b94632c91f649e9"
         }
-      ]
+      ],
+      "currentSourceCommit": "963cc8c844b42bbd74e0c1eaba0ed3400b04b4c8",
+      "sourceBranch": "codex/source-reconciliation-20260909",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "packages/cli-utils",
@@ -54,7 +57,10 @@
       "manifestRepository": "https://github.com/flair-agency/live-agency-cli-utils.git",
       "proposedRepository": "flair-agency/live-agency-cli-utils",
       "sourceCommit": "2ffde2041e063f94ccf923dee62341592c1a049d",
-      "verificationRun": "https://github.com/flair-agency/live-agency-cli-utils/actions/runs/34096906145"
+      "verificationRun": "https://github.com/flair-agency/live-agency-cli-utils/actions/runs/34096906145",
+      "currentSourceCommit": "2ffde2041e063f94ccf923dee62341592c1a049d",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "packages/lark-transport",
@@ -65,7 +71,10 @@
       "manifestRepository": "https://github.com/flair-agency/live-agency-lark-transport.git",
       "proposedRepository": "flair-agency/live-agency-lark-transport",
       "sourceCommit": "17d7c371ffd420013d3d3b410ca08c6d78cc595f",
-      "verificationRun": "https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34097019408"
+      "verificationRun": "https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34097019408",
+      "currentSourceCommit": "48dd77e7054b7e05168fb5eaef79b425d23f8bf6",
+      "sourceBranch": "codex/migration-checkpoint-20260909",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "packages/private-files",
@@ -76,7 +85,10 @@
       "manifestRepository": "https://github.com/flair-agency/live-agency-private-files.git",
       "proposedRepository": "flair-agency/live-agency-private-files",
       "sourceCommit": "8f97321a3b83306f92d40cdaeeb3866b09034216",
-      "verificationRun": "https://github.com/flair-agency/live-agency-private-files/actions/runs/34097019372"
+      "verificationRun": "https://github.com/flair-agency/live-agency-private-files/actions/runs/34097019372",
+      "currentSourceCommit": "8f97321a3b83306f92d40cdaeeb3866b09034216",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "packages/row-archive",
@@ -87,7 +99,10 @@
       "manifestRepository": "https://github.com/flair-agency/live-agency-row-archive.git",
       "proposedRepository": "flair-agency/live-agency-row-archive",
       "sourceCommit": "2561f7db2fb4b5ee5b948df40fb292e2cc9c86e8",
-      "verificationRun": "https://github.com/flair-agency/live-agency-row-archive/actions/runs/34097019246"
+      "verificationRun": "https://github.com/flair-agency/live-agency-row-archive/actions/runs/34097019246",
+      "currentSourceCommit": "2561f7db2fb4b5ee5b948df40fb292e2cc9c86e8",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "packages/provider-protocol",
@@ -98,7 +113,10 @@
       "manifestRepository": "https://github.com/flair-agency/live-agency-provider-protocol.git",
       "proposedRepository": "flair-agency/live-agency-provider-protocol",
       "sourceCommit": "385ebd692b288d8955a56d47b51bf94f30c3ecf6",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-protocol/actions/runs/34097018976"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-protocol/actions/runs/34097018976",
+      "currentSourceCommit": "385ebd692b288d8955a56d47b51bf94f30c3ecf6",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/backstage",
@@ -129,7 +147,10 @@
           "sourceCommit": "743fe3b8a3f8f66d15afa3ac297bdbe8a22a7240"
         }
       ],
-      "publicationAttempt": 1
+      "publicationAttempt": 1,
+      "currentSourceCommit": "43665d4cb48c0d6eb9eab2f7c6630ba7ade76296",
+      "sourceBranch": "codex/migration-checkpoint-20260909",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/google-drive",
@@ -141,7 +162,10 @@
       "sourceCommit": "14cfa1d3425625d3bb66636996c04f9d477e370a",
       "publishedVersion": "1.0.0",
       "publicationRun": "https://github.com/flair-agency/live-agency-provider-google-drive/actions/runs/34100177154",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-google-drive/actions/runs/34100177154"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-google-drive/actions/runs/34100177154",
+      "currentSourceCommit": "14cfa1d3425625d3bb66636996c04f9d477e370a",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/lark-base",
@@ -172,7 +196,10 @@
           "sourceCommit": "b83e7690d5db625322304f65ce8c1ebf6823c32b"
         }
       ],
-      "publicationAttempt": 1
+      "publicationAttempt": 1,
+      "currentSourceCommit": "6ecd8c9c347ba958bf840c41ac920f046d048077",
+      "sourceBranch": "codex/migration-checkpoint-20260909",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/lark-chat",
@@ -192,7 +219,10 @@
           "publicationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330",
           "verificationRun": "https://github.com/flair-agency/live-agency-provider-lark-chat/actions/runs/34100177330"
         }
-      ]
+      ],
+      "currentSourceCommit": "ac1e6380f034ce6f83a81bbd1990529094d824d2",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/moneyforward-cloud-expense",
@@ -204,7 +234,10 @@
       "sourceCommit": "5aa52729db62fe46cd3998edb20f6416d1b8dee8",
       "publishedVersion": "1.5.0",
       "publicationRun": "https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense/actions/runs/34100177854",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense/actions/runs/34100177854"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-moneyforward-cloud-expense/actions/runs/34100177854",
+      "currentSourceCommit": "5aa52729db62fe46cd3998edb20f6416d1b8dee8",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/tiktok-ios",
@@ -216,7 +249,10 @@
       "sourceCommit": "745a4b9792ddc794162abb105cbd0ad3e84a9db9",
       "publicationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-ios/actions/runs/34110959692",
       "publishedVersion": "1.2.0",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-ios/actions/runs/34110959692"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-ios/actions/runs/34110959692",
+      "currentSourceCommit": "745a4b9792ddc794162abb105cbd0ad3e84a9db9",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
       "directory": "providers/tiktok-web",
@@ -228,38 +264,47 @@
       "sourceCommit": "218a0d7dfee80249230820f065520ea26a36957e",
       "publicationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-web/actions/runs/34112991119",
       "publishedVersion": "1.1.0",
-      "verificationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-web/actions/runs/34112991119"
+      "verificationRun": "https://github.com/flair-agency/live-agency-provider-tiktok-web/actions/runs/34112991119",
+      "currentSourceCommit": "218a0d7dfee80249230820f065520ea26a36957e",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
     },
     {
-      "directory": "skills/coin-expense-reconcile",
-      "packageName": "@flair-agency/coin-expense-reconcile",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-coin-purchase-expense-reconcile",
+      "packageName": "@flair-agency/coin-purchase-expense-reconcile",
+      "repository": "flair-agency/live-agency-coin-purchase-expense-reconcile",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-coin-purchase-expense-reconcile.git",
       "proposedRepository": "flair-agency/live-agency-coin-purchase-expense-reconcile",
       "targetSkillIdentifier": "live-agency-coin-purchase-expense-reconcile",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-coin-purchase-expense-reconcile"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-coin-purchase-expense-reconcile",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "bc918faf4c31c07d1ad658a32365491ac4e9d835",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/coin-expense-weekly-application",
-      "packageName": "@flair-agency/coin-expense-weekly-application",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-weekly-coin-expense-claim-submit",
+      "packageName": "@flair-agency/weekly-coin-expense-claim-submit",
+      "repository": "flair-agency/live-agency-weekly-coin-expense-claim-submit",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-weekly-coin-expense-claim-submit.git",
       "proposedRepository": "flair-agency/live-agency-weekly-coin-expense-claim-submit",
       "targetSkillIdentifier": "live-agency-weekly-coin-expense-claim-submit",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-weekly-coin-expense-claim-submit"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-weekly-coin-expense-claim-submit",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "de52e31f2361500f51c726098eae45c87a786bc9",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
       "directory": "skills/live-agency-creator-monthly-activity-reconcile",
       "packageName": "@flair-agency/creator-monthly-activity-reconcile",
       "repository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
       "status": "published-private-independent-registry-install-verified",
-      "githubVisibility": "PRIVATE",
+      "githubVisibility": "PUBLIC",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile.git",
       "proposedRepository": "flair-agency/live-agency-creator-monthly-activity-reconcile",
       "targetSkillIdentifier": "live-agency-creator-monthly-activity-reconcile",
@@ -282,98 +327,122 @@
         }
       ],
       "publicationAttempt": 1,
-      "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34133752521"
+      "verificationRun": "https://github.com/flair-agency/live-agency-creator-monthly-activity-reconcile/actions/runs/34133752521",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "86c2f70f95002ac54c679bc83b36eecede69e0f6",
+      "sourceBranch": "main"
     },
     {
-      "directory": "skills/creator-insight-sync",
-      "packageName": "@flair-agency/creator-insight-sync",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-assessment-update",
+      "packageName": "@flair-agency/creator-assessment-update",
+      "repository": "flair-agency/live-agency-creator-assessment-update",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-assessment-update.git",
       "proposedRepository": "flair-agency/live-agency-creator-assessment-update",
       "targetSkillIdentifier": "live-agency-creator-assessment-update",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-assessment-update"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-assessment-update",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "c1eec152160415988e4acbc0a62675716566e626",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-invitation-status-compaction",
-      "packageName": "@flair-agency/creator-invitation-status-compaction",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-invitation-eligibility-history-deduplicate",
+      "packageName": "@flair-agency/creator-invitation-eligibility-history-deduplicate",
+      "repository": "flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate.git",
       "proposedRepository": "flair-agency/live-agency-creator-invitation-eligibility-history-deduplicate",
       "targetSkillIdentifier": "live-agency-creator-invitation-eligibility-history-deduplicate",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-history-deduplicate"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-history-deduplicate",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "1124404fae597c65fc6d18abe515fe94b740a057",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-invitation-status-sync",
-      "packageName": "@flair-agency/creator-invitation-status-sync",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-invitation-eligibility-record",
+      "packageName": "@flair-agency/creator-invitation-eligibility-record",
+      "repository": "flair-agency/live-agency-creator-invitation-eligibility-record",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-invitation-eligibility-record.git",
       "proposedRepository": "flair-agency/live-agency-creator-invitation-eligibility-record",
       "targetSkillIdentifier": "live-agency-creator-invitation-eligibility-record",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-record"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-invitation-eligibility-record",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "821b6e479f8e989006b359ffeabd23798a4328c3",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-live-history-compaction",
-      "packageName": "@flair-agency/creator-live-history-compaction",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-live-session-history-prune",
+      "packageName": "@flair-agency/creator-live-session-history-prune",
+      "repository": "flair-agency/live-agency-creator-live-session-history-prune",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-live-session-history-prune.git",
       "proposedRepository": "flair-agency/live-agency-creator-live-session-history-prune",
       "targetSkillIdentifier": "live-agency-creator-live-session-history-prune",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-live-session-history-prune"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-live-session-history-prune",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "29550df4844ac08e98bca7559d14fd3f9c64fa57",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-live-history-sync",
-      "packageName": "@flair-agency/creator-live-history-sync",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-live-observation-record",
+      "packageName": "@flair-agency/creator-live-observation-record",
+      "repository": "flair-agency/live-agency-creator-live-observation-record",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-live-observation-record.git",
       "proposedRepository": "flair-agency/live-agency-creator-live-observation-record",
       "targetSkillIdentifier": "live-agency-creator-live-observation-record",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-live-observation-record"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-live-observation-record",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "83cebdf27052475fde97d1d52ac8460183390080",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-live-metrics-compaction",
-      "packageName": "@flair-agency/creator-live-metrics-compaction",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-live-metric-history-prune",
+      "packageName": "@flair-agency/creator-live-metric-history-prune",
+      "repository": "flair-agency/live-agency-creator-live-metric-history-prune",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-live-metric-history-prune.git",
       "proposedRepository": "flair-agency/live-agency-creator-live-metric-history-prune",
       "targetSkillIdentifier": "live-agency-creator-live-metric-history-prune",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-live-metric-history-prune"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-live-metric-history-prune",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "05fb561f06498affef00510dfb62074efd41112b",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/creator-profile-compaction",
-      "packageName": "@flair-agency/creator-profile-compaction",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-creator-profile-history-prune",
+      "packageName": "@flair-agency/creator-profile-history-prune",
+      "repository": "flair-agency/live-agency-creator-profile-history-prune",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-creator-profile-history-prune.git",
       "proposedRepository": "flair-agency/live-agency-creator-profile-history-prune",
       "targetSkillIdentifier": "live-agency-creator-profile-history-prune",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-creator-profile-history-prune"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-creator-profile-history-prune",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "cf924c78a28fe295f81b1f186ff56397eeff692f",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
       "directory": "skills/live-agency-creator-profile-record",
       "packageName": "@flair-agency/creator-profile-record",
       "repository": "flair-agency/live-agency-creator-profile-record",
       "status": "published-private-independent-registry-install-verified",
-      "githubVisibility": "PRIVATE",
+      "githubVisibility": "PUBLIC",
       "manifestRepository": "https://github.com/flair-agency/live-agency-creator-profile-record.git",
       "proposedRepository": "flair-agency/live-agency-creator-profile-record",
       "targetSkillIdentifier": "live-agency-creator-profile-record",
@@ -389,14 +458,17 @@
         }
       ],
       "publicationAttempt": 2,
-      "verificationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34113325345"
+      "verificationRun": "https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34113325345",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "82ccb406e934ea30b207167090e12b306739f419",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
       "directory": "skills/live-agency-gift-history-merge",
       "packageName": "@flair-agency/gift-history-merge",
       "repository": "flair-agency/live-agency-gift-history-merge",
       "status": "published-private-independent-registry-install-verified",
-      "githubVisibility": "PRIVATE",
+      "githubVisibility": "PUBLIC",
       "manifestRepository": "https://github.com/flair-agency/live-agency-gift-history-merge.git",
       "proposedRepository": "flair-agency/live-agency-gift-history-merge",
       "targetSkillIdentifier": "live-agency-gift-history-merge",
@@ -412,55 +484,70 @@
         }
       ],
       "publicationAttempt": 2,
-      "verificationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34113319327"
+      "verificationRun": "https://github.com/flair-agency/live-agency-gift-history-merge/actions/runs/34113319327",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "8d797472a55cecd9c2d3e77254f60f03d943ad6a",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/lark-base-backup",
-      "packageName": "@flair-agency/lark-base-backup",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-data-backup-create",
+      "packageName": "@flair-agency/data-backup-create",
+      "repository": "flair-agency/live-agency-data-backup-create",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-data-backup-create.git",
       "proposedRepository": "flair-agency/live-agency-data-backup-create",
       "targetSkillIdentifier": "live-agency-data-backup-create",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-data-backup-create"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-data-backup-create",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "4babc90d21d53631ff0217faf8eca0f8bf8ec4ce",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/lark-base-backup-retention",
-      "packageName": "@flair-agency/lark-base-backup-retention",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
-      "proposedRepository": "flair-agency/live-agency-data-backup-prune",
-      "targetSkillIdentifier": "live-agency-data-backup-prune",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-data-backup-prune"
+      "directory": "skills/live-agency-data-backup-retention-plan",
+      "packageName": "@flair-agency/data-backup-retention-plan",
+      "repository": "flair-agency/live-agency-data-backup-retention-plan",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-data-backup-retention-plan.git",
+      "proposedRepository": "flair-agency/live-agency-data-backup-retention-plan",
+      "targetSkillIdentifier": "live-agency-data-backup-retention-plan",
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-data-backup-retention-plan",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "4517e076d245800d802d46e82b466d3a894b5296",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/lark-base-disaster-recovery-drill",
-      "packageName": "@flair-agency/lark-base-disaster-recovery-drill",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-data-recovery-test",
+      "packageName": "@flair-agency/data-recovery-test",
+      "repository": "flair-agency/live-agency-data-recovery-test",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-data-recovery-test.git",
       "proposedRepository": "flair-agency/live-agency-data-recovery-test",
       "targetSkillIdentifier": "live-agency-data-recovery-test",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-data-recovery-test"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-data-recovery-test",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "71a1a7718bad8a31663a230e2f3325bfe1349cb7",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
-      "directory": "skills/lark-base-maintenance",
-      "packageName": "@flair-agency/lark-base-maintenance",
-      "repository": null,
-      "status": "no-independent-repository-in-visible-organization-list",
-      "githubVisibility": null,
-      "manifestRepository": null,
+      "directory": "skills/live-agency-datastore-maintain",
+      "packageName": "@flair-agency/datastore-maintain",
+      "repository": "flair-agency/live-agency-datastore-maintain",
+      "status": "public-source-synchronized-registry-release-pending",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-datastore-maintain.git",
       "proposedRepository": "flair-agency/live-agency-datastore-maintain",
       "targetSkillIdentifier": "live-agency-datastore-maintain",
-      "skillIdentifierStatus": "candidate",
-      "proposedDirectory": "skills/live-agency-datastore-maintain"
+      "skillIdentifierStatus": "adopted",
+      "proposedDirectory": "skills/live-agency-datastore-maintain",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "f8442deefa6e6e28c8b9f5349489639676376e9e",
+      "sourceBranch": "codex/migration-checkpoint-20260909"
     },
     {
       "directory": "packages/contracts",
@@ -473,7 +560,54 @@
       "publishedVersion": "1.0.0",
       "publicationRun": "https://github.com/flair-agency/live-agency-contracts/actions/runs/34132271467",
       "publicationAttempt": 1,
-      "verificationRun": "https://github.com/flair-agency/live-agency-contracts/actions/runs/34132271467"
+      "verificationRun": "https://github.com/flair-agency/live-agency-contracts/actions/runs/34132271467",
+      "currentSourceCommit": "46a0c89bf1ad9dbc318b50c5e8e0748c8068c204",
+      "sourceBranch": "main",
+      "sourceStatus": "remote-head-verified"
+    },
+    {
+      "directory": "skills/live-agency-foreign-currency-receivable-settle",
+      "repository": "flair-agency/live-agency-foreign-currency-receivable-settle",
+      "packageName": "@flair-agency/foreign-currency-receivable-settle",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-foreign-currency-receivable-settle.git",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "b3462ca7bfc6811a1c918c094a589c72584353b5",
+      "sourceBranch": "codex/source-reconciliation-20260909",
+      "skillIdentifierStatus": "adopted",
+      "targetSkillIdentifier": "live-agency-foreign-currency-receivable-settle",
+      "status": "public-source-synchronized-registry-release-pending"
+    },
+    {
+      "directory": "skills/live-agency-foreign-currency-revenue-recognize",
+      "repository": "flair-agency/live-agency-foreign-currency-revenue-recognize",
+      "packageName": "@flair-agency/foreign-currency-revenue-recognize",
+      "githubVisibility": "PUBLIC",
+      "manifestRepository": "https://github.com/flair-agency/live-agency-foreign-currency-revenue-recognize.git",
+      "sourceStatus": "remote-head-verified",
+      "currentSourceCommit": "b883c59efa249f260d84d6baf5e98b1fc509c6b2",
+      "sourceBranch": "codex/source-reconciliation-20260909",
+      "skillIdentifierStatus": "adopted",
+      "targetSkillIdentifier": "live-agency-foreign-currency-revenue-recognize",
+      "status": "public-source-synchronized-registry-release-pending"
+    },
+    {
+      "directory": "mcp/operations",
+      "repository": "flair-agency/live-agency-operations-mcp",
+      "status": "source-synchronized-registry-release-not-selected",
+      "currentSourceCommit": "2eb5ac8d680912a009188b73858ee10cb537fa1c",
+      "sourceBranch": "codex/source-reconciliation-20260909",
+      "sourceStatus": "remote-head-verified",
+      "githubVisibility": "PUBLIC"
+    },
+    {
+      "directory": "packages/foreign-revenue-core",
+      "repository": "flair-agency/live-agency-foreign-revenue-core",
+      "status": "source-synchronized-registry-release-not-selected",
+      "currentSourceCommit": "6844501790566cb243f2bf45f127e2128fe20a7e",
+      "sourceBranch": "codex/source-reconciliation-20260909",
+      "sourceStatus": "remote-head-verified",
+      "githubVisibility": "PRIVATE"
     }
   ]
 }

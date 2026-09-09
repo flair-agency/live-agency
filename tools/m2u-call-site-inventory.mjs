@@ -31,8 +31,8 @@ function category(file) {
   if (file.startsWith("providers/lark-chat/")) return "chat-provider";
   if (file.startsWith("mcp/operations/")) return "domain-mcp";
   if (file.startsWith("runtime/scripts/")) return "composition-entry-or-helper";
-  if (file.includes("/skills/_shared/")) return "shared-skill-adapter";
-  const skill = file.match(/\/skills\/([^/]+)\//)?.[1];
+  if (/(?:^|\/)skills\/_shared\//.test(file)) return "shared-skill-adapter";
+  const skill = file.match(/(?:^|\/)skills\/([^/]+)\//)?.[1];
   if (skill) return `skill:${skill}`;
   return "unclassified";
 }

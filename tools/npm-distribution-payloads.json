@@ -42,55 +42,55 @@
       ]
     },
     {
-      "name": "@flair-agency/coin-expense-reconcile",
-      "directory": "coin-expense-reconcile",
+      "name": "@flair-agency/coin-purchase-expense-reconcile",
+      "directory": "live-agency-coin-purchase-expense-reconcile",
       "files": [
         {
-          "source": "skills/coin-expense-reconcile/package.json",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/package.json",
           "target": "package.json"
         },
         {
-          "source": "skills/coin-expense-reconcile/SKILL.md",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/SKILL.md",
           "target": "SKILL.md"
         },
         {
-          "source": "skills/coin-expense-reconcile/scripts/coin_expense_core.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/scripts/coin_expense_core.mjs",
           "target": "scripts/coin_expense_core.mjs"
         },
         {
-          "source": "skills/coin-expense-reconcile/scripts/plan_coin_expense.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/scripts/plan_coin_expense.mjs",
           "target": "scripts/plan_coin_expense.mjs"
         },
         {
-          "source": "skills/coin-expense-reconcile/scripts/prepare_expense_registration.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/scripts/prepare_expense_registration.mjs",
           "target": "scripts/prepare_expense_registration.mjs"
         },
         {
-          "source": "skills/coin-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/scripts/resolve_coin_expense_provider.mjs",
           "target": "scripts/resolve_coin_expense_provider.mjs"
         },
         {
-          "source": "skills/coin-expense-reconcile/scripts/verify_expense_registration.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/scripts/verify_expense_registration.mjs",
           "target": "scripts/verify_expense_registration.mjs"
         },
         {
-          "source": "skills/coin-expense-reconcile/references/normalized-contracts.md",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/references/normalized-contracts.md",
           "target": "references/normalized-contracts.md"
         },
         {
-          "source": "skills/coin-expense-reconcile/references/registration.md",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/references/registration.md",
           "target": "references/registration.md"
         },
         {
-          "source": "skills/coin-expense-reconcile/agents/openai.yaml",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/agents/openai.yaml",
           "target": "agents/openai.yaml"
         },
         {
-          "source": "skills/coin-expense-reconcile/LICENSE",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/LICENSE",
           "target": "LICENSE"
         },
         {
-          "source": "skills/coin-expense-reconcile/src/contracts.mjs",
+          "source": "skills/live-agency-coin-purchase-expense-reconcile/src/contracts.mjs",
           "target": "src/contracts.mjs"
         }
       ]

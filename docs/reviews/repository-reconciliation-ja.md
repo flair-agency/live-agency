@@ -41,3 +41,8 @@
 - 過去のarchiveへの機械的path置換は、開始時との差分がその置換だけであることを照合し、バックアップ後その編集だけを取り除いた。一括restoreは自動承認レビューに拒否されたため使用していない。
 - 親remoteに別タスクの執筆引継ぎcommit 6c4fa75 があり、同じローカル文書と一致することを確認。保持して統合する。
 - 公開作成は自動承認レビューで停止。公開する内容・履歴・宛先の明示承認が必要。具体的対象は [公開対象一覧](skill-public-source-publication-ja.md)。公開完了まで未到達の子pinを親の完成compositionとして採用しない。main・パッケージ公開・本番変更なし。
+
+
+## 公開承認後の実行
+
+所有者の一覧への明示承認を受け、全18 SkillのPublicと承認SHAのremote保存を確認。既存公開MCPの指定branchも保存。全34コンポーネントの現在HEADが選択したGitHub remoteのbranchから取得可能であることを確認してから親の参照を採用する。既存3パッケージのregistry visibility再確認はread:packages不足の403で未確認。package設定変更・releaseは実行していない。公開処理の自動承認blockは明示承認により解消済み。
