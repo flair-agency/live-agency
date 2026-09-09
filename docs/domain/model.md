@@ -555,3 +555,36 @@ This model was informed by:
 - business explanations supplied during the architecture discussion.
 
 The spreadsheet and Base exports are snapshots or operational artifacts. Their formulas and schemas support the model but do not override live-system state, canonical company records, or future reviewed policy decisions.
+
+## Invitation observation and history classification ownership (pending)
+
+Proposed interpretation, 2026-09-10; awaiting explicit owner confirmation. The owner requested review of this responsibility boundary before adoption. The following is not an adopted rule or implementation authority.
+
+The proposed interpretation is: the source Provider returns the source status and,
+when the creator can be invited and the source exposes it, the invitation type as
+separate observations. The consuming Skill owns the mapping of those observations
+to the destination's status hierarchy. Conceptual separation must not remove type
+information from the handoff before the Skill can apply that mapping.
+
+For example, source status `対象` with invitation type `一般` is input to the
+Skill's selection of `対象（一般）`, a child of `対象`. The same source status with
+`プレミアム` selects `対象（プレミアム）`. These destination classifications are not
+additional raw statuses returned by BackStage. Source-specific recognition and
+normalization remain in the private Provider; hierarchy interpretation and history
+recording are consumer business knowledge. A Provider may document the distinction
+for interoperability without owning the consumer's classification decision.
+
+Do not infer an invitation type from an ineligible result or invent a type when it
+is absent. The earlier internal refinements of multiple-account risk and other
+reasons require their own supporting evidence; they do not become new source facts
+through this proposal. Preserve historical records. Current typed v1 lacks a
+type handoff and destination hierarchy mapping; this paragraph proposes ownership,
+not a claim that the implementation or operational migration is complete.
+
+```mermaid
+flowchart LR
+  A[BackStage result] --> B[Provider: recognize source status and visible invitation type]
+  B --> C[Handoff: preserve separate observations]
+  C --> D[Skill: map observations to destination parent or child status]
+  D --> E[Review history change and record approved effects]
+```

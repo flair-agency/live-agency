@@ -1,10 +1,28 @@
 # Current migration and documentation status
 
+## Profile-first release and main reconciliation — 2026-09-10
+
+M1 #42 is accepted. The owner selected the first profile target, retained in the private execution configuration. After the owner granted contracts package Actions Read access, Profile Skill 1.2.0 publication run 34390754264 succeeded. Lark transport 1.1.0 (9499ce1, run34390278398), Lark Base Provider 1.3.0 (771d18f, run34390488130) and Profile1.2.0 (0a9b50e) are available. Existing M1 installation is unchanged; selected production service connection and plan/readback remain next.
+
+At the owner's request, published sources for Runtime, Lark transport, Lark Base Provider and Profile were merged into each owner's main via PR1. All13 latest successful publication-workflow commits found across34 components are now contained in main. Other unreleased component work remains on work branches. Parent live-agency main was created from the adopted codex/project-root commit39b33b8 and made default; existing PR3 and PR40 now target main. PR43 aligns the canonical-document location and release-integration policy without importing unreviewed migration changes.
+
+## Designated Work host verified — 2026-09-10
+
+Production is the owner's local ChatGPT Work project **C|OPS|エージェンシー運営** (`g-p-693bd2fb16bc8191ac195f072bb993e2`). Its existing task `定期運用実行｜LIVEエージェンシー` (`01a05397-d1d0-7ed0-8c7a-c271aee04a4f`) discovered the installed `live-agency-runtime` Skill and invoked its fixed launcher with `--instructions` at 03:10:58 JST. Turn `01a0875d-5091-7861-a4f5-e6a440182c74` returned Runtime 1.3.0, profile Skill 1.1.0, TikTok Web Provider 1.1.0 and Lark Base Provider 1.2.0, with `ready`, zero external operations and `businessWorkflowVerified: false`. No reinstall or business operation was needed.
+
+The earlier Codex-only proof was insufficient and its production-completion claim was retracted. This separate execution in the designated project's actual task supplies the missing host evidence. #42 was accepted by the owner after their own invocation and is Closed/Done. M1 resource loading is accepted; business synchronization remains separate. New-task implicit selection and cloud Work are not covered. See the [execution and self-review record](../reviews/runtime-first-production-plan-ja.md).
+
+## Runtime-first production delivery — owner direction, 2026-09-10
+
+The immediate priority is a usable production Runtime, followed by the first working Skill. M1 (Runtime), M2 (Provider) and M3 (Skill) are incremental delivery boundaries; completing every Provider, Skill or both A workflows is not a prerequisite for releasing the Runtime. Reduce redundant or implementation-mirroring tests while retaining required behavior and deployment verification. Do not repeat unchanged validation without a concrete reason.
+
+The owner approved the [delivery order](runtime-first-delivery.md) and a 90-minute execution limit. Runtime 1.3.0 was published privately from `052a2a4` and installed independently on the local device. The registered Codex entry loaded the selected profile Skill, TikTok Web instructions and Lark Base API from outside the development checkout; published and installed integrity matched, with no external source links. [#42](https://github.com/flair-agency/live-agency/issues/42) tracks owner acceptance. Fresh-task automatic Skill selection remains unverified. Service access and profile registration are subsequent M2/M3 outcomes, not established by this resource-loading result. See the [Japanese execution record](../reviews/runtime-first-production-plan-ja.md). Older bundled A release checkpoints below do not override this current priority.
+
 ## Source synchronization checkpoint — 2026-09-09
 
 The owner approved the exact public source selection: 18 Skills are now public (15 new repositories and 3 visibility changes), and the existing public operations MCP has the approved development branch. All 34 component HEADs were verified on their selected GitHub remotes before parent adoption. Thirteen pending Skill identities were adopted in source, npm metadata and direct caller references; frozen and protected operational scopes are unchanged. The exact map is in `tools/skill-source-identities.json`; current repository/branch/commit evidence is in `tools/m1-source-repositories.json`.
 
-PR #35 was approved and merged into `codex/project-root` at `0da30c3`. Use that baseline for the integrated source checkpoint. Both GitHub CI runs at `ae3fbb4` passed checkout, online dependency installation, 1,013 tests and public-content checks after CI read credentials were configured. Registry release and production activation remain separate. The next #31 preparation reconciles final package names and proposed dependency versions; #13 scoped development acceptance is complete by explicit owner approval; #6/#14 execution selection and acceptance remain open. Source review and the full development runner passed 1,013 tests; the final clean-clone check is recorded in the reconciliation record. Profile image-resume approval was consumed successfully; no further image approval is pending. BackStage execution-time environment/targets remain owner input for #6/#14.
+PR #35 was approved and merged into `codex/project-root` at `0da30c3`. Use that baseline for the integrated source checkpoint. Both GitHub CI runs at `ae3fbb4` passed checkout, online dependency installation, 1,013 tests and public-content checks after CI read credentials were configured. Registry release and production activation remain separate. The next #31 preparation reconciles final package names and proposed dependency versions; #13 scoped development acceptance is complete by explicit owner approval; #6/#14 execution selection is complete; source and workflow acceptance remain open. Source review and the full development runner passed 1,013 tests; the final clean-clone check is recorded in the reconciliation record. Profile image-resume approval was consumed successfully; no further image approval is pending. The owner selected the internal BackStage browser and nine targets, and confirmed their displayed eligibility results. See the current source correction below.
 
 See [repository reconciliation](../reviews/repository-reconciliation-ja.md) and [public source approval](../reviews/skill-public-source-publication-ja.md). Older local-only and private-source statements below describe earlier checkpoints.
 
@@ -28,6 +46,14 @@ Use native labels, parent/sub-issue relationships and blocked-by/blocking links.
 
 A execution chain: [[A][M2] Verify Lark capabilities required by invitation and profile synchronization](https://github.com/flair-agency/live-agency/issues/30) → profile/invitation acceptance → [[A][Release] Verify invitation and profile package readiness](https://github.com/flair-agency/live-agency/issues/31) → [[A][Cutover] Activate and verify invitation and profile workflows](https://github.com/flair-agency/live-agency/issues/32). The A workflows depend on the A Lark child, not completion of the whole shared Provider backlog. B–D remain queued.
 
+## Invitation source correction — 2026-09-09
+
+BackStage candidate 5890962 admits the exact reviewed standalone region-restriction label in typed eligibility output, with knowledge version 2026-09-09.2. Unrecognized labels still stop; not-found remains unknown rather than ineligible. Full Provider plus independent caller checks passed 29 tests; focused mixed integration and typed Skill checks passed 13 tests. Six packaged resources match source bytes. These are unpublished development candidates.
+
+The retained nine-row observation replay preserves seven observed outcomes and two not-found outcomes, and the complete batch stops before destination access. A new read-only lookup in the selected internal tab returned the same nine results. Its seven row avatars were not present in the page-assets inventory; no substitute images or image binaries were accepted. Agency-header verification, avatar handoff and destination acceptance remain unproven. No invitation, follow, destination write or production activation occurred. See the [development evidence record](../reviews/development-base-verification-ja.md).
+
+PR #38 established document-policy self-review before owner review. Project #39 tracks A documentation and actual human takeover verification; #31 depends on that scoped acceptance as well as #14. Independent AI PR review remains deferred and is not a release gate.
+
 ## Current A checkpoint — 2026-09-09
 
 The scoped Lark capability work in #30 is complete at Provider 6ecd8c9.
@@ -48,8 +74,8 @@ link and export checks without changing the tested code. Profile retains its
 explicit nested Lark 1.1.0 dependency pending final release selection.
 
 #13 completed its approved one-image development resume: zero new rows, one
-image, preserved other rows and zero-write replanning. #6 awaits the owner's
-execution-time BackStage environment and target selection, then #14 acceptance.
+image, preserved other rows and zero-write replanning. #6 now has the owner-selected BackStage environment and nine targets. The owner
+confirmed the displayed eligibility results. Source handoff completion and #14 acceptance remain open.
 Source-profile M2 #4 remains accepted and is not reopened. A proposed release graph also passed an offline fixed-lock simulation (24 packages, no nested old Lark), 42 execution checks and two source-selection checks. Package-only upgrade and rollback passed 15 checks each and restored the exact original lock. These are unpublished temporary consumers. #31 retains final
 version/dependency/pin/publication selection, and #32 retains operational cutover.
 That earlier candidate window made no live writes; the separately approved image
@@ -1298,3 +1324,15 @@ The owner approved the presented two-create, zero-attachment synthetic developme
 The Lark Base Provider now exposes a bounded, read-only history attachment composition. Descriptors issued by selected table reads are bound to stable field IDs, record membership, file tokens and sizes. It checks membership before and after byte acquisition and serializes concurrent Profile hydration. Provider tests: 148 passed; related parent integration/regression checks: 31 passed; final archive checks: 14 passed. Public export and packaged source bytes were verified using existing parent dependencies, not a new fixed-lock installed acceptance.
 
 Synthetic selected-CLI serialization through Profile preparation recognizes matching image bytes and blocks drift, unreviewed origins and incomplete inventories. No real image read/write, publication, operational activation or parent pin adoption occurred. Next: bind avatar upload outcomes to reviewed local-byte intents for new-record creation; keep the dedicated append contract unverified. [Owner evidence](../reviews/development-base-verification-ja.md) records scope and recovery.
+
+### Invitation knowledge recovery — 2026-09-10
+
+Provider 281025d (knowledge 2026-09-10.1) restores owner-described source/internal status semantics from prior tasks and completes seven-label recognition. All 38 focused Provider/caller/integration tests pass. See [review record](../reviews/development-base-verification-ja.md). This development checkpoint does not complete #6 live acceptance, publish a package, or change not-found/subtype contracts.
+
+### Displayed account-not-found correction — 2026-09-10
+
+Provider 4d72c97 / knowledge 2026-09-10.2 supersedes the earlier not-found mapping: the known displayed source status remains observed and does not trigger the generic unknown-result batch stop. All 44 focused tests pass, including mixed recording/readback and retained unknown-acquisition rejection. No live mutation or completed #6 acceptance is claimed.
+
+### Invitation multi-batch development — 2026-09-10
+
+Lark Provider d1523b5 and invitation Skill 4a9a7dc support full payloads and ordered multi-batch writes under one parent plan. 251 focused tests pass. Runtime restart integration and subtype retention remain unfinished; #6 remains In Progress. No production activation or registry publication. See A migration parity audit.
