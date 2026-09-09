@@ -332,7 +332,52 @@ operation and report the exact sources, conflict, and minimum decision needed.
 
 For current state and applicable temporary constraints, use [migration status](../migration/status.md). Historical checkpoints retain evidence; they do not own the queue.
 
+The [Issue-based Skill maintenance policy](skill-maintenance-policy.md) governs
+production reports through owning-source fixes, package releases and verified
+production resolution, including emergency recovery. It supplements this
+policy's task selection and authority boundaries; an Issue or policy adoption
+does not itself authorize publication or production rollout.
+
 ## 9. Shared development procedures
+
+### Script implementation language
+
+Owner instruction adopted on 2026-09-08. This rule applies to newly generated
+project scripts across Skills, Providers, MCPs, Runtime, tools, tests and
+temporary development helpers, including inline scripts.
+
+Use JavaScript by default. Prefer TypeScript when the selected Node.js LTS
+runtime and the supported execution/distribution targets can run the script
+natively, without an added transpiler or loader. Verify the supported minimum
+version and execution path rather than relying on the developer machine's
+installed version. Otherwise use JavaScript and record the compatibility reason.
+
+The rationale is the existing JavaScript codebase, npm package management,
+Node.js Runtime architecture, and lower cognitive load from language consistency.
+
+Native TypeScript means Node.js type stripping, not full TypeScript compilation
+or type checking. Use supported erasable syntax; do not assume `tsconfig.json`
+transforms or native execution of TypeScript inside `node_modules`. As verified
+on 2026-09-08, Node.js 24 is an [LTS release](https://nodejs.org/en/about/previous-releases)
+and [type stripping is stable from 24.12.0](https://nodejs.org/download/release/v24.16.0/docs/api/typescript.html).
+The parent currently declares `node >=22`, which alone does not establish native
+TypeScript compatibility for every supported version. This policy does not
+raise runtime requirements or authorize dependency installation or migration.
+
+Before adopting any other programming language, including Python or shell for
+a new script, present the reason JavaScript/native TypeScript is insufficient,
+the affected scope, dependencies and maintenance implications, and obtain the
+owner's explicit approval. Record that approval in the task record; do not treat
+an available interpreter, a Skill example, convenience, or an existing script in
+that language as approval for new scripts. Reuse an existing approval only for
+its unchanged scope. Ordinary CLI invocations are not adoption of a scripting
+language; do not use inline code to bypass this rule.
+
+Existing scripts are not subject to automatic conversion. Maintaining an
+existing script in its current language does not itself adopt a new language;
+new scripts and language changes follow the selection and approval rule above.
+
+### Environment and change procedures
 
 Synced `sources/` are read-only reference snapshots, not authoritative originals. Preserve their bytes and ownership. The [architecture](../architecture/overview.md) owns component responsibilities; the existing [private-source guide](private-source-integration-guide.md) owns information handling.
 
@@ -347,3 +392,42 @@ When dependency installation is in scope, use the parent development lockfile wi
 Record source status in every affected repository before changes. Preserve pre-existing edits and staged/unstaged ownership; never checkpoint an entire dirty tree merely because it is locally available. Commit selected component changes in their owner; adopt a child commit through a parent pin only with its intended scope and applicable verification. Do not reinitialize Git to repair an app's repository label.
 
 Keep one accepted logical change, necessary local wiring and focused tests together. Use the brief requirements in Section 7 and concrete agent instructions in [AGENTS.md](../../AGENTS.md). The superseded execution/consolidation records retain historical examples without owning an additional current procedure.
+
+### Local and remote source synchronization
+
+Owner instruction adopted on 2026-09-09: keep local and remote repositories
+close enough that another task can retrieve and understand current development.
+This is not an instruction to merge all work into `main`.
+
+- Use a scoped development branch (`codex/` for Codex-created branches) for
+  unaccepted work. Preserve the default branch's review and integration rules.
+- Commit coherent, reviewed changes in their owning repositories and push the
+  work branches at meaningful checkpoints and before a handoff. Do not leave
+  completed implementation available only in a local checkout. An unfinished
+  checkpoint may be pushed if clearly identified as incomplete, with its checks,
+  remaining work and limitations recorded; it is not a release claim.
+- Source synchronization within an authorized development task includes ordinary
+  non-destructive commits and pushes to the selected work branch. It does not
+  authorize default-branch integration, force-pushes, deletion, package releases,
+  deployments, or publication of private information. Review automatic workflow
+  effects before pushing; do not trigger an unselected release or deployment.
+- When an owner has no remote, resolve and record its repository association
+  early, independently of live workflow acceptance. Do not invent a final Skill
+  identifier from a candidate repository name. Follow the applicable source
+  visibility and private-information rules before external publication.
+- Push child commits before recording them in the parent composition. Replace
+  machine-local submodule URLs with selected retrievable repository URLs. Verify
+  that every adopted child commit is reachable from the selected remote. A
+  parent work-branch checkpoint records a development composition, not a
+  production pin or a default-branch acceptance decision.
+- At a checkpoint or handoff, report branch, commit, remote synchronization,
+  uncommitted changes, review status and the next action. Keep Project/Issue state
+  consistent with those facts. A pushed branch is not a merged or deployed fix.
+- If access, publication review or another concrete condition prevents a push,
+  record the exact unsynchronized scope and blocker in the current task/Issue;
+  continue independent work. Do not conceal divergence behind an apparently
+  complete ticket, silently discard changes, or treat local-only history as a
+  remotely reproducible state.
+
+Preserve unrelated edits and existing staging ownership. Synchronization is not
+permission to checkpoint an entire dirty tree without reviewing its contents.

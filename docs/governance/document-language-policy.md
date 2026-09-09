@@ -20,6 +20,15 @@ Translation of approved content does not itself require another approval round.
 If translation reveals a substantive ambiguity or requires a design change,
 resolve that specific issue with the owner in Japanese before adopting it.
 
+## GitHub work tracking
+
+Owner instruction, 2026-09-08: use English by default for GitHub Project
+descriptions and fields, Draft tickets, Issues, and related PR descriptions
+and work-tracking comments. Titles and bodies follow the same default.
+Keep technical identifiers and code unchanged where translation would alter
+meaning. Japanese owner-review conversations and review records retain the
+review-language rule above.
+
 ## Existing documents
 
 This policy does not trigger a bulk translation of existing documents or alter
