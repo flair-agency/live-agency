@@ -1,7 +1,7 @@
 ---
 type: plan
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-10
 author: "Codex（計画整理）; Naoki Kimura（目的・優先順位の指示）"
 context: "Runtimeを本番で利用可能にすることを最優先とし、最初の1スキルまでを段階提供する計画案"
@@ -11,9 +11,28 @@ context: "Runtimeを本番で利用可能にすることを最優先とし、最
 
 ユーザーが指定した目的は、本番環境でRuntimeを先に使えるようにし、その上でまず1スキルを動かすことである。M1＝Runtime、M2＝Provider、M3＝Skillを、それぞれ利用者に提供する区切りとして扱う。全Provider・全Skillの移行完了を本番提供の前提にしない。
 
-以下の具体的な実現方法は計画案。過去の開発検証を本番受入れに読み替えず、業務仕様を追加・変更しない。
+2026-09-10、オーナーが本計画を承認し、90分を上限として実行するよう指示した。[英語の採用文書](../migration/runtime-first-delivery.md)を参照。この記録は日本語の承認履歴である。以下の提案時記述は履歴として残し、初回30分案は今回の90分上限に置き換える。過去の開発検証を本番受入れに読み替えず、業務仕様を追加・変更しない。
+
+## 実行開始 — 2026-09-10 02:31:53 JST
+
+上限時刻は04:01:53 JST。主分類D、副分類F/G。対象はRuntimeの配布済み入口と本番ホスト接続、親の配布記録。既存Skill/Providerの業務契約は不変。本番配置は `/Users/naokikimura/.local/share/live-agency/production/`、接続用の新規ホスト登録は `/Users/naokikimura/.agents/skills/live-agency-runtime/` を使用し、既存の旧Skillリンクと無効設定は保存する。本番操作はローカルパッケージ導入・入口登録に限定し、サービスへの読書きや定期実行は含めない。並列エージェントなし。
+
+配布前セルフレビュー：既存ローダーを再利用し、Runtime起動時に無関係な月次処理を読み込む依存を除いた。実際の起動テストでSkill本文、Provider指示とAPIの読み込みを確認し、ソースリンク付きlockを拒否することを確認した。共通起動分岐と必須caller inventoryも通過。最初の合成Providerにpeer宣言が不足していたテスト不備は修正し、該当2件だけ再実行して通過した。出力には任意設定値を展開せず、業務完了をfalseと明記する。本番への変更は固定版1.3.0の私有配布と新規独立配置、Codex接続手順であり、既存の本番データや稼働登録の上書きは行わない。復旧は今回追加した入口の登録解除で、旧状態を残す。現時点で実サービス動作と新しいタスクでの自動選択は未確認。
 
 # 最初の1スキルと現在の不足
+
+この節以降の不足・提案は計画時点の記録。最新のM1結果は次の実行結果を参照する。
+
+## M1実行結果 — 2026-09-10
+
+- Runtime `1.3.0`、所有者コミット `052a2a4c4bee06709fdfafb18cc24e334d7fab10` を私有公開。[公開・独立導入検証](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34384698367)が成功。
+- 本番導入先は `/Users/naokikimura/.local/share/live-agency/production/installations/runtime-1.3.0`。独立したlockで128依存を導入し、公開integrityと導入物が一致。配置内のsymlink 3件はすべて配置内を指し、開発ソースへのリンクは0件。
+- 登録した `/Users/naokikimura/.agents/skills/live-agency-runtime/SKILL.md` をこのCodexタスクで読み、記載の入口を `/private/tmp` から実行した。`ready` / `production`、プロフィールSkillの本文、TikTok Webの指示、Lark Base APIのexportを取得。実サービス操作0、業務検証falseを明示している。
+- 利用者向け手順と戻し方は本番配置の `OPERATOR.md`、版・hash・登録前状態は `installations/runtime-1.3.0/release.json` に保存。旧Skillリンクと無効設定は不変。新しいタスクでの自動選択と利用者による受入れは未確認。
+- 必要な入口検証2件を追加。根拠のある重複を今回の確認範囲で特定できず、既存テスト削除は0件。変更のないローダーの拒否条件は複製せず、月次検証は共有入口の変更確認に限定した。失敗修正後は関連箇所と必要な公開ゲートだけを再検証した。
+- 接続用Skillの標準形式validatorはPyYAML未導入で利用できず、依存を追加せずにfrontmatterと実呼出しを確認した。本番証跡の保存1回はsandboxの書込み範囲外で失敗し、同じ保存を承認済み範囲の権限で実施した。いずれも本番Runtimeの起動障害ではない。
+
+自己評価：M1の「本番Runtimeを呼び、指定した固定版の資源を読み込む」は実機確認により達成。確信度は高い。新規タスクの自動発見と人の受入れまで完了したとは評価しない。M2/M3の実サービス接続・プロフィール登録は未実施。初回配布で未公開依存を拾った手戻りは改善点であり、配布ゲートで検出しソースを保持して範囲を修正した。
 
 最初はAの**プロフィール同期**を提案する。[#4](https://github.com/flair-agency/live-agency/issues/4)のソース取得、[#30](https://github.com/flair-agency/live-agency/issues/30)の必要なLark能力、[#13](https://github.com/flair-agency/live-agency/issues/13)の開発環境での履歴・画像記録が受入済みである。[受入記録](profile-m3-readiness-ja.md)を再利用し、招待ステータスの残課題はこの経路の前提にしない。
 
@@ -76,3 +95,5 @@ M1の起動確認だけを「1スキルが動いた」とは報告しない。�
 今回の主分類G：計画整理。実行する作業は今後のD（経路移行）・F（本番適用）で別途具体化する。今回変更するのは親リポジトリーの計画と現在の優先順位の記録だけ。実装、パッケージ版、本番登録・データは変更しない。取消しはこの文書差分のrevertで可能。
 
 [文書・知識方針](../governance/document-knowledge-policy.md)、[言語方針](../governance/document-language-policy.md)、[開発方針](../governance/development-policy.md)と照合した。ユーザーの目的と具体案、開発受入れと本番結果、Provider/Skill/Runtimeの責任を分離し、段階提供と図・表の一致、既存証跡へのリンク、復旧範囲を確認した。ローカルリンク9件に欠落なし、差分の空白検査も成功。M1を全移行の完了待ちにする依存を計画から除き、「テストを増やさない」という説明を削除・統合と必要な検証の選別へ訂正した。具体案はpendingであり、AIのセルフレビューをユーザーの受入れや実運用の成功とは扱わない。
+
+配布前検証の是正：公開ワークフロー34384363541は、独立インストール時に未公開の招待履歴adapter exportが存在しないため停止した。Runtime 1.3.0のfiles/exportをM1と既存月次経路に限定し、checkpoint/historyの開発ソースはGitに保持して今回の配布から除外する。これらは今回の本番入口の依存ではない。未公開Larkを追加公開して待ち条件を増やさない。
