@@ -3,7 +3,7 @@
 - Status: Adopted from the owner's explicit instruction on 2026-09-07.
 - Scope: Project-wide documents and documentation in component repositories.
 
-See the [document and Skill knowledge policy](document-knowledge-policy.md) for company-source authority, traceability, preservation and human takeover requirements. The unresolved Google Docs/Git version mapping is stated there.
+See the [document and Skill knowledge policy](document-knowledge-policy.md) for company-source authority, traceability, preservation and human takeover requirements. The adopted Google Docs/GitHub canonical-location and version-management rules are stated there.
 
 ## Review and canonical documents
 
