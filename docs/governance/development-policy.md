@@ -433,3 +433,27 @@ This is not an instruction to merge all work into `main`.
 
 Preserve unrelated edits and existing staging ownership. Synchronization is not
 permission to checkpoint an entire dirty tree without reviewing its contents.
+
+## Lark route priority — reaffirmed owner direction, 2026-09-09
+
+Lark Base and Lark Chat share the same route order: API first, then browser
+fallback when the API route cannot complete the selected operation. The owner
+reaffirmed this as an existing requirement, not a new optional feature.
+API quota conservation may reduce or batch requests; it must not silently
+reverse this priority. Older call-minimizing/browser-first provider guidance
+and implementations must be reconciled before claiming conformance.
+
+Fallback preserves the selected resource scope, authorized operations,
+Principal compatibility, approved effects and verification requirements. It
+must not bypass authentication, access-control or administrative denials, or
+replay an uncertain mutation. If an operation has no equivalent API capability,
+record that limitation before selecting the browser route. A browser-only full
+Base artifact is not equivalent to an API record snapshot. If no authorized,
+equivalent route remains, stop with the missing prerequisite identified.
+
+This requirement does not establish that the sequential dispatcher or its live
+acceptance is complete. Verify route order, failure classification, bounded
+handoff and final result verification in the selected composition. Keep
+synthetic routing evidence separate from live browser acceptance. Provider
+implementation corrections require matching versioned knowledge and focused
+regression before adoption; this policy does not activate a production route.
