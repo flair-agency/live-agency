@@ -14,7 +14,7 @@ const defaultReviewHistory = ({records}) => records.every(r => r.fields.Eligibil
 
 async function fixture(t, writeOutcome = 'success', options = {}) {
   const c = composition({ writeOutcome });
-  const reviewHistory=options.sourceHandoff?({records})=>records.every(r=>r.fields.Eligibility==='対象'&&['100','101','102'].includes(r.fields['External ID'])):defaultReviewHistory;
+  const reviewHistory=options.sourceHandoff?({records})=>records.every(r=>(r.fields.Eligibility==='対象'||(options.displayedMissing&&r.fields.Eligibility==='見つかりません'))&&['100','101','102'].includes(r.fields['External ID'])):defaultReviewHistory;
   function select(authority, operationId) {
     const input = structuredClone(c.input);
     input.instanceProfile.profileId = input.expected.profileId = `synthetic-${operationId.replace(':', '-')}`;
@@ -49,10 +49,10 @@ async function fixture(t, writeOutcome = 'success', options = {}) {
   }
   if(options.noNewImage)delete observation.creators.at(-1).avatar;
   if(options.sourceHandoff){
-    c.profileFields.find(f=>f.field_id==='fldStatus').property.options=[{id:'optEligible',name:'対象'}];
+    c.profileFields.find(f=>f.field_id==='fldStatus').property.options=[{id:'optEligible',name:'対象'}, {id:'optMissing',name:'見つかりません'}];
     c.state.history.forEach((r,i)=>{r.fields.Eligibility='対象';r.fields['External ID']=String(100+i);});
     observation=normalizeInvitationEligibilityLookup({observedAt:observation.observedAt,rows:observation.creators.map((r,i)=>({accountKey:r.accountKey,
-      eligibilityLabel:'対象',invitationSubtype:'プレミアム',anchorId:String(100+i),nickname:r.nickname,avatar:r.avatar?{...r.avatar,sourceUrl:'https://example.invalid/private'}:null}))});
+      eligibilityLabel:options.displayedMissing&&i===2?'見つかりません':'対象',invitationSubtype:'プレミアム',anchorId:String(100+i),nickname:r.nickname,avatar:r.avatar?{...r.avatar,sourceUrl:'https://example.invalid/private'}:null}))});
   }
   const plan = await dryRunEligibility({ client: reader, config, manifest, observations: observation, reviewHistory, outputPlan: path.join(directory, 'plan.json') });
   const prepared = await prepareEligibilityRefresh({ client: reader, config, manifest, observations: observation, reviewHistory });
@@ -133,21 +133,10 @@ test('private eligibility normalizer feeds the complete mixed workflow without i
  assert(f.c.state.history.every(r=>r.fields.Eligibility==='対象'));
 });
 
-test('reviewed source region restriction coexists with unknown rows without destination access', async () => {
-  const observations = normalizeInvitationEligibilityLookup({ observedAt: '2030-01-02T03:04:05Z', rows: [
-    { accountKey: 'synthetic_region', eligibilityLabel: 'サポートされていない地域' },
-    { accountKey: 'synthetic_missing', eligibilityLabel: '見つかりません' },
-    { accountKey: 'synthetic_ok', eligibilityLabel: '対象', invitationSubtype: '一般' },
-  ] });
-  const manifest = { version: 1, targetMode: 'selected', rowCount: 3,
-    rows: observations.creators.map((r,i) => ({ accountKey: r.accountKey, creatorRecordId: `recSynthetic${i}` })) };
-  let calls = 0;
-  const client = new Proxy({}, { get() { return () => { calls++; throw new Error('unexpected destination operation'); }; } });
-  const prepared = await prepareEligibilityRefresh({ client, config: {}, manifest, observations });
-  assert.equal(calls, 0);
-  assert.equal(prepared.blocked, true);
-  assert.deepEqual(prepared.counts, { create: 0, update: 0, attach: 0, alreadyApplied: 0 });
-  assert.equal(prepared.observations.creators[0].eligibility, 'サポートされていない地域');
-  assert.equal(prepared.eligibilityIssues.length, 1);
-  assert.equal(prepared.eligibilityIssues[0].result, 'not_found');
+test('displayed account-not-found does not block other observed rows and is recorded exactly', async t => {
+ const f=await fixture(t,'success',{sourceHandoff:true,displayedMissing:true});
+ assert.notEqual(f.prepared.blocked,true);
+ assert.equal((await f.apply()).verified,true);
+ assert(f.c.state.history.some(r=>r.fields.Eligibility==='見つかりません'));
+ assert(f.c.state.history.some(r=>r.fields.Eligibility==='対象'));
 });

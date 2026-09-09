@@ -1310,3 +1310,7 @@ Synthetic selected-CLI serialization through Profile preparation recognizes matc
 ### Invitation knowledge recovery — 2026-09-10
 
 Provider 281025d (knowledge 2026-09-10.1) restores owner-described source/internal status semantics from prior tasks and completes seven-label recognition. All 38 focused Provider/caller/integration tests pass. See [review record](../reviews/development-base-verification-ja.md). This development checkpoint does not complete #6 live acceptance, publish a package, or change not-found/subtype contracts.
+
+### Displayed account-not-found correction — 2026-09-10
+
+Provider 4d72c97 / knowledge 2026-09-10.2 supersedes the earlier not-found mapping: the known displayed source status remains observed and does not trigger the generic unknown-result batch stop. All 44 focused tests pass, including mixed recording/readback and retained unknown-acquisition rejection. No live mutation or completed #6 acceptance is claimed.
