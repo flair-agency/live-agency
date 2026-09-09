@@ -53,3 +53,10 @@
 親commit `268aef1f9266acdbefedd0c6209d4c3e54f3a90d` をGitHubから全submodule付きで新規cloneし、既存registry cacheを用いた `npm ci --ignore-scripts --offline`、正式な全体test runner（1,013件）、公開内容checkがすべて成功した。これはsource取得を含む開発compositionの再現検証であり、匿名registry導入や本番検証ではない。元のcheckout・全34子・新規cloneはいずれもGit statusがcleanだった。以降の更新はこの検証記録とチケットのみ。
 
 親は `codex/source-reconciliation-20260909`、GitHubで保存済み。既存remoteの執筆引継ぎcommit `6c4fa75` を履歴を保持してmergeした。mainへの統合なし。既存の運用環境・公開済みpackage version・データは変更していない。旧branch/commitは復旧参照として保持。参照する最新情報はこの親branchと記録された子commit。
+
+
+## Skillカタログ — 2026-09-09
+
+所有者の依頼で skills/README.md に全18 Skillの概要・関係を4分類と2つの図で整理。主分類G、対象は親の案内文書と公開内容checkのディレクトリー列挙のみ。正規文書は既存の承認済み契約を英語で要約し、個別Skillの意味・実装・権限は変更しない。外貨計画candidateと週次申請frozenを明示。親READMEから導線を追加し、古いローカル限定の説明を是正済み状態へ更新した。
+
+検証：実ディレクトリー18件との一対一照合、相対リンクの存在確認、公開内容check、diffチェックが成功。skills直下のREADMEをSkillディレクトリーとして扱わないよう検査ツールを調整した。新規の業務実行や全体再テストは不要。独立作業ブランチ codex/skill-catalog で保存し、親の先行PRへの追加レビューとして扱う。復旧はこの文書・列挙変更のcommitのrevertで可能。

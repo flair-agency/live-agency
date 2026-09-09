@@ -55,6 +55,7 @@ Consolidate content used by the same reader for the same decision. A completed t
 
 ## Canonical index
 
+- [Skill catalog](skills/README.md): workflow summaries, relationships and links to all Skill repositories
 - [Business and account model](docs/domain/model.md)
 - [Architecture and responsibility boundaries](docs/architecture/overview.md), [capability ownership](docs/architecture/capabilities.md), [distribution direction](docs/architecture/distribution.md)
 - [Development procedures](docs/governance/development-policy.md), [Skill naming](docs/governance/skill-naming-policy.md), [private-source integration guide](docs/governance/private-source-integration-guide.md)
@@ -63,7 +64,7 @@ Consolidate content used by the same reader for the same decision. A completed t
 - [Runtime](runtime/README.md) and [deployment design](runtime/docs/deployment.md)
 - [Approved v2 review history](docs/reviews/v2-migration-plan-review-ja.md), [documentation review and execution record](docs/reviews/documentation-audit-ja.md)
 
-The existing Git repositories and submodules are retained. Inspect changes in each owner (`git status`, `git -C runtime status`). This parent is local. New Skill/library repositories currently use relative local submodule URLs; no GitHub repositories were created for them. Existing Provider/MCP remote URLs are retained. Configure actual remote URLs before publishing the parent or expecting a remote recursive clone to work. Uncommitted component changes are not included in the parent pins.
+The parent and its independent components are synchronized through GitHub work branches. All Skill source repositories are public; Providers and Runtime remain private. See the [source inventory](tools/m1-source-repositories.json) for repository associations and pinned development checkpoints. Inspect changes in each owner (`git status`, `git -C runtime status`); uncommitted component changes are not included in the parent pins. Source synchronization does not imply default-branch integration, package release or production activation.
 
 ## Development checkout
 
