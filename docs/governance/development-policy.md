@@ -434,6 +434,21 @@ This is not an instruction to merge all work into `main`.
 Preserve unrelated edits and existing staging ownership. Synchronization is not
 permission to checkpoint an entire dirty tree without reviewing its contents.
 
+### Release integration into main
+
+Owner direction, 2026-09-10: each released component must have its exact
+published source commit integrated into `main`. Use a scoped PR and the
+existing verification and branch controls. Check the published commit and
+package identity; do not merge later unreleased changes merely because they
+share a work branch. Record the release and merge evidence together.
+
+The parent `flair-agency/live-agency` uses `main` as its default and adopted
+baseline. Its initial `main` preserves the adopted `codex/project-root` tree.
+Unreviewed migration work remains in work branches and PRs. Component release
+integration does not authorize unrelated parent proposals or operational
+activation. Keep local remote-tracking refs current after merges; preserve
+active checkouts and their uncommitted work.
+
 ## Lark route priority — reaffirmed owner direction, 2026-09-09
 
 Lark Base and Lark Chat share the same route order: API first, then browser
