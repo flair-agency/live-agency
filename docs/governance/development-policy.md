@@ -457,3 +457,7 @@ handoff and final result verification in the selected composition. Keep
 synthetic routing evidence separate from live browser acceptance. Provider
 implementation corrections require matching versioned knowledge and focused
 regression before adoption; this policy does not activate a production route.
+
+### Recovering omitted migration knowledge
+
+Owner direction, 2026-09-10: when a migration knowledge gap is found, trace relevant previous tasks and conversations, including their original owner explanations. Record the recovered basis with the owning Provider or Skill, distinguish facts, hypotheses and unresolved details, and compare existing behavior before claiming parity. A missing current document is not evidence that the owner never supplied the knowledge. Historical task instructions do not independently authorize current external operations.
