@@ -1,10 +1,17 @@
 # Current migration and documentation status
 
+## Profile-first release checkpoint — 2026-09-10
+
+M1 #42 is accepted. The owner selected the first profile target in the current task; its exact account and destination are retained outside Git. #31 is In Progress for the profile slice only. Lark transport 1.1.0 (`9499ce1`, publication run 34390278398) and Lark Base Provider 1.3.0 (`771d18f`, run 34390488130) passed their owning publication gates. Profile Skill 1.2.0 (`0a9b50e`) is prepared and pushed, but publication run 34390754264 stopped before publishing: its Actions token cannot read the newly required `@flair-agency/contracts` dependency (E403). The owner has been asked to grant Read under that package's Manage Actions access to `live-agency-creator-profile-record`; no new token is required. Do not retry until access changes.
+
+Existing M1 installation and active configuration remain unchanged. No service read, write or schedule switch has occurred in this package. After dependency access is fixed, rerun the failed publication, then prepare the fixed profile composition and connect the already selected production read identity. Profile registration still requires the actual plan approval. Other A releases and B–D do not gate this slice.
+
+
 ## Designated Work host verified — 2026-09-10
 
 Production is the owner's local ChatGPT Work project **C|OPS|エージェンシー運営** (`g-p-693bd2fb16bc8191ac195f072bb993e2`). Its existing task `定期運用実行｜LIVEエージェンシー` (`01a05397-d1d0-7ed0-8c7a-c271aee04a4f`) discovered the installed `live-agency-runtime` Skill and invoked its fixed launcher with `--instructions` at 03:10:58 JST. Turn `01a0875d-5091-7861-a4f5-e6a440182c74` returned Runtime 1.3.0, profile Skill 1.1.0, TikTok Web Provider 1.1.0 and Lark Base Provider 1.2.0, with `ready`, zero external operations and `businessWorkflowVerified: false`. No reinstall or business operation was needed.
 
-The earlier Codex-only proof was insufficient and its production-completion claim was retracted. This separate execution in the designated project's actual task supplies the missing host evidence. #42 is ready for owner acceptance of M1 resource loading, not completed business synchronization. New-task implicit selection and cloud Work are not covered. See the [execution and self-review record](../reviews/runtime-first-production-plan-ja.md).
+The earlier Codex-only proof was insufficient and its production-completion claim was retracted. This separate execution in the designated project's actual task supplies the missing host evidence. #42 was accepted by the owner after their own invocation and is Closed/Done. M1 resource loading is accepted; business synchronization remains separate. New-task implicit selection and cloud Work are not covered. See the [execution and self-review record](../reviews/runtime-first-production-plan-ja.md).
 
 ## Runtime-first production delivery — owner direction, 2026-09-10
 
