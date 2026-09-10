@@ -344,30 +344,33 @@ does not itself authorize publication or production rollout.
 
 ### GitHub Issue, Project and PR tracking
 
-Owner direction, 2026-09-11: track every development change with a GitHub Issue
-in the appropriate owning repository and the applicable GitHub Project. Reuse
-an existing Issue when its scope matches; otherwise create one with the work's
-scope and completion criteria. A Project draft item alone does not replace an
-Issue.
+Owner direction, 2026-09-11: track every development work item as an Issue or PR
+in the appropriate owning repository and applicable GitHub Project. Work that
+is complete when its PR merges may be tracked by that PR alone. Use an Issue
+with related PRs for planned requests, investigations, work spanning multiple
+PRs, or work requiring live acceptance. Reuse an existing Issue when its scope
+matches; otherwise state the work's scope and completion criteria in a new one.
+A Project draft item alone does not replace an Issue or PR.
 
-Every PR must have a corresponding Issue linked through GitHub's native
-Development relationship. Verify the actual relationship after creating or
-updating the PR; an Issue URL or reference in the body alone is insufficient.
-Add the PR itself to the same applicable Project as its Issue and maintain its
-review/integration status there. A Development link does not itself add the PR
-as a separate Project item; verify both the link and Project membership.
-When a PR completes only part of a broader Issue, use a scoped child
-implementation Issue and link the PR to that Issue. Keep the parent open until
-its own completion criteria are met, including production verification where
-required by the [maintenance policy](skill-maintenance-policy.md). Do not use
-closing links or keywords against a parent whose work remains incomplete.
+Add every PR itself to the applicable Project and maintain its review and
+integration status there. Verify Project membership after creating or updating
+the PR; linking an Issue does not itself add the PR as a Project item.
+Use GitHub's native Development relationship or closing keywords only when
+merging that PR completes the linked Issue, and verify the actual relationship
+when used. For a partial change, reference the broader Issue in the PR body and
+track the PR directly in the Project. Do not create a duplicate child Issue
+solely to enable a Development link; useful child Issues with their own scope
+and completion criteria remain appropriate.
 
-Keep the Issue and Project status current at meaningful checkpoints, using the
-actual work, verification and remaining scope. Close an Issue or mark its
-Project item complete only when that Issue's completion criteria are satisfied;
-a completed child implementation does not establish parent or production
-completion. Record actual checks and limitations in the existing Issue/task
-record. This tracking procedure adds no approval gate or execution authority.
+Keep Issue, PR and Project status current at meaningful checkpoints, using the
+actual work, verification and remaining scope. Close an Issue as completed or
+mark its Project item complete only when its completion criteria are satisfied,
+including production verification where required by the
+[maintenance policy](skill-maintenance-policy.md). A merged PR or completed
+child Issue does not establish completion of broader work. Record cancellation
+or superseded tracking separately rather than claiming delivery. Record actual
+checks and limitations in the existing Issue, PR or task record. This tracking
+procedure adds no approval gate or execution authority.
 
 ### Script implementation language
 
