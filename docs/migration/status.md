@@ -15,8 +15,8 @@ records the now-approved plan to retain the first connection proof inside M1, in
 Runtime on the actual Work host, then connect only Profile's M2 Providers and
 deliver Profile for M3 acceptance. Minimum deployment recovery stays in M1;
 automatic updates and additional workflows follow later. PR #44 is merged.
-[#45](https://github.com/flair-agency/live-agency/issues/45) is now Ready for
-Acceptance. The owner-approved source was merged through Runtime PR #3/#4 and
+[#45](https://github.com/flair-agency/live-agency/issues/45) was explicitly accepted
+by the owner with LGTM on 2026-09-10 and is Done. The owner-approved source was merged through Runtime PR #3/#4 and
 parent PR #46/#47. The explicit private-publication approval was then consumed:
 Runtime `2.0.0-m1.1`, TikTok platform `0.1.0-m1.0` and independent catalog
 `0.1.0-m1.0` are published and verified. The installed production environment is
@@ -32,7 +32,7 @@ The former installations and separate Profile configuration remain intact.
 The earlier synthetic Work proof retains module/instruction execution, catalog
 unavailability and Skill-registration recovery evidence.
 
-Owner M1 acceptance and Profile M2/M3 business completion remain separate and
+M1 acceptance is complete. Profile M2/M3 business completion remains separate and
 open. No business data or schedule was changed; service authentication and
 Provider-specific questionnaires remain unverified. See the
 [distribution and production evidence](../reviews/v2-platform-environments-ja.md#m1固定配布と常用環境への導入)
@@ -40,6 +40,19 @@ and its owner trial instructions. The released source commits are already in
 their owners' main branches; this evidence checkpoint does not adopt a new
 development-parent Runtime submodule pin. Earlier checkpoints do not select a
 broad migration run.
+
+## Profile M2 read connection — current package
+
+[#31](https://github.com/flair-agency/live-agency/issues/31) now carries the
+Profile-only read-connection candidate. Runtime `2.0.0-m2.0` binds service
+capabilities to saved Provider configuration references and digests; Lark Base
+`1.4.0-m2.0` supplies normalized creator and Profile-history reads through the
+existing selected API readers. TikTok Web `1.1.0` remains unchanged. The candidate
+catalog `0.1.0-m2.0` uses format 2; Profile remains pending M3 connection.
+These candidates are not published or installed in production. See the
+[Japanese review](../reviews/v2-platform-environments-ja.md#profile-m2読取接続の候補)
+for exact source, checks, limits and next approval. #32 remains blocked on
+Profile-specific readiness, not on M1. The current production M1 is retained.
 
 ## Source synchronization checkpoint — 2026-09-09
 

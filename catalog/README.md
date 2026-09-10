@@ -1,6 +1,16 @@
 # Versioned setup catalog
 
-`catalog.json` is declarative selection data, independently versioned from Runtime. The initial candidate is `0.1.0-m1.0`, format version 1. It is not a published release. It lists platform package identities, suggested fixed versions and optional database/storage Providers. Platform manifests own capability bindings and Skill availability; Provider packages own their detailed settings and instructions.
+`catalog.json` is declarative selection data, independently versioned from Runtime.
+The current `0.1.0-m2.0` candidate uses format version 2 and is unpublished.
+It adds a selected Profile datastore read binding from Lark Base
+`1.4.0-m2.0`, for Runtime `2.0.0-m2.0`. Format 2 prevents the M1 Runtime from
+silently ignoring these service bindings. The published format-1 catalog
+`0.1.0-m1.0` remains unchanged in its immutable release.
+The catalog lists identities and neutral bindings; Provider packages own
+detailed configuration schemas, normalization, authentication and instructions.
+Choose a `platformId` and private `configurationRef` when selecting a service
+with bindings. Runtime pins the configuration digest and preserves the chosen
+service independently for each platform. A selection is not connection proof.
 
 The initial TikTok declaration is in `platforms/tiktok/package.json`. Profile remains pending M2/M3 integration, so it cannot be selected as an available workflow. A catalog entry does not prove registry availability, service authentication or business readiness. No credentials, actual resources or browser sessions belong here.
 
