@@ -1,0 +1,96 @@
+name: Publish reviewed platform candidate
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Reviewed main commit containing the platform and catalog
+        type: string
+        required: true
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: publish-tiktok-platform
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platforms/tiktok
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: https://npm.pkg.github.com
+          scope: '@flair-agency'
+      - name: Validate reviewed declarative candidate
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          ACTUAL_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('package.json'));
+          const c=JSON.parse(fs.readFileSync('../../catalog/catalog.json'));
+          if(process.env.EXPECTED_SHA!==process.env.ACTUAL_SHA || process.env.GITHUB_REF!=='refs/heads/main') throw Error('reviewed main commit required');
+          if(p.name!=='@flair-agency/live-agency-platform-tiktok' || p.private || p.repository?.url!=='https://github.com/flair-agency/live-agency.git') throw Error('unexpected package owner');
+          const entry=c.platforms.find(x=>x.id==='tiktok');
+          if(entry?.package.name!==p.name || entry.package.version!==p.version || !/^\d+\.\d+\.\d+-[0-9A-Za-z.-]+$/.test(p.version)) throw Error('candidate/catalog identity mismatch');
+          if(p.scripts || p.bin || p.exports || p.files?.join(',')!=='README.md') throw Error('declarative payload required');
+          for(const group of ['dependencies','peerDependencies']) for(const v of Object.values(p[group]??{})) if(!/^\d+\.\d+\.\d+$/.test(v)) throw Error('fixed dependencies required');
+          const r=await fetch('https://api.github.com/orgs/flair-agency/packages/npm/live-agency-platform-tiktok',{headers:{Authorization:`Bearer ${process.env.GH_TOKEN}`,Accept:'application/vnd.github+json'}});
+          if(r.status===200) {if((await r.json()).visibility!=='private') throw Error('private target required');}
+          else if(r.status!==404) throw Error(`package preflight failed: ${r.status}`);
+          JS
+      - name: Resolve and verify fixed dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.CI_PACKAGES_READ_TOKEN }}
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+          npm pack --ignore-scripts --json > packed.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const [p]=JSON.parse(fs.readFileSync('packed.json'));
+          if(p.files.map(x=>x.path).sort().join(',')!=='README.md,package.json') throw Error('unexpected archive contents');
+          const platform=JSON.parse(fs.readFileSync('package.json'));
+          const provider=JSON.parse(fs.readFileSync('node_modules/@flair-agency/tiktok-web-provider/package.json'));
+          if(provider.version!==platform.dependencies[provider.name]) throw Error('provider version mismatch');
+          for(const [cap,b] of Object.entries(platform.liveAgencyPlatform.bindings)) {
+            const match=provider.liveAgencyProvider.bindings.find(x=>x.id===b.bindingId && x.provides.includes(cap));
+            if(!match || match.execution.kind!=='instructions') throw Error('declared binding unavailable');
+            for(const file of [match.execution.resource,...(match.execution.resources??[])]) if(!fs.statSync(`node_modules/${provider.name}/${file}`).isFile()) throw Error('provider instruction missing');
+          }
+          fs.writeFileSync('archive-name.txt',p.filename);
+          JS
+      - name: Publish private candidate
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish "$(cat archive-name.txt)" --ignore-scripts --tag next --registry=https://npm.pkg.github.com
+      - name: Verify candidate identity and visibility
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import {execFileSync} from 'node:child_process';
+          const p=JSON.parse(fs.readFileSync('package.json')),[archive]=JSON.parse(fs.readFileSync('packed.json'));
+          const remote=JSON.parse(execFileSync('npm',['view',`${p.name}@${p.version}`,'--json'],{encoding:'utf8'}));
+          if(remote.dist.integrity!==archive.integrity) throw Error('registry archive differs');
+          const r=await fetch('https://api.github.com/orgs/flair-agency/packages/npm/live-agency-platform-tiktok',{headers:{Authorization:`Bearer ${process.env.GH_TOKEN}`,Accept:'application/vnd.github+json'}});
+          if(!r.ok || (await r.json()).visibility!=='private') throw Error('private visibility not verified');
+          fs.writeFileSync('publication-receipt.json',JSON.stringify({name:p.name,version:p.version,integrity:archive.integrity,source:process.env.GITHUB_SHA,visibility:'private'},null,2));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: platform-publication-evidence
+          path: |
+            platforms/tiktok/packed.json
+            platforms/tiktok/package-lock.json
+            platforms/tiktok/publication-receipt.json
+            catalog/catalog.json
