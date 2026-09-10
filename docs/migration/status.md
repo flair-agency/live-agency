@@ -28,7 +28,11 @@ Lark is the selected database; no business Skill or storage is selected, and
 updates remain manual. Earlier M1-only and unpublished-M2 statements below are
 historical checkpoints, not the current installation selection.
 
-Issue #32 is Awaiting Review for this source package. The current source package connects Profile Skill
+The owner accepted the source package: Runtime PR #7, Lark PR #7, Profile Skill
+PR #2 and parent PR #52 are merged into main. Issue #32 now tracks the bounded
+first Profile distribution candidate described in the
+[Japanese release review](../reviews/profile-first-release-ja.md).
+The adopted source connects Profile Skill
 target preparation, observation handoff, scoped-history planning, prepared
 write review, approved execution and final readback through the selected
 environment API. Runtime adds generic process-local execution hooks; the
@@ -48,10 +52,20 @@ live services or registry installation. The final proof records source file hash
 Runtime [PR #7](https://github.com/flair-agency/live-agency-provider-runtime/pull/7),
 Lark [PR #7](https://github.com/flair-agency/live-agency-provider-lark-base/pull/7),
 and Skill [PR #2](https://github.com/flair-agency/live-agency-creator-profile-record/pull/2)
-are synced and ready for source review. The [Japanese review](../reviews/profile-environment-plan-ja.md)
+are merged. The [Japanese source review](../reviews/profile-environment-plan-ja.md)
 separates prior planning evidence from current write wiring and remaining gates.
-Legacy dependencies are retained. Main integration, release and adoption have
-not occurred for this source package; the production installation is unchanged.
+The new Profile `2.0.0-m3.0` archive excludes legacy concrete imports and script
+exports; version 1.2.0 and its callers remain unchanged. Concrete dependencies
+remain development-only comparison material in the Skill source repository.
+Runtime `2.0.0-m3.0` allows separate configuration files for each capability of
+one selected service. Lark `1.4.0-m3.0`, platform/catalog `0.1.0-m3.0` complete
+this candidate composition. Four local archives were independently installed,
+their exports/resources and Skill-to-Runtime CLI resolution checked, and host
+registration previewed. A separate Skill-only archive installation brought in
+neither Runtime nor concrete Providers. These checks use synthetic configuration
+and do not verify published candidates, live services or host discovery.
+Distribution and production adoption remain pending; the deployed baseline above
+is unchanged. No new parent submodule pin or production selection is implied.
 
 [Provider PR #5](https://github.com/flair-agency/live-agency-provider-lark-base/pull/5)
 is merged into main. Its release metadata [PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)

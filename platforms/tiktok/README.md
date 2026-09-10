@@ -1,8 +1,16 @@
 # TikTok platform declaration
 
-Unreleased M1 candidate `0.1.0-m1.0`. This package declares the selected TikTok Web profile-observation capability; it contains no executable workflow or service credentials. The Provider owns its instructions and required host permissions. The initial slice does not install BackStage or iOS Providers. Add capabilities through an explicitly reviewed platform version.
+Unreleased Profile candidate `0.1.0-m3.0`. This package declares the selected
+TikTok Web profile-observation capability; it contains no executable workflow
+or credentials. The Provider owns its instructions and required host permissions.
+BackStage and iOS Providers remain outside this selected slice.
 
-Profile recording is listed as **pending**, because its neutral destination connection and direct Skill invocation are not yet accepted. It is not an installable workflow in this candidate. Runtime setup may select this platform without selecting a business Skill, allowing M1 to be tried separately from M2/M3. Installing the package does not contact TikTok or establish service access.
+Profile recording is an **available installation choice** at fixed version
+`2.0.0-m3.0`. It requires observation, datastore read and datastore write
+capabilities. Runtime setup refuses a selected Skill when any required binding
+is absent. The user invokes the installed Skill; Runtime does not launch it.
+Selecting the platform without a Skill remains supported. Installation alone
+does not contact TikTok or establish business acceptance.
 
 Database and storage Providers are chosen independently from the catalog. Their configuration and permission checks belong to the Providers; a recorded reference does not establish a verified connection. Available Skill packages are metadata choices, not mandatory dependencies.
 
