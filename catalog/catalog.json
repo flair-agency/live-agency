@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "0.1.0-m2.0",
+  "version": "0.1.0-m2.1",
   "status": "candidate",
   "platforms": [
     {
@@ -21,7 +21,7 @@
       "role": "database",
       "package": {
         "name": "@flair-agency/lark-base-provider",
-        "version": "1.4.0-m2.0"
+        "version": "1.4.0-m2.1"
       },
       "bindings": {
         "creator-profile-datastore-read/v1": {
