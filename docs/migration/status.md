@@ -1,5 +1,26 @@
 # Current migration and documentation status
 
+## Platform/environment redesign — 2026-09-10
+
+The owner approved the smaller-responsibility concept: an independent catalog,
+selected platform installation, AI-guided setup backed by a CLI, business Skill
+invocation, project-independent development/production environments and an
+explicit security-update policy. The [architecture](../architecture/overview.md)
+and [distribution direction](../architecture/distribution.md) record that target.
+The [Japanese redesign review](../reviews/v2-platform-environments-ja.md) proposes
+the concrete connection and incremental validation sequence and records source
+gaps. The owner subsequently requested a first-Skill migration revision.
+The [plan review](../reviews/v2-platform-environments-ja.md#移行計画の見直し案)
+proposes retaining the first connection proof inside M1, independently accepting
+Runtime on the actual Work host, then connecting only Profile's M2 Providers and
+delivering Profile for M3 acceptance. Minimum deployment recovery stays in M1;
+automatic updates and additional workflows follow later. This sequence is a
+proposal, not a completed implementation. Design and plan preparation in PR #44
+are the current work; earlier checkpoints do not select another deployment or
+broad migration run. This change edits only parent documentation. It does not
+adopt a new child pin, install a package, register a host Skill, activate an
+update policy or verify a business operation.
+
 ## Source synchronization checkpoint — 2026-09-09
 
 The owner approved the exact public source selection: 18 Skills are now public (15 new repositories and 3 visibility changes), and the existing public operations MCP has the approved development branch. All 34 component HEADs were verified on their selected GitHub remotes before parent adoption. Thirteen pending Skill identities were adopted in source, npm metadata and direct caller references; frozen and protected operational scopes are unchanged. The exact map is in `tools/skill-source-identities.json`; current repository/branch/commit evidence is in `tools/m1-source-repositories.json`.

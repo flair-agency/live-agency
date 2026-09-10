@@ -1,14 +1,19 @@
 # Architecture and responsibility boundaries
 
-The adopted monthly architecture uses `@flair-agency/contracts` from
-`packages/contracts/` (repository `live-agency-contracts`). Skill and Providers
-independently depend on its `./monthly-activity` interface. Runtime composes
-implementations using execution-scoped tsyringe registration after asynchronous
-selection and validation; Skills and Providers never resolve container entries.
-The [revision gate](../migration/v2-plan.md#neutral-contract-revision-gate) and
-[approved Japanese review](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
-record ownership and compatibility. Provider-owned contracts described below
-remain the released baseline for capabilities outside this first monthly slice.
+Owner-approved concept revision, 2026-09-10: install a small Runtime, select
+platforms and required services during setup, and invoke business Skills after
+setup. Runtime provides environment management and access to the selected
+capabilities. Public Skills own the business workflow. The catalog is data,
+not an installed dependency on every supported platform.
+
+This target supersedes the earlier all-components Runtime distribution and
+business-specific Runtime entrypoints as the general product architecture.
+It does not revoke historical acceptance or establish implementation readiness.
+The [Japanese redesign review](../reviews/v2-platform-environments-ja.md)
+separates approved concepts, proposed connection details, source evidence and
+the smallest implementation/acceptance sequence. The earlier
+[foundation review](../reviews/v2-foundation-design-ja.md) retains its historical
+decisions and results.
 
 Status: canonical index of adopted responsibilities. Scope: project-wide boundaries; implementation and deployment readiness are owned by [migration status](../migration/status.md). The [business model](../domain/model.md) owns business meaning and identity.
 
@@ -20,7 +25,103 @@ MCPs are external protocol adapters for application operations: they register to
 
 Providers own service-specific acquisition, mutation, normalization and versioned knowledge. Independent TikTok iOS, TikTok Web and BackStage Bindings remain separate repositories. Lark Base remains Base-specific; Chat and any future Docs Binding own their own service contracts. Drivers provide generic execution mechanisms. Shared libraries own only the contract or implementation common to their consumers; repository consolidation is not required.
 
-Runtime selects and connects concrete implementations and pins compatible versions. Source repositories own implementation history; package manifests and lockfiles own distribution composition. The owner approved the [M1 concrete design](../reviews/v2-foundation-design-ja.md). Earlier package revision and MCP roadmap documents retain historical proposals; current implementation readiness remains in migration status.
+Runtime manages setup and selected environment access; it does not own the
+business sequence of profile, invitation or other Skills. Concrete versions
+belong to each environment's installation manifest and lockfile. Runtime's
+own dependencies contain its common implementation needs. Source repositories
+continue to own implementation history.
+
+## Platform and environment responsibilities
+
+| Component | Responsibility |
+| --- | --- |
+| Catalog | List supported platforms, package locations and recommended versions without installing them |
+| Platform | Declare supported capabilities, compatible Provider combinations and available Skills |
+| Setup | Present choices, collect required settings from Provider definitions, validate, install through npm and save the selected environment |
+| Runtime execution access | Expose the already-selected capability as a module operation or instruction handoff, with the selected environment and version |
+| Skill | Request neutral capabilities and own business decisions, plans, applicable approvals and result verification |
+| Provider | Own service operations, normalization, knowledge and service-specific configuration definitions |
+
+Setup is initially AI-guided with a CLI performing the deterministic work.
+The same operations must remain usable by a human through the documented CLI.
+Responsibilities may be separate modules in one package; this concept does not
+require a repository or service for every responsibility.
+
+One LIVE platform may use several Providers. Selecting a platform does not
+require every acquisition surface when the selected Skills need only a subset.
+Database and storage selections are independent of the LIVE platform; require
+them only for selected capabilities. A platform declaration cannot replace
+Provider knowledge or introduce business rules into Runtime.
+
+An environment stores multiple platform configurations and a default. An
+explicit per-invocation platform selection uses that configuration for the run;
+changing the default is a configuration change. Account identifiers and target
+resources remain bound to the selected platform and environment. Platform
+support must be declared and verified; illustrative alternatives such as 17LIVE
+are not claims that a Provider already exists.
+
+### Setup flow
+
+```mermaid
+flowchart TD
+  User[User starts setup] --> Setup[AI-guided setup and CLI]
+  Setup --> Catalog[Read versioned catalog]
+  Catalog --> Choice[Select platforms]
+  Choice --> Definitions[Read Platform and Provider definitions]
+  Definitions --> Selection[Select Skills and required service Providers]
+  Selection --> Settings[Collect settings and credential references]
+  Settings --> Install[Install selected composition and verify configuration]
+  Install --> Register[Register selected Skills with the host]
+```
+
+Catalog lookup and package installation do not authorize business operations.
+Authentication and host permissions retain their own controls. Setup must
+report missing prerequisites or required host reloads accurately.
+
+### Business execution flow
+
+```mermaid
+sequenceDiagram
+  actor User
+  participant Skill as AI following the Skill
+  participant Runtime as Selected environment access
+  participant Provider
+  User->>Skill: Invoke business workflow and optional platform
+  Skill->>Runtime: Request required capability in selected environment
+  Runtime->>Provider: Resolve fixed binding and version
+  Provider-->>Runtime: Module operation or instruction resources
+  Runtime-->>Skill: Selected operation or instruction handoff
+  Skill->>Skill: Follow workflow, obtain normalized results and plan
+  Skill->>User: Present any approval required by the business contract
+  User-->>Skill: Approve when required, or use valid prior authorization
+  Skill->>Runtime: Request authorized operation and verification
+  Runtime->>Provider: Execute selected operation
+  Provider-->>Skill: Normalized result for business verification
+```
+
+These arrows express workflow responsibility, not npm imports. Instruction
+Providers are executed by the AI using available host tools, not by treating
+instruction text as JavaScript. Module calls may be implemented through a CLI
+or a library adapter. Exact connection messages remain a design-review item;
+an internal call to a Skill library alone does not prove either correct or
+incorrect workflow ownership.
+
+## Host and environment separation
+
+Production uses the selected local ChatGPT Work host; development uses Codex.
+Environment identity is independent of an app project ID. Projects may be
+associated with an environment for convenience, but are not required to install
+or use Skills. Cloud Work is a separate deployment target, not automatically
+supported by a successful local installation.
+
+Keep installed production versions, development sources, configuration,
+credential references and operational state distinct. Do not overwrite
+production Skill registration with development links. Avoid simultaneously
+selectable same-name development and production Skills; verify the actual host
+discovery/registration mechanism instead of assuming repository precedence.
+Separate projects or product modes are not a sandbox or credential boundary.
+Browser origins, authentication and shell/API networking need their own effective
+permission checks in the selected host.
 
 ## Authority and information
 
@@ -34,6 +135,7 @@ Public Skills consume normalized neutral data; private Providers/profiles own se
 | --- | --- |
 | Capability/domain assignment | [Capability inventory](capabilities.md) |
 | Registry, scope, visibility, publisher | [Distribution direction](distribution.md) |
+| Approved platform concept and proposed execution connection | [Redesign review](../reviews/v2-platform-environments-ja.md) |
 | Runtime deployment and actual configuration interfaces | [Deployment](../../runtime/docs/deployment.md), [configuration](../../runtime/docs/configuration.md) |
 | Lark Principal/token selection | [Lark core contract](../../packages/lark-transport/docs/principal-selection.md) |
 | Lark Base table/field concept mapping | [Base Provider model](../../providers/lark-base/knowledge/data-model.md) |
@@ -42,7 +144,12 @@ Public Skills consume normalized neutral data; private Providers/profiles own se
 
 The prior [repository reorganization record](../archive/repository-reorganization-plan.md) retains package-placement options, evidence and release reasoning. The [migration plan](../migration/v2-plan.md) owns dependencies and release gates, not this architecture index.
 
-## Approved M1 foundation interfaces
+## Previously accepted M1 implementation baseline
+
+The following records the earlier monthly implementation and reusable contract
+boundaries. It does not select the entrypoint or deployment model for the
+revised product. In particular, its package-dependency diagram must not be read
+as a requirement that users start every business workflow from Runtime.
 
 `@flair-agency/provider-protocol` exports pure generic descriptors and correlated request/result validation. Runtime owns installed package discovery, resource confinement, explicit package/version/binding selection and module loading. `@flair-agency/private-files` owns explicit private file I/O. `@flair-agency/lark-transport` owns selected Lark transport through selection/api/cli exports; its implementation modules no longer import their re-exporting barrel.
 
