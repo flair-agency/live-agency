@@ -22,10 +22,17 @@ the expected creator. The normalized row had no avatar hashes, so live attachmen
 was not exercised. An initial 1.893-second attempt stopped at read-fields; the
 same Work field prerequisites subsequently passed before the bounded retry.
 The original transient failure's cause remains unconfirmed. The read correction
-is ready for owner acceptance; M3 business workflow acceptance remains open.
+was accepted by the owner; evidence PR #51 is merged and Provider issue #4 is
+closed. M3 business workflow acceptance remains open.
 Lark is the selected database; no business Skill or storage is selected, and
 updates remain manual. Earlier M1-only and unpublished-M2 statements below are
 historical checkpoints, not the current installation selection.
+
+Issue #32 is now In Progress. The next source package connects Profile Skill
+target preparation, observation handoff and scoped-history planning through the
+existing selected-environment API. Its [Japanese review](../reviews/profile-environment-plan-ja.md)
+records same-input comparisons and the remaining write/distribution gates.
+It does not change the current production installation.
 
 [Provider PR #5](https://github.com/flair-agency/live-agency-provider-lark-base/pull/5)
 is merged into main. Its release metadata [PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)
