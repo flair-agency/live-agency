@@ -353,6 +353,9 @@ Issue.
 Every PR must have a corresponding Issue linked through GitHub's native
 Development relationship. Verify the actual relationship after creating or
 updating the PR; an Issue URL or reference in the body alone is insufficient.
+Add the PR itself to the same applicable Project as its Issue and maintain its
+review/integration status there. A Development link does not itself add the PR
+as a separate Project item; verify both the link and Project membership.
 When a PR completes only part of a broader Issue, use a scoped child
 implementation Issue and link the PR to that Issue. Keep the parent open until
 its own completion criteria are met, including production verification where
