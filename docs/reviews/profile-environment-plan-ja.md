@@ -1,13 +1,15 @@
 ---
 type: review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-10
-author: "Codex (implementation and review); owner adoption pending"
+author: "Codex (implementation and review); source adoption approved by owner"
 context: "#32 Profile-first migration: selected-environment planning and approved write connection"
 ---
 
 # Profile Skillの保存済み環境への接続
+
+2026-09-10のオーナーLGTMを受け、Runtime PR #7、Lark PR #7、Profile Skill PR #2、親PR #52をmainへマージしました。以下は承認時のソースレビュー記録です。「未実施」「未完了」はその時点の範囲を示します。続く配布候補と独立インストールの結果は[初回Profile配布レビュー](profile-first-release-ja.md)に記録します。本番のSkill導入・業務受入はまだ完了していません。
 
 # 変更と判断対象
 

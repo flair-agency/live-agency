@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "0.1.0-m2.1",
+  "version": "0.1.0-m3.0",
   "status": "candidate",
   "platforms": [
     {
@@ -8,7 +8,7 @@
       "title": "TikTok",
       "package": {
         "name": "@flair-agency/live-agency-platform-tiktok",
-        "version": "0.1.0-m1.0"
+        "version": "0.1.0-m3.0"
       },
       "registry": "https://npm.pkg.github.com",
       "source": "https://github.com/flair-agency/live-agency/tree/main/platforms/tiktok"
@@ -21,13 +21,18 @@
       "role": "database",
       "package": {
         "name": "@flair-agency/lark-base-provider",
-        "version": "1.4.0-m2.1"
+        "version": "1.4.0-m3.0"
       },
       "bindings": {
         "creator-profile-datastore-read/v1": {
           "contractVersion": "1.0.0",
           "bindingId": "creator-profile-datastore-read",
           "exportName": "executeCreatorProfileRead"
+        },
+        "creator-profile-datastore-write/v1": {
+          "contractVersion": "1.0.0",
+          "bindingId": "creator-profile-datastore-write",
+          "exportName": "executeCreatorProfileWrite"
         }
       }
     },
