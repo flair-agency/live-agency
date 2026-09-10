@@ -5,10 +5,10 @@
 The owner requested durable documentation of the agency/platform domain
 distinction, Skill use-case ownership, generic Runtime and Provider boundaries,
 and per-repository public/private source direction. The
-[architecture record](../architecture/domain-knowledge-ownership.md) preserves
-five design views; the [Japanese review](../reviews/domain-knowledge-ownership-ja.md)
-separates adopted directions, proposed mapping mechanics and the current failure
-assessment. This checkpoint changes documents only, with no component pins,
+[architecture record](../architecture/domain-knowledge-ownership.md) owns the
+adopted boundaries and domain model. The [Japanese review](../reviews/domain-knowledge-ownership-ja.md)
+owns four pending implementation views, proposed mapping mechanics and the
+current failure assessment. This checkpoint changes documents only, with no component pins,
 registry publication, host registration, service retries or business writes.
 
 Later production evidence is recorded at

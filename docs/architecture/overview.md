@@ -21,8 +21,10 @@ The owner's subsequent [knowledge-ownership clarification](domain-knowledge-owne
 distinguishes the LIVE agency business domain from each LIVE platform's domain
 and centralizes their meaning in `live-agency` documents. It preserves Skill-led
 use cases and separates logical business schemas, service mappings and selected
-resource identifiers. Its five diagrams distinguish adopted direction from
-proposed interfaces and placement; they do not establish a deployed redesign.
+resource identifiers. Its adopted domain model and the four proposed views in
+the [separate Japanese design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案)
+preserve the five diagrams without assigning adopted status to proposed
+interfaces or placement. Neither establishes a deployed redesign.
 
 ## Adopted responsibilities
 
