@@ -20,9 +20,19 @@ The owner authorized implementation, now tracked as In Progress in
 implements the small Runtime's generic connection and verifies a separate
 synthetic Skill on the actual Work host. It does not select business-data writes
 or an update policy. Earlier checkpoints do not select a broad migration run.
-See the [implementation record](../reviews/v2-platform-environments-ja.md#m1接続実装の記録)
-for actual evidence and remaining M1 setup/deployment work; no new Runtime child
-pin is adopted by this parent documentation checkpoint.
+The owner-approved opening source was merged through Runtime PR #3 and parent
+PR #46. The next Runtime candidate, `2.0.0-m1.1`, adds catalog selection,
+installation planning, actual npm lock/ci installation, saved configuration,
+Skill registration and receipt-based recovery. A separate catalog and TikTok
+platform candidate are versioned `0.1.0-m1.0`; Profile remains pending M2/M3.
+The designated Work task used the installed synthetic Skill successfully with
+the catalog unavailable, and its temporary registration was restored through
+the new CLI. Service settings references remain unverified, updates are manual,
+and permanent environment deployment/owner acceptance remain open. Candidate
+publication workflows are prepared but have not run.
+See the [setup implementation record](../reviews/v2-platform-environments-ja.md#m1セットアップ実装の記録)
+for actual evidence and limits; no new Runtime child pin is adopted by this
+parent checkpoint. #45 remains In Progress, not Ready for Acceptance.
 
 ## Source synchronization checkpoint — 2026-09-09
 

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0-m1.0",
+  "status": "candidate",
+  "platforms": [
+    {
+      "id": "tiktok",
+      "title": "TikTok",
+      "package": { "name": "@flair-agency/live-agency-platform-tiktok", "version": "0.1.0-m1.0" },
+      "registry": "https://npm.pkg.github.com",
+      "source": "https://github.com/flair-agency/live-agency/tree/main/platforms/tiktok"
+    }
+  ],
+  "services": [
+    { "id": "lark-base", "title": "Lark Base", "role": "database", "package": { "name": "@flair-agency/lark-base-provider", "version": "1.3.0" } },
+    { "id": "google-drive", "title": "Google Drive", "role": "storage", "package": { "name": "@flair-agency/google-drive-provider", "version": "1.0.0" } }
+  ]
+}

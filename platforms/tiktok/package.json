@@ -1,0 +1,30 @@
+{
+  "name": "@flair-agency/live-agency-platform-tiktok",
+  "version": "0.1.0-m1.0",
+  "description": "Declarative TikTok capability selection for LIVE Agency environments",
+  "repository": { "type": "git", "url": "https://github.com/flair-agency/live-agency.git", "directory": "platforms/tiktok" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" },
+  "files": ["README.md"],
+  "dependencies": { "@flair-agency/tiktok-web-provider": "1.1.0" },
+  "peerDependencies": { "@flair-agency/provider-protocol": "1.0.0", "@flair-agency/private-files": "1.0.0" },
+  "liveAgencyPlatform": {
+    "schemaVersion": 1,
+    "id": "tiktok",
+    "bindings": {
+      "creator-profile-observation-source/v2": {
+        "contractVersion": "2",
+        "dependencyPath": [{ "packageName": "@flair-agency/tiktok-web-provider", "packageVersion": "1.1.0" }],
+        "bindingId": "creator-profile-observation"
+      }
+    },
+    "skills": [
+      {
+        "id": "live-agency-creator-profile-record",
+        "package": { "name": "@flair-agency/creator-profile-record", "version": "1.2.0" },
+        "status": "pending",
+        "requires": ["creator-profile-observation-source/v2"],
+        "reason": "The published Skill still contains concrete Provider dependencies. Its neutral destination connection and business acceptance are pending M2/M3; this is not a complete workflow capability declaration."
+      }
+    ]
+  }
+}
