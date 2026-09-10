@@ -1,6 +1,37 @@
 # Current migration and documentation status
 
+## Knowledge ownership documentation and stopped profile attempt — 2026-09-11
+
+The owner requested durable documentation of the agency/platform domain
+distinction, Skill use-case ownership, generic Runtime and Provider boundaries,
+and per-repository public/private source direction. The
+[architecture record](../architecture/domain-knowledge-ownership.md) owns the
+adopted boundaries and domain model. The [Japanese review](../reviews/domain-knowledge-ownership-ja.md)
+owns four pending implementation views, proposed mapping mechanics and the
+current failure assessment. This checkpoint changes documents only, with no component pins,
+registry publication, host registration, service retries or business writes.
+
+Later production evidence is recorded at
+[checkpoint ad3c1ba](https://github.com/flair-agency/live-agency/commit/ad3c1ba)
+on `codex/profile-production-evidence`. Its stopped attempt used Runtime
+`2.0.0-m3.0`, Profile `2.0.0-m3.1` and Lark `1.4.0-m3.0`; installation and Skill
+registration completed, but the plan did not complete. A scoped history-read
+diagnostic stopped at `read-fields`, which includes two field-definition reads
+and their mapping validation. The precise cause remains unresolved. Business
+writes and image uploads were zero; `businessWorkflowVerified` remains false.
+The final Work turn ended with a workspace credit error.
+[Issue #32](https://github.com/flair-agency/live-agency/issues/32) continues to
+track the incomplete business acceptance. This is a reference to retained
+evidence, not a fresh verification or adoption of all changes on that branch.
+
+The source-ownership correction does not itself fix the read failure. The next
+diagnostic should distinguish those stages and retain a sanitized failure reason
+through the Skill before one bounded selected read. Broad schema migration is
+not a prerequisite to identifying the failing operation.
+
 ## Profile publication correction and production proposal — 2026-09-10
+
+Historical checkpoint: the later stopped production attempt is summarized above.
 
 The owner accepted Runtime PR #8, Lark PR #8, Profile PR #3 and parent PR #53
 for main integration and fixed private publication. All four are merged.
@@ -30,16 +61,16 @@ service access and business data remain unchanged. The deployed baseline below
 still applies. Corrected-version publication and production adoption await owner
 approval; actual record creation also needs its concrete plan approval.
 
-## Current production baseline — 2026-09-10
+## Historical M2 production baseline — 2026-09-10
 
-The designated ChatGPT Work Local production environment is currently
+At this checkpoint, the designated ChatGPT Work Local production environment was
 `operations / production / tiktok` with the following deployed M2 configuration.
 The approved registry-only installation succeeded. The installed package integrity,
 saved plan/configuration and three adopted host entry files match their receipts.
 The [deployment record](../reviews/v2-platform-environments-ja.md#profile履歴読取修正版の実施記録)
 separates publication, host adoption and the actual Work read result.
 
-| Component | Deployed now | Immediate recovery target |
+| Component | Deployed at this checkpoint | Immediate recovery target at this checkpoint |
 | --- | --- | --- |
 | Runtime | `2.0.0-m2.1` | `2.0.0-m2.1` (unchanged) |
 | Lark Base Provider | `1.4.0-m2.1` | `1.4.0-m2.0` |

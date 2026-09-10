@@ -93,11 +93,32 @@ Real configuration, credentials, source exports and execution state remain outsi
 
 Owner clarification, 2026-09-09: business and shared operational Skill source
 repositories are public. The initial private registry-package decision above
-does not make their source repositories permanently private. Providers and
-organization-specific Runtime composition remain private. Review Skill content
-and Git history before public creation or visibility changes; record any pending
-publication explicitly. Public source does not imply that private package
-dependencies can be installed anonymously.
+does not make their source repositories permanently private.
+
+Owner clarification, 2026-09-11, supersedes the blanket private-Provider direction:
+
+| Source | Adopted visibility direction |
+| --- | --- |
+| `live-agency` domain knowledge and platform-independent project source | Public |
+| Use-case Skill source | Public |
+| Generic Runtime source | Public |
+| Lark-related Provider and shared implementation source | Public |
+| BackStage Provider | Private |
+| TikTok Web and iOS Providers | Private is the current candidate; final decision remains open |
+
+These are source directions, not a report of changed GitHub settings. Review
+content and Git history before each public creation or visibility change;
+reconcile existing internal project records, private dependencies and authenticated
+or publication-uncertain source knowledge before making a repository public.
+Record any pending publication explicitly. Do not infer that all content
+currently in `live-agency` is already suitable for public release.
+
+Actual organization configuration, credentials, resource IDs and operational
+evidence remain outside public source. Generic reusable declarations are distinct
+from a selected organization's private configuration. Public source does not
+change the initial private registry distribution or imply that private package
+dependencies can be installed anonymously. The [knowledge ownership document](domain-knowledge-ownership.md)
+separates business/platform meaning from operational source details.
 
 Keep coherent development checkpoints on remote work branches under the
 [development synchronization policy](../governance/development-policy.md#local-and-remote-source-synchronization).

@@ -17,6 +17,15 @@ decisions and results.
 
 Status: canonical index of adopted responsibilities. Scope: project-wide boundaries; implementation and deployment readiness are owned by [migration status](../migration/status.md). The [business model](../domain/model.md) owns business meaning and identity.
 
+The owner's subsequent [knowledge-ownership clarification](domain-knowledge-ownership.md)
+distinguishes the LIVE agency business domain from each LIVE platform's domain
+and centralizes their meaning in `live-agency` documents. It preserves Skill-led
+use cases and separates logical business schemas, service mappings and selected
+resource identifiers. Its adopted domain model and the four proposed views in
+the [separate Japanese design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案)
+preserve the five diagrams without assigning adopted status to proposed
+interfaces or placement. Neither establishes a deployed redesign.
+
 ## Adopted responsibilities
 
 Skills own business tasks, judgments, normalized input/output and acceptance conditions. Creator Scouting and Creator Management are separate bounded contexts with distinct execution authority, destination, credential and audit identities. Those boundaries do not depend on MCP as the transport. Accounting and expenses remain outside both creator-domain MCPs. Gift history is cross-domain; membership transition crosses domains after authoritative membership confirmation. Observation continues after membership; its consumer and storage purpose change.
@@ -24,6 +33,13 @@ Skills own business tasks, judgments, normalized input/output and acceptance con
 MCPs are external protocol adapters for application operations: they register tools, adapt requests/results and delegate to consumer-owned interfaces. Business decisions, service implementations and Provider selection belong to their owning consumers, Providers and Runtime. The entire transitional `mcp/operations` package is deferred from required v2 deployment; selected paths may use existing CLI entry points or a minimal MCP adapter. Required behavior is preserved and moved to its owners rather than discarded. The [adopted MCP treatment](../migration/v2-plan.md#adopted-treatment-of-operations-mcp) owns scope and verification. The transitional `live-agency-operations` acquisition MCP is not the final creator-domain boundary. Relationship-changing actions require a separately launched action surface; public read acquisition does not gain follow/message/invitation/gift authority.
 
 Providers own service-specific acquisition, mutation, normalization and versioned knowledge. Independent TikTok iOS, TikTok Web and BackStage Bindings remain separate repositories. Lark Base remains Base-specific; Chat and any future Docs Binding own their own service contracts. Drivers provide generic execution mechanisms. Shared libraries own only the contract or implementation common to their consumers; repository consolidation is not required.
+
+Providers implement the documented domain meaning rather than own competing
+business definitions. The Lark Base Provider owns generic Lark operations and
+actual field metadata access; business logical schemas and their service mappings
+are separate concerns. TikTok platform meaning is distinct from reusable
+acquisition utilities and Web/iOS/BackStage surface-specific procedures. The
+precise mapping mechanism and implementation placement remain design work.
 
 Runtime manages setup and selected environment access; it does not own the
 business sequence of profile, invitation or other Skills. Concrete versions
@@ -36,7 +52,7 @@ continue to own implementation history.
 | Component | Responsibility |
 | --- | --- |
 | Catalog | List supported platforms, package locations and recommended versions without installing them |
-| Platform | Declare supported capabilities, compatible Provider combinations and available Skills |
+| Platform | Declare supported capabilities, compatible Provider combinations and available Skills; reference corresponding platform-domain knowledge |
 | Setup | Present choices, collect required settings from Provider definitions, validate, install through npm and save the selected environment |
 | Runtime execution access | Expose the already-selected capability as a module operation or instruction handoff, with the selected environment and version |
 | Skill | Request neutral capabilities and own business decisions, plans, applicable approvals and result verification |
@@ -127,7 +143,12 @@ permission checks in the selected host.
 
 Each protected access binds one environment, organization, service, resource scope, domain, authority and Principal. Missing or ambiguous selection stops. No ambient identity, cross-organization, User/Tenant or unverified API/browser fallback is allowed. Operation support does not grant an instance authority. Scouting and Management processes do not share credentials across their boundary; exact dedicated-App decisions remain subject to effective service controls and their own contract.
 
-Public Skills consume normalized neutral data; private Providers/profiles own service-specific formats and operating knowledge; credentials and real data remain in private storage. The [Private Source Integration Guide](../governance/private-source-integration-guide.md) is the single information-handling authority.
+Public Skills consume normalized neutral data. Providers own service-specific
+formats and operating knowledge according to their individually selected
+[source visibility](distribution.md#source-repository-visibility-and-synchronization);
+credentials and real data remain in private storage. Authenticated and
+publication-uncertain source details retain the controls in the
+[Private Source Integration Guide](../governance/private-source-integration-guide.md).
 
 ## Owning specifications
 
@@ -138,7 +159,8 @@ Public Skills consume normalized neutral data; private Providers/profiles own se
 | Approved platform concept and proposed execution connection | [Redesign review](../reviews/v2-platform-environments-ja.md) |
 | Runtime deployment and actual configuration interfaces | [Deployment](../../runtime/docs/deployment.md), [configuration](../../runtime/docs/configuration.md) |
 | Lark Principal/token selection | [Lark core contract](../../packages/lark-transport/docs/principal-selection.md) |
-| Lark Base table/field concept mapping | [Base Provider model](../../providers/lark-base/knowledge/data-model.md) |
+| Domain knowledge, logical schemas and service mapping boundary | [Knowledge ownership](domain-knowledge-ownership.md), [business model](../domain/model.md) |
+| Existing Lark mapping implementation knowledge (not the target business-knowledge owner) | [Base Provider model](../../providers/lark-base/knowledge/data-model.md) |
 | Conversation operations | [MCP contract](../../mcp/operations/docs/conversation-message-contract.md) |
 | Neutral backup capability API | [source-provider-api](../../packages/provider-protocol/docs/backup-capability-contract.md) |
 

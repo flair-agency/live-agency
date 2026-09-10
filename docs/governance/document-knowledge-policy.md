@@ -54,7 +54,23 @@ Fix supported findings before presenting the work. In the existing review or tas
 
 # Ownership and information boundaries
 
-Public Skills document neutral business knowledge. Service-specific acquisition, authenticated procedures, schemas and troubleshooting remain with the owning private Provider, with discoverable references for authorized operators. Composition and installation details belong to Runtime/project documentation. Apply the [Private Source Integration Guide](private-source-integration-guide.md) without moving private knowledge into public repositories to make a Skill self-contained.
+Public Skills document their use cases and reference the domain knowledge
+centralized in `live-agency`. The owner's 2026-09-11 clarification distinguishes
+LIVE agency business meaning, each LIVE platform's meaning, logical business
+schemas, service mappings and actual environment bindings; see
+[knowledge ownership](../architecture/domain-knowledge-ownership.md).
+Provider implementations must preserve the documented meaning.
+
+Service-specific acquisition, authenticated procedures and operational
+troubleshooting remain with the owning Provider, with discoverable references
+for authorized operators. Provider source visibility is selected individually
+under the [distribution direction](../architecture/distribution.md#source-repository-visibility-and-synchronization),
+not presumed private for every Provider. Public source direction does not
+authorize publication of authenticated or publication-uncertain source profiles,
+private mappings, real data or credentials. Composition and installation details
+belong to Runtime/project documentation. Apply the
+[Private Source Integration Guide](private-source-integration-guide.md) without
+moving private knowledge into public repositories to make a Skill self-contained.
 
 The company policy originals are internal. Their adoption here does not authorize publishing their full text, private evidence, credentials or company-specific procedures in public Skill repositories. Authorized humans must be able to locate the private companion knowledge necessary for takeover.
 

@@ -31,9 +31,21 @@ profile registration. Reuse their applicable evidence and verify changed paths.
 | --- | --- | --- |
 | M1 opening proof | Invoke a neutral synthetic Skill on the actual Work host, resolve the fixed environment, execute a module operation and follow an instruction handoff | Retain the common implementation. Resource loading alone is insufficient; do not require Profile business completion |
 | M1 Runtime | Minimal selected setup/catalog, saved environment reuse, fixed dependency resolution, Skill registration and basic deployment recovery | Owner can try Runtime on Work. Keep old installations and distinguish development sources/registration. Do not wait for M2/M3 |
-| Profile M2 | Connect only the required TikTok Web and Lark Base capabilities, preserving the accepted business contract and moving concrete service mapping to Providers | Verify observed data and selected destination. Reuse applicable write evidence plus focused development checks for changed paths; no inferred production-write authority |
+| Profile M2 | Connect only the required TikTok Web and Lark Base capabilities, preserving the accepted business contract and separating logical business schemas, service mappings and selected resource bindings under the adopted knowledge-ownership direction | Verify observed data and selected destination. Reuse applicable write evidence plus focused development checks for changed paths; no inferred production-write authority |
 | Profile M3 readiness | Register the neutral Profile Skill with its complete installed reading route and make the selected one-item plan available from Work | Tell the owner acceptance can begin; this is not yet successful registration or owner acceptance |
 | Profile M3 acceptance | Apply the authorized current plan, read back results/images as applicable, verify unchanged data and nonduplicating replanning, and complete the human review | First production business acceptance. Invitation and other Skills proceed afterward, without repeating M1 |
+
+Owner clarification, 2026-09-11: the
+[adopted knowledge-ownership boundary](../architecture/domain-knowledge-ownership.md)
+supersedes the earlier instruction to move all concrete service mappings into
+Providers, including that direction in the retained 2026-09-10 review record.
+Lark operations and actual field metadata access remain Provider responsibilities;
+logical business schemas and their service mappings are separate concerns.
+The mapping mechanism, neutral interfaces and reusable definition placement
+remain in the [pending design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案).
+Neither a mandatory new business-specific Provider nor a bulk schema relocation
+is a first-Skill gate. Identify and correct the selected profile-read failure
+without using historical placement instructions as authority for a broad move.
 
 New platform support, all Providers/Skills, GUI, full automatic updating and broad
 MCP/failover improvements are not first-Skill gates. Basic deployment rollback is
