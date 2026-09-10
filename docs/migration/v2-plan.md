@@ -1,12 +1,35 @@
 # v2 migration plan
 
-The owner approved a platform/environment concept revision on 2026-09-10.
-The current [architecture](../architecture/overview.md),
-[distribution direction](../architecture/distribution.md) and
-[redesign review](../reviews/v2-platform-environments-ja.md) govern that target
-and its proposed next sequence. The historical all-components M1 package scope
-and monthly-first sequence below do not gate delivery of the revised minimal
-Runtime or first selected Skill. Implementation history remains preserved.
+# Current delivery objective — 2026-09-10
+
+The owner approved the platform/environment concept and requested a revised
+migration plan that makes one Skill usable in production for early acceptance.
+Use the [architecture](../architecture/overview.md) and
+[distribution direction](../architecture/distribution.md) for the accepted
+responsibilities. The first workflow remains profile recording; the production
+host is the designated local ChatGPT Work project, **C|OPS|エージェンシー運営**.
+Development in Codex is not evidence of production-host acceptance.
+
+The [Japanese migration revision](../reviews/v2-platform-environments-ja.md#移行計画の見直し案)
+proposes building a small retained connection proof inside M1 rather than a
+separate throwaway PoC, then delivering M1 Runtime, only the required M2
+Providers, and one M3 Skill. It defines what the owner can try at each stage,
+minimum recovery, outstanding decisions and the existing Issue mapping.
+This recommendation is under review; preparing the plan does not implement or
+activate it. No new milestone numbers replace M1/M2/M3.
+
+The current work package is the design and plan revision in PR #44. Historical
+M1 acceptance in #42 and development Profile acceptance in #13 remain valid for
+their recorded scope; neither proves the redesigned Skill entry or a production
+profile registration. Reuse their applicable evidence and verify changed paths.
+
+The remaining sections preserve the earlier plan and its stable reference
+anchors. Their monthly-first ordering, full M1 package list and general runner
+design are historical, not prerequisites for the current first-Skill delivery.
+Existing business contracts, valid authorizations and scoped verification remain
+governed by their current owning documents; historical text does not select work.
+
+# Historical plan — adopted 2026-09-07, superseded delivery sequence
 
 Status: Adopted on 2026-09-07 following the owner's approval of the revised plan and the recommendations in its decision section. This is the English canonical plan. The [Japanese review](../reviews/v2-migration-plan-review-ja.md) and [Skill naming review](../reviews/v2-skill-naming-and-migration-plan.md) retain review history. [Current status](status.md) owns completion and the current work queue. Subsequent owner feedback on source cleanup, milestone reviews and controlled parallelism is incorporated below. Plan approval does not itself dispatch implementation.
 

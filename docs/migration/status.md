@@ -9,10 +9,17 @@ explicit security-update policy. The [architecture](../architecture/overview.md)
 and [distribution direction](../architecture/distribution.md) record that target.
 The [Japanese redesign review](../reviews/v2-platform-environments-ja.md) proposes
 the concrete connection and incremental validation sequence and records source
-gaps. Design preparation is the current work; earlier implementation checkpoints
-do not select another deployment or broad migration run. This change edits only
-parent documentation. It does not adopt a new child pin, install a package,
-register a host Skill, activate an update policy or verify a business operation.
+gaps. The owner subsequently requested a first-Skill migration revision.
+The [plan review](../reviews/v2-platform-environments-ja.md#移行計画の見直し案)
+proposes retaining the first connection proof inside M1, independently accepting
+Runtime on the actual Work host, then connecting only Profile's M2 Providers and
+delivering Profile for M3 acceptance. Minimum deployment recovery stays in M1;
+automatic updates and additional workflows follow later. This sequence is a
+proposal, not a completed implementation. Design and plan preparation in PR #44
+are the current work; earlier checkpoints do not select another deployment or
+broad migration run. This change edits only parent documentation. It does not
+adopt a new child pin, install a package, register a host Skill, activate an
+update policy or verify a business operation.
 
 ## Source synchronization checkpoint — 2026-09-09
 
