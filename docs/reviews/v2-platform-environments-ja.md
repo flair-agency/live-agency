@@ -18,6 +18,11 @@ Lark Provider [PR #5](https://github.com/flair-agency/live-agency-provider-lark-
 API側で対象を絞り、画像確認は対象1行を読む実装に修正した。
 本番での所要時間の改善は未検証。
 
+導入元は現在のM2構成（Runtime `2.0.0-m2.1`、Lark `1.4.0-m2.0`、
+カタログ `0.1.0-m2.0`）。[移行状況](../migration/status.md)の先頭に
+現行版・今回の候補版・直近の復旧先を併記した。途中のM2配布・本番導入記録も
+本PRへ取り込んでおり、未マージの別PRを暗黙の前提にしない。
+
 | 今回採用するもの | 候補と範囲 |
 | --- | --- |
 | Lark Provider | `1.4.0-m2.1`。版番号だけを更新する[PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)、コミット `2e66c0eaced0cbc8b45ab139414ab0526ef02e0e` |
@@ -49,7 +54,8 @@ Provider公開前の既存Actionsチェックで取得・導入に失敗した�
 今回の作業で既存の本番設定・ホスト入口は変更していない。
 差し替える入口はlauncher、RuntimeのホストSkill、OPERATORの3ファイル。
 現在の内容・ハッシュ・モードをGit外に保存し、適用直前にも一致を確認する。
-復旧時は今回保存した旧3ファイルを戻して、現在のM2構成へ戻す。
+復旧時は今回保存した旧3ファイルを戻して、上記の現在のM2構成へ戻す。
+後段に保持するM1への復旧記録は、前回のM1→M2導入に対応するもので、今回の直近の復旧手順ではない。
 旧世代・失敗候補・証跡は保持し、業務データの復元は不要。
 
 検証は、Providerの既存23件と親の39件の合格結果を再利用した。
@@ -68,6 +74,14 @@ Skill起点、対象選択はconsumer、具象APIはProviderという責務を�
 残る判断は、上記の固定版の配布と設定差分を含む本番読取検証を実施するか。
 Issue [Lark #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)は
 本番検証完了まで開いたままにし、[#32](https://github.com/flair-agency/live-agency/issues/32)の完了とは区別する。
+
+[レビュー指摘](https://github.com/flair-agency/live-agency/pull/50#discussion_r3978601383)
+への対応として、PR #49のM2導入証跡を本PRへ履歴ごと取り込んだ。
+事前レビューが候補差分の確認に偏り、指定された現行状態文書との照合を漏らしていた。
+修正では現行のenvironment/lock、host receipt、今回の復旧コピーを再読取し、
+移行状況・本レビュー・catalog READMEの版と復旧先を照合した。
+変更は文書だけで、配布物・導入計画ハッシュ・本番設定・対象1名の読取要求は変えていない。
+本番操作や業務テストの再実行は行っていない。
 
 # 結論と採用範囲
 
@@ -653,3 +667,60 @@ Providerのブランチ同期は一度自動レビューで拒否されたが、
 - [OpenAI：Browser](https://learn.chatgpt.com/docs/browser)：Work／Codexとブラウザー・権限の区別。
 - [OpenAI：Work Cloud](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security)：ローカル配備やブラウザー状態をクラウドへ自動継承しない。
 - [GitHub：Dependabot security updates](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-security-updates)：脆弱性修正PRと本番切替の区別。
+
+# Profile M2固定配布と本番導入の更新
+
+2026-09-10の実施記録。先行する「Profile M2読取接続の候補」節の
+Runtime `2.0.0-m2.0`等の「未公開・未導入」とソース採用待ちは、その時点の記録として保持する。
+本節は、その後に完了したM1→M2導入を記録する。冒頭のLark `1.4.0-m2.1`候補は別の未実施計画である。
+その後オーナーがソース採用、固定版の非公開配布、指定Workへの導入・読取検証を明示承認した。
+Runtime [PR #5](https://github.com/flair-agency/live-agency-provider-runtime/pull/5)、
+Lark [PR #2](https://github.com/flair-agency/live-agency-provider-lark-base/pull/2)、
+親 [PR #48](https://github.com/flair-agency/live-agency/pull/48) は統合済み。
+Larkの候補版をnextへ限定する [PR #3](https://github.com/flair-agency/live-agency-provider-lark-base/pull/3) も採用された。
+
+| 配布物 | 固定版・証拠 |
+| --- | --- |
+| Runtime | `2.0.0-m2.1`。[PR #6](https://github.com/flair-agency/live-agency-provider-runtime/pull/6) はmain `34fcf39bbdb856eaf405de1f81a8f7c5e692d515` へ統合。[配布run 34461964090](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34461964090) で非公開・integrity・導入を検証 |
+| Lark Base Provider | `1.4.0-m2.0`。[run 34459702584 attempt 2](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34459702584/attempts/2) で配布検証済み |
+| 独立カタログ | `0.1.0-m2.0`。[固定リリース](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.0) の内容を検証済み |
+
+最初のRuntime `2.0.0-m2.0` 導入は、setupが全依存のregistryをGitHub Packagesへ固定し、
+公開CLI依存を取得できず停止した。この失敗をサービス権限不足や本番成功として扱っていない。
+`2.0.0-m2.1` は明示したnpm設定のdefault／scope別registryを使用し、環境変数からの
+npm設定上書きを除外する。ユーザーの認証設定は変更していない。
+変更箇所のsetup 4件・版確認1件と、実npmによるofflineのregistry選択確認は成功した。
+
+修正版ではregistryのみから実際の本番導入が成功し、既存Runtime入口・host Skill案内・運用案内の
+3ファイルを採用した。Lark保存先とTikTok取得／Lark読取の2能力を選択し、業務Skillとstorageは
+未選択、更新は手動である。旧M1配置と3ファイルの旧コピー・変更前後ハッシュを保持する。
+このM1→M2導入の復旧は、当時記録した3ファイルだけを旧M1へ戻すものだった。
+今回のLark修正版の復旧先は、冒頭に示した現在のM2構成である。
+失敗候補と設定束縛の証拠は診断用に残し、
+旧版や別のProfile配置を上書きしない。具体的な機器上のパス・設定・業務データはGit外に保持する。
+
+指定ChatGPT Work Localタスク自身がRuntime起動、保存済み設定、提供能力を確認した。
+最初のread-creators要求は `PROFILE_DATASTORE_READ_FAILED`、段階 `read-fields` で停止した。
+その停止時点ではread-historyとTikTok観測は未実行で、書込みはなかった。
+同じRuntime要求をホストの必要な実行権限付きで実行すると、read-creatorsはdoneとなり、クリエイター一覧1,374件を取得した。これは同期対象の件数ではない。
+Providerの利用者・保存設定は変更しておらず、フィールド／対象者読取の当初の失敗は解消した。
+read-historyは一回の実行で完了せず、10分のsmoke検証上限を超えた経過10分51秒で停止した。
+親がPID・導入済み実行ファイル・要求を一致確認し、その3プロセスだけへSIGTERMを送った。
+Providerの完了JSONは得られておらず、API失敗やdownload budget発火と断定しない。
+コード確認では全Profile行をhydrateし、各attachmentのhash確認で取得前後に選択テーブル全体を
+再読取する実装であることが分かった。ただし経過時間全体の原因は切り分け未完了である。
+TikTok観測は未実行、外部書込みは0件である。
+導入済み運用案内にホスト実行権限の切分けを追記し、変更前の採用済みコピーと新しいreceiptを保持した。
+3ファイルの現在／復旧ハッシュは記録と一致する。対象者読取の成功を、履歴・TikTok観測・画像比較・
+Profile計画や登録の成功へ拡張しない。M2保存操作の接続とM3のSkill呼出し・計画・必要な承認・登録・再読取は残る。
+非公開配布・本番採用・限定読取検証へのオーナー承認はこの実行で使用した。
+既存の本番書込み承認を復活させず、定期実行も追加しない。
+
+| 次の作業 | 人の担当 | 期限 | 概要 | 完了条件 | 参照 |
+| --- | --- | --- | --- | --- | --- |
+| Profile履歴読取修正版の配布・本番確認 | TBD | TBD | ソース修正は採用済み。冒頭の固定版・設定差分をレビューし、対象1名の実Work履歴読取を確認する | 配布・導入証跡と限定読取の完了を確認してからM3へ進む | [Provider #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)、[#31](https://github.com/flair-agency/live-agency/issues/31)、本書冒頭 |
+
+AIポリシーレビューでは、候補時点の記録を保存しながら現在状態を更新すること、配布・導入と
+実ホスト受入の区別、固定版・障害原因・復旧対象、非公開証拠の保管境界を照合した。
+この文書更新でテストや本番操作を再実行していない。成功した対象者読取、未完了の履歴読取、
+確認済みコード挙動と未確定の性能原因を分け、未実行範囲・承認消費・次の修正範囲を確認した。
