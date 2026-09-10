@@ -1,13 +1,15 @@
 ---
 type: review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-10
 author: "Codex (implementation and AI policy review)"
 context: "Issue #32: first Profile distribution candidate"
 ---
 
 # Profile Skillを配布できる構成にする
+
+このソース採用・固定配布案はオーナーLGTMで承認され、4PRをmainへマージしました。以下の候補レビューは当時の記録です。配布後に判明した差と、修正版および本番導入の判断対象は[本番導入レビュー](profile-production-adoption-ja.md)を参照してください。採用済みの構成・配布状態の正本は英語の[移行状況](../migration/status.md)です。
 
 承認済みの接続ソース4件はmainへマージ済みです。今回は、そのソースを実際に配布・インストールできる候補へ整理しました。現在の本番はChatGPT Work Localの「C|OPS|エージェンシー運営」、`operations / production / tiktok`です。まだ旧M2構成で動いており、今回の候補は本番へ導入していません。
 

@@ -1,5 +1,35 @@
 # Current migration and documentation status
 
+## Profile publication correction and production proposal — 2026-09-10
+
+The owner accepted Runtime PR #8, Lark PR #8, Profile PR #3 and parent PR #53
+for main integration and fixed private publication. All four are merged.
+Runtime `2.0.0-m3.0` and Lark `1.4.0-m3.0` publication workflows passed; their
+private registry archive integrities match the reviewed local candidates.
+Profile `2.0.0-m3.0` was published, but its post-publication standalone check
+failed: the inspected version metadata contains the Runtime peer dependency
+and omits its optional metadata, leading to Runtime package access and a
+`read_package` 403. The tarball still matches the reviewed archive. This is an
+observed distribution difference, not a change to business behavior.
+
+The correction removes that peer declaration in Profile `2.0.0-m3.1`. Runtime
+continues to be supplied by the selected environment. The actual corrected
+archive installs alone and imports all exported modules without Runtime or
+concrete Providers. New publication checks enforce this for archive and registry
+installs. The already published `.0` artifact is retained unchanged.
+TikTok platform/catalog `0.1.0-m3.0` have not been published; the platform now
+selects the corrected Skill candidate. No new business-code tests were repeated.
+
+Issue #32 tracks the corrected source/distribution and concrete production plan
+in the [Japanese adoption review](../reviews/profile-production-adoption-ja.md).
+The plan preserves the current production actor, destination and read selection,
+adds the existing Provider's three write operations as a separately reviewed
+selection, and proposes a new fixed installation plus Profile host registration.
+Only private proposal files were prepared; production, current host entries,
+service access and business data remain unchanged. The deployed baseline below
+still applies. Corrected-version publication and production adoption await owner
+approval; actual record creation also needs its concrete plan approval.
+
 ## Current production baseline — 2026-09-10
 
 The designated ChatGPT Work Local production environment is currently
