@@ -456,6 +456,70 @@ CLIによる人の代替、図と手順、配布する資源、公開／非公�
 オーナーが保存済み構成と復旧を試せる状態にすること。#45は引き続きM1全体としてIn Progress。
 親の既存Runtime差分は保持し、この記録では子pinを変更しない。
 
+# M1固定配布と常用環境への導入
+
+Runtime PR #4と親PR #47はオーナーのLGTMを受けmainへ統合済み。
+公開操作は自動承認レビューで一度止まったため、次の3版の非公開公開を具体的に提示し、
+オーナーが「次に進んで」と回答した後に実行した。先の拒否は解消済みで、別経路への迂回はしていない。
+
+| 配布物 | 固定版とmainのソース | 配布・検証結果 |
+| --- | --- | --- |
+| Runtime | `2.0.0-m1.1`、`3f364f9f4900ef4fcea675edb609478fc3fefd26` | [配布run 34452878987](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34452878987)成功。非公開・integrity・独立導入を検証 |
+| TikTok platform | `0.1.0-m1.0`、`ac3cb4a79380d7646f5fe03cc734ecba86bf0f3c` | [配布run 34452937724](https://github.com/flair-agency/live-agency/actions/runs/34452937724)成功。非公開・宣言・依存・integrityを検証 |
+| 独立カタログ | `0.1.0-m1.0`、同じ親main SHA | [非公開リリース](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m1.0)から再取得し、承認時の内容と一致 |
+
+Runtime／platformは候補版の`next`タグ。カタログのSHA-256は
+`154d337b60706c1b15e1713283bdefd7744b9c65bd41a30e6837c05e62368f83`。
+Runtimeの10ファイルとplatformの2ファイルを含む配布archiveは、事前確認したintegrityと一致した。
+ソースの準備時に「未公開」と記載したREADMEは、その時点の履歴であり、公開済みarchiveの内容は書き換えない。
+
+変更カード：主分類F、副分類D/G。承認済み固定版の非公開配布と、指定済みWorkホストへの常用M1導入が対象。
+復旧対象は既存Runtime入口・Runtime用のローカル案内・運用案内の3ファイルのみ。
+業務Skill・DB・ストレージ・サービス操作は今回選択していない。継続workerは独立した読み取りと
+日本語の受入案内作成を担当し、配布・導入・切替は親が順に行った。workerのeffortを確認・変更できる
+手段がなかったため、今回lowへ変更したとは主張しない。
+
+## 導入と復旧の証拠
+
+既存npm設定を参照として明示し、公開済み固定版から導入用Runtimeを取得した。
+そこから新しい`production/installations/runtime-2.0.0-m1.1`へ、実際のlock生成と`npm ci`で導入した。
+既存1.3.0と別の1.4.0 Profile配置は保持した。開発checkoutのファイルへのリンクは用いていない。
+
+- 環境：`operations` / `production`、既定platform：`tiktok`
+- 設定世代：`55480bd3488805c2452f646e605724822f58d9af424fe5f0aa1b179ff5d9b61e`
+- 計画SHA-256：`2f75551462e3e1a6a88f2aa35964bc521102f7f319b29c3a336ef248d347e2de`
+- 選択Skill・DB・ストレージ：なし。更新：手動
+
+既存の`live-agency-runtime`入口を、保存済み構成を表示する新しい固定版へ切り替えた。
+3ファイルの変更前後の内容・権限・ハッシュを保持し、実際に旧入口へ戻して1.3.0の`ready`と
+`externalOperations: 0`を確認した。その後に新入口へ再採用し、3ファイルの採用後ハッシュも照合済み。
+復旧記録と配布証拠は、本番配置の`deployments/runtime-2.0.0-m1.1/`に保持する。
+`production.json`、別のProfile設定、他のSkill登録、業務データ、スケジュールは変更していない。
+
+指定Workタスク自身による新入口の確認は成功した。完了turnは
+`01a08a5d-b125-7ab2-a04c-8d6c31929302`、2026-09-10 17:12:07 JST。
+登録一覧から`live-agency-runtime`を発見して現在の案内を読み、実際の入口から上記環境・世代・
+未選択項目・手動更新を確認した。版コマンドは`@flair-agency/live-agency-runtime@2.0.0-m1.1`。
+同世代の実行ファイルと設定を直接参照しており、開発checkoutを使用していない。
+この結果により#45をReady for Acceptanceとし、オーナーによるM1受入を待つ。
+
+## オーナーによるM1受入
+
+指定のChatGPT Work Localプロジェクト **C|OPS|エージェンシー運営** で、次のように依頼する。
+
+> live-agency-runtime を使い、保存済みの本番環境とRuntimeの版、提供機能、未選択の項目を確認してください。業務操作は実行しないでください。
+
+Runtime `2.0.0-m1.1`と上記環境・世代が表示され、選択済み構成から提供機能を確認できることを確認する。
+入口から導入済みのセットアップ手順と復旧案内を辿れる。M1として確認するのは、小さいRuntime、
+選択式セットアップ、固定構成の再利用、Skillからの中立な接続（前段の合成実証）、登録・配備の復旧である。
+この確認はProfileの本番業務受入ではない。Profileを直接呼んで取得・計画・承認・登録するM2/M3は残る。
+
+AIポリシーレビューでは、実配布・導入・復旧の結果を記録と照合し、未選択を動作済みと扱わないこと、
+Runtimeが業務Skillを起動する説明へ戻っていないこと、固定配布物と開発ソースの区別、
+既存承認の範囲、人が同じCLIと保存済みファイルから確認・復旧できる手順を確認した。
+ローカル案内のfrontmatter・参照先と変更した既存launcherの構文・実行を確認した。
+この記録はオーナーの理解・受入を代行せず、新規タスクの暗黙選択やCloud Workでの検証も主張しない。
+
 # 製品仕様の参照
 
 - [OpenAI：Projects and chats](https://learn.chatgpt.com/docs/projects)：プロジェクトなしの開始と、プロジェクトの文脈・探索範囲。
