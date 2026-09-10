@@ -381,6 +381,9 @@ M1の次の作業は、既に成立した接続に小さいカタログと設定
 
 実装はRuntimeのコミット`e9d82be`、
 [Runtime PR #3](https://github.com/flair-agency/live-agency-provider-runtime/pull/3)へ同期済み。
+同じHEADのpush／PR両CIが成功し、production依存だけの導入、必要な4テストと配布内容確認を通過した。
+[CI結果](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34446681058)は
+Runtimeのソース検証であり、親pinの統合採用やregistryへの公開ではない。
 親の文書チェックポイントは実装を参照するだけで、未リリース候補の採用pinには更新しない。
 [#45](https://github.com/flair-agency/live-agency/issues/45)は最初の接続実証2項目を完了とし、
 M1のセットアップ・継続利用・常用配備を残してIn Progressを維持する。
