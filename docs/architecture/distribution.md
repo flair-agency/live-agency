@@ -1,14 +1,11 @@
 # Formal distribution direction
 
-The adopted monthly architecture uses `@flair-agency/contracts` from
-`packages/contracts/` (repository `live-agency-contracts`). Skill and Providers
-independently depend on its `./monthly-activity` interface. Runtime composes
-implementations using execution-scoped tsyringe registration after asynchronous
-selection and validation; Skills and Providers never resolve container entries.
-The [revision gate](../migration/v2-plan.md#neutral-contract-revision-gate) and
-[approved Japanese review](../reviews/v2-foundation-design-ja.md#14-中立contractへの設計変更レビュー)
-record ownership and compatibility. Provider-owned contracts described below
-remain the released baseline for capabilities outside this first monthly slice.
+Owner-approved platform/environment revision, 2026-09-10: Runtime's own package
+contains common implementation dependencies. Each environment installs only
+its selected platforms, Skills and service Providers. A separately versioned
+catalog supplies choices without introducing package dependencies on every
+listed platform. See the [architecture](overview.md) and
+[Japanese design review](../reviews/v2-platform-environments-ja.md).
 
 Status: adopted. Implementation and release evidence are owned by [migration status](../migration/status.md).
 
@@ -20,7 +17,71 @@ Status: adopted. Implementation and release evidence are owned by [migration sta
 | Owner / publisher | Flair organization / GitHub Actions |
 | Contents | Independently managed libraries, Providers, Skills and Runtime; Skill instructions/resources are package contents |
 
-The [approved foundation design](../reviews/v2-foundation-design-ja.md) supplies the current package names and public interfaces. Runtime composes fixed versions; Providers own capability contracts and Skills consume them. Skills retain business rules; Providers have no dependency on Skill packages. Release common libraries, Providers, Skills and finally the Runtime composition in dependency order. An npm `private: true` flag prevents publication and is distinct from GitHub package visibility. The development root remains nonpublishable.
+The [earlier foundation design](../reviews/v2-foundation-design-ja.md) records
+existing package names, interfaces and releases. Those remain migration inputs.
+The target composition is fixed in an environment installation, not in a Runtime
+release that must depend on every business package. Skills consume neutral
+capabilities and retain business rules; Providers do not depend on Skills.
+An npm `private: true` flag prevents publication and is distinct from GitHub
+package visibility. The development root remains nonpublishable.
+
+## Selected installation and independent catalog
+
+```mermaid
+flowchart TD
+  Environment[Environment installation manifest and lock] --> Runtime[Runtime core]
+  Environment --> Platform[Selected platform package]
+  Environment --> Skill[Selected public Skills]
+  Environment --> Services[Selected database and storage Providers]
+  Platform --> Providers[Required platform Providers]
+  Platform -. available Skills .-> Skill
+  Catalog[Versioned catalog data] -. package choices .-> Platform
+```
+
+Solid arrows are npm dependencies; dashed arrows are metadata relationships.
+Available Skills are not all mandatory platform dependencies. Shared Skills keep
+their independent identities instead of being copied for each platform. Resolve
+packages relative to their declaring owner and support normal nested dependency
+layouts; do not assume every dependency is directly below installation root.
+Compatibility is verified for the selected set, including database/storage
+capabilities and instruction resources, not inferred from package names alone.
+
+The initial catalog is a small JSON artifact maintained in an existing private
+GitHub repository, with its own immutable release version and format version.
+It lists platform IDs/display names, package locations and recommended versions.
+Platform packages own their Provider combinations and Skill availability;
+Providers own detailed setting definitions. Credentials and actual connection
+settings never belong in catalog/package contents. A new catalog version can
+add a compatible platform without requiring a new Runtime release.
+
+Persist the selected catalog revision for provenance and resolve concrete
+package versions into the consuming environment's lockfile. Do not use a moving
+catalog or registry tag to select versions at business-run startup. Catalog
+unavailability must not prevent ordinary execution of a complete saved
+environment. npm owns dependency installation; a catalog does not become a new
+package registry or arbitrary-code execution mechanism.
+
+## Update policy and recovery
+
+Setup offers an update-policy selection. Ordinary feature updates are explicit.
+Security fixes may activate automatically only under the environment's recorded
+prior permission and after qualification of the actual selected composition.
+A patch version number alone is not evidence of compatibility. Changes to
+business semantics, authorities or configuration migration require separate
+review rather than silently extending that prior permission.
+
+Separate vulnerability detection, candidate preparation and activation. Include
+transitive dependencies in the installed lock, not only Runtime's dependencies.
+Retain fixed installation generations and compatible configuration revisions;
+finish affected running work before switching generations. Catalog publication
+or a Dependabot PR is not a production activation. Mark known-vulnerable older
+versions as unsuitable normal rollback targets and prioritize serious reachable
+vulnerabilities. Emergency action scope remains explicit; a catalog entry does
+not grant shutdown or business-write authority.
+
+These are approved product requirements. Concrete commands, update scheduling,
+host registration and automatic-update execution remain unimplemented redesign
+work. No existing installation or update setting is changed by this document.
 
 Source associations must reflect actual owning repositories and adopted child commits. GitHub Packages does not itself require a new repository per package. Mirroring the approved independent source repositories into GitHub is a separate concrete source-management action. Existing Runtime/Provider repositories have been found; missing independent Skill/library repositories require the source association decision recorded in the foundation review. Do not push a private component into the historical public Skill monorepo by inference.
 

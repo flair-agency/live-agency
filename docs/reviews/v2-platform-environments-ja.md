@@ -1,0 +1,253 @@
+---
+type: design-review
+visibility: internal
+status: pending
+date: 2026-09-10
+author: "Naoki Kimura（コンセプト承認）; Codex（設計案・現行ソース照合）"
+context: "既存v2の責務を保持し、選択式セットアップとSkill起点の利用へ具体化する再設計"
+---
+
+# v2再設計：platformと環境セットアップ
+
+# 結論と採用範囲
+
+コンセプトはオーナー承認済み。承認済みの責務は英語の
+[アーキテクチャ](../architecture/overview.md)と
+[配布方針](../architecture/distribution.md)へ反映した。
+本書の接続メッセージ、導入順序の細部、実装順はレビュー案であり、実装済みのAPIではない。
+旧[基盤設計](v2-foundation-design-ja.md)の承認・検証記録は保存する。
+
+変更の中心は、既存の業務を環境に組み立てる部分である。ただし、Profile Skillの直接依存と
+Lark固有設定が現行ソースに残っており、「Skillはほぼ無修正」とは確定できない。
+既存Providerの操作・知識とSkillの業務計算は流用候補とし、全移行や全テストのやり直しを前提にしない。
+
+| 区分 | 内容 |
+| --- | --- |
+| 承認済み | 小さいRuntime、独立カタログ、選択したplatform・Skill・保存先の導入 |
+| 承認済み | AI対話を入口にし、導入・検証・保存は人も使えるCLIが担当 |
+| 承認済み | ユーザーは業務Skillを呼び、Skillが選択済みProviderの能力・手順を使う |
+| 承認済み | 複数platform構成、デフォルト、呼び出し時の指定、設定変更の区別 |
+| 承認済み | 本番Work Localと開発Codexの分離。アプリのプロジェクトは任意の関連付け |
+| 承認済み | 初回に更新方針を選ぶ。事前許可の範囲内で検証済みセキュリティ修正版を自動適用可能にする |
+| 本書で具体化する案 | 環境選択から能力解決までの接続、カタログ形式の境界、段階的な実装・受入 |
+| 今回の作業 | 設計書のみ。子repo・依存・配備・認証・スケジュール・業務データの変更なし |
+
+# 責務と依存関係
+
+```mermaid
+flowchart TD
+  Catalog[独立カタログ：候補の所在と版] -. 選択肢 .-> Setup[セットアップ：AI対話とCLI]
+  Setup --> Environment[環境の導入manifest・lock・設定]
+  Environment --> Runtime[Runtime：共通機能と選択済み構成への接続]
+  Environment --> Platform[選択したplatform]
+  Platform --> Provider[必要なLIVE側Provider]
+  Platform -. 対応Skillの一覧 .-> Skill[選択した共通Skill]
+  Environment --> Skill
+  Environment --> Sink[選択したDB・ストレージProvider]
+```
+
+Environment以下の実線は配布依存、点線は情報の参照。SetupからEnvironmentへの線は構成作成。
+Runtime自身がすべてのplatformに依存する構成は採らない。
+platformは実行順を決める業務エンジンではなく、能力・Providerの組み合わせと互換性を宣言する。
+対応Skillは選択肢として列挙し、全件を強制的なnpm依存にしない。
+一つのSkillをplatformごとにコピーせず、共通の業務契約を使う。
+
+DB・ストレージはLIVE側と独立して選ぶ。選択Skillが要求しない機能はセットアップで必須にしない。
+TikTok内でもWeb・BackStage・iOSのすべてが常に必須とは限らない。
+17LIVEは拡張例であり、対応実装が存在するという主張ではない。
+
+# セットアップの具体的な流れ
+
+1. 検証済みのRuntime固定版を取得する。Node/npm、配布先の取得権限、ホスト登録の前提を確認する。
+   初期の取得方法とホスト登録手順は配備機能の実装対象。業務認証をnpmのインストールフックで行わない。
+2. Runtimeが同梱するセットアップの案内をAIが使用する。人が同じ操作をCLIから進める手順も提供する。
+3. 独立カタログから対応platformを提示する。取得だけでは各platformをインストールしない。
+4. 選択platformの宣言から利用可能なSkillを提示し、必要な取得・保存能力に合うProviderを選ぶ。
+5. Providerが持つ設定定義を使って必要事項を質問する。認証値はサービスの認証フローや秘密管理へ渡し、
+   通常のAI回答・設定ファイル・カタログに保存しない。環境には認証参照を保存する。
+6. 対象環境と導入構成を表示し、そのセットアップ操作として選択された範囲を導入・検証・保存する。
+   パッケージが配置できた状態と、認証・ホスト権限を含めて利用準備ができた状態を区別する。
+7. 選択Skillをホストが認識する場所へ登録する。再起動が必要ならその事実を返す。
+   実際のWork LocalでSkillを呼べることを確認してセットアップ受入とする。
+
+AI対話・CLI・将来のGUIは同じ設定検証・導入処理を利用する。
+質問文や設定項目をセットアップ側へサービスごとに複製しない。
+保存した構成を人が表示・変更・再作成できることを、人による引き継ぎの入口とする。
+
+# Skillと選択済み環境の接続案
+
+Skillは「能力と中立な業務入力」を渡し、Runtimeは「今回使う固定済み構成」を返す。
+公開SkillにはサービスURL、Providerパッケージ名、画面手順、具体的な認証やテーブル設定を置かない。
+ここで示すメッセージ名は論理名であり、CLI名・関数シグネチャの確定や実装を意味しない。
+
+| やり取り | 入力 | 結果・責務 |
+| --- | --- | --- |
+| 環境を選ぶ | 明示された環境参照、任意のplatform指定 | 環境・platform・構成世代を確定する。不足時はセットアップへ案内する |
+| 能力を要求する | 環境の選択、能力ID・互換版、処理範囲 | 選択済みbindingを解決する。未知の候補を推測して選ばない |
+| moduleを利用する | bindingに対応する中立な要求 | Providerの公開操作を呼び、正規化結果を返す |
+| instructionsを利用する | 同じ選択と要求の対応情報 | 宣言された私有手順をAIへ渡す。結果を同じ要求・契約に対応付けて検証する |
+
+ホスト連携部分が環境参照と汎用接続口を提供する。固定のユーザーディレクトリーや本番の絶対パスを
+公開Skillへ埋め込まない。具体的な接続方式は、既存CLI／公開exportを再利用して最小実装で実証する。
+Skillごとのtargets／plan／applyをRuntimeの新しいサブコマンドとして増やす方式を一般形にしない。
+
+```mermaid
+sequenceDiagram
+  actor User as ユーザー
+  participant Skill as Skillを読むAI
+  participant Runtime as 環境接続
+  participant Provider as 選択済みProvider
+  User->>Skill: プロフィール同期を呼び出す
+  Skill->>Runtime: 対象選定・プロフィール取得・履歴保存に必要な能力を要求
+  Runtime-->>Skill: 固定済みbinding・操作／手順・構成世代
+  Skill->>Provider: 選択された操作を接続口経由で利用
+  Provider-->>Skill: 中立な対象・観測・既存履歴
+  Skill->>Skill: 既存業務仕様で照合・登録計画を作る
+  Skill->>User: 業務契約で必要な登録承認を求める
+  User-->>Skill: 対象計画を承認
+  Skill->>Provider: 同じ選択済み接続口で登録・再読取
+  Provider-->>Skill: 実行結果
+  Skill-->>User: 業務結果と検証の範囲を報告
+```
+
+図のSkill→Providerは論理的な利用であり、具体的なProviderのnpm importを意味しない。
+instructionsの場合は、AIがホストのブラウザー等を使って私有手順を実行する。
+実行の途中で導入版を切り替えず、入力・計画・結果を同じ構成へ対応付ける。
+業務上の同一性、対象件数、停止条件、招待ステータスの解釈、承認範囲は既存の採用仕様を維持する。
+新しい構成管理を理由に、正常な他レコードまで止める条件を追加しない。
+
+# 環境とホスト
+
+環境IDはアプリのプロジェクトIDと独立させる。プロジェクトは環境の選択を補助する関連付けにできる。
+明示された環境、保存された関連付けの順に扱い、どちらもなければ利用する環境を選ぶ。
+本番を暗黙の代替にしない。同じ環境内ではplatformの明示指定、保存されたデフォルトの順とする。
+platform指定だけでデフォルトを書き換えない。
+
+| 対象 | 本番 | 開発 |
+| --- | --- | --- |
+| ホスト | 指定済みChatGPT Work Local | Codexの開発作業 |
+| コード | 公開済みの固定版を独立導入 | ソース・開発依存 |
+| 設定・認証・実データ | 本番用の参照と保存先 | 開発用の参照と保存先 |
+| Skill登録 | 配布物の固定版を参照 | 本番の登録先を上書きしない |
+
+同名Skillの探索順に依存した分離は採らず、実ホストで読み込み範囲を確認する。
+プロジェクトを分けてもブラウザーのログインや秘密管理まで隔離されるとは限らない。
+強い隔離が必要な場合の別OSユーザー／別ホストは、既存配備設計の選択肢として残す。
+Cloud Work、CLI、IDEをローカルWorkの検証結果だけで対応済みとしない。
+ブラウザーのオリジン、アップロード等の機能、CLI/APIネットワークの権限は別々に確認する。
+
+# カタログと更新
+
+カタログは既存の非公開GitHubリポジトリー内の小さいJSONから始める。
+形式版と内容版を区別し、公開した内容版は書き換えず、新版を追加する。
+所在・推奨版を提示する情報と、実際に選択した版を固定する環境lockを分離する。
+カタログを取得できなくても、完成済み環境の通常業務は保存された構成で継続できる。
+
+環境の更新方針は初回セットアップで選び、後から変更可能にする。
+機能更新は明示操作。セキュリティ更新は、事前許可の範囲に加え、実際の構成で検証された修正版、
+業務互換性、権限変更なし、設定移行なし等の適格条件を確認してから自動切替できる設計とする。
+SemVerのpatch表示、カタログ更新、修正PRの作成だけを自動適用の根拠にしない。
+
+```mermaid
+flowchart LR
+  Detect[導入lockの脆弱性を検出] --> Candidate[検証済み修正版の構成を準備]
+  Candidate --> Eligible{事前許可と適格条件を満たす}
+  Eligible -- はい --> Boundary[稼働中処理の終了後に新構成へ切替]
+  Eligible -- いいえ --> Review[影響を示して判断を求める]
+  Boundary --> Verify[ホストで版と機能を確認]
+  Verify --> Retain[安全な旧構成・設定を復旧用に保持]
+```
+
+間接依存も実環境lockで照合する。依存情報の監視・修正PR作成と本番切替は別段階。
+重大な脆弱性は優先して扱うが、この設計承認だけで既存本番を停止・更新しない。
+既知の脆弱版を通常の復旧先から外す。コードの復旧で外部の業務データ変更は取り消せない。
+具体的なチェック頻度・通知方法は、実装時に選択可能な設定として詰める。
+
+# 現行ソースとの差分と再利用
+
+2026-09-10の静的確認。Runtime `aeeaaf7`、Profile Skill `0a9b50e`を確認した。
+これは親の子参照の採用でも、実ホストでの今回の動作検証でもない。
+
+| 判定 | 対象と根拠 | 再設計で必要なこと |
+| --- | --- | --- |
+| 変更 | Runtimeの[package.json](https://github.com/flair-agency/live-agency-provider-runtime/blob/aeeaaf7c3e667944c6501f65f05ddd6ae1fa53ad/package.json)は個別Skill・Providerを直接依存に持つ | 選択依存を環境側へ移す |
+| 変更 | [Provider探索](https://github.com/flair-agency/live-agency-provider-runtime/blob/aeeaaf7c3e667944c6501f65f05ddd6ae1fa53ad/src/provider-resolution.mjs)・[検査](https://github.com/flair-agency/live-agency-provider-runtime/blob/aeeaaf7c3e667944c6501f65f05ddd6ae1fa53ad/src/inspect-cli.mjs)は直接依存と直下配置を前提にする | 宣言元の所有パッケージに対する解決・間接依存の固定版検査 |
+| 流用候補 | 同じProvider解決コードの固定package／binding／version照合と私有資源の境界確認 | 新しい環境選択へ接続して検証する |
+| 変更 | [Profile CLI](https://github.com/flair-agency/live-agency-provider-runtime/blob/aeeaaf7c3e667944c6501f65f05ddd6ae1fa53ad/src/profile-cli.mjs)がProfile・Lark・対象／計画操作を組み立てる | 汎用環境接続とSkillの業務フロー、Provider固有結線へ責務を整理する |
+| 変更 | Profileの[package.json](https://github.com/flair-agency/live-agency-creator-profile-record/blob/0a9b50e3aaf170ce0db714a54382a160246ecbe6/package.json)はLark・TikTok Providerに直接依存。[接続コード](https://github.com/flair-agency/live-agency-creator-profile-record/blob/0a9b50e3aaf170ce0db714a54382a160246ecbe6/scripts/profile_lark_runtime.mjs)はLarkの設定・field型等を扱う | 中立な業務入力・操作と、具体的なサービス変換の境界を移す。修正量は未確定 |
+| 流用候補 | [Skill登録コード](https://github.com/flair-agency/live-agency-provider-runtime/blob/aeeaaf7c3e667944c6501f65f05ddd6ae1fa53ad/scripts/install-codex-skills.mjs)の固定版・来歴・置換の確認 | 間接依存とホストごとの配備に対応する。対話やパッケージ導入は別途必要 |
+| 追加 | カタログ、platform宣言、複数platformの保存・選択、更新方針 | 小さいデータ契約とセットアップ機能を用意する |
+| 設計流用 | [既存配備設計](../../runtime/docs/deployment.md)の環境分離・導入世代・復旧 | 設計済みと実装済みを区別して採用する |
+
+Provider全体や全Skillのコード監査は今回行っていない。共通ライブラリー抽出は、最初の接続で
+実際に複数の利用者が必要とする部分に限定して判断する。新しい汎用workflow engineは導入しない。
+
+# 品質評価と最小の実証
+
+| 観点 | 設計評価 | 最初に確かめること |
+| --- | --- | --- |
+| 実行可能性 | npm、既存解決処理、module／instructionsを使うため実現見込みあり。業務接続は未実証 | 本番Work LocalでSkillを直接呼び、固定構成から能力を利用できる |
+| Skillの中立性 | 責務分離で成立する見込み。現行Profileに具体依存が残る | Profileの依存・指示・接続から具象を分離し、同じ業務判断を保つ |
+| 拡張性 | catalogとplatformをRuntime本体から独立更新できる | 合成の第二platformを構成データだけで選べる。実17LIVE対応とは扱わない |
+| 保守性 | 所有者と版を分離し、二重に知識を持たせない | 1件の設定・能力変更で修正すべき所有者が特定できる |
+| 環境分離 | 固定版・設定・認証を分離する方針は妥当。ホスト探索は要確認 | 開発変更後もWorkが本番の版を読み、同名Skillを誤選択しない |
+| 信頼性・復旧 | 構成世代を実行単位で固定し、既存業務の再開・重複防止を維持する | 途中の版切替を避け、失敗後の状態と復旧先を説明できる |
+| セキュリティ | 設定と権限を分離し、事前許可の範囲内だけ自動更新する | 修正版候補・権限変更・脆弱な復旧先を区別できる |
+| コスト・人の代替 | 初回に構成を決め、通常業務ではカタログ検索や再セットアップを繰り返さない | 人がCLIと記録から構成・不足事項・次の操作を確認できる |
+
+既存テストは新案への適合の証拠として自動転用しない。業務期待値・既存仕様に対応するものを残し、
+旧依存配置や新規に加えた停止条件だけを固定化するテストは、変更箇所を確認して修正・削除する。
+広い繰り返し試験や独立したテスト計画作成を、最初のSkill利用の前提にしない。
+
+# 実装順の提案
+
+| 順 | 一つの成果 | 完了の判断 |
+| --- | --- | --- |
+| 1 | 最小の環境宣言・能力接続とProfileの中立な呼び出しを実装する | Skill起点で既存module／instructionsへつながる。具体依存の移動範囲と業務差分を確認できる |
+| 2 | TikTok・Profile・必要な保存Providerだけを選ぶカタログとセットアップを接続する | 固定版を独立導入し、実際のWorkホストでSkillが見える。プロジェクト必須にしない |
+| 3 | 指定された本番の1件で、計画・必要な承認・登録・再読取まで通す | 初めて業務完了を主張できる。既存の選択・有効な承認を再利用し、範囲変更だけを確認する |
+| 4 | 更新・復旧と第二構成の切り替えを完成させる | 自動更新は方針・実装・検証が揃った環境だけで有効にする |
+
+M1はRuntime、M2は必要なProvider能力、M3は一つのSkillの業務受入として段階的に配布する。
+M1は、本番Workで選択済み環境と汎用接続を利用できる段階で独立して受入・配布し、
+Profileの業務完了を待たない。上表は最初のSkillまでつなぐ作業順であり、一括リリースの条件ではない。
+他platform、全Provider、全Skillや自動更新の完成を、最初の本番Skillの前提にしない。
+実装前に範囲と接続案をレビューし、所要時間は具体的な差分が確定した作業単位で見積もる。
+
+# AIポリシーレビューと作業記録
+
+根拠はオーナーの2026-09-10の連続したLGTM、[開発方針](../governance/development-policy.md)、
+[知識方針](../governance/document-knowledge-policy.md)、
+[言語方針](../governance/document-language-policy.md)、全文を確認した
+[Private Source Integration Guide](../governance/private-source-integration-guide.md)。
+実装・配布済みという事実から新しい設計の正しさを推定しない。
+
+静的レビューで、概念承認と未実装の接続案を区別し、配布依存図と業務実行図を分けた。
+Profileの具体依存が残るため「ほぼ無修正」という見込みは確定事項から外した。
+秘密値・実アカウント・実テーブル識別子は本書に含めない。CLIによる人の代替を明記した。
+現行ソースの照合は動作テスト・独立した人の受入ではない。
+
+検証結果：変更する5文書の相対リンク90件（うち子repoの固定参照先8件）と見出し参照を確認し、
+欠落はなかった。独立したAIの文書レビューでも、承認済みの責務との重大な矛盾や実装済みとの
+誤認を招く主張は見つからなかった。図は手順との静的照合のみで、描画検証は未実施。
+文書変更のためRuntimeの動作テストは実行していない。
+
+作業分類はE（アーキテクチャ・共有基盤）／G（文書）。今回の完了条件は、承認済み方針の記録、
+接続と差分のレビュー案、リンク・図と手順の整合確認、文書のみの作業ブランチ同期。
+既存作業場所の未採用Runtime参照は保持し、本書のコミットへ含めない。
+復旧は文書差分の取り消しで足り、稼働コード・設定の復旧操作は発生しない。
+
+残るレビュー対象は、上の能力接続案と最初の実装範囲。ホストの同名Skill分離、Profileの具象分離、
+自動更新の実行は、確認済みとは扱わない。具体的な実装API・配備パスを想像で既存機能として案内しない。
+
+| 次の作業 | 人の担当 | 期限 | 概要 | 完了条件 | 参照 |
+| --- | --- | --- | --- | --- | --- |
+| 接続案と最初の実装範囲のレビュー | Naoki Kimura | TBD | コンセプトを維持して最小の一経路を選ぶ | 入口・能力・結果・対象環境の解釈が一致する | 本書「Skillと選択済み環境の接続案」「実装順の提案」 |
+
+# 製品仕様の参照
+
+- [OpenAI：Projects and chats](https://learn.chatgpt.com/docs/projects)：プロジェクトなしの開始と、プロジェクトの文脈・探索範囲。
+- [OpenAI：Build skills](https://learn.chatgpt.com/docs/build-skills)：Skill形式とローカル探索・配布方式。
+- [OpenAI：Browser](https://learn.chatgpt.com/docs/browser)：Work／Codexとブラウザー・権限の区別。
+- [OpenAI：Work Cloud](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security)：ローカル配備やブラウザー状態をクラウドへ自動継承しない。
+- [GitHub：Dependabot security updates](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-security-updates)：脆弱性修正PRと本番切替の区別。

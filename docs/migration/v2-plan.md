@@ -1,5 +1,13 @@
 # v2 migration plan
 
+The owner approved a platform/environment concept revision on 2026-09-10.
+The current [architecture](../architecture/overview.md),
+[distribution direction](../architecture/distribution.md) and
+[redesign review](../reviews/v2-platform-environments-ja.md) govern that target
+and its proposed next sequence. The historical all-components M1 package scope
+and monthly-first sequence below do not gate delivery of the revised minimal
+Runtime or first selected Skill. Implementation history remains preserved.
+
 Status: Adopted on 2026-09-07 following the owner's approval of the revised plan and the recommendations in its decision section. This is the English canonical plan. The [Japanese review](../reviews/v2-migration-plan-review-ja.md) and [Skill naming review](../reviews/v2-skill-naming-and-migration-plan.md) retain review history. [Current status](status.md) owns completion and the current work queue. Subsequent owner feedback on source cleanup, milestone reviews and controlled parallelism is incorporated below. Plan approval does not itself dispatch implementation.
 
 ## Outcome and sequence
