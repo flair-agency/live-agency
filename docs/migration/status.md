@@ -1,6 +1,26 @@
 # Current migration and documentation status
 
-## Profile publication correction and production proposal — 2026-09-10
+## Profile M3 adopted; business planning blocked by datastore reads — 2026-09-11 JST
+
+The owner approved corrected source integration, private publication and designated production adoption through parent PR #54 and Profile PR #4. Both are merged. The deployed selection is `operations / production / tiktok`, generation `c302bd63a9d0af7c6eb6463d36045c1ce50003e000f4d4a2ffe2a2c7c9c4e4c8`.
+
+| Component | Deployed now | Immediate recovery target |
+| --- | --- | --- |
+| Runtime | `2.0.0-m3.0` | `2.0.0-m2.1` |
+| Lark Base Provider | `1.4.0-m3.0` | `1.4.0-m2.1` |
+| Profile Skill | `2.0.0-m3.1`, separately registered | Remove new registration using its receipt |
+| TikTok platform | `0.1.0-m3.0` | `0.1.0-m1.0` |
+| Independent catalog | `0.1.0-m3.0` | `0.1.0-m2.1` |
+
+All four package publication workflows succeeded; registry-only independent verification passed. The versioned [catalog-v0.1.0-m3.0 release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.0) was retrieved with verified SHA-256 `3f6f48e8e43c66df97733c2296fe4ea44b80f2d5b08e62601fdb423df81f6f48`. Its API reports `immutable: false`; digest verification is not technical immutability. The private installation, Skill registration and host-file receipts record `installed`, `applied` and `adopted` for the same generation. The [Japanese adoption record](../reviews/profile-production-adoption-ja.md) links source commits and publication runs and preserves the failed Profile `.0` publication evidence.
+
+The existing actor, destination and read configuration are preserved; write configuration is a separate saved binding. Profile is selected and separately registered; Runtime does not launch business Skills. Storage is not selected; updates remain manual. The designated Work task discovered and directly invoked the registered Skill, verifying the fixed versions and generation. An initial target read failed; a direct read returned 1,374 creators and the subsequent Skill target preparation selected the requested one creator. One profile and eight posts were normalized; no avatar file was acquired. The Skill plan then failed with PROFILE_DATASTORE_READ_FAILED. A final scoped-history diagnostic returned error.details.stage=read-fields after 4.869 seconds. The original CLI discarded Provider stage details, so its error does not establish whether the preceding creator reread or subsequent history read failed. Native API cause, history completion and plan/hash/counts remain unresolved.
+
+The follow-up Work turn ended with a workspace-out-of-credits error. Estimates were exceeded and further execution/retries are stopped. Issue #32 is Blocked; M3 business acceptance is incomplete. Private diagnostic summaries and the acquired observation are retained with the deployment evidence. Resume from those findings and preserve diagnostic phase information before repeating live operations. Business writes and uploads are zero; actual registration requires concrete plan, hash and count approval.
+
+Rollback restores this update’s three pre-M3 host copies and modes and the new Skill registration through its receipt. Retain the M2.1 installation, configurations and evidence. Earlier M2.0 recovery copies belong to another update. The proposals and baselines below remain historical evidence.
+
+## Profile publication correction and production proposal — historical approval checkpoint
 
 The owner accepted Runtime PR #8, Lark PR #8, Profile PR #3 and parent PR #53
 for main integration and fixed private publication. All four are merged.
@@ -30,16 +50,16 @@ service access and business data remain unchanged. The deployed baseline below
 still applies. Corrected-version publication and production adoption await owner
 approval; actual record creation also needs its concrete plan approval.
 
-## Current production baseline — 2026-09-10
+## Previous M2 production baseline — historical checkpoint
 
-The designated ChatGPT Work Local production environment is currently
+This section records the pre-M3 installation and its earlier recovery target. At that checkpoint, the designated ChatGPT Work Local production environment was
 `operations / production / tiktok` with the following deployed M2 configuration.
 The approved registry-only installation succeeded. The installed package integrity,
 saved plan/configuration and three adopted host entry files match their receipts.
 The [deployment record](../reviews/v2-platform-environments-ja.md#profile履歴読取修正版の実施記録)
 separates publication, host adoption and the actual Work read result.
 
-| Component | Deployed now | Immediate recovery target |
+| Component | Deployed at this checkpoint | Recovery target at this checkpoint |
 | --- | --- | --- |
 | Runtime | `2.0.0-m2.1` | `2.0.0-m2.1` (unchanged) |
 | Lark Base Provider | `1.4.0-m2.1` | `1.4.0-m2.0` |

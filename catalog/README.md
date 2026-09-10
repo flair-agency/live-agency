@@ -1,11 +1,13 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.0`, using format version 2. It selects
+The current versioned release is `0.1.0-m3.0`, using format version 2. It selects
 TikTok platform `0.1.0-m3.0`, Profile Skill `2.0.0-m3.1` and Lark Base
 `1.4.0-m3.0` with both Profile read and write capabilities. Runtime
-`2.0.0-m3.0` supports their separate configuration references. These candidates
-are not published or adopted in production merely because this file changed.
+`2.0.0-m3.0` supports their separate configuration references. These fixed versions
+were privately published and adopted in the designated Work environment through
+the [recorded production plan](../docs/reviews/profile-production-adoption-ja.md).
+Actual business acceptance remains separate from installation.
 
 The previously deployed `0.1.0-m2.1` catalog remains published as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.1).
@@ -25,13 +27,15 @@ A selection is not connection proof.
 
 The TikTok declaration is in `platforms/tiktok/package.json`. Profile is now an
 available installation choice and requires observation, datastore read and
-datastore write capabilities. This describes the source candidate; it does not
-prove registry availability, service authentication or business acceptance.
+datastore write capabilities. The recorded publication and adoption establish availability of this fixed composition;
+the declaration itself does not prove service authentication or business acceptance.
 No credentials, actual resources or browser sessions belong here.
 
-Before publication, verify the selected platform archive and dependent registry packages. Publish the platform privately through the approved GitHub Actions route, then publish the JSON as an immutable catalog release with its own version. Preserve the catalog bytes/digest and chosen package versions in the environment. Do not replace an already released catalog version or treat the moving main branch as an installation lock. A new catalog release can add another compatible platform without changing Runtime.
+Before publication, verify the selected platform archive and dependent registry packages. Publish the platform privately through the approved GitHub Actions route, then publish the JSON as a versioned catalog release. Preserve the catalog bytes/digest and chosen package versions in the environment. Do not replace an already released catalog version or treat the moving main branch as an installation lock. A new catalog release can add another compatible platform without changing Runtime.
 
-The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen immutable release using authorized access. Normal execution uses the saved environment and does not fetch the catalog.
+The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen versioned release using authorized access and checks its recorded digest. Normal execution uses the saved environment and does not fetch the catalog.
+
+The current catalog release was retrieved and matched SHA-256 `3f6f48e8e43c66df97733c2296fe4ea44b80f2d5b08e62601fdb423df81f6f48`. The release API reports `immutable: false`; this process pins version and bytes without claiming platform-enforced immutability.
 
 The Profile repair retains the same capability, binding and contract versions.
 The consumer supplies `creatorRecordIds`; the private Provider translates those
