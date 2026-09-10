@@ -342,6 +342,30 @@ does not itself authorize publication or production rollout.
 
 ## 9. Shared development procedures
 
+### GitHub Issue, Project and PR tracking
+
+Owner direction, 2026-09-11: track every development change with a GitHub Issue
+in the appropriate owning repository and the applicable GitHub Project. Reuse
+an existing Issue when its scope matches; otherwise create one with the work's
+scope and completion criteria. A Project draft item alone does not replace an
+Issue.
+
+Every PR must have a corresponding Issue linked through GitHub's native
+Development relationship. Verify the actual relationship after creating or
+updating the PR; an Issue URL or reference in the body alone is insufficient.
+When a PR completes only part of a broader Issue, use a scoped child
+implementation Issue and link the PR to that Issue. Keep the parent open until
+its own completion criteria are met, including production verification where
+required by the [maintenance policy](skill-maintenance-policy.md). Do not use
+closing links or keywords against a parent whose work remains incomplete.
+
+Keep the Issue and Project status current at meaningful checkpoints, using the
+actual work, verification and remaining scope. Close an Issue or mark its
+Project item complete only when that Issue's completion criteria are satisfied;
+a completed child implementation does not establish parent or production
+completion. Record actual checks and limitations in the existing Issue/task
+record. This tracking procedure adds no approval gate or execution authority.
+
 ### Script implementation language
 
 Owner instruction adopted on 2026-09-08. This rule applies to newly generated
