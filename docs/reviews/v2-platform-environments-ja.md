@@ -9,9 +9,68 @@ context: "既存v2の責務を保持し、選択式セットアップとSkill起
 
 # v2再設計：platformと環境セットアップ
 
-# Profile履歴読取修正版の配布・本番適用候補（2026-09-10）
+# Profile履歴読取修正版の実施記録
 
-この節はレビュー待ちの実施案で、配布・本番適用済みの記録ではない。
+2026-09-10、オーナーがPR #50へ「LGTMで」と回答し、直前に提示した
+2件のマージ・固定版配布・本番採用・対象1名の読取検証を承認した。
+同じ計画への承認を再要求せず、配布・導入・ホスト切替を親が順に実施した。
+主分類F、副分類D/G。独立worker（gpt-6-astra / low）は現行状態文書の
+更新箇所を読取確認し、切替やサービス操作は担当していない。
+
+| 確認対象 | 実際の結果 |
+| --- | --- |
+| Providerソース | [PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)をmain `74794485034043627a09a63811e38b70895b194c`へ統合 |
+| 親・カタログソース | [PR #50](https://github.com/flair-agency/live-agency/pull/50)をmain `3c12499ac8a1ab52622b0cf02b14b7cbc12da40e`へ統合 |
+| Provider配布 | [run 34473435377](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34473435377)成功。`1.4.0-m2.1`、private / next、integrity一致、registryからの独立導入を検証 |
+| カタログ配布 | [`catalog-v0.1.0-m2.1`](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.1)を固定リリースとして保存。再取得した内容と承認時のSHA-256が一致 |
+| 本番導入 | 承認済み計画 `ca13fb0ca7416f3c8b016802b95ddb508c529db471f3df69823054e5f2da0cd7`を既存の固定Runtimeで実行し、新規配置へregistryのみから導入成功 |
+| 本番入口 | launcher、Runtime host Skill、OPERATORの3ファイルを採用。変更前後のハッシュと復旧コピーを照合。案内のローカル参照12件が存在 |
+| 指定Workでの確認 | 固定版・環境・提供能力の表示は成功。初回のread-fields停止と事前条件の診断後、同じ要求が9.948秒で`done`。指定1名の履歴1件、有効1・不正0 |
+
+採用した世代は `daa9899da019fe0360a3da9e30ecabb801d6bfa926e26454645619214eafda8c`。
+Runtime `2.0.0-m2.1`、TikTok platform `0.1.0-m1.0`、TikTok Web `1.1.0`は維持し、
+Lark `1.4.0-m2.1`とカタログ `0.1.0-m2.1`へ更新した。主体・保存先・フィールドを保ち、
+設定の読取操作にsearch／batch-getだけを追加した。業務Skillとstorageは未選択、更新は手動。
+
+初回Workの完了turnは `01a08b32-16b7-7bc3-9d91-2bd629e66c6c`。
+1.893秒でread-fieldsの失敗となった。CLI終了コードは0だったが、Providerの内側の結果は
+失敗だったため成功と扱わない。この時点では履歴検索に到達していなかった。
+
+同じ選択済みProvider／transportで失敗段階のみを切り分けたところ、親側からの
+fields:listは両テーブルで成功した。Workと同じ作業ディレクトリからも、
+41項目／10項目の取得と既存のフィールド対応検証が成功した。
+Work自身からの同じ診断も5.820秒で成功した（turn `01a08b39-70d9-7693-82d3-a6c41d955d96`）。
+APIの恒常的な権限不足や新しいフィールド検証の欠陥とは断定できない。
+これらはフィールド定義だけの確認で、履歴レコードや画像の再取得ではない。
+
+失敗段階の事前条件がWorkで通ったことを根拠に、設定・主体・世代・要求ハッシュを変えず、
+同じ1名の履歴要求をもう1回だけ実行した。turn `01a08b3c-8fa4-7181-a7f4-8cd6c8f9dc5c`、
+2026-09-10 21:13:38.918〜21:13:48.866 JST、9.948秒でProviderの結果が`done`となった。
+返却1件は指定creatorに対応する有効な履歴で、不正行0件、avatar hashは0件だった。
+したがって、全体1,372件という所有者報告の表に対する、指定1名の限定履歴読取は実Workで完了した。
+正規化結果のavatarHashesは空であり、今回の実データによる画像取得・前後確認は未検証。
+この出力だけで元の添付セルの内容まで確認したとは扱わない。
+最初の停止原因は未確定のまま証跡を保持する。未完了の10分51秒と9.948秒は処理範囲が違うため、
+同じ仕事の性能倍率とは表現しない。5分の診断上限による停止は発生していない。
+
+直近の復旧先はRuntime `2.0.0-m2.1`／Lark `1.4.0-m2.0`／カタログ `0.1.0-m2.0`。
+今回のhost receiptにある採用後ハッシュを確認し、保存した旧3ファイルと権限だけを戻す。
+新旧の配置・設定・証跡を保持し、以前のM1復旧receiptとは混同しない。
+導入先・実ID・要求・応答・診断は本番の私有deploymentディレクトリに保存した。
+外部業務書込み、TikTok観測、業務Skillの新規登録、スケジュール変更は0件。
+
+AIポリシーレビューでは、開発・文書知識・言語方針と既読のPrivate Source Integration Guideを
+根拠に、採用済み範囲、固定版のmain統合、現在／履歴／復旧先、責務、非公開証跡の境界を照合した。
+`status.md`・本記録・catalog READMEを同じcheckpointで更新し、PR #50で指摘された
+現行状態文書の更新漏れを繰り返さない。既存の合格済み実装テストは再実行せず、
+配布workflowが要求する検証と実際の導入・限定読取を確認した。
+文書の相対参照59件を確認し、未展開のコンポーネント参照は既存の親checkoutで照合した。
+Provider #4は受入確認待ち。M2保存操作の接続、M3業務Skillの直接呼出し・計画・必要な登録承認・
+登録・再読取は残り、この限定読取の成功だけで完了にしない。
+
+# Profile履歴読取修正版の配布・本番適用案（承認時の記録、2026-09-10）
+
+この節はPR #50で提示・承認された実施案の履歴で、現在の実施結果は直前の節を参照する。
 Lark Provider [PR #5](https://github.com/flair-agency/live-agency-provider-lark-base/pull/5)
 のソースはLGTM後にmainへマージ済み（`9330548`）。
 対象1名の確認で全履歴と各画像の前後に全表を読む問題について、
@@ -71,7 +130,7 @@ Provider公開前の既存Actionsチェックで取得・導入に失敗した�
 AI事前レビューでは、開発・文書知識・言語方針とPrivate Source Integration Guide全文を適用し、
 Skill起点、対象選択はconsumer、具象APIはProviderという責務を確認した。
 カタログに実データや認証情報を持たせず、主体・保存先・正規化・業務判断を変更していない。
-残る判断は、上記の固定版の配布と設定差分を含む本番読取検証を実施するか。
+承認時に残っていた判断は、上記の固定版の配布と設定差分を含む本番読取検証を実施するかだった。
 Issue [Lark #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)は
 本番検証完了まで開いたままにし、[#32](https://github.com/flair-agency/live-agency/issues/32)の完了とは区別する。
 
@@ -672,7 +731,7 @@ Providerのブランチ同期は一度自動レビューで拒否されたが、
 
 2026-09-10の実施記録。先行する「Profile M2読取接続の候補」節の
 Runtime `2.0.0-m2.0`等の「未公開・未導入」とソース採用待ちは、その時点の記録として保持する。
-本節は、その後に完了したM1→M2導入を記録する。冒頭のLark `1.4.0-m2.1`候補は別の未実施計画である。
+本節は、その後に完了したM1→M2導入を記録する。Lark `1.4.0-m2.1`の後続実施結果は本書冒頭で区別する。
 その後オーナーがソース採用、固定版の非公開配布、指定Workへの導入・読取検証を明示承認した。
 Runtime [PR #5](https://github.com/flair-agency/live-agency-provider-runtime/pull/5)、
 Lark [PR #2](https://github.com/flair-agency/live-agency-provider-lark-base/pull/2)、
@@ -718,7 +777,8 @@ Profile計画や登録の成功へ拡張しない。M2保存操作の接続とM3
 
 | 次の作業 | 人の担当 | 期限 | 概要 | 完了条件 | 参照 |
 | --- | --- | --- | --- | --- | --- |
-| Profile履歴読取修正版の配布・本番確認 | TBD | TBD | ソース修正は採用済み。冒頭の固定版・設定差分をレビューし、対象1名の実Work履歴読取を確認する | 配布・導入証跡と限定読取の完了を確認してからM3へ進む | [Provider #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)、[#31](https://github.com/flair-agency/live-agency/issues/31)、本書冒頭 |
+| Profile履歴読取修正の受入を確認する | TBD | TBD | 固定版の配布・導入と実Workの対象1名読取は完了。結果・初回失敗と画像未検証の範囲を確認する | 限定履歴読取の実績をオーナーが受け入れる | [Provider #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)、本書冒頭 |
+| Profile先行Skillの本番受入へ進める | TBD | TBD | M2保存操作とM3のSkill直接呼出しを接続する | 選択したSkillから計画・必要な承認・登録・再読取まで確認できる | [#32](https://github.com/flair-agency/live-agency/issues/32) |
 
 AIポリシーレビューでは、候補時点の記録を保存しながら現在状態を更新すること、配布・導入と
 実ホスト受入の区別、固定版・障害原因・復旧対象、非公開証拠の保管境界を照合した。
