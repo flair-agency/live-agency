@@ -81,7 +81,7 @@ The deployed operator guide records the host-permission distinction; its prior
 adopted copy is retained, and all three current host/recovery hashes match the
 receipts. Owner approval for publication, production adoption and the bounded
 read verification was consumed; it supplies no production write authority.
-The next package is a Profile history-read scope/amount repair, retaining
+The next package is [Provider #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4), a Profile history-read scope/amount repair, retaining
 attachment membership and business semantics, before M3. M2 save-operation
 connection and M3 Skill invocation/planning/write/readback remain open. See the
 [Japanese evidence update](../reviews/v2-platform-environments-ja.md#profile-m2固定配布と本番導入の更新)
