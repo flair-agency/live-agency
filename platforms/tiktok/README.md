@@ -6,7 +6,7 @@ or credentials. The Provider owns its instructions and required host permissions
 BackStage and iOS Providers remain outside this selected slice.
 
 Profile recording is an **available installation choice** at fixed version
-`2.0.0-m3.0`. It requires observation, datastore read and datastore write
+`2.0.0-m3.1`. It requires observation, datastore read and datastore write
 capabilities. Runtime setup refuses a selected Skill when any required binding
 is absent. The user invokes the installed Skill; Runtime does not launch it.
 Selecting the platform without a Skill remains supported. Installation alone

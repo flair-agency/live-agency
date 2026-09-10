@@ -2,7 +2,7 @@
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
 The current source candidate is `0.1.0-m3.0`, using format version 2. It selects
-TikTok platform `0.1.0-m3.0`, Profile Skill `2.0.0-m3.0` and Lark Base
+TikTok platform `0.1.0-m3.0`, Profile Skill `2.0.0-m3.1` and Lark Base
 `1.4.0-m3.0` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. These candidates
 are not published or adopted in production merely because this file changed.
