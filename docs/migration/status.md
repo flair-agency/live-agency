@@ -22,10 +22,36 @@ the expected creator. The normalized row had no avatar hashes, so live attachmen
 was not exercised. An initial 1.893-second attempt stopped at read-fields; the
 same Work field prerequisites subsequently passed before the bounded retry.
 The original transient failure's cause remains unconfirmed. The read correction
-is ready for owner acceptance; M3 business workflow acceptance remains open.
+was accepted by the owner; evidence PR #51 is merged and Provider issue #4 is
+closed. M3 business workflow acceptance remains open.
 Lark is the selected database; no business Skill or storage is selected, and
 updates remain manual. Earlier M1-only and unpublished-M2 statements below are
 historical checkpoints, not the current installation selection.
+
+Issue #32 is Awaiting Review for this source package. The current source package connects Profile Skill
+target preparation, observation handoff, scoped-history planning, prepared
+write review, approved execution and final readback through the selected
+environment API. Runtime adds generic process-local execution hooks; the
+private Provider binds concrete intents and uses the existing selected writer.
+The trusted caller must validate and record actual owner approval against the
+review, plan and counts. The CLI's durable private journal and read-only verify
+connection are implemented and exercised through the real Runtime API.
+
+The local source integration proof passed normal creation/readback, denied
+approval with zero mutations, and a lost create response recovered by readback
+without a second create, and evidence failure after a write recovered by
+read-only verification. CLI repeat-apply rejection and private journal evidence
+are also checked. It exercises the actual Runtime, write executor,
+selected writer and Skill; transport, observations, approval and neutral read
+surface are synthetic. It does not verify the actual read executor, avatars,
+live services or registry installation. The final proof records source file hashes and its limits.
+Runtime [PR #7](https://github.com/flair-agency/live-agency-provider-runtime/pull/7),
+Lark [PR #7](https://github.com/flair-agency/live-agency-provider-lark-base/pull/7),
+and Skill [PR #2](https://github.com/flair-agency/live-agency-creator-profile-record/pull/2)
+are synced and ready for source review. The [Japanese review](../reviews/profile-environment-plan-ja.md)
+separates prior planning evidence from current write wiring and remaining gates.
+Legacy dependencies are retained. Main integration, release and adoption have
+not occurred for this source package; the production installation is unchanged.
 
 [Provider PR #5](https://github.com/flair-agency/live-agency-provider-lark-base/pull/5)
 is merged into main. Its release metadata [PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)
