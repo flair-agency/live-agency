@@ -43,16 +43,49 @@ broad migration run.
 
 ## Profile M2 read connection — current package
 
-[#31](https://github.com/flair-agency/live-agency/issues/31) now carries the
-Profile-only read-connection candidate. Runtime `2.0.0-m2.0` binds service
-capabilities to saved Provider configuration references and digests; Lark Base
-`1.4.0-m2.0` supplies normalized creator and Profile-history reads through the
-existing selected API readers. TikTok Web `1.1.0` remains unchanged. The candidate
-catalog `0.1.0-m2.0` uses format 2; Profile remains pending M3 connection.
-These candidates are not published or installed in production. See the
-[Japanese review](../reviews/v2-platform-environments-ja.md#profile-m2読取接続の候補)
-for exact source, checks, limits and next approval. #32 remains blocked on
-Profile-specific readiness, not on M1. The current production M1 is retained.
+The owner approved source adoption, private publication and designated Work
+production installation/read verification. Runtime `2.0.0-m2.1`, Lark Base
+`1.4.0-m2.0` and catalog `0.1.0-m2.0` are now published and verified. The
+Runtime fix is merged through [PR #6](https://github.com/flair-agency/live-agency-provider-runtime/pull/6)
+and [publication run 34461964090](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34461964090)
+succeeded. Lark [run 34459702584, attempt 2](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34459702584/attempts/2)
+and the [fixed catalog release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.0)
+retain the other distribution evidence. TikTok Web `1.1.0` remains unchanged.
+
+The first `2.0.0-m2.0` installation failed because setup forced the public CLI
+dependency through the private registry. The compatible `2.0.0-m2.1` fix honors
+the explicitly selected npm configuration's registry scopes and excludes
+inherited npm configuration overrides. Real registry-only production installation
+then succeeded, and the three existing Runtime host files were adopted. The
+saved environment selects the Lark database and two capabilities; no business
+Skill or storage is selected, and updates remain manual. The previous M1
+installation and exact three-file recovery copies/hashes remain retained.
+
+The designated ChatGPT Work Local task verified Runtime startup, saved
+configuration and capabilities. Its first read-creators request failed with
+PROFILE_DATASTORE_READ_FAILED at stage read-fields. The same Runtime request
+then completed read-creators with 1,374 creators after host execution permission
+was supplied; Provider identity and saved configuration were unchanged.
+
+The single read-history invocation did not complete within the ten-minute smoke
+verification bound. At elapsed 10 minutes 51 seconds, the coordinator matched
+its PID, installed executable and exact request and sent SIGTERM only to its
+three processes. No Provider completion JSON was received. This is an incomplete
+read, not proof of an API failure or a triggered download budget. Source
+inspection confirms that history hydration visits all Profile rows and each
+attachment hash confirmation rereads the selected table before and after the
+download; the specific cause of the full elapsed time is not isolated. TikTok
+observation was not attempted and external writes remained zero.
+
+The deployed operator guide records the host-permission distinction; its prior
+adopted copy is retained, and all three current host/recovery hashes match the
+receipts. Owner approval for publication, production adoption and the bounded
+read verification was consumed; it supplies no production write authority.
+The next package is a Profile history-read scope/amount repair, retaining
+attachment membership and business semantics, before M3. M2 save-operation
+connection and M3 Skill invocation/planning/write/readback remain open. See the
+[Japanese evidence update](../reviews/v2-platform-environments-ja.md#profile-m2固定配布と本番導入の更新)
+for the source chain, failure recovery and remaining acceptance boundary.
 
 ## Source synchronization checkpoint — 2026-09-09
 

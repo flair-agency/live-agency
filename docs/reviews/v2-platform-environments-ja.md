@@ -593,3 +593,56 @@ Providerのブランチ同期は一度自動レビューで拒否されたが、
 - [OpenAI：Browser](https://learn.chatgpt.com/docs/browser)：Work／Codexとブラウザー・権限の区別。
 - [OpenAI：Work Cloud](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security)：ローカル配備やブラウザー状態をクラウドへ自動継承しない。
 - [GitHub：Dependabot security updates](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-security-updates)：脆弱性修正PRと本番切替の区別。
+
+# Profile M2固定配布と本番導入の更新
+
+2026-09-10の更新。上記の「未公開・未導入」とソース採用待ちは、その時点の候補記録として保持する。
+その後オーナーがソース採用、固定版の非公開配布、指定Workへの導入・読取検証を明示承認した。
+Runtime [PR #5](https://github.com/flair-agency/live-agency-provider-runtime/pull/5)、
+Lark [PR #2](https://github.com/flair-agency/live-agency-provider-lark-base/pull/2)、
+親 [PR #48](https://github.com/flair-agency/live-agency/pull/48) は統合済み。
+Larkの候補版をnextへ限定する [PR #3](https://github.com/flair-agency/live-agency-provider-lark-base/pull/3) も採用された。
+
+| 配布物 | 固定版・証拠 |
+| --- | --- |
+| Runtime | `2.0.0-m2.1`。[PR #6](https://github.com/flair-agency/live-agency-provider-runtime/pull/6) はmain `34fcf39bbdb856eaf405de1f81a8f7c5e692d515` へ統合。[配布run 34461964090](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34461964090) で非公開・integrity・導入を検証 |
+| Lark Base Provider | `1.4.0-m2.0`。[run 34459702584 attempt 2](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34459702584/attempts/2) で配布検証済み |
+| 独立カタログ | `0.1.0-m2.0`。[固定リリース](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.0) の内容を検証済み |
+
+最初のRuntime `2.0.0-m2.0` 導入は、setupが全依存のregistryをGitHub Packagesへ固定し、
+公開CLI依存を取得できず停止した。この失敗をサービス権限不足や本番成功として扱っていない。
+`2.0.0-m2.1` は明示したnpm設定のdefault／scope別registryを使用し、環境変数からの
+npm設定上書きを除外する。ユーザーの認証設定は変更していない。
+変更箇所のsetup 4件・版確認1件と、実npmによるofflineのregistry選択確認は成功した。
+
+修正版ではregistryのみから実際の本番導入が成功し、既存Runtime入口・host Skill案内・運用案内の
+3ファイルを採用した。Lark保存先とTikTok取得／Lark読取の2能力を選択し、業務Skillとstorageは
+未選択、更新は手動である。旧M1配置と3ファイルの旧コピー・変更前後ハッシュを保持する。
+復旧は記録した3ファイルだけを旧M1へ戻す。失敗候補と設定束縛の証拠は診断用に残し、
+旧版や別のProfile配置を上書きしない。具体的な機器上のパス・設定・業務データはGit外に保持する。
+
+指定ChatGPT Work Localタスク自身がRuntime起動、保存済み設定、提供能力を確認した。
+最初のread-creators要求は `PROFILE_DATASTORE_READ_FAILED`、段階 `read-fields` で停止した。
+その停止時点ではread-historyとTikTok観測は未実行で、書込みはなかった。
+同じRuntime要求をホストの必要な実行権限付きで実行すると、read-creatorsはdone、対象者1,374件となった。
+Providerの利用者・保存設定は変更しておらず、フィールド／対象者読取の当初の失敗は解消した。
+read-historyは一回の実行で完了せず、10分のsmoke検証上限を超えた経過10分51秒で停止した。
+親がPID・導入済み実行ファイル・要求を一致確認し、その3プロセスだけへSIGTERMを送った。
+Providerの完了JSONは得られておらず、API失敗やdownload budget発火と断定しない。
+コード確認では全Profile行をhydrateし、各attachmentのhash確認で取得前後に選択テーブル全体を
+再読取する実装であることが分かった。ただし経過時間全体の原因は切り分け未完了である。
+TikTok観測は未実行、外部書込みは0件である。
+導入済み運用案内にホスト実行権限の切分けを追記し、変更前の採用済みコピーと新しいreceiptを保持した。
+3ファイルの現在／復旧ハッシュは記録と一致する。対象者読取の成功を、履歴・TikTok観測・画像比較・
+Profile計画や登録の成功へ拡張しない。M2保存操作の接続とM3のSkill呼出し・計画・必要な承認・登録・再読取は残る。
+公開・本番採用・限定読取検証へのオーナー承認はこの実行で使用した。
+既存の本番書込み承認を復活させず、定期実行も追加しない。
+
+| 次の作業 | 人の担当 | 期限 | 概要 | 完了条件 | 参照 |
+| --- | --- | --- | --- | --- | --- |
+| Profile履歴読取の対象範囲・取得量の修正 | TBD | TBD | attachmentの所属確認と既存業務判断を保持し、全履歴反復読取の接続を見直す | 修正範囲の検証と限定した実Work履歴読取を確認してからM3へ進む | [#31](https://github.com/flair-agency/live-agency/issues/31)、本節 |
+
+AIポリシーレビューでは、候補時点の記録を保存しながら現在状態を更新すること、配布・導入と
+実ホスト受入の区別、固定版・障害原因・復旧対象、非公開証拠の保管境界を照合した。
+この文書更新でテストや本番操作を再実行していない。成功した対象者読取、未完了の履歴読取、
+確認済みコード挙動と未確定の性能原因を分け、未実行範囲・承認消費・次の修正範囲を確認した。
