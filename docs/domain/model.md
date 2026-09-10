@@ -8,6 +8,14 @@
 
 This document records the LIVE agency business knowledge established during the design of the Skill, MCP, provider, and Lark Base architecture. It describes the business concepts and invariants that technical components must preserve.
 
+Owner clarification, 2026-09-11: domain knowledge is centralized as documents in
+`live-agency`. Distinguish the LIVE agency business domain from each LIVE
+platform's domain and document their semantic correspondence. Scouting and
+Management are business contexts; TikTok is a platform dimension, not a
+replacement context. The [knowledge ownership document](../architecture/domain-knowledge-ownership.md)
+records this direction and the proposed implementation views without adopting
+new business invariants or implying support for an unimplemented platform.
+
 It is a working model rather than an authoritative statement of contracts, accounting policy, platform terms, or live external-system state. Live systems and canonical company records take precedence. Reviewed exports and spreadsheets are evidence for this model, not permanent sources of truth.
 
 The document intentionally excludes creator identities, credentials, production records, private URLs, and internal external-system identifiers.
@@ -515,7 +523,16 @@ Omitting non-gift support overstates ROI. In particular, a creator supported thr
 
 ## 10. Implementation ownership
 
-The [architecture](../architecture/overview.md) owns component responsibilities. This model owns business meaning; the [Base Provider](../../providers/lark-base/knowledge/data-model.md) owns its table/field mappings. Account-decision measurements remain [historical evidence](../archive/v2-identity-model-decision-gate.md).
+The [architecture](../architecture/overview.md) owns component responsibilities.
+Domain documents own business and platform meaning; Skills apply that knowledge
+to their use cases. Logical business schemas, service mappings and actual
+environment resource identifiers are distinct concerns under the
+[knowledge-ownership direction](../architecture/domain-knowledge-ownership.md).
+The Lark Base Provider owns Lark operations and field metadata access, not the
+Scouting or Management business schema. Its [existing model](../../providers/lark-base/knowledge/data-model.md)
+remains implementation evidence while mapping mechanics and placement are
+refined; documenting the target does not claim that code has already moved.
+Account-decision measurements remain [historical evidence](../archive/v2-identity-model-decision-gate.md).
 
 ## 12. Unresolved design questions
 
