@@ -1,6 +1,39 @@
 # Current migration and documentation status
 
-## Platform/environment redesign — 2026-09-10
+## Current production baseline and proposed update — 2026-09-10
+
+The designated ChatGPT Work Local production environment is currently
+`operations / production / tiktok` with the following deployed M2 configuration.
+The existing environment/lock and three host entry files were reread and matched
+their recorded identities and hashes when preparing this correction. The
+[M2 deployment evidence below](#profile-m2-read-connection--current-package)
+records the intervening private releases, installation and actual Work reads.
+
+| Component | Deployed now / immediate recovery target | PR #50 candidate, not deployed |
+| --- | --- | --- |
+| Runtime | `2.0.0-m2.1` | `2.0.0-m2.1` (unchanged) |
+| Lark Base Provider | `1.4.0-m2.0` | `1.4.0-m2.1` |
+| Independent catalog | `0.1.0-m2.0` | `0.1.0-m2.1` |
+| TikTok platform | `0.1.0-m1.0` | `0.1.0-m1.0` (unchanged) |
+
+Runtime startup and creator listing have been verified in the designated Work
+task. Profile-history completion and M3 business workflow acceptance remain open.
+Lark is the selected database; no business Skill or storage is selected, and
+updates remain manual. Earlier M1-only and unpublished-M2 statements below are
+historical checkpoints, not the current installation selection.
+
+[Provider PR #5](https://github.com/flair-agency/live-agency-provider-lark-base/pull/5)
+is merged into main. Its release metadata [PR #6](https://github.com/flair-agency/live-agency-provider-lark-base/pull/6)
+and the new catalog/adoption [PR #50](https://github.com/flair-agency/live-agency/pull/50)
+remain proposals: the replacement Provider/catalog are not published or installed.
+The prepared one-creator read adds only search and batch-get to the saved read
+selection, preserving actor and destination. Its immediate rollback restores
+the three current M2 host files saved for this update. The older M1 recovery
+receipt belongs to the previous M1-to-M2 deployment and is not this candidate's
+immediate rollback instruction. Concrete hashes and operator steps are in the
+[Japanese deployment review](../reviews/v2-platform-environments-ja.md).
+
+## Platform/environment redesign and M1 acceptance — historical checkpoint
 
 The owner approved the smaller-responsibility concept: an independent catalog,
 selected platform installation, AI-guided setup backed by a CLI, business Skill
@@ -19,13 +52,14 @@ automatic updates and additional workflows follow later. PR #44 is merged.
 by the owner with LGTM on 2026-09-10 and is Done. The owner-approved source was merged through Runtime PR #3/#4 and
 parent PR #46/#47. The explicit private-publication approval was then consumed:
 Runtime `2.0.0-m1.1`, TikTok platform `0.1.0-m1.0` and independent catalog
-`0.1.0-m1.0` are published and verified. The installed production environment is
+`0.1.0-m1.0` were published and verified. At that M1 acceptance checkpoint,
+the installed production environment was
 `operations` / `production` / `tiktok`, with manual updates and no business Skill,
 database or storage selected.
 
 The designated Work task discovered the existing Runtime host entry and verified
 the fixed installed version, saved configuration and available capability. The
-entry uses the new installed generation directly, not the development checkout.
+entry used that installed M1 generation directly, not the development checkout.
 The exact previous three host files were restored and the old 1.3.0 entry returned
 readiness with zero external operations before the new entry was adopted again.
 The former installations and separate Profile configuration remain intact.
@@ -33,8 +67,9 @@ The earlier synthetic Work proof retains module/instruction execution, catalog
 unavailability and Skill-registration recovery evidence.
 
 M1 acceptance is complete. Profile M2/M3 business completion remains separate and
-open. No business data or schedule was changed; service authentication and
-Provider-specific questionnaires remain unverified. See the
+open. No business data or schedule was changed at that checkpoint; service
+authentication and Provider-specific questionnaires had not been verified then.
+The subsequent successful M2 creator read is recorded below. See the
 [distribution and production evidence](../reviews/v2-platform-environments-ja.md#m1固定配布と常用環境への導入)
 and its owner trial instructions. The released source commits are already in
 their owners' main branches; this evidence checkpoint does not adopt a new
@@ -43,16 +78,50 @@ broad migration run.
 
 ## Profile M2 read connection — current package
 
-[#31](https://github.com/flair-agency/live-agency/issues/31) now carries the
-Profile-only read-connection candidate. Runtime `2.0.0-m2.0` binds service
-capabilities to saved Provider configuration references and digests; Lark Base
-`1.4.0-m2.0` supplies normalized creator and Profile-history reads through the
-existing selected API readers. TikTok Web `1.1.0` remains unchanged. The candidate
-catalog `0.1.0-m2.0` uses format 2; Profile remains pending M3 connection.
-These candidates are not published or installed in production. See the
-[Japanese review](../reviews/v2-platform-environments-ja.md#profile-m2読取接続の候補)
-for exact source, checks, limits and next approval. #32 remains blocked on
-Profile-specific readiness, not on M1. The current production M1 is retained.
+The owner approved source adoption, private publication and designated Work
+production installation/read verification. Runtime `2.0.0-m2.1`, Lark Base
+`1.4.0-m2.0` and catalog `0.1.0-m2.0` are now published and verified. The
+Runtime fix is merged through [PR #6](https://github.com/flair-agency/live-agency-provider-runtime/pull/6)
+and [publication run 34461964090](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34461964090)
+succeeded. Lark [run 34459702584, attempt 2](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34459702584/attempts/2)
+and the [fixed catalog release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.0)
+retain the other distribution evidence. TikTok Web `1.1.0` remains unchanged.
+
+The first `2.0.0-m2.0` installation failed because setup forced the public CLI
+dependency through the private registry. The compatible `2.0.0-m2.1` fix honors
+the explicitly selected npm configuration's registry scopes and excludes
+inherited npm configuration overrides. Real registry-only production installation
+then succeeded, and the three existing Runtime host files were adopted. The
+saved environment selects the Lark database and two capabilities; no business
+Skill or storage is selected, and updates remain manual. The previous M1
+installation and exact three-file recovery copies/hashes remain retained.
+
+The designated ChatGPT Work Local task verified Runtime startup, saved
+configuration and capabilities. Its first read-creators request failed with
+PROFILE_DATASTORE_READ_FAILED at stage read-fields. The same Runtime request
+then completed read-creators with 1,374 creators after host execution permission
+was supplied; Provider identity and saved configuration were unchanged.
+
+The single read-history invocation did not complete within the ten-minute smoke
+verification bound. At elapsed 10 minutes 51 seconds, the coordinator matched
+its PID, installed executable and exact request and sent SIGTERM only to its
+three processes. No Provider completion JSON was received. This is an incomplete
+read, not proof of an API failure or a triggered download budget. Source
+inspection confirms that history hydration visits all Profile rows and each
+attachment hash confirmation rereads the selected table before and after the
+download; the specific cause of the full elapsed time is not isolated. TikTok
+observation was not attempted and external writes remained zero.
+
+The deployed operator guide records the host-permission distinction; its prior
+adopted copy is retained, and all three current host/recovery hashes match the
+receipts. Owner approval for publication, production adoption and the bounded
+read verification was consumed; it supplies no production write authority.
+The source repair tracked by [Provider #4](https://github.com/flair-agency/live-agency-provider-lark-base/issues/4)
+is now merged; its fixed release and scoped production read remain the next
+package, retaining attachment membership and business semantics before M3. M2 save-operation
+connection and M3 Skill invocation/planning/write/readback remain open. See the
+[Japanese evidence update](../reviews/v2-platform-environments-ja.md#profile-m2固定配布と本番導入の更新)
+for the source chain, failure recovery and remaining acceptance boundary.
 
 ## Source synchronization checkpoint — 2026-09-09
 
