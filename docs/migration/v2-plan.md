@@ -11,17 +11,44 @@ host is the designated local ChatGPT Work project, **C|OPS|エージェンシー
 Development in Codex is not evidence of production-host acceptance.
 
 The [Japanese migration revision](../reviews/v2-platform-environments-ja.md#移行計画の見直し案)
-proposes building a small retained connection proof inside M1 rather than a
-separate throwaway PoC, then delivering M1 Runtime, only the required M2
+records the owner's subsequently approved decision to build a small retained connection proof inside M1 rather than a
+separate throwaway PoC, then deliver M1 Runtime, only the required M2
 Providers, and one M3 Skill. It defines what the owner can try at each stage,
 minimum recovery, outstanding decisions and the existing Issue mapping.
-This recommendation is under review; preparing the plan does not implement or
-activate it. No new milestone numbers replace M1/M2/M3.
+The owner authorized implementation and real-host verification. No new milestone
+numbers replace M1/M2/M3; existing business-write approvals retain their scope.
 
-The current work package is the design and plan revision in PR #44. Historical
+The design and plan were integrated in PR #44. The current work package is the
+M1 connection implementation and synthetic Work-host proof in
+[#45](https://github.com/flair-agency/live-agency/issues/45). Historical
 M1 acceptance in #42 and development Profile acceptance in #13 remain valid for
 their recorded scope; neither proves the redesigned Skill entry or a production
 profile registration. Reuse their applicable evidence and verify changed paths.
+
+# Adopted first-Skill delivery stages
+
+| Stage | Required outcome | Independent acceptance boundary |
+| --- | --- | --- |
+| M1 opening proof | Invoke a neutral synthetic Skill on the actual Work host, resolve the fixed environment, execute a module operation and follow an instruction handoff | Retain the common implementation. Resource loading alone is insufficient; do not require Profile business completion |
+| M1 Runtime | Minimal selected setup/catalog, saved environment reuse, fixed dependency resolution, Skill registration and basic deployment recovery | Owner can try Runtime on Work. Keep old installations and distinguish development sources/registration. Do not wait for M2/M3 |
+| Profile M2 | Connect only the required TikTok Web and Lark Base capabilities, preserving the accepted business contract and moving concrete service mapping to Providers | Verify observed data and selected destination. Reuse applicable write evidence plus focused development checks for changed paths; no inferred production-write authority |
+| Profile M3 readiness | Register the neutral Profile Skill with its complete installed reading route and make the selected one-item plan available from Work | Tell the owner acceptance can begin; this is not yet successful registration or owner acceptance |
+| Profile M3 acceptance | Apply the authorized current plan, read back results/images as applicable, verify unchanged data and nonduplicating replanning, and complete the human review | First production business acceptance. Invitation and other Skills proceed afterward, without repeating M1 |
+
+New platform support, all Providers/Skills, GUI, full automatic updating and broad
+MCP/failover improvements are not first-Skill gates. Basic deployment rollback is
+required before activation. Initial versions expose only their implemented
+update options. Preserve project-independent identity without making a second
+production platform a prerequisite. A defect blocking the selected path is
+resolved in that path rather than silently ignored or expanded into all workflows.
+
+Keep #42 and #13 closed for their accepted historical scope. Track the M1 delta
+in #45. Record Profile readiness/cutover separately from invitation within
+#31/#32; include only Profile's required human-takeover documentation from #39.
+Reuse unchanged evidence, delete or revise tests that only fix superseded
+implementation behavior, and run focused changed-contract/distribution/host
+checks plus mandatory CI. Estimate the next unit from the observed connection
+and remaining diff rather than promising an unmeasured programme duration.
 
 The remaining sections preserve the earlier plan and its stable reference
 anchors. Their monthly-first ordering, full M1 package list and general runner

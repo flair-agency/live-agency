@@ -1,7 +1,7 @@
 ---
 type: design-review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-10
 author: "Naoki Kimura（コンセプト承認）; Codex（設計案・現行ソース照合）"
 context: "既存v2の責務を保持し、選択式セットアップとSkill起点の利用へ具体化する再設計"
@@ -14,7 +14,8 @@ context: "既存v2の責務を保持し、選択式セットアップとSkill起
 コンセプトはオーナー承認済み。承認済みの責務は英語の
 [アーキテクチャ](../architecture/overview.md)と
 [配布方針](../architecture/distribution.md)へ反映した。
-本書の接続メッセージ、導入順序の細部、実装順はレビュー案であり、実装済みのAPIではない。
+本書の接続と先行Profileの移行順も、2026-09-10にオーナーがLGTMし実装を指示した。
+論理メッセージは実装済みAPI名そのものではない。実装・実証の範囲は末尾の記録で区別する。
 旧[基盤設計](v2-foundation-design-ja.md)の承認・検証記録は保存する。
 
 変更の中心は、既存の業務を環境に組み立てる部分である。ただし、Profile Skillの直接依存と
@@ -29,8 +30,8 @@ Lark固有設定が現行ソースに残っており、「Skillはほぼ無修�
 | 承認済み | 複数platform構成、デフォルト、呼び出し時の指定、設定変更の区別 |
 | 承認済み | 本番Work Localと開発Codexの分離。アプリのプロジェクトは任意の関連付け |
 | 承認済み | 初回に更新方針を選ぶ。事前許可の範囲内で検証済みセキュリティ修正版を自動適用可能にする |
-| 本書で具体化する案 | 環境選択から能力解決までの接続、カタログ形式の境界、段階的な実装・受入 |
-| 今回の作業 | 設計書のみ。子repo・依存・配備・認証・スケジュール・業務データの変更なし |
+| 承認済み | 環境選択から能力解決までの接続、カタログ形式の境界、段階的な実装・受入 |
+| 設計準備時の作業 | 設計書のみ。続く実装の変更範囲・証拠は末尾の記録で区別する |
 
 # 責務と依存関係
 
@@ -201,7 +202,7 @@ Provider全体や全Skillのコード監査は今回行っていない。共通�
 
 # 移行計画の見直し案
 
-2026-09-10の追加依頼に基づくレビュー案。目的は、先行する一つのSkillを本番へ提供し、
+2026-09-10の追加依頼に基づき、その後オーナーがLGTMした計画。目的は、先行する一つのSkillを本番へ提供し、
 オーナー自身が受け入れ検証できる状態を早く作ること。初号は従来の指定どおり
 `live-agency-creator-profile-record`（プロフィール同期）とする。
 本番はChatGPT Work Localの **C|OPS|エージェンシー運営**。Codexの開発環境と区別する。
@@ -332,12 +333,60 @@ Profileの具体依存が残るため「ほぼ無修正」という見込みは�
 改訂後は相対リンク91件（子repoの固定参照先8件を含む）と見出し参照、差分の空白検査に成功した。
 既存図と改訂後の段階表を静的に照合し、第二構成と自動更新の実証が初号の前提に見える表記も修正した。
 
-残るレビュー対象は、上の能力接続案とM1に接続実証を含める先行Profileの移行順。ホストの同名Skill分離、Profileの具象分離、
+接続案とM1に接続実証を含める先行Profileの移行順は、その後オーナーが採用した。ホストの同名Skill分離、Profileの具象分離、
 自動更新の実行は、確認済みとは扱わない。具体的な実装API・配備パスを想像で既存機能として案内しない。
 
 | 次の作業 | 人の担当 | 期限 | 概要 | 完了条件 | 参照 |
 | --- | --- | --- | --- | --- | --- |
-| 接続案と先行Profile移行順のレビュー | Naoki Kimura | TBD | M1内で接続実証を行い、Runtimeから1Skillまで段階的に受入する案を判断する | 各段階で試せる成果、実装範囲、本番と復旧の解釈が一致する | 本書「Skillと選択済み環境の接続案」「移行計画の見直し案」 |
+| M1の実装と技術実証 | Naoki Kimura（受入） | TBD | 採用された接続と最小セットアップを段階的に実装する | 実Workで選択・保存・利用・復旧を確認し、M1を独立受入できる | [#45](https://github.com/flair-agency/live-agency/issues/45)、以下の記録 |
+
+# M1接続実装の記録
+
+実装開始の変更カード：主分類E、副分類D/F。Runtimeの配布依存・中立な能力接続と、
+実Workでの合成Skill登録が対象。最初の作業単位は、Skill起点のmodule実行・instructions引渡しの実証。
+業務仕様・実サービス・本番の業務設定・スケジュールは変更しない。
+既存の承認を使い、合成候補と固有名の登録だけを作成する。復旧対象もその登録だけとする。
+workerは方針どおりgpt-6-astra / low。親がRuntimeを実装し、独立workerが合成fixtureと必要な境界テストを担当した。
+
+Runtime候補`2.0.0-m1.0`を独立ブランチで実装。配布依存は18件から共通protocol1件へ変更し、
+既存の具象依存は旧ソース検証用のdevDependenciesへ移した。127依存の版・取得元・integrityは不変。
+v1の業務別入口は既存インストールに残し、新しい配布物は環境接続の6ファイルに限定した。
+親の既存Runtime参照の差分は保持し、新候補のpin・公開・常用環境への切替は行っていない。
+
+独立候補でmoduleの合計9とinstructionsによる合計9、依存・版・相関・構成の境界を検証した。
+レビューでplatform間の結果混同を検出し、generationにplatformを含める修正を行った。
+修正後の必要な4テストが成功。親の独立caller検査2件も成功したが、未採用の子pinの統合検証とは扱わない。
+配布archiveと初回候補の6ファイルが一致。合成lockはコピー内容のdigestであり、registry導入の証拠ではない。
+修正版archiveも実Workで使用した固定候補の6ファイルと一致した。
+公式Skill validatorはPyYAML不足で実行できず、frontmatter・参照・手順を直接確認した。検証のための依存追加は行っていない。
+
+本番の指定Workタスクでは、`live-agency-connection-proof`をSkill一覧から名前解決できた。
+初回候補でmodule／instructionsが各9を返し、結果相関検証も成功した。
+これは実ホストの技術実証であり、プロフィールの本番業務成功、常用の開発本番隔離、M1全体の完了ではない。
+platform識別修正を含む固定候補でも同じ経路が成功した（Workタスクの完了turn
+`01a08a08-9999-7601-a38f-19513778acf2`、2026-09-10 15:38 JST）。
+environmentIdは`synthetic-connection-proof`、platformは`first`、generationは
+`432ea9696b9f252242f10ed4ff97e1e42ef3e1556b5efadd1c046ac7aedc1ed1`。
+moduleの計算結果と、AIがinstructionsを読み実行した計算結果はともに9で、相関検証も成功。
+修正版の固定候補・入力・手順結果はローカル証拠`/private/tmp/live-agency-m1-host-proof-r2-20260910/`に保持する。
+これは一時保管であり、手順・合成入力の再現元はRuntimeソースのfixtureとする。
+修正版archiveのSHA-512は
+`2deZooS6xD5f6okiWKCWro8u58DbKaSKz8cLQ6Syli2c12I7fcFJpwMhSyLe4GEKNigjFuM6Jei+XBliwxJRTA==`。
+
+方針セルフレビュー：公開用の中立な確認Skillへ具象名・環境絶対パスを入れず、選択入力で渡した。
+Providerのサービス知識や既存業務規則の変更なし。追加した固有名Skillの参照先が検証用候補と一致することを確認し、
+その一時登録だけを解除済み。既存のSkill登録・本番設定・データ・スケジュールは変更していない。
+M1の次の作業は、既に成立した接続に小さいカタログと設定保存・Skill登録・復旧を接続すること。
+変更3文書の独立AI方針レビューと追加の相対リンク・見出し参照確認でも、重大な不整合や欠落はなかった。
+
+実装はRuntimeのコミット`e9d82be`、
+[Runtime PR #3](https://github.com/flair-agency/live-agency-provider-runtime/pull/3)へ同期済み。
+同じHEADのpush／PR両CIが成功し、production依存だけの導入、必要な4テストと配布内容確認を通過した。
+[CI結果](https://github.com/flair-agency/live-agency-provider-runtime/actions/runs/34446681058)は
+Runtimeのソース検証であり、親pinの統合採用やregistryへの公開ではない。
+親の文書チェックポイントは実装を参照するだけで、未リリース候補の採用pinには更新しない。
+[#45](https://github.com/flair-agency/live-agency/issues/45)は最初の接続実証2項目を完了とし、
+M1のセットアップ・継続利用・常用配備を残してIn Progressを維持する。
 
 # 製品仕様の参照
 

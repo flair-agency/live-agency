@@ -11,15 +11,18 @@ The [Japanese redesign review](../reviews/v2-platform-environments-ja.md) propos
 the concrete connection and incremental validation sequence and records source
 gaps. The owner subsequently requested a first-Skill migration revision.
 The [plan review](../reviews/v2-platform-environments-ja.md#移行計画の見直し案)
-proposes retaining the first connection proof inside M1, independently accepting
-Runtime on the actual Work host, then connecting only Profile's M2 Providers and
-delivering Profile for M3 acceptance. Minimum deployment recovery stays in M1;
-automatic updates and additional workflows follow later. This sequence is a
-proposal, not a completed implementation. Design and plan preparation in PR #44
-are the current work; earlier checkpoints do not select another deployment or
-broad migration run. This change edits only parent documentation. It does not
-adopt a new child pin, install a package, register a host Skill, activate an
-update policy or verify a business operation.
+records the now-approved plan to retain the first connection proof inside M1, independently accept
+Runtime on the actual Work host, then connect only Profile's M2 Providers and
+deliver Profile for M3 acceptance. Minimum deployment recovery stays in M1;
+automatic updates and additional workflows follow later. PR #44 is merged.
+The owner authorized implementation, now tracked as In Progress in
+[#45](https://github.com/flair-agency/live-agency/issues/45). The first package
+implements the small Runtime's generic connection and verifies a separate
+synthetic Skill on the actual Work host. It does not select business-data writes
+or an update policy. Earlier checkpoints do not select a broad migration run.
+See the [implementation record](../reviews/v2-platform-environments-ja.md#m1接続実装の記録)
+for actual evidence and remaining M1 setup/deployment work; no new Runtime child
+pin is adopted by this parent documentation checkpoint.
 
 ## Source synchronization checkpoint — 2026-09-09
 
