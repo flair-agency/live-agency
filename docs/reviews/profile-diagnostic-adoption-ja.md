@@ -4,26 +4,23 @@ visibility: internal
 status: pending
 date: 2026-09-11
 author: "Naoki Kimura（作業再開指示）; Codex（配布・導入準備）"
-context: "採用済みのプロフィール読取診断修正を固定版として配布し、選択済みWork環境で原因を捕捉するためのレビュー"
+context: "採用済みの有限読取回復と診断修正を固定版として配布し、選択済みWork環境で読取・計画を確認するためのレビュー"
 ---
 
-# プロフィール診断修正版の配布・導入レビュー
+# プロフィール読取回復・診断修正版の配布・導入レビュー
 
-# 現在の順序：開発環境での再現調査を先行
+# 開発調査を踏まえた現在の提案
 
-2026-09-11、オーナーは、まず開発環境で再現を試み、再現しない場合に本番検証を
-検討するよう指示した。以下の配布・本番導入案は未承認のまま保留する。
-開発環境で同じ上位症状の再現を確認したため、本番導入を調査の前提にはしない。
-以前の不具合との比較も実施した。詳しい実行条件・結果と未確定事項は私有の調査記録に
-保存し、[障害Issue #9](https://github.com/flair-agency/live-agency-provider-lark-base/issues/9)で
-調査を追跡する。成功試行だけで障害解消とは判断せず、開発側で発生条件を絞る。
-今回の調査で配布・本番導入・業務書込みは行っていない。
+開発環境で間欠的な読取失敗を再現し、公式へ[Lark CLI #2709](https://github.com/larksuite/cli/issues/2709)として報告した。
+オーナーはCLI修正を待たないワークアラウンドを採用し、[Transport PR #2](https://github.com/flair-agency/live-agency-lark-transport/pull/2)を承認した。ソースはmainへ統合済みで、本番の固定導入版には未反映である。
+今回は回復処理と診断修正を含む固定版の配布・導入を準備した。根本原因は未確定で、成功した再試行を根因解消の証拠にしない。
+旧診断のみの計画は未適用で今回の計画に置き換える。旧提案と開発再現先行の判断はGit履歴と私有記録に保持する。
 
 # 今回の判断対象
 
-採用済みの診断修正を新しい固定版として配布し、指定済みのChatGPT Work Local
+採用済みの回復処理と診断修正を新しい固定版として配布し、指定済みのChatGPT Work Local
 本番プロジェクトで、選択済みの1アカウントについて限定読取を行う。
-目的は、失われていた失敗箇所・理由コードを取得し、原因を絞り込むことである。
+目的は有限回復を本番へ反映し、失敗時にも箇所・理由を失わずに指定1件の読取と計画を確認することである。
 実際の接続障害の原因・解消はまだ確認できていない。
 
 [Provider PR #10](https://github.com/flair-agency/live-agency-provider-lark-base/pull/10)と
@@ -34,16 +31,26 @@ context: "採用済みのプロフィール読取診断修正を固定版とし�
 | 対象 | 現行 → 候補 | 内容 |
 | --- | --- | --- |
 | Runtime | `2.0.0-m3.0` → 同じ版 | 既存のsetup・固定環境解決を使う。再配布しない |
-| Lark Base Provider | `1.4.0-m3.0` → `1.4.0-m3.1` | 列定義2件の取得・対応検証を区別し、安全化した診断を保持 |
+| Lark Transport | `1.1.0` → `1.1.1` | 読取20008の有限回復と共有時間予算。CLIは`1.0.93`を維持 |
+| Lark Base Provider | `1.4.0-m3.0` → `1.4.0-m3.1` | Transport `1.1.1`へ固定し、列定義の失敗箇所と期限超過理由を保持 |
 | Profile Skill | `2.0.0-m3.1` → `2.0.0-m3.2` | 計画と登録後確認の失敗でも診断を利用者へ届ける |
 | TikTok platform・カタログ | `0.1.0-m3.0` → `0.1.0-m3.1` | 上記のSkill・Provider版を選択。TikTok取得Providerは`1.1.0`のまま |
 
-ProviderとSkillの差分は、採用済みmainに対する版番号だけである。
+Transportは採用済みmainに対する版番号のみ。Providerは依存固定、期限超過診断1件とその知識・検証も変更し、Skillは版番号のみである。
+[Transport PR #3](https://github.com/flair-agency/live-agency-lark-transport/pull/3)、
 [Provider PR #12](https://github.com/flair-agency/live-agency-provider-lark-base/pull/12)、
 [Skill PR #7](https://github.com/flair-agency/live-agency-creator-profile-record/pull/7)を
-この親変更とともに採用し、既存GitHub Actionsから非公開`next`へ配布する。
+この親変更とともに採用する。既存GitHub ActionsでTransport stable版を先に非公開`latest`へ配布し、依存するProvider、Skill、platformを非公開`next`へ配布する。
+各環境は固定版を使うため、タグ更新だけで既存環境が切り替わることはない。
 カタログは`catalog-v0.1.0-m3.1`の不変な非公開リリースとして保存する。
 ソースの公開範囲やパッケージの可視性を変更する作業ではない。
+
+# 読取回復と停止条件
+
+共有Transportは、選択済みidentityと一致する構造化`api/unknown/20008`の読取を、同じ対象・同じ要求で最大3回試行する。待機は250／500ミリ秒。
+既存の60秒を、読取1要求の事前確認・ファイル準備・CLI・待機で共有する。時間切れ後の送信と遅延成功を拒否し、書込は再送しない。
+Providerは`API_READ_DEADLINE_EXCEEDED`を原因不明に変換せずSkillへ渡す。読取知識版は`lark-base-profile-read/2026-09-11.2`。
+処理全体を外側から自動で繰り返さない。失敗の段階・理由・監査を保存し、同じ選択と現在の認証を確認して人が再開を判断する。
 
 # 本番へ適用する具体的な範囲
 
@@ -52,13 +59,13 @@ ProviderとSkillの差分は、採用済みmainに対する版番号だけであ
 固定ダイジェストと一致し、今回の計画でも同じ参照・同じbytesを使う。
 
 導入計画SHA-256は
-`b88078059d95dbab9cf608520ba66e827e0fd631a51de4f54f5e3b96d3eb9e9b`。
+`e1b7ce147a75e8344febe6c8edeab86ac73f6aeb22e1ea49562210fec2436e81`。
 具体的な環境名・配置先・設定参照は、端末内の私有の`plan.json`と
 `deployment-review.json`に保存した。同じ私有領域にカタログ・宣言、
 現行入口の保全と変更案がある。実リソースのIDと設定内容はGitへ記録しない。
 
 - 私有の計画に指定した新しい配置へ、配布済みの固定版からインストールする。
-  現行配置は保持する。
+  現行配置は保持する。Providerの位置から依存を解決し、Transport `1.1.1`とCLI `1.0.93`、承認済みintegrityをホスト切替前に確認する。
 - 起動入口、RuntimeホストSkill、運用ガイドの3ファイルを、保存済みの変更案へ更新する。
   現行bytesのハッシュが変わっていたら自動上書きしない。
 - 既存のProfile Skill登録を新配置へ置き換える。今回は新規登録ではない。
@@ -71,8 +78,9 @@ ProviderとSkillの差分は、採用済みmainに対する版番号だけであ
 
 ```mermaid
 flowchart TD
-  A[配布版・導入範囲を承認] --> B[3パッケージとカタログを非公開配布]
-  B --> C[配布物の一致確認・新しい固定配置へ導入]
+  A[配布版・導入範囲を承認] --> B[Transportを先に配布・一致確認]
+  B --> B2[Provider・Skill・platform・カタログを非公開配布]
+  B2 --> C[配布物の一致確認・新しい固定配置へ導入]
   C --> D[現行入口を再照合・登録置換を予行確認]
   D --> E[入口3件とProfile登録を採用]
   E --> F[Workで版・環境と指定1件の読取を確認]
@@ -84,19 +92,23 @@ flowchart TD
 
 # 検証したことと限界
 
-- 配布候補はLark `8ab11d9`、Profile `a67486c`。実際のアーカイブを作り、
-  全62／14ファイルをソースbytesと照合し、宣言リソース9／6件と診断module・手順の同梱を確認した。
-  TikTok platformはREADMEとpackage.jsonの2ファイルのみで、依存・提供機能は変えていない。
+- Transport候補の全src・README・LICENSEは採用済みmainとbyte一致。4アーカイブの計90ファイルをソースと照合し、宣言moduleの読込を確認した。
+- 展開したProviderが候補Transport `1.1.1`を解決しCLI `1.0.93`を使うこと、Provider lockの固定version・integrity・依存の整合をnpmの依存解決ライブラリーで確認した。
+- Transport対象25件と従来API・selection51件、注入した20008後の開発実読取の既存証拠を再利用。変更したProviderは実Transportによる列読取2箇所の期限超過診断を含む読取7件と知識1件が合格した。
 - 実際に配布済みのRuntime `2.0.0-m3.0`の`planEnvironment`で新しい計画を作成した。
   必須capability、固定版、現行読取・書込設定のダイジェスト、既存登録の参照先を照合した。
   サービス呼出し、インストール、ホスト変更は行っていない。
 - 承認済みのProvider 237件、Skill初期13件と修正後の対象経路6件の検証を再利用した。
-  版番号・宣言のみの変更に対し、同じ業務テストを再実行していない。
-- 保存済みの失敗証跡とWorkの記録を限定確認したが、原因を識別する下位エラーは残っていなかった。
+  変更のない業務テストは再実行せず、今回の依存・診断変更に必要な確認へ絞った。
+- 当初の本番失敗証跡とWorkの記録には、原因を識別する下位エラーが残っていなかった。
   `read-fields`にはCLI・認証等の事前確認も含まれるため、APIそのものの失敗とはまだ言えない。
 - 現在のGitHub接続ではpackage versions APIが403となり、新候補版が未使用であることは未確認。
   資格情報は変更していない。配布時は既存workflowのパッケージ権限で検査し、版衝突や
   同一性の不一致があれば停止する。新候補のregistryからの再インストール検証は配布後に行う。
+
+Provider lockは候補の正確なversionと実archiveのintegrityを保持し、未確認の取得URLは記載しない。
+URLをregistryから解決するのは[npmが対応する形式](https://docs.npmjs.com/cli/v11/using-npm/config/#omit-lockfile-registry-resolved)であり、取得URLを推測しない。
+Transport配布後、Providerの既存workflowの`npm ci`でregistryからの再取得を確認する。
 
 候補のintegrityは私有の`deployment-review.json`に記録した。配布後に実アーカイブと
 registryのintegrityを比較する。新しいgeneration、登録の予行結果、適用receiptは
@@ -117,8 +129,7 @@ registryのintegrityを比較する。新しいgeneration、登録の予行結�
 
 # AIポリシーレビュー
 
-開発優先の追記では、オーナーの順序変更、再現した上位症状と未確定の原因、
-私有証跡とGitHub上の進捗、未実施の本番適用を区別した。
+今回の更新では、採用済みワークアラウンドと未実施の配布・本番適用、有限回復と根本原因、私有証跡とGitHub上の進捗を区別した。依存と診断の伝達、時間制限、停止条件、版・archive・設定・復旧と図を照合した。
 
 [文書知識方針](../governance/document-knowledge-policy.md)、
 [言語方針](../governance/document-language-policy.md)、
