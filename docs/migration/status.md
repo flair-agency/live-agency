@@ -1,6 +1,49 @@
 # Current migration and documentation status
 
-## Knowledge ownership documentation and stopped profile attempt — 2026-09-11
+## Current deployed Profile baseline and pending authentication diagnostics — 2026-09-11
+
+The owner-approved read-recovery release was published and adopted before the
+authentication-diagnostic proposal. The following is the current deployed
+baseline, confirmed against installed manifests, the Profile registration link
+and matching installation/adoption receipts. Earlier checkpoints below describe
+their original states; they do not select the current installation or rollback.
+
+| Component | Currently deployed | Pending authentication-diagnostic candidate |
+| --- | --- | --- |
+| Runtime | `2.0.0-m3.0` | Reuse |
+| Profile Skill | `2.0.0-m3.2` | Reuse |
+| Lark Base Provider | `1.4.0-m3.1` | `1.4.0-m3.2` |
+| Lark Transport | `1.1.1` | `1.1.2` |
+| Lark CLI | `1.0.93` | Reuse |
+| TikTok platform | `0.1.0-m3.1` | Reuse |
+| Independent catalog | `0.1.0-m3.1` | `0.1.0-m3.2` |
+
+The prior adoption record is `profile-2.0.0-m3.2-read-recovery`, under the
+designated operational user's private
+`~/.local/share/live-agency/deployment-plans/` directory. Its
+`installation-receipt.json`, `adoption-receipt.json` and
+`skill-registration.receipt.json` identify the adopted generation and registration.
+This records completed installation and adoption, not successful Work business
+acceptance. The retained Codex-origin one-creator read/plan does not substitute
+for the designated Work task; `businessWorkflowVerified` remains false.
+
+Transport PR #5 and Lark Provider PR #13 adopted the authentication-diagnostic
+source. Their new fixed publications and host adoption are still pending in
+[Transport PR #6](https://github.com/flair-agency/live-agency-lark-transport/pull/6),
+[Provider PR #14](https://github.com/flair-agency/live-agency-provider-lark-base/pull/14)
+and [PR #59](https://github.com/flair-agency/live-agency/pull/59).
+The [Japanese adoption review](../reviews/profile-auth-diagnostic-adoption-ja.md)
+identifies the private evidence bundle `profile-auth-diagnostics-20260911`, its
+retrieval procedure and verification limits. It binds the current baseline above
+as the immediate recovery target for the proposed next switch. Do not restore an
+older M2 or Profile `.m3.1` snapshot using that proposal.
+
+No new publication, installation, registration, service read or business write
+was performed while updating this status. Work read acceptance remains pending;
+[Provider issue #9](https://github.com/flair-agency/live-agency-provider-lark-base/issues/9)
+and [cutover issue #32](https://github.com/flair-agency/live-agency/issues/32) remain open.
+
+## Historical knowledge ownership documentation and stopped profile attempt — 2026-09-11
 
 The owner requested durable documentation of the agency/platform domain
 distinction, Skill use-case ownership, generic Runtime and Provider boundaries,
@@ -29,7 +72,7 @@ diagnostic should distinguish those stages and retain a sanitized failure reason
 through the Skill before one bounded selected read. Broad schema migration is
 not a prerequisite to identifying the failing operation.
 
-## Profile publication correction and production proposal — 2026-09-10
+## Historical Profile publication correction and production proposal — 2026-09-10
 
 Historical checkpoint: the later stopped production attempt is summarized above.
 
@@ -57,9 +100,10 @@ The plan preserves the current production actor, destination and read selection,
 adds the existing Provider's three write operations as a separately reviewed
 selection, and proposes a new fixed installation plus Profile host registration.
 Only private proposal files were prepared; production, current host entries,
-service access and business data remain unchanged. The deployed baseline below
-still applies. Corrected-version publication and production adoption await owner
-approval; actual record creation also needs its concrete plan approval.
+service access and business data remained unchanged at that checkpoint. The M2
+baseline below still applied then; use the current deployed snapshot above for
+today's installation. Corrected-version publication and production adoption were
+awaiting owner approval; actual record creation also needs its concrete plan approval.
 
 ## Historical M2 production baseline — 2026-09-10
 
