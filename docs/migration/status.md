@@ -1,5 +1,21 @@
 # Current migration and documentation status
 
+# Avatar and typed-readback release preparation — 2026-09-12
+
+The accepted TikTok Web PR #3 and Lark Base PR #18 corrections are prepared for
+one grouped release/adoption review. The candidate selects TikTok Web 1.1.1,
+Lark Base 1.4.0-m3.4, platform 0.1.0-m3.3 and catalog 0.1.0-m3.4. Runtime,
+Profile, Transport, CLI and the selected service configuration remain unchanged.
+Actual archives, the installed Runtime's installation plan, proposed host files
+and immediate recovery evidence are ready. The
+[Japanese review](../reviews/profile-avatar-readback-adoption-ja.md) defines the
+proposed private publication, new installation and selected Work acquisition,
+read and image-bearing plan. No publication, installation, host switch or service
+operation has occurred in this preparation. Issues #61, avatar #1 and cutover #32
+remain open through their actual acceptance requirements. The current recovery
+baseline is the write-diagnostic generation checked in this review; earlier
+checkpoints below do not select the next action or recovery target.
+
 # Recorded write-diagnostic adoption and read verification — 2026-09-11
 
 This section records the installation and read/plan verification at this checkpoint.

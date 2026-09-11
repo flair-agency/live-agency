@@ -1,9 +1,9 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.3`, using format version 2. It selects
-TikTok platform `0.1.0-m3.2`, Profile Skill `2.0.0-m3.3` and Lark Base
-`1.4.0-m3.3` with both Profile read and write capabilities. Runtime
+The current source candidate is `0.1.0-m3.4`, using format version 2. It selects
+TikTok platform `0.1.0-m3.3`, Profile Skill `2.0.0-m3.3` and Lark Base
+`1.4.0-m3.4` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. These candidates
 are not published or adopted in production merely because this file changed.
 
@@ -39,24 +39,18 @@ Before publication, verify the selected platform archive and dependent registry 
 
 The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen immutable release using authorized access. Normal execution uses the saved environment and does not fetch the catalog.
 
-This diagnostic candidate retains the same capabilities, bindings and contract
-versions, including the earlier scoped-read behavior. The consumer supplies
-`creatorRecordIds`; the Provider translates those IDs into a server-side search
-and confirms each attachment against its issued record. The existing read
-selection includes `records:search` and `records:batch-get`. The diagnostic
-update preserves the selected configuration bytes and their digests; it needs
-new fixed packages and an installation plan, not additional operations or a
-schema migration. Changing this catalog does not update an existing environment.
-This candidate selects the approved write-diagnostic source changes. Its
-Provider adopts Transport `1.1.3`, retaining safe selected-actor readiness
-metadata and original write causes. Profile keeps write and readback failures
-separate even if readback journal recording also fails. The platform's available
-Skill version changes; its acquisition Provider and dependencies do not.
-Runtime and CLI releases are reused. Diagnostics do not grant host execution
-permission or establish service access. The
-[Japanese write diagnostic adoption review](../docs/reviews/profile-write-diagnostic-adoption-ja.md)
-records the candidate scope, checks and pending Work verification. The
-[authentication diagnostic adoption review](../docs/reviews/profile-auth-diagnostic-adoption-ja.md)
-and the
-[earlier diagnostic adoption review](../docs/reviews/profile-diagnostic-adoption-ja.md)
-is retained as the preceding release decision.
+This candidate selects two adopted Provider corrections: TikTok Web 1.1.1 for
+avatar acquisition and complete/incomplete attempt evidence, and Lark Base
+1.4.0-m3.4 for field-typed create/readback comparison. The latter keeps Transport
+1.1.3. Runtime 2.0.0-m3.0, Profile 2.0.0-m3.3, CLI 1.0.93, capability contracts
+and selected service configuration remain unchanged. See the
+[Japanese release and adoption review](../docs/reviews/profile-avatar-readback-adoption-ja.md)
+for archive evidence, retained recovery and the proposed Work verification.
+Publication, installation and business acceptance are distinct checkpoints.
+
+The currently adopted catalog
+[0.1.0-m3.3](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.3)
+and its [write-diagnostic release record](../docs/development/profile-write-diagnostic-adoption.md)
+remain available. Published catalog assets follow the no-overwrite policy and
+pinned digest verification; the existing release does not have GitHub native
+release immutability enabled.
