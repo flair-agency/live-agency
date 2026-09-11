@@ -100,7 +100,7 @@ flowchart LR
 [Issue #61](https://github.com/flair-agency/live-agency/issues/61)と[受入Issue #32](https://github.com/flair-agency/live-agency/issues/32)を参照してください。
 後続の登録成功を、この読取検証の実績へ置き換えてはいません。
 
-本節はタスク内でオーナーへ日本語報告済みの実行結果を、参照可能なレビュー文書へ補記したものです。承認時点の準備結果と分けて保持し、PR #64の英文実行checkpointと対応させます。以前の配布承認から、本節への採用判断や新しい登録・添付・再送の許可を推定しません。
+本節は、2026-09-12にオーナーがPR #64のLGTMで採用を承認した実行結果のレビュー履歴です。正本は同リポジトリーmainの英文実行checkpointです。以前の配布承認と今回の結果採用を区別し、新しい登録・添付・再送の許可は含みません。
 
 対象の配布準備PR 4件は統合され、Transport、Provider、Profile、Platformの配布処理が成功しました。各アーカイブはレビュー済みintegrityと非公開設定に一致し、catalogもダウンロードしてハッシュを照合しています。catalogのGitHubネイティブな変更不能設定はfalseであり、上書き禁止方針と固定digestで保持します。配布処理の参照は[英文実行checkpoint](../development/profile-write-diagnostic-adoption.md#execution-checkpoint--2026-09-11)にあります。
 
@@ -120,5 +120,5 @@ flowchart LR
 
 | 次の対応 | 担当者 | 期限 | 内容 | 完了条件 | 参照 |
 | --- | --- | --- | --- | --- | --- |
-| 実行結果報告の確認 | Naoki Kimura | TBD | PR #64の英日報告を確認 | 結果報告への判断が記録される | PR #64 |
+| 実行結果報告の採用（完了） | Naoki Kimura | 2026-09-12 | PR #64の英日報告を承認 | オーナーのLGTMを英日文書に記録済み | PR #64 |
 | 残る業務受入の確認 | Naoki Kimura | TBD | 元の不確実な書込結果を照合し、新しい計画を評価 | 登録には実際の計画の承認と読戻しを使用し、元の結果を別途記録 | Issue #61、cutover #32 |

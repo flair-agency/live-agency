@@ -104,7 +104,7 @@ and recovery target at that time. Subsequent business-write reconciliation and
 acceptance outcomes remain in [issue #61](https://github.com/flair-agency/live-agency/issues/61)
 and [cutover #32](https://github.com/flair-agency/live-agency/issues/32).
 
-This factual execution report is proposed in PR #64 and is separate from the decision approved at `9cbc52a`. The [Japanese execution report](../reviews/profile-write-diagnostic-adoption-ja.md#実行結果報告2026-09-11) records the outcome already reported to the owner in the task. Adoption of this later report is not inferred from the earlier release approval.
+The owner approved this factual execution report on 2026-09-12 through PR #64, separately from the release decision approved at `9cbc52a`. The [Japanese execution report](../reviews/profile-write-diagnostic-adoption-ja.md#実行結果報告2026-09-11) is retained as approved review history. This adoption records the earlier result and does not authorize a new operation.
 
 All four release-preparation PRs are merged. Owning publication workflows succeeded and each archive matched the reviewed integrity and private visibility: [Transport](https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34590399365), [Provider](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34590493824), [Profile](https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34590610577) and [Platform](https://github.com/flair-agency/live-agency/actions/runs/34590782800). The [catalog](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.3) was downloaded and hash-verified. Native release immutability is false; retention relies on the no-overwrite policy and pinned digest.
 
