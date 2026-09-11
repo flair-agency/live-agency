@@ -352,6 +352,31 @@ PRs, or work requiring live acceptance. Reuse an existing Issue when its scope
 matches; otherwise state the work's scope and completion criteria in a new one.
 A Project draft item alone does not replace an Issue or PR.
 
+The working agent is responsible for keeping known gaps traceable without owner
+reminders, including undecided design, deferred requirements and implemented
+behavior with known defects. Keep one owning Issue as the authoritative record
+for each such scope; reuse it and link related work instead of creating another
+registry. Retain the requirement and its source, accepted decisions and rationale
+or the specific unresolved question, implementation/PR references, verification
+evidence and limits, and the next action. For deferred work, retain the reason
+and resumption condition; recording a gap does not change its selected timing.
+
+Project `Status` describes the work queue, not delivery evidence. In the owning
+Issue, distinguish requirement/design decisions, implementation, release or
+adoption, and verification facts without adding a separate status taxonomy.
+Keep unknown or unverified facts explicit; do not convert them into claims that
+a capability is unavailable. Source implementation or merge does not establish
+verified production behavior. When a known gap affects code or instructions,
+place a concise `TODO` or `FIXME` at the relevant source location linking to the
+owning Issue; the comment is a discovery aid, not a second tracking record.
+
+Before selecting work or claiming completion, inspect the owning Issue and
+relevant source gap links against the current requirement and acceptance criteria.
+Update remaining gaps and their next action at the checkpoint; do not let them
+disappear when a narrower PR closes. Continue already authorized work under
+accepted decisions without asking the owner to repeat unchanged approval. An
+unresolved decision or changed authority remains subject to the existing gates.
+
 Add every PR itself to the applicable Project and maintain its review and
 integration status there. Verify Project membership after creating or updating
 the PR; linking an Issue does not itself add the PR as a Project item.
