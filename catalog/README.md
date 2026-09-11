@@ -1,13 +1,15 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.0`, using format version 2. It selects
-TikTok platform `0.1.0-m3.0`, Profile Skill `2.0.0-m3.1` and Lark Base
-`1.4.0-m3.0` with both Profile read and write capabilities. Runtime
+The current source candidate is `0.1.0-m3.1`, using format version 2. It selects
+TikTok platform `0.1.0-m3.1`, Profile Skill `2.0.0-m3.2` and Lark Base
+`1.4.0-m3.1` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. These candidates
 are not published or adopted in production merely because this file changed.
 
-The previously deployed `0.1.0-m2.1` catalog remains published as an
+The current production catalog `0.1.0-m3.0` remains available as an
+[immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.0).
+The earlier `0.1.0-m2.1` catalog remains published as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m2.1).
 It selects the compatible scoped Profile history read correction from Lark Base
 `1.4.0-m2.1`, for the existing Runtime `2.0.0-m2.1`. The earlier `0.1.0-m2.0`
@@ -33,11 +35,13 @@ Before publication, verify the selected platform archive and dependent registry 
 
 The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen immutable release using authorized access. Normal execution uses the saved environment and does not fetch the catalog.
 
-The Profile repair retains the same capability, binding and contract versions.
-The consumer supplies `creatorRecordIds`; the private Provider translates those
-IDs into a server-side search and confirms each attachment against its issued
-record. The saved Provider read selection must explicitly include
-`records:search` and `records:batch-get`. A new fixed package, configuration digest
-and installation plan are required; changing this catalog does not update an
-existing environment. The [Japanese deployment review](../docs/reviews/v2-platform-environments-ja.md)
-records the selected scope, deployment evidence and remaining acceptance.
+This diagnostic candidate retains the same capabilities, bindings and contract
+versions, including the earlier scoped-read behavior. The consumer supplies
+`creatorRecordIds`; the Provider translates those IDs into a server-side search
+and confirms each attachment against its issued record. The existing read
+selection includes `records:search` and `records:batch-get`. The diagnostic
+update preserves the selected configuration bytes and their digests; it needs
+new fixed packages and an installation plan, not additional operations or a
+schema migration. Changing this catalog does not update an existing environment.
+The [Japanese diagnostic adoption review](../docs/reviews/profile-diagnostic-adoption-ja.md)
+records the selected scope, verification and remaining production diagnosis.
