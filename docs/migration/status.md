@@ -10,48 +10,122 @@ The next candidate selects Transport 1.1.3, Provider 1.4.0-m3.3, Profile 2.0.0-m
 
 The [Japanese adoption review](../reviews/profile-write-diagnostic-adoption-ja.md) states the exact proposed publication, host switch, read verification, retained immediate rollback and evidence limits. Publication and actual Work verification remain pending. Issue #61 remains open, and cutover #32 remains blocked on business acceptance. The older checkpoints below retain their original scope and do not select the current installation.
 
-## Historical pre-adoption baseline for authentication diagnostics — 2026-09-11
+## Historical authentication-diagnostic adoption — 2026-09-11
 
-The owner-approved read-recovery release was published and adopted before the
-authentication-diagnostic proposal. The following is the current deployed
-baseline, confirmed against installed manifests, the Profile registration link
-and matching installation/adoption receipts. Earlier checkpoints below describe
-their original states; they do not select the current installation or rollback.
+The owner-approved authentication-diagnostic release was privately published and
+adopted at this checkpoint. Installed manifests, registry archive integrities, the Profile
+registration link and installation/adoption receipts agree. Earlier checkpoints
+below retain their original states and do not select the current installation.
 
-| Component | Currently deployed | Pending authentication-diagnostic candidate |
+| Component | Previous deployment at this checkpoint | Adopted at this checkpoint |
 | --- | --- | --- |
-| Runtime | `2.0.0-m3.0` | Reuse |
-| Profile Skill | `2.0.0-m3.2` | Reuse |
+| Runtime | `2.0.0-m3.0` | `2.0.0-m3.0` |
+| Profile Skill | `2.0.0-m3.2` | `2.0.0-m3.2` |
 | Lark Base Provider | `1.4.0-m3.1` | `1.4.0-m3.2` |
 | Lark Transport | `1.1.1` | `1.1.2` |
-| Lark CLI | `1.0.93` | Reuse |
-| TikTok platform | `0.1.0-m3.1` | Reuse |
+| Lark CLI | `1.0.93` | `1.0.93` |
+| TikTok platform | `0.1.0-m3.1` | `0.1.0-m3.1` |
 | Independent catalog | `0.1.0-m3.1` | `0.1.0-m3.2` |
 
-The prior adoption record is `profile-2.0.0-m3.2-read-recovery`, under the
-designated operational user's private
-`~/.local/share/live-agency/deployment-plans/` directory. Its
-`installation-receipt.json`, `adoption-receipt.json` and
-`skill-registration.receipt.json` identify the adopted generation and registration.
-This records completed installation and adoption, not successful Work business
-acceptance. The retained Codex-origin one-creator read/plan does not substitute
-for the designated Work task; `businessWorkflowVerified` remains false.
-
-Transport PR #5 and Lark Provider PR #13 adopted the authentication-diagnostic
-source. Their new fixed publications and host adoption are still pending in
+The owner approved the grouped release/adoption scope in
 [Transport PR #6](https://github.com/flair-agency/live-agency-lark-transport/pull/6),
 [Provider PR #14](https://github.com/flair-agency/live-agency-provider-lark-base/pull/14)
-and [PR #59](https://github.com/flair-agency/live-agency/pull/59).
-The [Japanese adoption review](../reviews/profile-auth-diagnostic-adoption-ja.md)
-identifies the private evidence bundle `profile-auth-diagnostics-20260911`, its
-retrieval procedure and verification limits. It binds the current baseline above
-as the immediate recovery target for the proposed next switch. Do not restore an
-older M2 or Profile `.m3.1` snapshot using that proposal.
+and [PR #59](https://github.com/flair-agency/live-agency/pull/59); all are merged.
+Provider publication first stopped before publishing because one existing test
+omitted the new diagnostic phase. The owner separately approved
+[test-only PR #15](https://github.com/flair-agency/live-agency-provider-lark-base/pull/15).
+All 238 tests pass, and the archive remains byte-identical to the approved candidate.
+[Transport publication](https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34570222048)
+and [Provider publication](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34571792905)
+verified private registry installation and archive integrity. The fixed
+[catalog release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.2)
+has SHA-256 `dcf2ded860e3efb4a35e5048bd56a5f63d641000afc8e4f2ae62287e4014fc6b`.
+GitHub reports `immutable: false`; preservation relies on the version,
+no-overwrite procedure and verified digest, not GitHub-enforced immutability.
 
-No new publication, installation, registration, service read or business write
-was performed while updating this status. Work read acceptance remains pending;
+### Adopted execution and recovery boundary
+
+This section is the English canonical record of the approved
+[Japanese adoption review](../reviews/profile-auth-diagnostic-adoption-ja.md).
+The plan SHA-256 is `87d40a84f498029c9bb42add17650e0b82d638f1f579f1e30971b1309c2ed4d2`.
+The sequence was fixed Transport publication, fixed Provider publication, catalog
+release, verified new installation, then the three reviewed host entry files and
+Profile registration replacement. Reused Runtime, Profile and platform packages
+were not republished. Actor, resource/configuration references and hashes remain
+unchanged; updates remain manual and storage remains unselected.
+
+The designated operational user's private
+`~/.local/share/live-agency/deployment-plans/profile-auth-diagnostics-20260911/`
+contains the evidence. The original `record.json` remains a prepared snapshot;
+its SHA-256 is `29060ca9b905574cc7daf0f9b1750f702a86949b7ba0f5bcaeadb98621b03ea9`
+and it indexes 18 approved files. Actual `installation-receipt.json`,
+`installation-verification.json`, `adoption-receipt.json`,
+`skill-registration.receipt.json` and publication receipts establish execution.
+New generation: `87fe6e04dcc34b37259d53ac699eccb858193c3ba469570c9dbbf6a209b4f515`.
+If another operator cannot access this designated user's private evidence,
+request it from the owner using the record ID before switching or restoring.
+
+The immediately previous `profile-2.0.0-m3.2-read-recovery` installation and
+generation `349dc2854f40dd215b860895043c56fa69d98e2433833fc3aa4468f4e9f2e895`
+were retained as this checkpoint's recovery target. This historical record does not
+select the current recovery target. For this recorded adoption, use the new installation's supported registration
+restore procedure with its actual registration receipt; restore the three
+`host-before-0`–`2` files with the paths and modes in `deployment-review.json`.
+Compare adopted hashes first and stop on drift. Keep both installations and
+receipts; host rollback does not undo business data.
+
+### Verified Work read and remaining business acceptance
+
+The selected Work task completed the approved single-creator read. The
+permitted sequence is describe, selected target and scoped history reads, and
+planning only when retained observations remain valid. No business registration,
+image upload, fresh source observation or schedule change is included.
+Diagnostics do not grant host access. On
+`LARK_CLI_CREDENTIAL_STORE_UNAVAILABLE` at `auth-status`, use only the host's
+supported approval mechanism for the same complete bounded read command and
+unchanged selection. If unavailable or denied, retain the safe error and stop;
+do not change credentials, Keychain permissions or identity. This error is not
+automatically retried. Existing exact API20008 read recovery remains bounded to
+three attempts within one 60-second request budget, without an outer workflow retry.
+An `auth-status` failure precedes Base dispatch; `business-api` labels processing
+and alone does not prove receipt by the service.
+
+The first actual Work attempt stopped at `transportStage: version` with
+`LARK_CLI_API_ERROR`; targets/history were not read and no plan was created.
+The fresh installation lacked the native CLI binary: the package launcher
+attempts initialization when `npm ci --ignore-scripts` has skipped it.
+This relates to [Transport issue #4](https://github.com/flair-agency/live-agency-lark-transport/issues/4);
+the original attempt's raw native output was not retained, so its exact OS error
+is not established. The reviewed official initializer was then run as the
+remaining fixed-installation step. Its bundled archive checksum passed, the
+native binary SHA-256 matches the immediately previous fixed CLI, and the
+launcher now returns exactly `lark-cli version 1.0.93`.
+`native-cli-initialization.json` records this repair without changing credentials
+or package selection. A new Work check after this concrete environment repair
+succeeded. The initial failed attempt remains separate evidence; a generic
+workflow retry or a permanent cold-start source fix was not introduced.
+
+In the new Work check, ordinary sandbox execution returned
+`LARK_CLI_CREDENTIAL_STORE_UNAVAILABLE` at `auth-status` in approximately 0.14s.
+The already approved host execution mechanism ran the same selected target read
+successfully. One target matched; a subsequent scoped read returned one history
+row for that creator. Retained input identity matched, and its original
+observation timestamp was preserved. Planning completed in approximately 25.3s:
+one proposed create, no attachment operations, conflicts, target issues or invalid
+history. The selected generation remained unchanged. Private
+`evidence/work-read-after-native-init-20260911/` contains `targets.json`,
+`read-audit.json`, `plan.json` and `result.json`, all with mode 0600.
+
+This is actual designated-Work evidence of target/history reads and planning,
+not merely a Codex-origin probe or installation check. Business registration
+and business readback were not run, so `businessWorkflowVerified` remains false.
+No business writes, uploads or new observations occurred. This establishes the
+Profile path through planning, not invitation-workflow acceptance or overall A
+completion. At this checkpoint, the concrete business write still needed its own prepared
+review and owner approval before execution.
 [Provider issue #9](https://github.com/flair-agency/live-agency-provider-lark-base/issues/9)
-and [cutover issue #32](https://github.com/flair-agency/live-agency/issues/32) remain open.
+and [cutover issue #32](https://github.com/flair-agency/live-agency/issues/32)
+retain the verified result and remaining acceptance scope.
 
 ## Historical knowledge ownership documentation and stopped profile attempt — 2026-09-11
 
