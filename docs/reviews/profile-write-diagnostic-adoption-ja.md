@@ -1,15 +1,15 @@
 ---
 type: review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-11
 author: "Codex (preparation); Naoki Kimura (review owner)"
-context: "Issue #61: distribute the three owner-approved diagnostic source changes and prepare selected Work verification"
+context: "Issue #61: accepted Japanese review history; canonical decision is docs/development/profile-write-diagnostic-adoption.md. Execution completion is recorded separately."
 ---
 
 # 書き込み診断改善の配布・本番反映レビュー
 
-本書は日本語のレビュー案です。3件の実装修正は承認されmainへ統合済みです。今回は、その修正を含む固定版の配布と、本番Workへの反映・読取検証をまとめて判断します。
+本書はオーナーのLGTMで採用された日本語レビュー履歴です。正本は[英文採用文書](../development/profile-write-diagnostic-adoption.md)です。以下の準備・検証結果は承認時点の記録として保持します。承認は配布・本番反映・Work検証の完了を意味しません。3件の実装修正は承認されmainへ統合済みです。今回の採用対象は、その修正を含む固定版の配布と、本番Workへの反映・読取検証です。
 
 元の書き込み失敗の原因は未確定です。今回の修正は、失敗した認証チェックと元の書き込み・後続の読み取りの診断を失わずに返すためのものです。接続障害そのものの解消を意味しません。
 
