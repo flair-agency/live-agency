@@ -11,7 +11,7 @@ context: "Issue #61; owner LGTM adopts the grouped release and production adopti
 
 The owner approved the grouped release, production Work adoption and read verification described in [the Japanese review](../reviews/profile-write-diagnostic-adoption-ja.md), reviewed at source commit `9cbc52a`. This English text records the approved decision; approval does not establish that publication, installation, switching or Work verification has completed. The three implementation fixes were already approved and merged into main.
 
-The original write failure's cause remains unresolved. These changes preserve the failed authentication check and the original write and subsequent read diagnostics. They do not establish that the connection failure itself is fixed.
+At approval, the original write failure's cause remained unresolved. These changes preserve the failed authentication check and the original write and subsequent read diagnostics. They do not establish that the connection failure itself is fixed.
 
 Canonical location: `flair-agency/live-agency`, branch `main`, path `docs/development/profile-write-diagnostic-adoption.md`. The Japanese document is retained as review history after adoption of this English text.
 
@@ -95,9 +95,14 @@ On 2026-09-11, Codex reviewed the release-preparation diff and supporting eviden
 | Custody, references and language | Corrected dependence on temporary evidence unavailable through the PR; saved and hash-verified the owner-only bundle before approval. Checked references, the Japanese pending review and exclusion of real data from GitHub. |
 | Accessible review record | Added concrete self-review results and limits to the review. The durable bundle also contains `self-review-ja.md` and `custody-verification.json`. |
 
-Outstanding verification includes release collisions and published artifacts, formal installation, the actual Work route and the original write failure's cause. Self-review does not substitute for independent PR review, a human takeover exercise, authorization for production operations or proof of business completion.
+At preparation review, outstanding verification included release collisions and published artifacts, formal installation, the actual Work route and the original write failure's cause. The execution checkpoint below records subsequent checks. Self-review does not substitute for independent PR review, a human takeover exercise, authorization for production operations or proof of business completion.
 
 # Execution checkpoint — 2026-09-11
+
+This checkpoint records one earlier read/plan verification, including its result
+and recovery target at that time. Subsequent business-write reconciliation and
+acceptance outcomes remain in [issue #61](https://github.com/flair-agency/live-agency/issues/61)
+and [cutover #32](https://github.com/flair-agency/live-agency/issues/32).
 
 This factual execution report is proposed in PR #64 and is separate from the decision approved at `9cbc52a`. The [Japanese execution report](../reviews/profile-write-diagnostic-adoption-ja.md#実行結果報告2026-09-11) records the outcome already reported to the owner in the task. Adoption of this later report is not inferred from the earlier release approval.
 
