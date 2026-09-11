@@ -1,13 +1,17 @@
 ---
 type: deployment-review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-11
 author: "Codex（固定版配布・導入準備）"
 context: "Lark Base Issue #9の認証診断を配布し、指定Workで限定読取を確認する"
 ---
 
 # 認証診断の固定版配布とWorkでの読取確認
+
+この文書は承認済みの日本語レビュー履歴として保持する。正本と実行結果は
+[英語の移行状況・採用記録](../migration/status.md#current-deployed-profile-authentication-diagnostics--2026-09-11)
+を参照する。以下の未実施・承認待ちの記述はレビュー時点の記録であり、現在の状態を示さない。
 
 認証情報の取得で止まった場合に、Baseの列定義エラーと区別できる修正を配布する。
 [Transport PR #5](https://github.com/flair-agency/live-agency-lark-transport/pull/5)と
