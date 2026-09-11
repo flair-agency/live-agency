@@ -6,6 +6,7 @@
 
 - Prepare owner reviews and reports in Japanese; adopt approved canonical documents in English under the [language policy](docs/governance/document-language-policy.md).
 - Apply the [development policy](docs/governance/development-policy.md) for change boundaries, explicit execution selection, verification and task composition. Consult [migration status](docs/migration/status.md) for scoped temporary constraints; historical checkpoints do not select current work.
+- Follow the development policy's [GitHub Issue, Project and PR tracking procedure](docs/governance/development-policy.md#github-issue-project-and-pr-tracking) for every development change.
 - Before creating, changing or reviewing a Skill for an authenticated or publication-uncertain source, read the complete authoritative [Private Source Integration Guide](docs/governance/private-source-integration-guide.md). Report a missing guide or ambiguous applicability; do not invent or duplicate it.
 
 ## Work scope and existing changes

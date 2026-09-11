@@ -342,6 +342,36 @@ does not itself authorize publication or production rollout.
 
 ## 9. Shared development procedures
 
+### GitHub Issue, Project and PR tracking
+
+Owner direction, 2026-09-11: track every development work item as an Issue or PR
+in the appropriate owning repository and applicable GitHub Project. Work that
+is complete when its PR merges may be tracked by that PR alone. Use an Issue
+with related PRs for planned requests, investigations, work spanning multiple
+PRs, or work requiring live acceptance. Reuse an existing Issue when its scope
+matches; otherwise state the work's scope and completion criteria in a new one.
+A Project draft item alone does not replace an Issue or PR.
+
+Add every PR itself to the applicable Project and maintain its review and
+integration status there. Verify Project membership after creating or updating
+the PR; linking an Issue does not itself add the PR as a Project item.
+Use GitHub's native Development relationship or closing keywords only when
+merging that PR completes the linked Issue, and verify the actual relationship
+when used. For a partial change, reference the broader Issue in the PR body and
+track the PR directly in the Project. Do not create a duplicate child Issue
+solely to enable a Development link; useful child Issues with their own scope
+and completion criteria remain appropriate.
+
+Keep Issue, PR and Project status current at meaningful checkpoints, using the
+actual work, verification and remaining scope. Close an Issue as completed or
+mark its Project item complete only when its completion criteria are satisfied,
+including production verification where required by the
+[maintenance policy](skill-maintenance-policy.md). A merged PR or completed
+child Issue does not establish completion of broader work. Record cancellation
+or superseded tracking separately rather than claiming delivery. Record actual
+checks and limitations in the existing Issue, PR or task record. This tracking
+procedure adds no approval gate or execution authority.
+
 ### Script implementation language
 
 Owner instruction adopted on 2026-09-08. This rule applies to newly generated
