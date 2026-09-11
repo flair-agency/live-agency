@@ -1,6 +1,6 @@
 {
   "name": "@flair-agency/live-agency-platform-tiktok",
-  "version": "0.1.0-m3.2",
+  "version": "0.1.0-m3.3",
   "description": "Declarative TikTok capability selection for LIVE Agency environments",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@flair-agency/tiktok-web-provider": "1.1.0"
+    "@flair-agency/tiktok-web-provider": "1.1.1"
   },
   "peerDependencies": {
     "@flair-agency/provider-protocol": "1.0.0",
@@ -29,7 +29,7 @@
         "dependencyPath": [
           {
             "packageName": "@flair-agency/tiktok-web-provider",
-            "packageVersion": "1.1.0"
+            "packageVersion": "1.1.1"
           }
         ],
         "bindingId": "creator-profile-observation"

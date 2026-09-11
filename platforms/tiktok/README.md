@@ -1,7 +1,7 @@
 # TikTok platform declaration
 
-Unreleased Profile candidate `0.1.0-m3.2`. This package declares the selected
-TikTok Web profile-observation capability; it contains no executable workflow
+Unreleased Profile candidate `0.1.0-m3.3`. This package declares the selected
+TikTok Web 1.1.1 profile-observation capability and its approved avatar acquisition correction; it contains no executable workflow
 or credentials. The Provider owns its instructions and required host permissions.
 BackStage and iOS Providers remain outside this selected slice.
 
