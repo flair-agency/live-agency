@@ -52,8 +52,31 @@ flowchart TD
 実際に配布済みのRuntimeで作成した導入計画SHA-256は
 `87d40a84f498029c9bb42add17650e0b82d638f1f579f1e30971b1309c2ed4d2`。
 具体的な配置先、設定・入口の前後ハッシュ、アーカイブのintegrityは端末内の私有レビューに保存した。
-復旧先は直前のProfile `2.0.0-m3.2` / Lark `1.4.0-m3.1` / Transport `1.1.1`構成。
+復旧先は[移行状況の現行本番ベースライン](../migration/status.md)に記録した、導入済みのProfile `2.0.0-m3.2` / Lark `1.4.0-m3.1` / Transport `1.1.1`構成。
 実際の新登録receiptから以前の登録へ戻し、保全した入口3ファイルとmodeを復元する。旧構成と証跡は保持する。
+
+# 私有証跡の参照
+
+承認後に別の担当者が引き継ぐ場合は、指定本番Workを実行するmacOSユーザーの
+`~/.local/share/live-agency/deployment-plans/profile-auth-diagnostics-20260911/`
+を参照する。`~`はその実行ユーザーのホームであり、別の担当者のホームや任意のcheckoutではない。
+記録IDは `profile-auth-diagnostics-20260911`。一時ディレクトリーや現在の会話を探す必要はない。
+同じ端末・ユーザーの私有ファイルへアクセスできない場合は、プロジェクトオーナーへこの記録IDを示して参照を依頼し、証跡を取得するまで切替・復旧を実行しない。
+
+| ファイル | 確認する内容 |
+| --- | --- |
+| `record.json` | 記録ID、未適用状態、計画ハッシュ、同梱18ファイルのSHA-256、直前の導入記録ID |
+| `plan.json` / `deployment-review.json` | 固定版、設定ハッシュ、配置先、入口前後ハッシュ・mode、現在と次の登録先、復旧先 |
+| `host-before-0`〜`2` / `host-proposed-0`〜`2` | 入口3ファイルの現行保全と採用案。review内の対応表で実ファイルへ対応付ける |
+| `transport-pack.json` / `provider-pack.json` / 同梱`.tgz` | 配布archiveの版・integrity・SHA-256と実体 |
+| `selection.json` / `catalog.json` / `platform-package.json` | 同じ計画を再構成する選択・カタログ・宣言 |
+
+索引 `record.json` のSHA-256は `29060ca9b905574cc7daf0f9b1750f702a86949b7ba0f5bcaeadb98621b03ea9`。
+索引と同梱ファイルを照合し、切替直前にはreviewに記載した実ファイル・登録先も再読取する。
+直前の適用証跡は同じ保管親ディレクトリーの `profile-2.0.0-m3.2-read-recovery/` にあり、
+`installation-receipt.json`、`adoption-receipt.json`、`skill-registration.receipt.json`で辿れる。
+今回の新しい適用・登録receiptは未作成であり、承認後の実行で初めて生成する。
+Gitには記録の参照と照合値のみを置き、設定内容・業務データ・資格情報を含めない。
 
 # 検証と残る判断
 
@@ -64,3 +87,5 @@ flowchart TD
 [文書知識方針](../governance/document-knowledge-policy.md)、[言語方針](../governance/document-language-policy.md)、[開発方針](../governance/development-policy.md)、全文の[Private Source Integration Guide](../governance/private-source-integration-guide.md)に照らしてAIレビューを行った。具象知識はProviderに保持し、秘密・業務レコード・実配置情報をGitの差分へ含めない。診断の改善と権限変更、Codexの証拠とWork受入を区別した。既存OPERATORの古い復旧世代と未登録との記述は今回の私有変更案で訂正し、実際の直前登録・保全ファイルから復旧する手順に統一した。図・実施順・停止条件・再利用する版を照合した。
 
 今回の判断は、固定版のマージ・非公開配布、新配置への導入・入口と登録の切替、指定Workの限定読取まで。先のLGTMはソース採用までとして提示していたため、具体化した配布・本番変更をここでまとめて確認する。[不具合Issue #9](https://github.com/flair-agency/live-agency-provider-lark-base/issues/9)と[受入Issue #32](https://github.com/flair-agency/live-agency/issues/32)は実結果の確認まで完了にしない。
+
+PR #59の指摘に従い、古かった移行状況と証跡への参照を訂正した。現行版・登録先を適用済みreceiptと照合し、18ファイルを上記の保管先へ保存・ハッシュ検査した。証跡の移設後もRuntimeで同じ計画ハッシュになることを確認し、本番入口・登録先・未作成の新配置は不変。言語方針も再照合し、今回作成したPR本文は英語へ訂正する。この日本語文書は未承認のオーナーレビュー案として保持する。
