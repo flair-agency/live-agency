@@ -370,8 +370,13 @@ verified production behavior. When a known gap affects code or instructions,
 place a concise `TODO` or `FIXME` at the relevant source location linking to the
 owning Issue; the comment is a discovery aid, not a second tracking record.
 
-Before selecting work or claiming completion, inspect the owning Issue and
+Before selecting planned work or claiming completion, inspect the owning Issue and
 relevant source gap links against the current requirement and acceptance criteria.
+During major incidents, the [maintenance policy](skill-maintenance-policy.md)
+allows safe stopping or recovery to a known version with verified compatibility
+and availability to precede full intake under existing execution authority.
+Keep minimal records and reconcile the Issue and source gap links afterward;
+tracking must not delay containment.
 Update remaining gaps and their next action at the checkpoint; do not let them
 disappear when a narrower PR closes. Continue already authorized work under
 accepted decisions without asking the owner to repeat unchanged approval. An
