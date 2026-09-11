@@ -1,6 +1,22 @@
 # Current migration and documentation status
 
-# Current write-diagnostic distribution preparation — 2026-09-11
+# Recorded write-diagnostic adoption and read verification — 2026-09-11
+
+This section records the installation and read/plan verification at this checkpoint.
+It does not supersede subsequent write reconciliation and acceptance outcomes in
+[issue #61](https://github.com/flair-agency/live-agency/issues/61) and
+[cutover #32](https://github.com/flair-agency/live-agency/issues/32), or select a current recovery target.
+
+The owner approved and merged root PR #63, Transport #8, Lark Base Provider #17 and Profile #9. Fixed packages were privately published and verified against the reviewed archive integrities. Catalog 0.1.0-m3.3 was published from the approved source and downloaded for hash verification. See the [adopted release decision](../development/profile-write-diagnostic-adoption.md) and retained private deployment evidence.
+
+The selected Work installation at this checkpoint used Runtime 2.0.0-m3.0, Profile 2.0.0-m3.3, Lark Base Provider 1.4.0-m3.3, Transport 1.1.3, CLI 1.0.93, TikTok platform 0.1.0-m3.2 and catalog 0.1.0-m3.3. Installed archive identities and integrity, the fixed native CLI checksum, the three changed host files and Skill registration were verified. The selected actor, resources, authority and configuration hashes were preserved. The old authentication-diagnostic installation and the newly generated registration receipt provide immediate rollback; restore preview succeeded without executing a restore.
+
+The actual Work one-target read and fresh-plan verification succeeded: one target and two history rows, with one proposed create, zero attachments and zero conflicts. The two operations took 43.051 seconds combined and reused the retained observation. No business record creation or image attachment was performed. At this checkpoint, the original write outcome, cause and business completion were unverified; [issue #61](https://github.com/flair-agency/live-agency/issues/61) and [cutover #32](https://github.com/flair-agency/live-agency/issues/32) remain open for acceptance.
+
+## Historical write-diagnostic distribution preparation — 2026-09-11
+
+The following preparation statements, including selected versions and pending
+work, describe that earlier checkpoint rather than the current work queue.
 
 All three diagnostic source changes for [issue #61](https://github.com/flair-agency/live-agency/issues/61) are owner-approved and merged: Transport #7, Lark Base Provider #16 and Profile #8. They retain safe actor readiness, original write causes and independent readback diagnostics. They do not explain the original failed write or change authorization and retry rules.
 

@@ -1,15 +1,15 @@
 ---
 type: review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-11
 author: "Codex (preparation); Naoki Kimura (review owner)"
-context: "Issue #61: distribute the three owner-approved diagnostic source changes and prepare selected Work verification"
+context: "Issue #61: accepted Japanese review history; canonical decision is docs/development/profile-write-diagnostic-adoption.md. Execution completion is recorded separately."
 ---
 
 # 書き込み診断改善の配布・本番反映レビュー
 
-本書は日本語のレビュー案です。3件の実装修正は承認されmainへ統合済みです。今回は、その修正を含む固定版の配布と、本番Workへの反映・読取検証をまとめて判断します。
+本書はオーナーのLGTMで採用された日本語レビュー履歴です。正本は[英文採用文書](../development/profile-write-diagnostic-adoption.md)です。以下の準備・検証結果は承認時点の記録として保持します。承認は配布・本番反映・Work検証の完了を意味しません。3件の実装修正は承認されmainへ統合済みです。今回の採用対象は、その修正を含む固定版の配布と、本番Workへの反映・読取検証です。
 
 元の書き込み失敗の原因は未確定です。今回の修正は、失敗した認証チェックと元の書き込み・後続の読み取りの診断を失わずに返すためのものです。接続障害そのものの解消を意味しません。
 
@@ -93,3 +93,32 @@ flowchart LR
 残る検証は、配布時の版衝突・配布物確認、正式installation、実際のWork経路、元の書き込み失敗の原因です。このセルフレビューは独立したPRレビュー、人による引継ぎ実演、配布・本番操作の承認、業務完了の証明を代替しません。
 
 今回の判断対象は、この固定版一式の配布・新しいinstallationへの導入・ホスト切替・指定済み1件の読取と有効入力からの計画作成です。実データ登録は実際の新しい計画を確認して扱います。これは既に承認された実装修正の再承認依頼ではありません。
+
+# 実行結果報告（2026-09-11）
+
+本節の数値・未確認事項・復旧先は、当時の読取・計画検証の記録です。その後の登録照合・受け入れ結果は
+[Issue #61](https://github.com/flair-agency/live-agency/issues/61)と[受入Issue #32](https://github.com/flair-agency/live-agency/issues/32)を参照してください。
+後続の登録成功を、この読取検証の実績へ置き換えてはいません。
+
+本節は、2026-09-12にオーナーがPR #64のLGTMで採用を承認した実行結果のレビュー履歴です。正本は同リポジトリーmainの英文実行checkpointです。以前の配布承認と今回の結果採用を区別し、新しい登録・添付・再送の許可は含みません。
+
+対象の配布準備PR 4件は統合され、Transport、Provider、Profile、Platformの配布処理が成功しました。各アーカイブはレビュー済みintegrityと非公開設定に一致し、catalogもダウンロードしてハッシュを照合しています。catalogのGitHubネイティブな変更不能設定はfalseであり、上書き禁止方針と固定digestで保持します。配布処理の参照は[英文実行checkpoint](../development/profile-write-diagnostic-adoption.md#execution-checkpoint--2026-09-11)にあります。
+
+新しいinstallationのlockはレビュー済み4アーカイブに一致しました。公式CLI初期化と1.0.93実行ファイルのチェックサム、ホストファイル3件とProfile登録の切替後の内容を照合しています。認証主体・対象リソース・権限・設定ハッシュは維持されています。新しい登録receiptは直前のauthentication diagnostics installationを示し、復旧プレビューはwould-restoreでした。復旧自体は実行していません。
+
+実際のWork generationは b9abf30e7e7d4efe4dd1720c316b29ace4c387642e6ad017b87c944827a7264e です。対象1件と履歴2件を読み、作成予定1件・添付0件・適用済み0件・競合0件の計画を生成しました。読取19.168秒、計画23.882秒、合計43.051秒です。保存済み観測を再利用しており、新しい情報取得・登録・アップロード・不確実な書き込みの再送は行っていません。businessWorkflowVerifiedはfalseで、元の書き込み結果・原因・業務完了は未確定です。
+
+証跡はowner専用のprofile-write-diagnostics-20260911 bundleの実行・最終検証記録から取得します。ターゲットを含むファイル名や対応情報はGitHub文書へ転記しません。準備時の索引は変更せず、実行後の証跡は別索引で管理しています。
+
+## 今回の文書修正とAI方針レビュー
+
+2026-09-12のレビュー準備では、文書知識・言語・開発方針に照らし、過去の読取検証と後続の業務結果を混同しないよう英日3文書を訂正しました。数値・証跡・承認範囲は保持し、後続結果の既存Issue参照、変更した見出しへのローカル参照と差分を確認しました。業務操作や実装テストの再実行は行っていません。
+
+分類はG（決定済みの文書保守）。対象は既存の英日2文書だけです。文書・Skill知識方針、言語方針、開発方針、Private Source Integration Guideに基づき、承認済み判断と新しい結果報告の区別、英日数値・限界・復旧経路の対応、対象識別子の除外、相対リンクと差分を確認しました。本修正で本番証跡やサービスを再検証していません。実装・配布・ホスト・業務データの変更もありません。
+
+現行文書から対象を含む証跡パスを削除しました。過去のコミットと既存レビューコメントには旧記載が残り、通常の修正コミットでは除去できません。履歴の書き換えや既存コメントの削除は今回行っていません。修正を戻す場合は対象文書の差分単位で扱い、対象識別子を再導入しないことを確認します。
+
+| 次の対応 | 担当者 | 期限 | 内容 | 完了条件 | 参照 |
+| --- | --- | --- | --- | --- | --- |
+| 実行結果報告の採用（完了） | Naoki Kimura | 2026-09-12 | PR #64の英日報告を承認 | オーナーのLGTMを英日文書に記録済み | PR #64 |
+| 残る業務受入の確認 | Naoki Kimura | TBD | 元の不確実な書込結果を照合し、新しい計画を評価 | 登録には実際の計画の承認と読戻しを使用し、元の結果を別途記録 | Issue #61、cutover #32 |
