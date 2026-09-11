@@ -1,13 +1,23 @@
 # Current migration and documentation status
 
-## Current deployed Profile authentication diagnostics — 2026-09-11
+# Current write-diagnostic distribution preparation — 2026-09-11
 
-The owner-approved authentication-diagnostic release is privately published and
-adopted. Installed manifests, registry archive integrities, the Profile
+All three diagnostic source changes for [issue #61](https://github.com/flair-agency/live-agency/issues/61) are owner-approved and merged: Transport #7, Lark Base Provider #16 and Profile #8. They retain safe actor readiness, original write causes and independent readback diagnostics. They do not explain the original failed write or change authorization and retry rules.
+
+The currently selected Work installation is Runtime 2.0.0-m3.0, Profile 2.0.0-m3.2, Lark Base Provider 1.4.0-m3.2, Transport 1.1.2, CLI 1.0.93, TikTok platform 0.1.0-m3.1 and catalog 0.1.0-m3.2. This was checked against installed manifests, saved configuration, current Skill registration and the retained profile-auth-diagnostics-20260911 receipts. [PR #60](https://github.com/flair-agency/live-agency/pull/60) retains the preceding adoption-evidence review; it remains a separate documentation PR.
+
+The next candidate selects Transport 1.1.3, Provider 1.4.0-m3.3, Profile 2.0.0-m3.3, platform 0.1.0-m3.2 and catalog 0.1.0-m3.3. Runtime, CLI, TikTok Web acquisition and selected resource/authority configuration remain fixed. Source archives and one synthetic diagnostic-propagation check are prepared; the installed Runtime generated a new plan with unchanged read/write configuration hashes. No new installation, host switch or business operation occurred during this preparation.
+
+The [Japanese adoption review](../reviews/profile-write-diagnostic-adoption-ja.md) states the exact proposed publication, host switch, read verification, retained immediate rollback and evidence limits. Publication and actual Work verification remain pending. Issue #61 remains open, and cutover #32 remains blocked on business acceptance. The older checkpoints below retain their original scope and do not select the current installation.
+
+## Historical authentication-diagnostic adoption — 2026-09-11
+
+The owner-approved authentication-diagnostic release was privately published and
+adopted at this checkpoint. Installed manifests, registry archive integrities, the Profile
 registration link and installation/adoption receipts agree. Earlier checkpoints
 below retain their original states and do not select the current installation.
 
-| Component | Immediately previous deployment | Currently deployed |
+| Component | Previous deployment at this checkpoint | Adopted at this checkpoint |
 | --- | --- | --- |
 | Runtime | `2.0.0-m3.0` | `2.0.0-m3.0` |
 | Profile Skill | `2.0.0-m3.2` | `2.0.0-m3.2` |
@@ -57,7 +67,8 @@ request it from the owner using the record ID before switching or restoring.
 
 The immediately previous `profile-2.0.0-m3.2-read-recovery` installation and
 generation `349dc2854f40dd215b860895043c56fa69d98e2433833fc3aa4468f4e9f2e895`
-remain the recovery target. Use the new installation's supported registration
+were retained as this checkpoint's recovery target. This historical record does not
+select the current recovery target. For this recorded adoption, use the new installation's supported registration
 restore procedure with its actual registration receipt; restore the three
 `host-before-0`–`2` files with the paths and modes in `deployment-review.json`.
 Compare adopted hashes first and stop on drift. Keep both installations and
@@ -110,8 +121,8 @@ not merely a Codex-origin probe or installation check. Business registration
 and business readback were not run, so `businessWorkflowVerified` remains false.
 No business writes, uploads or new observations occurred. This establishes the
 Profile path through planning, not invitation-workflow acceptance or overall A
-completion. The concrete business write still needs its own prepared review and
-owner approval before execution.
+completion. At this checkpoint, the concrete business write still needed its own prepared
+review and owner approval before execution.
 [Provider issue #9](https://github.com/flair-agency/live-agency-provider-lark-base/issues/9)
 and [cutover issue #32](https://github.com/flair-agency/live-agency/issues/32)
 retain the verified result and remaining acceptance scope.

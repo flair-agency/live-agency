@@ -1,13 +1,15 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.2`, using format version 2. It selects
-TikTok platform `0.1.0-m3.1`, Profile Skill `2.0.0-m3.2` and Lark Base
-`1.4.0-m3.2` with both Profile read and write capabilities. Runtime
+The current source candidate is `0.1.0-m3.3`, using format version 2. It selects
+TikTok platform `0.1.0-m3.2`, Profile Skill `2.0.0-m3.3` and Lark Base
+`1.4.0-m3.3` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. These candidates
 are not published or adopted in production merely because this file changed.
 
-The previously adopted catalog `0.1.0-m3.1` remains available as an
+The previously adopted catalog `0.1.0-m3.2` remains available as an
+[immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.2).
+The earlier `0.1.0-m3.1` remains available as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.1).
 The earlier `0.1.0-m3.0` remains available as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.0).
@@ -45,11 +47,16 @@ selection includes `records:search` and `records:batch-get`. The diagnostic
 update preserves the selected configuration bytes and their digests; it needs
 new fixed packages and an installation plan, not additional operations or a
 schema migration. Changing this catalog does not update an existing environment.
-This candidate changes only the catalog revision and Lark service version. Its
-Provider adopts Transport `1.1.2`, preserving credential-store classification
-and safe preflight phases. Runtime, Profile and TikTok platform releases are
-reused. Diagnostics do not grant host execution permission or establish service
-access. The [Japanese authentication diagnostic adoption review](../docs/reviews/profile-auth-diagnostic-adoption-ja.md)
-records the current scope, checks and pending Work acceptance. The
+This candidate selects the approved write-diagnostic source changes. Its
+Provider adopts Transport `1.1.3`, retaining safe selected-actor readiness
+metadata and original write causes. Profile keeps write and readback failures
+separate even if readback journal recording also fails. The platform's available
+Skill version changes; its acquisition Provider and dependencies do not.
+Runtime and CLI releases are reused. Diagnostics do not grant host execution
+permission or establish service access. The
+[Japanese write diagnostic adoption review](../docs/reviews/profile-write-diagnostic-adoption-ja.md)
+records the candidate scope, checks and pending Work verification. The
+[authentication diagnostic adoption review](../docs/reviews/profile-auth-diagnostic-adoption-ja.md)
+and the
 [earlier diagnostic adoption review](../docs/reviews/profile-diagnostic-adoption-ja.md)
 is retained as the preceding release decision.
