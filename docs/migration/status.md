@@ -1,6 +1,16 @@
 # Current migration and documentation status
 
-## Current deployed Profile baseline and pending authentication diagnostics — 2026-09-11
+# Current write-diagnostic distribution preparation — 2026-09-11
+
+All three diagnostic source changes for [issue #61](https://github.com/flair-agency/live-agency/issues/61) are owner-approved and merged: Transport #7, Lark Base Provider #16 and Profile #8. They retain safe actor readiness, original write causes and independent readback diagnostics. They do not explain the original failed write or change authorization and retry rules.
+
+The currently selected Work installation is Runtime 2.0.0-m3.0, Profile 2.0.0-m3.2, Lark Base Provider 1.4.0-m3.2, Transport 1.1.2, CLI 1.0.93, TikTok platform 0.1.0-m3.1 and catalog 0.1.0-m3.2. This was checked against installed manifests, saved configuration, current Skill registration and the retained profile-auth-diagnostics-20260911 receipts. [PR #60](https://github.com/flair-agency/live-agency/pull/60) retains the preceding adoption-evidence review; it remains a separate documentation PR.
+
+The next candidate selects Transport 1.1.3, Provider 1.4.0-m3.3, Profile 2.0.0-m3.3, platform 0.1.0-m3.2 and catalog 0.1.0-m3.3. Runtime, CLI, TikTok Web acquisition and selected resource/authority configuration remain fixed. Source archives and one synthetic diagnostic-propagation check are prepared; the installed Runtime generated a new plan with unchanged read/write configuration hashes. No new installation, host switch or business operation occurred during this preparation.
+
+The [Japanese adoption review](../reviews/profile-write-diagnostic-adoption-ja.md) states the exact proposed publication, host switch, read verification, retained immediate rollback and evidence limits. Publication and actual Work verification remain pending. Issue #61 remains open, and cutover #32 remains blocked on business acceptance. The older checkpoints below retain their original scope and do not select the current installation.
+
+## Historical pre-adoption baseline for authentication diagnostics — 2026-09-11
 
 The owner-approved read-recovery release was published and adopted before the
 authentication-diagnostic proposal. The following is the current deployed
