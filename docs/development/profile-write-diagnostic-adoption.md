@@ -96,3 +96,19 @@ On 2026-09-11, Codex reviewed the release-preparation diff and supporting eviden
 | Accessible review record | Added concrete self-review results and limits to the review. The durable bundle also contains `self-review-ja.md` and `custody-verification.json`. |
 
 Outstanding verification includes release collisions and published artifacts, formal installation, the actual Work route and the original write failure's cause. Self-review does not substitute for independent PR review, a human takeover exercise, authorization for production operations or proof of business completion.
+
+# Execution checkpoint — 2026-09-11
+
+All four release-preparation PRs are merged. Owning publication workflows succeeded and each archive matched the reviewed integrity and private visibility: [Transport](https://github.com/flair-agency/live-agency-lark-transport/actions/runs/34590399365), [Provider](https://github.com/flair-agency/live-agency-provider-lark-base/actions/runs/34590493824), [Profile](https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34590610577) and [Platform](https://github.com/flair-agency/live-agency/actions/runs/34590782800). The [catalog](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.3) was downloaded and hash-verified. Native release immutability is false; retention relies on the no-overwrite policy and pinned digest.
+
+The new installation's lock matched the four reviewed archives. The official CLI initializer and resulting 1.0.93 binary matched the earlier checksums. Three host files and Profile registration were switched and read back. The new registration receipt identifies the immediate prior authentication-diagnostic installation; its recovery preview returned `would-restore` without executing recovery. The actor, resources, authority and configuration hashes were preserved.
+
+Actual Work generation: `b9abf30e7e7d4efe4dd1720c316b29ace4c387642e6ad017b87c944827a7264e`. The Work task read one target and two history rows, then produced a plan with one create, zero attachments, zero already-applied rows and zero conflicts. Target read took 19.168 seconds and planning 23.882 seconds (43.051 seconds combined). It reused the retained observation, with no fresh source acquisition, registration, upload or uncertain-write replay. `businessWorkflowVerified` remains false; the original write outcome and cause remain unresolved.
+
+The durable bundle retains actual installation, adoption, registration, native initialization, publication and recovery-preview receipts, plus `evidence/work-fufulove-read-plan/result.json`. The original preparation index is unchanged; execution and final verification records index subsequent evidence separately.
+
+AI policy review checked these actual receipts, archive/lock equality, selected generation, unchanged configuration, host readback, recovery preview and Work result. Changed document links and scoped diff passed. Owning publication workflows performed their required checks; unchanged implementation suites were not rerun locally. The English decision preserves the approved Japanese meaning and distinguishes preparation from execution evidence.
+
+| Next action | Human owner | Due | Summary | Completion criterion | Reference |
+| --- | --- | --- | --- | --- | --- |
+| Review remaining Profile business acceptance | Naoki Kimura | TBD | Evaluate the selected Work plan and retain uncertain-write evidence | Any registration uses its actual approved plan and readback; record the original outcome separately | Issue #61; cutover #32 |
