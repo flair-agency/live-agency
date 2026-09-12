@@ -80,6 +80,27 @@ resolution; existing history is not an authority for inventing a current fact.
 Retain the observed parent, category and classification basis separately in the
 workflow evidence, without introducing raw response storage into business data.
 
+Classification supports recheck prioritization and decisions about possible
+agency assistance. It does not create an automatic recheck interval or a promise
+that a restriction will be removed. In particular, a category associated with a
+restricted classification describes its reviewed interpretation; it does not
+make the current observation eligible or guarantee future eligibility.
+
+Keep a classified child distinct from its parent when comparing historical
+states. Do not flatten stored children merely to match a less expressive source
+contract. The recording Skill applies the established transition-history
+procedure, including its identity and avatar checks; a source Provider does not
+compare or compact destination history. A proposal to store additional raw
+response fields is not an adopted requirement merely because it appeared in
+an earlier investigation. Workflow evidence and business fields are separate.
+
+The logical classification model does not prescribe the actual number of master
+rows, their IDs, or a particular database's columns and links. Those belong to
+the selected private environment and its reviewed service mapping, as defined
+in the [schema ownership boundary](../architecture/domain-knowledge-ownership.md#business-schema-and-lark-operation-boundary).
+The Skill receives that explicit taxonomy; the source Provider need not read it
+to recognize a source label or return a separate category.
+
 A displayed missing-account status is a successfully observed source fact; an
 unknown or failed acquisition is not equivalent. Neither should be converted
 to ineligibility. Provider knowledge owns recognition of the actual labels and
