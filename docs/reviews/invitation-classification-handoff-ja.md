@@ -43,12 +43,13 @@ flowchart TD
 
 | 実装 | レビュー | 開発commit |
 | --- | --- | --- |
-| Providerのv2受け渡しと既存知識修正の統合 | [BackStage PR #2](https://github.com/flair-agency/live-agency-provider-backstage/pull/2) | `5aa9cfd` |
-| 中立なv2入力・Skill分類・既存履歴計画への接続 | [Skill PR #1](https://github.com/flair-agency/live-agency-creator-invitation-eligibility-record/pull/1) | `afba283` |
+| Providerのv2受け渡し・対象照合・日時検証 | [BackStage PR #2](https://github.com/flair-agency/live-agency-provider-backstage/pull/2) | `e7b3b9de29a8e76c4e643ab6edc175c0117fdb2a` |
+| 中立なv2入力・Skill分類・既存履歴計画への接続 | [Skill PR #1](https://github.com/flair-agency/live-agency-creator-invitation-eligibility-record/pull/1) | `afba283dde8f3b1929d2c67fb9d156347c8f9558` |
 
 Skillは未リリースの採用済み基点 `821b6e4` から分離しました。別ブランチの複数バッチ修正を暗黙には取り込んでいません。Providerは現在のmainに、招待知識の既存未統合ブランチを合わせています。親のsubmodule pin・配布構成は今回変更しません。
 
 - Providerの新しい名前付きnormalizerとsource/v2を明示選択します。出力は `invitation-eligibility-observations/v2`。`eligibility` と `invitationCategory` を分け、区分がない場合はnullとします。
+- v2には取得前に保持した依頼一覧 `requestedAccountKeys` を必須とし、結果の不足・余分・正規化後の重複を拒否します。結果から依頼一覧を作り直してはいけません。v1は旧引数を維持し、一覧が渡された場合は同じ照合を行います。v1単独で取得範囲の完全性を証明することはできません。両版で実在する暦日・時刻・時差を持つ完全ISO日時を検証します。
 - v1の形式・既存入口を維持します。v1をv2へ名前だけ変えたり、欠けた区分を履歴から補ったりしません。v1のみでは今回の情報保持を受け入れできません。
 - Skillのステータス一覧は中立なID・ラベル・親ID・区分対応です。サービス固有の列名、Base ID、画面、認証情報は持ちません。その他の子は明示された補足根拠参照を必要とします。
 - 分類結果を既存の履歴比較へ渡します。分類前の観測、選択した親・子、根拠を区別して追跡できるようにします。既存履歴を自動変換しません。
@@ -70,10 +71,26 @@ Skillは未リリースの採用済み基点 `821b6e4` から分離しました�
 
 # 検証とAI方針レビュー
 
-Providerの直接確認13件、Skillの分類・従来契約・履歴回帰24件が成功しました。実際の新normalizerから新Skillへ渡す統合確認は、架空9件で4シナリオ成功です。一般・プレミアム・区分なし、七つの親、補足根拠の有無、表示not-found混在、同一分類の時刻更新と区分変更の新規履歴を確認しました。独立した呼出元/API操作検査2件も成功しました。
+初回の `5aa9cfd` / `afba283` ではProviderの直接確認13件、Skillの分類・従来契約・履歴回帰24件、独立した呼出元/API操作検査2件が成功しました。これは初回ソースの検証記録です。
+
+今回のレビュー指摘修正後は、Providerの直接確認15件、検証ツールのソース照合3件が成功しました。変更していないSkillの24件は再実行していません。上表の完全SHAを指定した新normalizerから新Skillへの統合確認は、架空9件で4シナリオ成功です。一般・プレミアム・区分なし、七つの親、補足根拠の有無、表示not-found混在、同一分類の時刻更新と区分変更の新規履歴を確認しました。
 
 Skillの既存テスト依存は、分離した開発checkoutから既存開発依存を読む一時resolverで解決しました。新規installや本番へのリンクはありません。これは固定版パッケージの新規インストール検証ではありません。Skill用の汎用validatorは既存環境にPyYAMLがなく起動できませんでした。変更した参照・export・配布対象、frontmatter未変更、差分を別途確認しています。
 
-統合確認は `tools/verify-invitation-classification-handoff.mjs` に二つのソースcheckoutを明示して再現できます。実サービス操作は0件です。画像についてはメタデータの保持を直接テストで確認した範囲であり、今回のBackStage画像実取得は未検証です。
+統合確認は [検証ツール](../../tools/verify-invitation-classification-handoff.mjs) に二つのcheckoutの絶対パスと完全SHAを明示して再現できます。パスは手元のcheckoutに置き換えてください。
+
+```sh
+node tools/verify-invitation-classification-handoff.mjs \
+  --provider-source /absolute/provider-checkout \
+  --provider-commit e7b3b9de29a8e76c4e643ab6edc175c0117fdb2a \
+  --skill-source /absolute/skill-checkout \
+  --skill-commit afba283dde8f3b1929d2c67fb9d156347c8f9558
+```
+
+import前と結果出力前に、指定コミットとの一致およびステージ済み・未ステージ・未追跡の変更がないことを確認します。違う版や未コミットの修正があれば成功結果を返しません。成功JSONの `sources` に実際のcommitとtreeを記録します。今回のtreeはProvider `0c98aa7d30632d31c84a7f5d99352f01610249c6`、Skill `8062b64858f10498ee73ee5a1fc8524be614de8b` でした。[回帰確認](../../test/verified-source-checkout.test.mjs) は版違い・作業中の変更・途中のコミット変更の拒否を検証します。
+
+実サービス操作は0件です。画像についてはメタデータの保持を直接テストで確認した範囲であり、今回のBackStage画像実取得は未検証です。
 
 適用方針は [開発方針](../governance/development-policy.md)、[文書・Skill知識方針](../governance/document-knowledge-policy.md)、[言語方針](../governance/document-language-policy.md)、全文確認した [Private Source Integration Guide](../governance/private-source-integration-guide.md) です。自己レビューで、Providerの「意味の所有」を中央のドメイン文書に従う取得・正規化へ訂正し、矛盾した現行not-found説明を過去版から分離しました。ソース事実と業務分類、根拠・停止条件・人の照合手順、図、公開範囲を確認しました。AIテストは人間による業務理解や本番受け入れの代わりではありません。
+
+レビュー指摘対応のAI方針レビューでは、取得前の依頼一覧を保持する責務、v1互換の限界、日時の既存契約への一致、証跡と実ソースの対応を確認しました。今回の変更はB（不具合修正）で、既存の作業カードの境界内です。対象範囲・業務分類・本番構成を変更せず、未採用の修正コミットを戻せます。レビュー待ちはソースの採用判断であり、配布・本番受け入れ完了とは区別します。
