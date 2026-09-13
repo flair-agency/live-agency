@@ -1,11 +1,13 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.5`, using format version 2. It selects
+The currently published and adopted catalog is `0.1.0-m3.5`, using format version 2. It selects
 TikTok platform `0.1.0-m3.4`, Profile Skill `2.0.0-m3.4` and Lark Base
 `1.4.0-m3.4` with both Profile read and write capabilities. Runtime
-`2.0.0-m3.0` supports their separate configuration references. These candidates
-are not published or adopted in production merely because this file changed.
+`2.0.0-m3.0` supports their separate configuration references. The
+[current deployment and recovery record](../docs/migration/status.md#profile-due-view-verification-release-adopted--2026-09-13)
+records publication, verified installation, the host switch and successful Work
+read-only verification separately from new business writes. Source edits alone do not establish adoption.
 
 The previously adopted catalog `0.1.0-m3.2` remains available as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.2).
@@ -29,17 +31,18 @@ Runtime pins each digest while preserving one database choice. The earlier
 single `configurationRef` form remains valid for services sharing one schema.
 A selection is not connection proof.
 
-The TikTok declaration is in `platforms/tiktok/package.json`. Profile is now an
+The TikTok declaration is in `platforms/tiktok/package.json`. Profile is an
 available installation choice and requires observation, datastore read and
-datastore write capabilities. This describes the source candidate; it does not
-prove registry availability, service authentication or business acceptance.
+datastore write capabilities. Registry availability and host adoption are
+recorded above; the declaration itself does not prove service authentication
+or business acceptance.
 No credentials, actual resources or browser sessions belong here.
 
 Before publication, verify the selected platform archive and dependent registry packages. Publish a changed platform privately through the approved GitHub Actions route; reuse its existing release when unchanged. Publish the JSON as an immutable catalog release with its own version. Preserve the catalog bytes/digest and chosen package versions in the environment. Do not replace an already released catalog version or treat the moving main branch as an installation lock. A new catalog release can add another compatible platform without changing Runtime.
 
 The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen immutable release using authorized access. Normal execution uses the saved environment and does not fetch the catalog.
 
-The previous candidate selected two adopted Provider corrections: TikTok Web 1.1.1 for
+The preceding avatar/readback deployment selected two adopted Provider corrections: TikTok Web 1.1.1 for
 avatar acquisition and complete/incomplete attempt evidence, and Lark Base
 1.4.0-m3.4 for field-typed create/readback comparison. The latter keeps Transport
 1.1.3. Runtime 2.0.0-m3.0, Profile 2.0.0-m3.3, CLI 1.0.93, capability contracts
@@ -55,7 +58,8 @@ remain available. Published catalog assets follow the no-overwrite policy and
 pinned digest verification; the existing release does not have GitHub native
 release immutability enabled.
 
-The current candidate changes only the Profile Skill selection to 2.0.0-m3.4
+The current deployment changes only the Profile Skill selection to 2.0.0-m3.4
 through TikTok platform 0.1.0-m3.4. Runtime and Provider versions, capability
 contracts and service selections remain unchanged. Catalog 0.1.0-m3.4 remains
-the retained production selection until the new generation is explicitly adopted.
+available with the previous installation as the immediate recovery selection;
+catalog 0.1.0-m3.5 is the adopted production selection.
