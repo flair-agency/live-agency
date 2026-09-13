@@ -1,5 +1,17 @@
 # Current migration and documentation status
 
+# Invitation selected source handoff candidate — 2026-09-13
+
+After adoption of PR #74, the next package under [#6](https://github.com/flair-agency/live-agency/issues/6)
+and [#14](https://github.com/flair-agency/live-agency/issues/14) connects the existing
+source-v2 instruction handoff to the Invitation selected-environment plan.
+The [Japanese source review](../reviews/invitation-source-handoff-ja.md) explains
+the ownership, actual synthetic evidence and remaining live acceptance.
+Runtime and BackStage source contracts remain unchanged; the consumer retains
+source correlation and uses existing classification, avatar and history checks.
+This candidate does not select a live actor/session, install packages, alter
+component pins, write business data or establish production acceptance.
+
 # Invitation selected read and plan implementation — 2026-09-13
 
 Under [#14](https://github.com/flair-agency/live-agency/issues/14), the generic
@@ -18,7 +30,8 @@ projection limit. The owner approved Lark Provider PR #20, merged to main at
 `29dc2f808e9a8c91746f9e5aebeebd5df925c4a7`, and Invitation Skill PR #3, merged
 to its existing `codex/migration-checkpoint-20260909` baseline at
 `8196d249289b68f8ddc6e5aaff57d8e8dccf331c`. The parent integration and review
-PR #74 remains Awaiting Review; all three PRs are tracked in Project 3.
+PR #74 was subsequently approved and merged to main at
+`2afeed1fa2ab9bf2ad195da4f2d37fa32197a668`; all three adopted PRs are Done in Project 3.
 These are development source checks, not distribution or Work
 acceptance. Component pins and the working production Profile remain unchanged.
 Source handoff (#6), selected write/readback (#14), fixed distribution and Work
