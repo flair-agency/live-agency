@@ -11,6 +11,15 @@ centralization of both domains in the parent. The [knowledge ownership policy](.
 and [Japanese review and migration sequence](../reviews/domain-knowledge-ownership-ja.md#2026-09-13の知識配置方針)
 record the direction and the existing mixed-content inventory.
 
+The owner's same-day refinement explains repository visibility as an
+information-asset and security design decision. Commonality and confidentiality
+are assessed independently: identify semantic ownership and scope of reuse,
+determine permitted disclosure, then select a repository satisfying both.
+Abstraction alone does not make restricted knowledge publishable. The
+[placement decision procedure](../architecture/domain-knowledge-ownership.md#information-assets-and-placement-decisions)
+records the rationale and examples without changing the private platform-domain
+placement choice or operational contracts.
+
 This is a class E/G documentation package on `codex/platform-knowledge-boundary`,
 based on `e4b4351`, under [issue #2](https://github.com/flair-agency/live-agency/issues/2).
 It changes no operational rule, implementation, component pin or visibility.

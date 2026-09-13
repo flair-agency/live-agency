@@ -54,9 +54,10 @@ Fix supported findings before presenting the work. In the existing review or tas
 
 # Ownership and information boundaries
 
-Owner clarification, 2026-09-13: `live-agency` holds the abstract LIVE agency
-domain model and use cases common to platforms, suitable for public source.
-Public Skills are derived from that model and its use cases. Concrete platform
+Owner clarification, 2026-09-13: `live-agency` holds the publishable abstract LIVE
+agency domain model and use cases common to platforms. Public Skills are derived
+from that model and its use cases; abstraction alone does not establish permission
+to disclose source knowledge. Concrete platform
 domain knowledge and its correspondence to the abstraction belong in private
 repositories, including NDA-protected knowledge. This supersedes the 2026-09-11
 instruction to centralize both kinds of meaning in the parent. See
@@ -64,6 +65,14 @@ instruction to centralize both kinds of meaning in the parent. See
 single-owner boundary and the authorized human reading route. Provider
 implementations preserve the documented meaning without copying private rules
 into public model or Skill resources.
+
+Repository visibility also makes information-asset ownership and protection
+rationale explicit. Evaluate commonality and confidentiality as separate axes:
+identify the semantic owner and scope of reuse, assess permitted disclosure
+from sources and sensitivity, then select a repository satisfying both. Private
+storage alone does not explain ownership, and shared meaning is not automatically
+publishable. The [placement decision procedure](../architecture/domain-knowledge-ownership.md#information-assets-and-placement-decisions)
+owns the rationale, examples and required explanation in existing records.
 
 Service-specific acquisition, authenticated procedures and operational
 troubleshooting remain with the owning Provider, with discoverable references

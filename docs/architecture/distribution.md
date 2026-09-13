@@ -97,6 +97,13 @@ does not make their source repositories permanently private.
 
 Owner clarification, 2026-09-13, refines the 2026-09-11 source directions:
 
+Apply the [placement decision procedure](domain-knowledge-ownership.md#information-assets-and-placement-decisions)
+before selecting a repository: identify ownership and commonality, assess
+permitted disclosure independently, then choose a location satisfying both.
+The public directions below apply to publishable contents. Shared or abstract
+knowledge does not automatically qualify, and a private repository does not
+replace the explanation of its contents' ownership and protection needs.
+
 | Source | Adopted visibility direction |
 | --- | --- |
 | `live-agency` abstract agency domain model, use cases and platform-independent project source | Public; concrete platform domain knowledge is excluded |

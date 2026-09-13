@@ -12,8 +12,9 @@ context: "Canonical record of the owner-adopted knowledge boundaries; implementa
 # Authority and scope
 
 Owner direction, 2026-09-13: `live-agency` owns the abstract LIVE agency domain
-common to platforms. That abstraction makes the domain source suitable for a
-public repository. Each platform's concrete domain knowledge, including
+common to platforms, with public source direction. Abstraction supports reuse;
+public disclosure requires a separate assessment of the knowledge and its sources.
+Each platform's concrete domain knowledge, including
 NDA-protected knowledge, belongs in private repositories. Public Skills are
 derived from the abstract agency domain model and its use cases. Provider source
 may be public or private according to the knowledge and implementation it contains.
@@ -33,11 +34,62 @@ not a publication clearance or proof that each rule is platform-independent.
 The [architecture index](overview.md) owns component responsibilities. This
 decision changes knowledge ownership without changing operational business rules.
 
+# Information assets and placement decisions
+
+Owner rationale, 2026-09-13: repository visibility is part of information-asset
+and information-security design. Access restrictions can provide protection,
+but placing everything in private repositories can leave ownership, scope of
+reuse and reasons for protection unexplained. Considering visibility when
+placing knowledge makes those decisions explicit and reviewable. A private
+setting does not replace knowledge classification, and a public direction does
+not establish permission to disclose the existing contents.
+
+Assess **commonality** and **confidentiality** independently. Commonality names
+the scope in which meaning is shared: across the agency industry, within one
+platform, across some Providers or inside one organization. Confidentiality
+concerns the permitted audience and disclosure constraints arising from the
+source, applicable agreements and business sensitivity. Shared knowledge can be
+confidential; service-specific implementation knowledge can be publishable.
+Abstraction, renamed terms and synthetic examples do not themselves remove
+restrictions on underlying meaning or decision logic.
+
+Use the following sequence when adding or relocating knowledge. Record the
+basis in the existing owning document or task record, without creating a second
+registry or disclosing protected evidence in a public explanation.
+
+| Decision | Required explanation |
+| --- | --- |
+| 1. Determine semantic ownership and scope of commonality | Identify the business, platform, service or organization whose concepts are described, the intended consumers and the canonical owner. State what “shared” is shared across. |
+| 2. Determine permitted disclosure independently | Identify the source and applicable disclosure constraints, the intended audience, reasons for protection and any unknowns. Commonality or an existing repository setting is not evidence of permission. |
+| 3. Select the repository and references | Choose a location satisfying both ownership and permitted disclosure. Keep protected meaning with an appropriate private owner and preserve authorized access, provenance and the correspondence to public abstractions. |
+
+If source rights or disclosure scope are unresolved, preserve the knowledge in
+the appropriate restricted location while resolving that question. Do not
+relabel its semantic owner to fit an available repository. A change in permitted
+audience alone does not change which domain owns the knowledge. Actual visibility
+changes retain the existing publication and execution procedure.
+
+These illustrative cases apply the two decisions without claiming approval for
+any existing source or selecting new repository names:
+
+| Knowledge | Commonality | Disclosure assessment | Placement consequence |
+| --- | --- | --- | --- |
+| An agency use case documented from publishable sources | Across platforms | Reviewed for public disclosure | Public agency model and the Skill derived from its use case |
+| An abstract analysis derived from restricted source material | May apply across platforms | Restricted meaning or source permission remains unresolved | Private business-knowledge owner; do not copy into the public model or Skill merely because it is abstract |
+| A service operation implemented solely from publishable specifications | Specific to that service | Reviewed for public disclosure | Its Provider may be public; service specificity alone does not require secrecy |
+| A platform rule protected by an NDA and used by multiple Providers | Shared within one platform | Restricted audience | One private platform-domain owner, referenced by the authorized implementations |
+
+The existing project choice to keep concrete platform-domain knowledge in
+private repositories remains in force. That placement choice does not assert
+that every platform fact is legally confidential or that every Provider must
+be private. Public-direction business models and Skills contain only knowledge
+whose disclosure assessment permits that audience.
+
 # Adopted knowledge boundaries
 
 | Knowledge or responsibility | Owner | Boundary |
 | --- | --- | --- |
-| Abstract LIVE agency concepts, invariants, logical data requirements and use cases common to platforms | Public-direction documents in `live-agency` | Scouting and Management remain separate business contexts; exclude platform-specific and company-private rules |
+| Abstract LIVE agency concepts, invariants, logical data requirements and use cases common to platforms, assessed as publishable | Public-direction documents in `live-agency` | Scouting and Management remain separate business contexts; exclude platform-specific and restricted business knowledge |
 | Each LIVE platform's concrete concepts, rules and correspondence to the agency domain | Private repository owning that platform's domain knowledge | Keep platform meaning, including NDA-protected or publication-uncertain knowledge, outside the public parent and Skills |
 | Use-case procedure, decisions, plan, applicable approval and result verification | Corresponding public Skill | Derived from the abstract model and use case; consumes neutral capabilities and normalized facts |
 | Supported platform capabilities, compatible Provider combinations and available Skills | Platform declaration | Keep confidential declarations and knowledge references private; public metadata must not reproduce private semantics |
