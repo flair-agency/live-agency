@@ -161,11 +161,17 @@ performs Lark operations. Reading that metadata does not tell it the intended
 business meaning. Likewise, a logical schema alone does not prove that the
 selected service resources currently satisfy it.
 
-This boundary does not select an executable mapping mechanism or its package
-placement. Those questions, including the `SchemaBinding` candidate, belong to
-the [pending design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案).
-A mandatory new business-specific Provider or storage-adapter package is not
-adopted.
+For the invitation read/plan connection, the owner adopted the
+[record dataset read contract](record-dataset-read-contract.md) on 2026-09-13:
+the generic Lark reader interprets private selected resource/field mappings,
+while the Skill owns business classification and history planning. Runtime
+reuses its existing selection and configuration handoff. This is an adopted
+design, not evidence of implementation, distribution or production operation.
+
+The broader `SchemaBinding` candidate and other unresolved package/API choices
+remain in the [earlier design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案).
+The invitation decision does not require a new business-specific Provider or
+storage-adapter package, or a concurrent rewrite of the Profile connection.
 
 # Domain model
 
