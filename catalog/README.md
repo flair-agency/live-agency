@@ -1,8 +1,8 @@
 # Versioned setup catalog
 
 `catalog.json` is declarative selection data, independently versioned from Runtime.
-The current source candidate is `0.1.0-m3.4`, using format version 2. It selects
-TikTok platform `0.1.0-m3.3`, Profile Skill `2.0.0-m3.3` and Lark Base
+The current source candidate is `0.1.0-m3.5`, using format version 2. It selects
+TikTok platform `0.1.0-m3.4`, Profile Skill `2.0.0-m3.4` and Lark Base
 `1.4.0-m3.4` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. These candidates
 are not published or adopted in production merely because this file changed.
@@ -39,7 +39,7 @@ Before publication, verify the selected platform archive and dependent registry 
 
 The catalog's source association is the existing private parent repository. There is no new catalog service or package registry. Runtime reads an explicitly supplied catalog file; the operator retrieves its chosen immutable release using authorized access. Normal execution uses the saved environment and does not fetch the catalog.
 
-This candidate selects two adopted Provider corrections: TikTok Web 1.1.1 for
+The previous candidate selected two adopted Provider corrections: TikTok Web 1.1.1 for
 avatar acquisition and complete/incomplete attempt evidence, and Lark Base
 1.4.0-m3.4 for field-typed create/readback comparison. The latter keeps Transport
 1.1.3. Runtime 2.0.0-m3.0, Profile 2.0.0-m3.3, CLI 1.0.93, capability contracts
@@ -48,9 +48,14 @@ and selected service configuration remain unchanged. See the
 for archive evidence, retained recovery and the proposed Work verification.
 Publication, installation and business acceptance are distinct checkpoints.
 
-The currently adopted catalog
+The earlier adopted catalog
 [0.1.0-m3.3](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.3)
 and its [write-diagnostic release record](../docs/development/profile-write-diagnostic-adoption.md)
 remain available. Published catalog assets follow the no-overwrite policy and
 pinned digest verification; the existing release does not have GitHub native
 release immutability enabled.
+
+The current candidate changes only the Profile Skill selection to 2.0.0-m3.4
+through TikTok platform 0.1.0-m3.4. Runtime and Provider versions, capability
+contracts and service selections remain unchanged. Catalog 0.1.0-m3.4 remains
+the retained production selection until the new generation is explicitly adopted.

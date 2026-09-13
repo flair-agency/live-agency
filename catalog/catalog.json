@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "0.1.0-m3.4",
+  "version": "0.1.0-m3.5",
   "status": "candidate",
   "platforms": [
     {
@@ -8,7 +8,7 @@
       "title": "TikTok",
       "package": {
         "name": "@flair-agency/live-agency-platform-tiktok",
-        "version": "0.1.0-m3.3"
+        "version": "0.1.0-m3.4"
       },
       "registry": "https://npm.pkg.github.com",
       "source": "https://github.com/flair-agency/live-agency/tree/main/platforms/tiktok"
