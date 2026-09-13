@@ -1,18 +1,20 @@
 ---
 type: design-review
 visibility: internal
-status: pending
+status: commit
 date: 2026-09-13
-author: "Codex（設計案作成・実装照合・AI方針レビュー）"
-context: "Issue #14 / PR #73: 招待Skillの保存済み環境への接続に必要な汎用読取と私有マッピング方式の採否を確認する。オーナーによる設計採用は未決定。"
+author: "Naoki Kimura（方式採用）; Codex（設計案作成・実装照合・AI方針レビュー）"
+context: "Issue #14 / PR #73: 2026-09-13のLGTMにより採用した招待Skillの汎用読取・私有マッピング方式のレビュー履歴。実装・配布・本番導入の完了は示さない。"
 ---
 
 # 招待Skillの保存済み環境への接続：読取境界の設計レビュー
 
-- 状態：未承認の日本語設計案。実装済み仕様ではない。
+- 状態：承認済みのレビュー履歴。2026-09-13、オーナーが[PR #73](https://github.com/flair-agency/live-agency/pull/73)の`d17d596`へLGTMを表明した。
+- 正本：[Record dataset read contract](../architecture/record-dataset-read-contract.md)。GitHubの`main`を正本の基準とし、本書を競合する仕様として維持しない。
+- 以下の設計案・検証記録はレビュー時点の記述として保存する。「未決定」「提案」は当時の状態を表す。採用は設計判断に限り、実装・配布・本番導入の完了を意味しない。
 - 対象：[移行 #14](https://github.com/flair-agency/live-agency/issues/14)。招待Skillの保存済み環境からの読取と登録計画まで。
-- 決定したいこと：**Lark Providerに設定駆動の汎用データセット読取を追加し、実リソースとの対応を私有設定、業務判断をSkillに置く。Runtimeは既存の選択・設定受渡しを再利用する。**
-- 採用後は承認内容を英語の正本文書に反映する。配布、本番導入、業務データの登録はこの設計採用に含めない。
+- 採用したこと：**Lark Providerに設定駆動の汎用データセット読取を追加し、実リソースとの対応を私有設定、業務判断をSkillに置く。Runtimeは既存の選択・設定受渡しを再利用する。**
+- 配布、本番導入、業務データの登録はこの設計採用に含めない。次の作業は正本の行動表と移行Issue #14で追跡する。
 
 # なぜこの決定が必要か
 
