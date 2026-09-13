@@ -15,7 +15,8 @@ const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const save = (file, value) => writeFile(file, JSON.stringify(value, null, 2) + '\n', { mode: 0o600 });
 
 export function parseArgs(argv) {
-  const flags = ['runtime-source', 'protocol-source', 'provider-source', 'skill-source', 'dependency-root'];
+  const required = ['runtime-source', 'protocol-source', 'provider-source', 'skill-source', 'dependency-root'];
+  const flags = [...required, 'observation-provider-source', 'source-fixture'];
   const args = {};
   for (let index = 0; index < argv.length; index += 2) {
     const key = argv[index]?.replace(/^--/, ''), value = argv[index + 1];
@@ -23,7 +24,9 @@ export function parseArgs(argv) {
     assert(path.isAbsolute(value ?? ''), `--${key} requires an absolute local path`);
     args[key] = value;
   }
-  for (const key of flags) assert(args[key], `--${key} is required`);
+  for (const key of required) assert(args[key], `--${key} is required`);
+  assert(Boolean(args['observation-provider-source']) === Boolean(args['source-fixture']),
+    'observation Provider and private synthetic source fixture must be selected together');
   return args;
 }
 
@@ -179,6 +182,7 @@ export async function verifyInvitationEnvironmentConnection(args) {
         localContentIntegrity: await contentIntegrity(directory) });
     }
     const selectedSources = [providerSource, skillSource,
+      ...(args['observation-provider-source'] ? [args['observation-provider-source']] : []),
       ...['lark-transport', 'contracts'].map(name => path.join(dependencyRoot, '@flair-agency', name)),
       path.join(dependencyRoot, '@larksuite/cli')];
     let providerDirectory, skillDirectory, providerManifest;
@@ -221,8 +225,25 @@ export async function verifyInvitationEnvironmentConnection(args) {
       dependencyPath: environment.platforms.first.bindings['synthetic-sum/v1'].dependencyPath,
       bindingId: 'synthetic-dataset-read', exportName: 'execute', configurationRef: configurationFile,
       configurationSha256: sha256(await readFile(configurationFile)) } };
+    let observationDirectory, observationBinding;
+    if (args['observation-provider-source']) {
+      const manifest = await json(path.join(args['observation-provider-source'], 'package.json'));
+      const matches = manifest.liveAgencyProvider.bindings.filter(binding => binding.provides.includes('creator-invitation-observation-source/v2'));
+      assert.equal(matches.length, 1);
+      observationBinding = matches[0];
+      assert.equal(observationBinding.execution.kind, 'instructions');
+      observationDirectory = path.join(fixture.out, 'node_modules', manifest.name);
+      const rootFile = path.join(fixture.out, 'package.json'), rootManifest = await json(rootFile);
+      rootManifest.dependencies[manifest.name] = manifest.version;
+      await save(rootFile, rootManifest);
+      environment.platforms.first.bindings['creator-invitation-observation-source/v2'] = {
+        contractVersion: '2', dependencyPath: [{ packageName: manifest.name, packageVersion: manifest.version }],
+        bindingId: observationBinding.id,
+      };
+    }
     await save(fixture.environment, environment);
     const lockFile = path.join(fixture.out, 'package-lock.json'), lock = await json(lockFile);
+    lock.packages[''] = { ...lock.packages[''], ...await json(path.join(fixture.out, 'package.json')) };
     for (const directory of [adapterDirectory, ...provenance.map(item => path.join(fixture.out, 'node_modules', item.packageName))]) {
       const key = path.relative(fixture.out, directory).split(path.sep).join('/');
       lock.packages[key] = { ...await json(path.join(directory, 'package.json')), resolved: `file:./${key}`,
@@ -233,7 +254,8 @@ export async function verifyInvitationEnvironmentConnection(args) {
     await contentIntegrity(fixture.out); // Reject links outside separately copied package trees as well.
 
     const { createEnvironmentAccess } = await load(path.join(fixture.runtimeDirectory, 'src/environment-access.mjs'));
-    const { prepareEnvironmentInvitationTargets, prepareEnvironmentInvitationPlan } = await load(path.join(skillDirectory, 'src/invitation-environment.mjs'));
+    const skill = await load(path.join(skillDirectory, 'src/invitation-environment.mjs'));
+    const { prepareEnvironmentInvitationTargets, prepareEnvironmentInvitationPlan } = skill;
     const { state } = await load(adapterFile);
     const access = await createEnvironmentAccess(fixture.environment);
     const targets = await prepareEnvironmentInvitationTargets({ access, configuration: inputs.skillConfiguration,
@@ -254,6 +276,66 @@ export async function verifyInvitationEnvironmentConnection(args) {
     assert.equal(searches.length, 1);
     assert.deepEqual(result.reads.find(read => read.dataset === 'history').scope, { recordIds: [state.creator] });
     assert.equal(result.reads.find(read => read.dataset === 'history').rowCount, 1);
+    let sourceEvidence;
+    if (observationDirectory) {
+      // The private Provider owns source syntax and normalizers. The supplied
+      // fixture contains synthetic source labels/correspondence outside this repo.
+      // Neither its data nor private instruction text is printed in the receipt.
+      const sourceBytes = await readFile(args['source-fixture']);
+      const sourceFixture = JSON.parse(sourceBytes);
+      assert.equal(sourceFixture.synthetic, true, 'use a reviewed synthetic fixture, never real source observations');
+      assert.deepEqual(sourceFixture.normalization.requestedAccountKeys, targets.manifest.rows.map(row => row.accountKey));
+      const { normalizeInvitationEligibilityLookupV2 } = await load(path.join(observationDirectory, 'src/invitation-eligibility.js'));
+      const { materializeInvitationAvatar } = await load(path.join(observationDirectory, 'src/invitation-avatar.js'));
+      const image = path.join(temporary, 'synthetic.png');
+      await writeFile(image, Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jvXcAAAAASUVORK5CYII=', 'base64'), {mode:0o600});
+      const avatar = await materializeInvitationAvatar({sourcePath:image, outputDirectory:path.join(temporary, 'avatars')});
+      const input = structuredClone(sourceFixture.normalization);
+      assert.equal(input.rows.length, 1);
+      input.rows[0].avatar = avatar;
+      const sourceObservations = normalizeInvitationEligibilityLookupV2(input);
+      state.rows.tblSyntheticStatuses = sourceFixture.statuses.map(row => ({record_id:row.id, fields:{
+        'Synthetic label':row.label, 'Synthetic parent':row.parentId ? {link_record_ids:[row.parentId]} : [],
+      }}));
+      const category = sourceObservations.creators[0].invitationCategory;
+      assert.equal(typeof category, 'string', 'fixture must exercise category retention');
+      const child = sourceFixture.statuses.find(row => row.id === 'recSyntheticChild');
+      assert(child?.parentId);
+      const correspondence = structuredClone(inputs.skillConfiguration);
+      correspondence.categories[0].invitationCategory = category;
+      for (const row of state.rows.tblHistory) {
+        row.fields['Synthetic state'] = child.label;
+        row.fields['Synthetic external ID'] = sourceObservations.creators[0].externalUserId ?? '';
+        row.fields['Synthetic nickname'] = sourceObservations.creators[0].nickname ?? '';
+      }
+      const sourceTargets = await prepareEnvironmentInvitationTargets({access, configuration:correspondence,
+        mode:'due', limit:1, now:() => sourceObservations.observedAt});
+      const handoff = await skill.prepareEnvironmentInvitationSource({access, configuration:correspondence, targets:sourceTargets});
+      const instructions = await Promise.all([observationBinding.execution.resource, ...(observationBinding.execution.resources ?? [])]
+        .map(resource => readFile(path.join(observationDirectory, resource), 'utf8')));
+      assert(handoff.instructions === instructions.join('\n\n'), 'selected actual source resources must reach the consumer unchanged');
+      const {input:ignoredInput, ...envelope} = handoff.request;
+      const sourceResult = {...envelope, status:'done', output:sourceObservations};
+      const direct = await prepareEnvironmentInvitationPlan({access, configuration:correspondence, targets:sourceTargets, observations:sourceObservations});
+      const joined = await skill.prepareEnvironmentInvitationSourcePlan({access, configuration:correspondence,
+        targets:sourceTargets, sourceHandoff:handoff, sourceResult});
+      assert.equal(joined.status, 'prepared');
+      assert.deepEqual(joined.plan, direct.plan, 'source connection must preserve the existing same-input plan');
+      assert.equal(joined.classification.classifications[0].statusId, child.id);
+      assert.equal(joined.sourceProvenance.verification, 'request-result-correlation-only');
+      assert.equal(joined.businessWorkflowVerified, false);
+      assert(JSON.stringify(joined.plan).includes(avatar.sha256), 'original image content hash must survive to the plan');
+      const beforeInvalid = state.calls.filter(call => call.options.pathParameters.table_id === 'tblHistory').length;
+      const changed = await readFile(avatar.path); changed[changed.length - 1] ^= 1;
+      await writeFile(avatar.path, changed);
+      await assert.rejects(skill.prepareEnvironmentInvitationSourcePlan({access, configuration:correspondence,
+        targets:sourceTargets, sourceHandoff:handoff, sourceResult}), error => error.code === 'INVITATION_AVATAR_INVALID');
+      assert.equal(state.calls.filter(call => call.options.pathParameters.table_id === 'tblHistory').length, beforeInvalid,
+        'altered avatar must stop before history reads');
+      sourceEvidence = {fixtureSha256:sha256(sourceBytes), instructionResources:instructions.length,
+        sameInputPlan:true, categoryRetained:true, originalAvatarBytes:true, alteredAvatarStopsBeforeHistory:true,
+        verification:'request-result-correlation-only'};
+    }
     const callCount = state.calls.length;
     configuration.budgets.maxRecords -= 1;
     await save(configurationFile, configuration);
@@ -263,12 +345,17 @@ export async function verifyInvitationEnvironmentConnection(args) {
 
     return { status: 'passed', synthetic: true, businessWorkflowVerified: false,
       cases: ['actual-provider-manifest-and-export', 'runtime-provider-skill-connection', 'same-state-timestamp-update',
-        'server-filtered-history-search', 'provider-configuration-drift-stops-before-transport'],
-      counts: { timestampUpdates: 1, historySearches: searches.length, syntheticTransportCalls: callCount, externalCalls: 0 },
+        'server-filtered-history-search', 'provider-configuration-drift-stops-before-transport',
+        ...(sourceEvidence ? ['selected-actual-instruction-resources', 'source-v2-category-and-avatar-to-same-plan', 'altered-avatar-stops-before-history'] : [])],
+      counts: { timestampUpdates: 1, baselineHistorySearches: searches.length,
+        historySearches: state.calls.filter(call => call.id === 'records:search' && call.options.pathParameters.table_id === 'tblHistory').length,
+        syntheticTransportCalls: callCount, externalCalls: 0 },
       sourceProvenance: provenance, verifierSha256: sha256(await readFile(fileURLToPath(import.meta.url))),
+      ...(sourceEvidence ? {sourceEvidence} : {}),
       limits: ['Local copied source fixture with content-addressed lock; no registry installation or complete dependency acceptance.',
         'Real Runtime, Provider executor and Skill planning; only raw service transport responses are synthetic.',
-        'Empty stored attachments only; no image download, mutation, real-service or production acceptance.'],
+        'Empty stored attachments only; optional source uses a synthetic image file, not a browser acquisition.',
+        'No real-service identity/image ownership verification, download, mutation, registry or production acceptance.'],
     };
   } finally {
     await rm(temporary, { recursive: true, force: true });
