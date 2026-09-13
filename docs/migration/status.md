@@ -1,5 +1,30 @@
 # Current migration and documentation status
 
+# Invitation selected read and plan implementation — 2026-09-13
+
+Under [#14](https://github.com/flair-agency/live-agency/issues/14), the generic
+dataset read and necessary Invitation consumer connection are implemented for
+source review against the [adopted contract](../architecture/record-dataset-read-contract.md).
+The [Japanese owner review](../reviews/invitation-selected-read-implementation-ja.md)
+records owners, preserved behavior, verification, remaining connections and recovery.
+Actual Runtime, Provider and Skill source passed an isolated synthetic connection
+proof: one timestamp update, one target-ID-filtered history search and configuration
+drift stopping before transport. Relevant Skill checks passed 27 and final Provider
+checks passed 36. Follow-up review fixes passed 16 direct Skill checks, 36
+Provider checks and one repeated five-case connection proof after those changes.
+They reject duplicate correspondence JSON members, recheck live account
+uniqueness before planning and enforce the officially verified 200-field search
+projection limit. The owner approved Lark Provider PR #20, merged to main at
+`29dc2f808e9a8c91746f9e5aebeebd5df925c4a7`, and Invitation Skill PR #3, merged
+to its existing `codex/migration-checkpoint-20260909` baseline at
+`8196d249289b68f8ddc6e5aaff57d8e8dccf331c`. The parent integration and review
+PR #74 remains Awaiting Review; all three PRs are tracked in Project 3.
+These are development source checks, not distribution or Work
+acceptance. Component pins and the working production Profile remain unchanged.
+Source handoff (#6), selected write/readback (#14), fixed distribution and Work
+acceptance (#31/#32), and human takeover (#39) remain tracked separately. No
+business writes or live service calls were made by this implementation package.
+
 # Agency abstraction and private platform knowledge — 2026-09-13
 
 The owner clarified that `live-agency` owns the abstract agency domain and use

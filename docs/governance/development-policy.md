@@ -221,10 +221,13 @@ inspection shows that it does.
 
 ## 6. Model and reasoning routing
 
-Owner-approved refinement, 2026-09-05: **`gpt-6-astra` / `low` is the
-explicit default for both coordinator and worker tasks.** Choose the model
-and reasoning effort separately. A worker does not inherit the coordinator's
-current effort, and implementation or diagnosis alone does not justify medium.
+Owner-approved adoption, 2026-09-13: the existing Codex task remains the
+coordinator for priority, unresolved design, owner approvals, and integration.
+It may remain selected on `gpt-6-astra`; this policy does not claim that its
+model changed. For initially delegated scoped implementation, dispatch a
+worker as `gpt-5.6-terra` / `low`. Choose model and reasoning effort
+separately. A worker does not inherit the coordinator's current effort, and
+implementation or diagnosis alone does not justify medium.
 
 | Effort | Selection condition | Examples |
 | --- | --- | --- |
@@ -239,10 +242,13 @@ rejection test, approval, preflight, and readback condition. Missing authority
 or evidence is not solved by increasing reasoning effort.
 
 At dispatch, explicitly set the supported model/effort fields to
-`gpt-6-astra` / `low` unless a justified exception applies. Record the selection
-in the existing task brief; for medium/high add one sentence naming the unresolved
-question and the condition that ends the exception. No separate approval,
-planning document, or extra task is required just to choose effort.
+`gpt-5.6-terra` / `low` for an initially delegated scoped implementation unless
+a justified exception applies. Record the selection in the existing task brief;
+for medium/high add one sentence naming the unresolved question and the
+condition that ends the exception. When a worker encounters a difficult
+unresolved decision, escalate it to `gpt-6-astra` with that reason instead of
+inventing domain knowledge. No separate approval, planning document, or extra
+task is required just to choose effort.
 
 Do not require an artificial failed low run when the unresolved question is
 already evident. Conversely, a test failure alone does not require escalation:
@@ -251,26 +257,32 @@ a reasoning problem. Escalate only the unresolved scope and retain passing work.
 After resolving it, return to low for subsequent routine work or dispatches;
 change an active task's effort only through supported host controls. If such a
 change is unavailable mid-turn, record the next selection without claiming the
-setting changed. Do not interrupt or restart running workers solely for this
-policy. Historical checkpoint efforts remain records, not new routing rules.
+setting changed. Selecting a worker model does not change the parent's model;
+this task has not selected a supported control for automatic parent switching.
+Do not interrupt or restart running workers
+solely for this policy. Historical checkpoint efforts remain records, not new
+routing rules.
 
 Avoid reloading entire long plans/history, unnecessary package splitting, and
 repeating passing verification. Keep a coherent repair and its focused tests
 together when existing scope and authority permit; no token/percentage savings
 are promised by lowering effort. Preserve required checks and safety gates.
 
-Use another model for repetitive work with independently checkable acceptance
-criteria only when measured results show a benefit at the required quality.
-Compare completion time, retries, and human repair effort as well as available
+Delegation costs tokens and does not guarantee savings. Assess its value from
+actual work completion, retries, and human repair effort, alongside available
 cost evidence. Do not treat account-wide Codex usage as task-specific cost or
-infer Codex consumption directly from API token prices.
+infer Codex consumption directly from API token prices. No measured-benefit
+prerequisite applies before initially trying `gpt-5.6-terra` / `low`, and this
+policy creates no new artificial benchmark gate.
 
-This decision supersedes earlier mandatory Luna/Terra/Sol assignments and the
-Astra-exception-only rule in migration and companion package tables for new
-work. Those older assignments are historical recommendations, not required
-steps before using Astra. It does not switch or restart running tasks or
-change configured automation models. Validate only models actually adopted
-for the affected workflow; do not create a new all-model benchmark gate.
+This decision supersedes the earlier `gpt-6-astra` / `low` worker default and
+the measured-benefit prerequisite for initially trying Terra, as well as older
+mandatory Luna/Terra/Sol assignments and the Astra-exception-only rule in
+migration and companion package tables for new work. Those older assignments
+are historical recommendations, not required steps before using Astra. It does
+not switch or restart running tasks or change configured automation models.
+Validate only models actually adopted for the affected workflow; do not create
+a new all-model benchmark gate.
 
 Record the chosen model and any evidence-based exception in the package
 checkpoint. A model change never supplies missing evidence, authority, or
@@ -280,17 +292,26 @@ verification. See the approved
 ## 7. Coordination and handoff
 
 The coordinating task owns classification, dependency resolution, conflict
-resolution, integration, and final verification. Worker tasks receive the
-minimum current contract, relevant files, definition of done, and required
-evidence; they return a structured result, not a long transcript.
+resolution, integration, and final verification. It retains priority,
+unresolved design, and owner-approval tracking. Worker tasks receive compact accepted
+sources, relevant files, scope, definition of done, and inherited passing
+evidence; they return a concise PR/diff/evidence result, not a long transcript.
 
 The coordinator selects the queue and prepares a self-contained brief: accepted
 decisions with source sections, exact editable paths, allowed effects/exclusions,
-verification commands or selectors, inherited passing evidence, unresolved issues,
-and one completion condition. Workers read the named sections and applicable
-mandatory instructions. They do not rediscover the entire roadmap or task history
-unless a concrete missing fact or conflict requires expansion. A brief summarizes
-contracts but never replaces an applicable mandatory full-read requirement.
+verification commands or selectors, inherited passing evidence, unresolved
+issues, and one completion condition. Workers read the named sections and
+applicable mandatory instructions. They do not receive full history by default
+or rediscover the entire roadmap or task history unless a concrete missing fact
+or conflict requires expansion. A brief summarizes contracts but never replaces
+an applicable mandatory full-read requirement.
+
+Use subagents only when independent work usefully warrants it; do not create an
+automatic multi-agent review for trivial changes. Create a separate user-visible
+task only on the user's explicit request; otherwise use subagents for warranted
+delegation. Coordinator acceptance targets the delegated result and does not
+repeat the same exploration, implementation, or focused tests without a concrete
+gap, failed evidence, changed scope, or required independent verification.
 
 Read a needed section once per relevant revision in a task; reuse the result.
 Reread for a changed file/revision, stale evidence, changed scope, or actual gap,
