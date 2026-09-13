@@ -27,18 +27,75 @@ The existing model remains migration input; private destinations and reference
 cutover remain to be selected and verified. Publication requires separate
 content/history review and explicit execution selection. Recovery is a scoped
 documentation revert; original knowledge and existing deployments are preserved.
-Local documentation verification is complete. Automatic approval review rejected
-the attempted GitHub synchronization before execution, requesting explicit
-authorization for the document contents and destination. Source synchronization
-remains pending. The owner's subsequent explicit ticket request was completed:
+Local documentation verification is complete. Earlier automatic approval review
+rejected source synchronization pending explicit authorization; the owner's
+subsequent request to PR `domain-knowledge-ownership-ja.md` and the related
+documents now selects that source push and policy PR. The owner also explicitly
+separated policy documentation from implementation alignment: integration of the
+policy PR completes this documentation package without waiting for relocation
+or publication clearance. Those remaining actions stay open under issue #2.
+The owner's earlier explicit ticket request was completed:
 issue #2 now records the adopted direction, rationale, independent classification
 axes and remaining migration criteria, with `Intake / triage` in LIVE Agency
 Maintenance. Existing partial PR #3 retains a non-closing reference to #2;
 its explanatory additions cannot complete the expanded scope. Issue/PR bodies,
 Project membership/status and removal of the closing relationship were read back.
-No new source PR, visibility change or knowledge relocation occurred.
+The policy PR does not change repository visibility, relocate knowledge or adopt
+operational changes. Latest main documentation is retained during integration.
 
-# Approved avatar and typed-readback release scope — 2026-09-12
+# Profile due-view verification release adopted — 2026-09-13
+
+The owner approved [Profile PR #11](https://github.com/flair-agency/live-agency-creator-profile-record/pull/11)
+and requested its production release. The source fix is adopted at
+`5b669194e402381bdb010bd297b2c09215b9ae1f`; the versioned release source is
+`1ac82a1088443177d7911e2744ec08616e941590`. [PR #68](https://github.com/flair-agency/live-agency/pull/68)
+adopts the corresponding platform/catalog selection at
+`e4b4351a2a3b5ed571cbda9d95322c6378cefd8b`.
+
+The selected production Work environment now uses Profile `2.0.0-m3.4`,
+TikTok platform `0.1.0-m3.4` and catalog `0.1.0-m3.5`. Runtime `2.0.0-m3.0`,
+TikTok Web `1.1.1`, Lark Base `1.4.0-m3.4`, Transport `1.1.3`, CLI `1.0.93`,
+capability contracts and selected service configuration remain unchanged.
+[Profile publication](https://github.com/flair-agency/live-agency-creator-profile-record/actions/runs/34727998120)
+and [platform publication](https://github.com/flair-agency/live-agency/actions/runs/34728232776)
+verified the fixed private packages. The downloaded
+[catalog asset](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.5)
+matches raw-byte SHA-256 `0b81b7d416d0d0088872dcbf26d7fa61c7230c55ff85f0ef460edd05d66a52c1`.
+
+The new installation, Profile registration and three host entry files were
+verified and switched to generation
+`cc6e10d79df863780606e52111b2c2af34b0de2c629c90fb47480aa8aa9aea62`.
+The private deployment record `profile-due-verification-20260913` retains the
+publication receipts, installed selection, host hashes and registration receipt.
+Actual read-only reconciliation in the designated Work project passed in
+166.695 seconds: the original 20 observations yielded 19 already-applied profiles,
+one unavailable observation, zero target issues, zero remaining creates or image
+attachments, zero conflicts and zero invalid stored profiles. The installed
+Skill performed one creator read and one history read scoped to those 20 creators.
+All 33 original evidence artifacts remained unchanged. No business records were
+created, images uploaded or earlier write plans replayed; the old approval was
+not reused. `businessWorkflowVerified: false` remains appropriate for this new
+read-only receipt: it verifies retained effects, not a new business registration.
+
+Together with the focused source regression, this verifies the correction in
+[Profile issue #10](https://github.com/flair-agency/live-agency-creator-profile-record/issues/10).
+[Cutover #32](https://github.com/flair-agency/live-agency/issues/32) retains the
+broader invitation acceptance scope. Earlier issue #61 is closed and its old
+pending statements below are historical.
+
+Immediate recovery is the retained avatar/readback installation with Profile
+`2.0.0-m3.3`, platform `0.1.0-m3.3`, catalog `0.1.0-m3.4` and generation
+`91cc2b211038db678b2fae8b078858d69cc18fe967170875b568c67dfb836b26`.
+Use this deployment's new `skill-registration.receipt.json` with the supported
+registration restore procedure; its restore preview passed. Restore the three
+recorded host files from this deployment's backups only after checking their
+post-switch hashes, and stop on drift. Keep both installations and their
+receipts. Host rollback does not undo business data or rebind old approvals.
+
+# Historical approved avatar and typed-readback release scope — 2026-09-12
+
+This section preserves the approval-stage record. The adopted installation and
+current recovery target are recorded in the latest checkpoint above.
 
 The owner approved root PR #66 and Lark Base PR #19. The
 [English adoption decision](../development/profile-avatar-readback-adoption.md)
@@ -52,9 +109,9 @@ The downloaded catalog must match the approved raw-byte SHA-256 before installat
 the catalog P1 correction is part of the approved scope. Actual creation and image
 attachment require separate approval of the resulting actual plan.
 
-This checkpoint records approval, not publication, installation, switching or
-service-operation completion. Issues #61, avatar #1 and cutover #32 remain open
-through actual acceptance. Immediate recovery remains the write-diagnostic
+This checkpoint recorded approval, not publication, installation, switching or
+service-operation completion. Issues #61, avatar #1 and cutover #32 remained open
+at that checkpoint through actual acceptance. Its recovery target was the write-diagnostic
 generation `b9abf30e7e7d4efe4dd1720c316b29ace4c387642e6ad017b87c944827a7264e`,
 using the new registration receipt generated by this switch. Earlier checkpoints
 do not select a current action or recovery target.
