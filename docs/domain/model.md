@@ -63,6 +63,53 @@ proposal. This decision does not establish that historical states are uniformly
 eligibility observations, adopt a final package name, or authorize live reads,
 data migration, publication or operational cutover.
 
+### 1.3 Invitation observations and consumer classification
+
+Owner-confirmed on 2026-09-10 after reviewing the Provider/Skill boundary:
+the source Provider supplies invitation eligibility and, when eligible, the
+available invitation category as separate facts. The recording Skill applies
+those facts to the reviewed parent/child status hierarchy. It must preserve the
+category information formerly represented by a child without treating that
+child as a source-returned status.
+
+Other internal child classifications require their own independently reviewed
+supplementary evidence. A source parent alone does not establish a particular
+child, a risk-removal outcome or an explanation inferred from a generic reason.
+Without the supplementary fact, keep the parent. Conflicting evidence requires
+resolution; existing history is not an authority for inventing a current fact.
+Retain the observed parent, category and classification basis separately in the
+workflow evidence, without introducing raw response storage into business data.
+
+Classification supports recheck prioritization and decisions about possible
+agency assistance. It does not create an automatic recheck interval or a promise
+that a restriction will be removed. In particular, a category associated with a
+restricted classification describes its reviewed interpretation; it does not
+make the current observation eligible or guarantee future eligibility.
+
+Keep a classified child distinct from its parent when comparing historical
+states. Do not flatten stored children merely to match a less expressive source
+contract. The recording Skill applies the established transition-history
+procedure, including its identity and avatar checks; a source Provider does not
+compare or compact destination history. A proposal to store additional raw
+response fields is not an adopted requirement merely because it appeared in
+an earlier investigation. Workflow evidence and business fields are separate.
+
+The logical classification model does not prescribe the actual number of master
+rows, their IDs, or a particular database's columns and links. Those belong to
+the selected private environment and its reviewed service mapping, as defined
+in the [schema ownership boundary](../architecture/domain-knowledge-ownership.md#business-schema-and-lark-operation-boundary).
+The Skill receives that explicit taxonomy; the source Provider need not read it
+to recognize a source label or return a separate category.
+
+A displayed missing-account status is a successfully observed source fact; an
+unknown or failed acquisition is not equivalent. Neither should be converted
+to ineligibility. Provider knowledge owns recognition of the actual labels and
+surfaces under documented platform meaning; Skill knowledge owns their use-case
+classification. An accepted boundary does not establish implemented handoff,
+selected-environment operation or production acceptance. The
+[implementation review](../reviews/invitation-classification-handoff-ja.md)
+records the opt-in v2 candidate and its remaining execution gaps.
+
 ## 2. Core business contexts
 
 The current model has three business contexts.
