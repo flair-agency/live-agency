@@ -95,16 +95,31 @@ Owner clarification, 2026-09-09: business and shared operational Skill source
 repositories are public. The initial private registry-package decision above
 does not make their source repositories permanently private.
 
-Owner clarification, 2026-09-11, supersedes the blanket private-Provider direction:
+Owner clarification, 2026-09-13, refines the 2026-09-11 source directions:
+
+Apply the [placement decision procedure](domain-knowledge-ownership.md#information-assets-and-placement-decisions)
+before selecting a repository: identify ownership and commonality, assess
+permitted disclosure independently, then choose a location satisfying both.
+The public directions below apply to publishable contents. Shared or abstract
+knowledge does not automatically qualify, and a private repository does not
+replace the explanation of its contents' ownership and protection needs.
 
 | Source | Adopted visibility direction |
 | --- | --- |
-| `live-agency` domain knowledge and platform-independent project source | Public |
-| Use-case Skill source | Public |
+| `live-agency` abstract agency domain model, use cases and platform-independent project source | Public; concrete platform domain knowledge is excluded |
+| Concrete platform domain knowledge and its mapping to the abstract agency model | Private repositories, including NDA-protected and publication-uncertain knowledge |
+| Skill source derived from the abstract agency model and its use cases | Public; no private platform rules embedded in instructions, code or fixtures |
 | Generic Runtime source | Public |
 | Lark-related Provider and shared implementation source | Public |
 | BackStage Provider | Private |
 | TikTok Web and iOS Providers | Private is the current candidate; final decision remains open |
+
+Provider visibility follows its contents, not a blanket rule for the Provider
+layer. A public Provider may implement publishable service operations; protected
+platform semantics must stay in a private owner and private implementation where
+needed. A platform declaration or catalog does not make those semantics public.
+The existing generic Runtime and Lark source directions do not authorize
+including platform-specific or organizational private knowledge in them.
 
 These are source directions, not a report of changed GitHub settings. Review
 content and Git history before each public creation or visibility change;
@@ -118,7 +133,7 @@ evidence remain outside public source. Generic reusable declarations are distinc
 from a selected organization's private configuration. Public source does not
 change the initial private registry distribution or imply that private package
 dependencies can be installed anonymously. The [knowledge ownership document](domain-knowledge-ownership.md)
-separates business/platform meaning from operational source details.
+separates the public abstraction, private platform meaning and Provider operations.
 
 Keep coherent development checkpoints on remote work branches under the
 [development synchronization policy](../governance/development-policy.md#local-and-remote-source-synchronization).

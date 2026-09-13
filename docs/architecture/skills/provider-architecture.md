@@ -1,5 +1,10 @@
 # Provider architecture
 
+This specification retains the earlier Provider contract and composition model.
+The current [architecture](../overview.md), [knowledge ownership](../domain-knowledge-ownership.md)
+and [source visibility direction](../distribution.md#source-repository-visibility-and-synchronization)
+govern ownership and visibility where the earlier composition differs.
+
 ## Repository boundary
 
 Public skills own validation, matching, dry runs, content-bound write intents,
@@ -8,11 +13,14 @@ do not know which provider package produced it. A public skill may perform a
 source-neutral destination write itself or delegate a service-specific write to
 a sink capability without learning the provider package name.
 
-Private providers own source recognition, source-specific parsing or
+Providers own source recognition, source-specific parsing or
 observation instructions, schema-change detection, and normalization.
 Provider-specific implementation and provider knowledge live together in one
-private repository per independent external execution surface. One repository
-may expose several capability bindings with different inputs or execution
+owning repository per independent external execution surface. Visibility follows
+the contents: concrete platform-domain knowledge and protected implementations
+remain private; publishable generic service implementations may be public.
+Shared platform meaning has one private domain owner referenced by its Providers.
+One repository may expose several capability bindings with different inputs or execution
 kinds.
 
 Production data and secrets are neither public-skill resources nor provider
@@ -126,12 +134,12 @@ When an interface or schema does not match exactly:
 1. stop with `schema_changed` or the provider's equivalent fail-closed result;
 2. retain only the minimum owner-only evidence needed to review the drift,
    including observation time and relevant environment variants;
-3. update implementation and provider knowledge together in the private
-   provider repository, using a new knowledge version rather than silently
-   reinterpreting previous audit records;
+3. update implementation and provider knowledge together in the owning
+   repository, preserving its information boundary and using a new knowledge
+   version rather than silently reinterpreting previous audit records;
 4. add or update synthetic tests without committing production data or raw
    evidence; and
-5. update the reviewed provider commit in the private composition root and run
+5. update the reviewed Provider selection in the selected composition and run
    its complete compatibility checks before resuming production use.
 
 An ad hoc local workaround, a nearby older profile, or a visually similar

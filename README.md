@@ -1,6 +1,13 @@
 # LIVE Agency
 
-LIVE Agency manages the project-wide business model, architecture, development policies and component composition.
+LIVE Agency owns the abstract LIVE agency domain model and use cases common to
+platforms, intended for public source. Public Skills derive from that model and
+its use cases. Concrete platform domain knowledge belongs in private repositories;
+Provider source visibility depends on its contents. The
+[knowledge ownership policy](docs/architecture/domain-knowledge-ownership.md)
+defines this boundary. The current checkout also retains project composition
+and mixed historical documentation awaiting separation; it is not yet cleared
+for public release.
 
 ## Ownership and directory structure
 
@@ -8,10 +15,11 @@ Choose the owner first, then the file's purpose. Neither file extension nor the 
 
 | Owner | Canonical responsibility |
 | --- | --- |
-| This parent repository | Project requirements, cross-domain model, architecture, governance and migration |
+| This parent repository | Abstract agency domain model and use cases, platform-independent requirements, architecture and governance |
+| Private platform-domain owner | Concrete platform meaning and correspondence to the abstract agency model |
 | `runtime/` | Composition, dependency resolution, startup, deployment and pinned component versions |
 | Each Provider repository | Service-specific acquisition, mutation, formats and operating knowledge |
-| Skill repository | Business procedures, decisions, input/output and acceptance criteria |
+| Public Skill repository | Procedures, decisions, input/output and acceptance criteria derived from an agency use case |
 | Each MCP repository | Domain operation contracts and their implementation |
 | Owning library repository | Shared API, implementation and verification |
 
@@ -64,7 +72,7 @@ Consolidate content used by the same reader for the same decision. A completed t
 - [Runtime](runtime/README.md) and [deployment design](runtime/docs/deployment.md)
 - [Approved v2 review history](docs/reviews/v2-migration-plan-review-ja.md), [documentation review and execution record](docs/reviews/documentation-audit-ja.md)
 
-The parent and its independent components are synchronized through GitHub work branches. All Skill source repositories are public; Providers and Runtime remain private. See the [source inventory](tools/m1-source-repositories.json) for repository associations and pinned development checkpoints. Inspect changes in each owner (`git status`, `git -C runtime status`); uncommitted component changes are not included in the parent pins. Source synchronization does not imply default-branch integration, package release or production activation.
+The parent and its independent components are synchronized through GitHub work branches. The [distribution direction](docs/architecture/distribution.md#source-repository-visibility-and-synchronization) distinguishes intended source visibility from actual repository and package settings. See the [source inventory](tools/m1-source-repositories.json) for repository associations and pinned development checkpoints. Inspect changes in each owner (`git status`, `git -C runtime status`); uncommitted component changes are not included in the parent pins. Source synchronization does not imply default-branch integration, package release or production activation.
 
 ## Development checkout
 

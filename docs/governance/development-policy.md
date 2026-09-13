@@ -2,7 +2,7 @@
 
 - Status: Active policy
 - Created: 2026-09-05
-- Scope: Every change to this runtime, its public Skills, private Providers,
+- Scope: Every change to this runtime, its public Skills, Providers,
   MCP processes, shared libraries, composition, configuration, schedules, and
   operational documentation. This is not a v1-to-v2 migration document.
 

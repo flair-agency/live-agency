@@ -1,5 +1,52 @@
 # Current migration and documentation status
 
+# Agency abstraction and private platform knowledge — 2026-09-13
+
+The owner clarified that `live-agency` owns the abstract agency domain and use
+cases common to platforms, with public source direction. Public Skills derive
+from that model and its use cases. Concrete platform knowledge, including
+NDA-protected meaning and its correspondence, belongs in private repositories;
+Provider source visibility follows its contents. This supersedes the earlier
+centralization of both domains in the parent. The [knowledge ownership policy](../architecture/domain-knowledge-ownership.md)
+and [Japanese review and migration sequence](../reviews/domain-knowledge-ownership-ja.md#2026-09-13の知識配置方針)
+record the direction and the existing mixed-content inventory.
+
+The owner's same-day refinement explains repository visibility as an
+information-asset and security design decision. Commonality and confidentiality
+are assessed independently: identify semantic ownership and scope of reuse,
+determine permitted disclosure, then select a repository satisfying both.
+Abstraction alone does not make restricted knowledge publishable. The
+[placement decision procedure](../architecture/domain-knowledge-ownership.md#information-assets-and-placement-decisions)
+records the rationale and examples without changing the private platform-domain
+placement choice or operational contracts.
+
+This is a class E/G documentation package on `codex/platform-knowledge-boundary`,
+based on `e4b4351`, under [issue #2](https://github.com/flair-agency/live-agency/issues/2).
+It changes no operational rule, implementation, component pin or visibility.
+The existing model remains migration input; private destinations and reference
+cutover remain to be selected and verified. Publication requires separate
+content/history review and explicit execution selection. Recovery is a scoped
+documentation revert; original knowledge and existing deployments are preserved.
+Local documentation verification is complete. Earlier automatic approval review
+rejected source synchronization pending explicit authorization; the owner's
+subsequent request to PR `domain-knowledge-ownership-ja.md` and the related
+documents authorized the source push and [policy PR #70](https://github.com/flair-agency/live-agency/pull/70),
+which is now open against `main`. The owner also explicitly
+separated policy documentation from implementation alignment: integration of the
+policy PR completes this documentation package without waiting for relocation
+or publication clearance. Those remaining actions stay open under issue #2.
+The owner's earlier explicit ticket request was completed:
+issue #2 now records the adopted direction, rationale, independent classification
+axes and remaining migration criteria, with `Intake / triage` in LIVE Agency
+Maintenance. Existing partial PR #3 retains a non-closing reference to #2;
+its explanatory additions cannot complete the expanded scope. Issue/PR bodies,
+Project membership/status and removal of the closing relationship were read back.
+PR #70 itself is tracked in LIVE Agency Maintenance and references #2 without
+closing it. The remote diff contains the expected 11 documents and is mergeable
+at the creation checkpoint. CI was still running at that checkpoint.
+The policy PR does not change repository visibility, relocate knowledge or adopt
+operational changes. Latest main documentation is retained during integration.
+
 # Profile due-view verification release adopted — 2026-09-13
 
 The owner approved [Profile PR #11](https://github.com/flair-agency/live-agency-creator-profile-record/pull/11)
