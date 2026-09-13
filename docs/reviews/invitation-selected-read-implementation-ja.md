@@ -3,11 +3,13 @@ type: review
 visibility: internal
 status: pending
 date: 2026-09-13
-author: "Codex (implementation and AI policy review); Naoki Kimura (source adoption pending)"
+author: "Codex (implementation and AI policy review); Naoki Kimura (Provider・Skill採用済み、親PR採用待ち)"
 context: "Issue #14: PR #73で採用した汎用データセット読取と招待Skillの接続実装。ソース採用用のレビュー案であり、配布・本番検証・登録完了を示さない。"
 ---
 
 # 招待Skillの選択環境読取・計画接続
+
+現在の採用状況：オーナーのLGTMによりLark PR #20は`main`へ`29dc2f8`で、Skill PR #3は既存の採用先`codex/migration-checkpoint-20260909`へ`8196d24`でマージ済みです。残るソースレビューは親PR #74です。配布・本番受け入れの完了は示しません。
 
 2026-09-13の実行チェックポイント：Lark側は`codex/record-dataset-read`の`b5e2729`、Skill側は`codex/invitation-environment-read`の`46f3d65`にコミット済みです。親側は`codex/invitation-read-integration`です。先行するSkillのコミット試行は自動承認レビューのクレジット不足で停止しましたが、今回の再開では同じ正規の実行経路で成功しました。拒否の迂回は行っていません。
 
@@ -77,13 +79,15 @@ Providerは汎用読取の直接検証に加え、既存Profileとの関連回�
 
 独立レビューで、分類停止より先に履歴を取得して原因を隠す差を発見し、分類を先行するよう修正しました。Providerでは通信引数の改変による検索範囲拡大を拒否するよう修正しました。調整担当の確認では、根拠のない固定上限や同じ表を複数の論理データセットへ対応させることへの制約を取り除き、明示した有限の取得予算と確認済みのサービス制限を使うよう修正しました。
 
-解析前JSONの重複メンバー名は、Runtimeの`JSON.parse`後には検出できません。正規化済み設定の重複した列対応・検索IDの拒否と区別して記録しています。私有設定作成時に重複メンバー名を排除する必要があり、今回の実装が生JSONの重複検出まで行うとは説明しません。
+Provider用の資源設定はRuntimeが解析済みオブジェクトとして渡すため、Providerでは元のJSONの重複メンバー名を検出できません。この設定の作成段階で重複を排除する必要があり、列対応・検索IDの重複検査とは区別します。一方、Skill用の対応設定ファイルはSkillのCLIが生JSONを読むため、修正後は入れ子やエスケープ同値キーを含め、解析前に重複を拒否します。既に解析済みのオブジェクトを渡すプログラム呼出しでは、呼出し元が元のJSONの曖昧さを排除します。
+
+親PRの提示前確認で上記2種類の設定に対する説明の混同を修正しました。実装・契約は変えず、採用済みコードと説明を照合し、差分と空白を確認しました。文書更新のためローカルの実装テストは再実行していません。
 
 # 残る作業と復旧
 
 | 作業 | 担当 | 期限・着手条件 | 記録先 |
 | --- | --- | --- | --- |
-| 今回のソース採用 | オーナー | PRレビュー後 | 各実装PR、Issue #14 |
+| 親の接続検証・説明の採用（Provider・Skillは採用済み） | オーナー | PRレビュー後 | 親PR #74、Issue #14 |
 | 固定版配布・保存済み環境への導入と実読取受け入れ | 未定 | ソース採用と具体的な配布・導入範囲の確定後 | [#31](https://github.com/flair-agency/live-agency/issues/31)、[#32](https://github.com/flair-agency/live-agency/issues/32) |
 | 取得元の選択とv2観測引継ぎの接続 | 未定 | 今回の読取・計画接続の採用後 | [#6](https://github.com/flair-agency/live-agency/issues/6) |
 | 選択環境での書込接続と登録後照合 | 未定 | 所有境界に沿った具体的な書込計画・承認手順の確認後 | Issue #14、#32 |

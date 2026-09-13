@@ -14,8 +14,12 @@ checks passed 36. Follow-up review fixes passed 16 direct Skill checks, 36
 Provider checks and one repeated five-case connection proof after those changes.
 They reject duplicate correspondence JSON members, recheck live account
 uniqueness before planning and enforce the officially verified 200-field search
-projection limit. The three implementation PRs are tracked in Project 3 as
-Awaiting Review. These are development source checks, not distribution or Work
+projection limit. The owner approved Lark Provider PR #20, merged to main at
+`29dc2f808e9a8c91746f9e5aebeebd5df925c4a7`, and Invitation Skill PR #3, merged
+to its existing `codex/migration-checkpoint-20260909` baseline at
+`8196d249289b68f8ddc6e5aaff57d8e8dccf331c`. The parent integration and review
+PR #74 remains Awaiting Review; all three PRs are tracked in Project 3.
+These are development source checks, not distribution or Work
 acceptance. Component pins and the working production Profile remain unchanged.
 Source handoff (#6), selected write/readback (#14), fixed distribution and Work
 acceptance (#31/#32), and human takeover (#39) remain tracked separately. No
