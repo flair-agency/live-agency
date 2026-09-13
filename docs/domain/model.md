@@ -8,13 +8,19 @@
 
 This document records the LIVE agency business knowledge established during the design of the Skill, MCP, provider, and Lark Base architecture. It describes the business concepts and invariants that technical components must preserve.
 
-Owner clarification, 2026-09-11: domain knowledge is centralized as documents in
-`live-agency`. Distinguish the LIVE agency business domain from each LIVE
-platform's domain and document their semantic correspondence. Scouting and
-Management are business contexts; TikTok is a platform dimension, not a
-replacement context. The [knowledge ownership document](../architecture/domain-knowledge-ownership.md)
-records this direction and the proposed implementation views without adopting
-new business invariants or implying support for an unimplemented platform.
+Owner clarification, 2026-09-13: this repository's target is the abstract agency
+domain and use cases common to platforms. Concrete platform meaning and its
+correspondence to that abstraction belong in private repositories. Public Skills
+derive from the abstract model and use cases. This supersedes the 2026-09-11
+placement of both domains here; see [knowledge ownership](../architecture/domain-knowledge-ownership.md).
+
+TODO ([issue #2](https://github.com/flair-agency/live-agency/issues/2)): separate
+the existing mixed material under the [recorded migration scope](../reviews/domain-knowledge-ownership-ja.md#既存知識の移行対象).
+Sections 3–6 and the operational choices elsewhere still include platform facts,
+service mappings and company-specific choices. They are preserved as migration
+input, not certified public abstractions. Do not generalize them by removing
+service names or discard their rationale before verified private preservation.
+Existing operational scope and accepted rules remain unchanged by this note.
 
 It is a working model rather than an authoritative statement of contracts, accounting policy, platform terms, or live external-system state. Live systems and canonical company records take precedence. Reviewed exports and spreadsheets are evidence for this model, not permanent sources of truth.
 
@@ -571,8 +577,10 @@ Omitting non-gift support overstates ROI. In particular, a creator supported thr
 ## 10. Implementation ownership
 
 The [architecture](../architecture/overview.md) owns component responsibilities.
-Domain documents own business and platform meaning; Skills apply that knowledge
-to their use cases. Logical business schemas, service mappings and actual
+Public-direction domain documents own the abstract agency model and use cases;
+private platform-domain documents own concrete meaning and its correspondence.
+Public Skills derive from the abstract model and use cases. Logical business
+schemas, service mappings and actual
 environment resource identifiers are distinct concerns under the
 [knowledge-ownership direction](../architecture/domain-knowledge-ownership.md).
 The Lark Base Provider owns Lark operations and field metadata access, not the

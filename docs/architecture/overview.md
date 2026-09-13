@@ -17,14 +17,14 @@ decisions and results.
 
 Status: canonical index of adopted responsibilities. Scope: project-wide boundaries; implementation and deployment readiness are owned by [migration status](../migration/status.md). The [business model](../domain/model.md) owns business meaning and identity.
 
-The owner's subsequent [knowledge-ownership clarification](domain-knowledge-ownership.md)
-distinguishes the LIVE agency business domain from each LIVE platform's domain
-and centralizes their meaning in `live-agency` documents. It preserves Skill-led
-use cases and separates logical business schemas, service mappings and selected
-resource identifiers. Its adopted domain model and the four proposed views in
-the [separate Japanese design review](../reviews/domain-knowledge-ownership-ja.md#未決定の設計案)
-preserve the five diagrams without assigning adopted status to proposed
-interfaces or placement. Neither establishes a deployed redesign.
+The owner's 2026-09-13 [knowledge-ownership clarification](domain-knowledge-ownership.md)
+places the abstract agency model and use cases in public-direction `live-agency`
+documents, and concrete platform meaning in private repositories. Public Skills
+derive from the abstract model and use cases. Providers may be public or private
+according to their contents. Logical schemas, service mappings and selected
+resource identifiers remain separate. The [Japanese review](../reviews/domain-knowledge-ownership-ja.md#2026-09-13の知識配置方針)
+records the superseded placement proposal and the remaining migration. This
+direction does not establish a deployed redesign or completed public release.
 
 ## Adopted responsibilities
 
@@ -37,8 +37,8 @@ Providers own service-specific acquisition, mutation, normalization and versione
 Providers implement the documented domain meaning rather than own competing
 business definitions. The Lark Base Provider owns generic Lark operations and
 actual field metadata access; business logical schemas and their service mappings
-are separate concerns. TikTok platform meaning is distinct from reusable
-acquisition utilities and Web/iOS/BackStage surface-specific procedures. The
+are separate concerns. Private platform meaning is distinct from reusable
+acquisition utilities and surface-specific procedures. The
 precise mapping mechanism and implementation placement remain design work.
 
 Runtime manages setup and selected environment access; it does not own the

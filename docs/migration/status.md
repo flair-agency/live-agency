@@ -1,5 +1,28 @@
 # Current migration and documentation status
 
+# Agency abstraction and private platform knowledge — 2026-09-13
+
+The owner clarified that `live-agency` owns the abstract agency domain and use
+cases common to platforms, with public source direction. Public Skills derive
+from that model and its use cases. Concrete platform knowledge, including
+NDA-protected meaning and its correspondence, belongs in private repositories;
+Provider source visibility follows its contents. This supersedes the earlier
+centralization of both domains in the parent. The [knowledge ownership policy](../architecture/domain-knowledge-ownership.md)
+and [Japanese review and migration sequence](../reviews/domain-knowledge-ownership-ja.md#2026-09-13の知識配置方針)
+record the direction and the existing mixed-content inventory.
+
+This is a class E/G documentation package on `codex/platform-knowledge-boundary`,
+based on `e4b4351`, under [issue #2](https://github.com/flair-agency/live-agency/issues/2).
+It changes no operational rule, implementation, component pin or visibility.
+The existing model remains migration input; private destinations and reference
+cutover remain to be selected and verified. Publication requires separate
+content/history review and explicit execution selection. Recovery is a scoped
+documentation revert; original knowledge and existing deployments are preserved.
+Local documentation verification is complete. Automatic approval review rejected
+the attempted GitHub synchronization before execution, requesting explicit
+authorization for the document contents and destination. The work branch is
+local only pending that confirmation; no PR, Issue or Project update has run.
+
 # Approved avatar and typed-readback release scope — 2026-09-12
 
 The owner approved root PR #66 and Lark Base PR #19. The

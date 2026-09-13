@@ -35,6 +35,12 @@ profile registration. Reuse their applicable evidence and verify changed paths.
 | Profile M3 readiness | Register the neutral Profile Skill with its complete installed reading route and make the selected one-item plan available from Work | Tell the owner acceptance can begin; this is not yet successful registration or owner acceptance |
 | Profile M3 acceptance | Apply the authorized current plan, read back results/images as applicable, verify unchanged data and nonduplicating replanning, and complete the human review | First production business acceptance. Invitation and other Skills proceed afterward, without repeating M1 |
 
+Owner clarification, 2026-09-13: the public-direction parent and Skills retain
+only the abstract agency model and its use cases; concrete platform meaning
+belongs in private repositories. The [knowledge separation sequence](../reviews/domain-knowledge-ownership-ja.md#移行順序と完了条件)
+tracks preservation, references and publication checks under issue #2. That
+documentation migration does not select new platform support or runtime changes.
+
 Owner clarification, 2026-09-11: the
 [adopted knowledge-ownership boundary](../architecture/domain-knowledge-ownership.md)
 supersedes the earlier instruction to move all concrete service mappings into

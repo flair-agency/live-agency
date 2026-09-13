@@ -54,12 +54,16 @@ Fix supported findings before presenting the work. In the existing review or tas
 
 # Ownership and information boundaries
 
-Public Skills document their use cases and reference the domain knowledge
-centralized in `live-agency`. The owner's 2026-09-11 clarification distinguishes
-LIVE agency business meaning, each LIVE platform's meaning, logical business
-schemas, service mappings and actual environment bindings; see
-[knowledge ownership](../architecture/domain-knowledge-ownership.md).
-Provider implementations must preserve the documented meaning.
+Owner clarification, 2026-09-13: `live-agency` holds the abstract LIVE agency
+domain model and use cases common to platforms, suitable for public source.
+Public Skills are derived from that model and its use cases. Concrete platform
+domain knowledge and its correspondence to the abstraction belong in private
+repositories, including NDA-protected knowledge. This supersedes the 2026-09-11
+instruction to centralize both kinds of meaning in the parent. See
+[knowledge ownership](../architecture/domain-knowledge-ownership.md) for the
+single-owner boundary and the authorized human reading route. Provider
+implementations preserve the documented meaning without copying private rules
+into public model or Skill resources.
 
 Service-specific acquisition, authenticated procedures and operational
 troubleshooting remain with the owning Provider, with discoverable references
