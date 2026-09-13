@@ -1,12 +1,12 @@
 # TikTok platform declaration
 
-Unreleased Profile candidate `0.1.0-m3.3`. This package declares the selected
+Unreleased Profile candidate `0.1.0-m3.4`. This package declares the selected
 TikTok Web 1.1.1 profile-observation capability and its approved avatar acquisition correction; it contains no executable workflow
 or credentials. The Provider owns its instructions and required host permissions.
 BackStage and iOS Providers remain outside this selected slice.
 
 Profile recording is an **available installation choice** at fixed version
-`2.0.0-m3.3`. It requires observation, datastore read and datastore write
+`2.0.0-m3.4`. It requires observation, datastore read and datastore write
 capabilities. Runtime setup refuses a selected Skill when any required binding
 is absent. The user invokes the installed Skill; Runtime does not launch it.
 Selecting the platform without a Skill remains supported. Installation alone
