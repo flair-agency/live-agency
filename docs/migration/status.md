@@ -10,7 +10,12 @@ records owners, preserved behavior, verification, remaining connections and reco
 Actual Runtime, Provider and Skill source passed an isolated synthetic connection
 proof: one timestamp update, one target-ID-filtered history search and configuration
 drift stopping before transport. Relevant Skill checks passed 27 and final Provider
-checks passed 36. These are development source checks, not distribution or Work
+checks passed 36. Follow-up review fixes passed 16 direct Skill checks, 36
+Provider checks and one repeated five-case connection proof after those changes.
+They reject duplicate correspondence JSON members, recheck live account
+uniqueness before planning and enforce the officially verified 200-field search
+projection limit. The three implementation PRs are tracked in Project 3 as
+Awaiting Review. These are development source checks, not distribution or Work
 acceptance. Component pins and the working production Profile remain unchanged.
 Source handoff (#6), selected write/readback (#14), fixed distribution and Work
 acceptance (#31/#32), and human takeover (#39) remain tracked separately. No

@@ -9,13 +9,17 @@ context: "Issue #14: PR #73で採用した汎用データセット読取と招�
 
 # 招待Skillの選択環境読取・計画接続
 
-2026-09-13の実行チェックポイント：Lark側は`codex/record-dataset-read`の`1f67cc7`、Skill側は`codex/invitation-environment-read`の`ec188e9`にコミット済みです。親側は`codex/invitation-read-integration`です。先行するSkillのコミット試行は自動承認レビューのクレジット不足で停止しましたが、今回の再開では同じ正規の実行経路で成功しました。拒否の迂回は行っていません。
+2026-09-13の実行チェックポイント：Lark側は`codex/record-dataset-read`の`b5e2729`、Skill側は`codex/invitation-environment-read`の`46f3d65`にコミット済みです。親側は`codex/invitation-read-integration`です。先行するSkillのコミット試行は自動承認レビューのクレジット不足で停止しましたが、今回の再開では同じ正規の実行経路で成功しました。拒否の迂回は行っていません。
 
-今回の再開では既存差分と検証結果を引き継ぎ、3ブランチの同期・PR作成、Project 3とIssue #14の更新までを進めます。作業ツリーは`/private/tmp/lark-record-dataset-read-20260913`、`/private/tmp/invitation-environment-read-20260913`、`/private/tmp/live-agency-invitation-read-integration-20260913`です。開発用`node_modules`リンクはコミット対象外です。最終接続検証は5項目成功、外部呼出し0件、検証ツールSHA-256は`6d0e3fec74a17fe3284e2968acd777c0e41964263eecdb203827129d960e1688`です。実装変更がないため、成功済みテストは繰り返していません。
+既存差分と検証結果を引き継ぎ、[Lark PR #20](https://github.com/flair-agency/live-agency-provider-lark-base/pull/20)、[Skill PR #3](https://github.com/flair-agency/live-agency-creator-invitation-eligibility-record/pull/3)、[親PR #74](https://github.com/flair-agency/live-agency/pull/74)を作成しました。3件ともProject 3のAwaiting Reviewへの登録を読み戻し、Issue #14の現在欄を更新しました。作業ツリーは`/private/tmp/lark-record-dataset-read-20260913`、`/private/tmp/invitation-environment-read-20260913`、`/private/tmp/live-agency-invitation-read-integration-20260913`です。開発用`node_modules`リンクはコミット対象外です。接続検証は5項目成功、外部呼出し0件、検証ツールSHA-256は`6d0e3fec74a17fe3284e2968acd777c0e41964263eecdb203827129d960e1688`です。同期作業だけでは成功済みテストを繰り返さず、下記の実装修正後に対象検証のみ追加しました。
 
 作業構成はオーナーが承認した司令塔・担当方式に変更しました。class Gの開発方針文書更新のみを`gpt-5.6-terra` / `low`のサブエージェント1体へ委任し、司令塔は既存成果のGitHub同期・統合を担当します。担当の編集範囲は開発方針のモデル選択・引継ぎ節に限定し、実装・本番構成・承認権限を変えません。完了条件は承認済み方針の英語反映と差分確認、復旧は当該文書差分のrevertです。このタスク自身のモデル設定は変更していません。節約率の実測はまだありません。
 
 方針更新のAIレビューでは、担当の差分を承認された日本語の指示と照合しました。人の承認権限を委譲しないこと、担当のモデル指定が親の設定変更を意味しないこと、従来の検証・権限境界を維持することを確認し、曖昧だった2か所の表現を修正しました。文書のみのため追加テストは行っていません。
+
+PRに追加された3件の指摘は、SkillとProviderの独立した修正としてTerra／lowの担当2体へ委任しました。Skillは私有対応設定の重複JSONメンバーを解析前に拒否し、計画時の再読込にも既存の正規化アカウント一意性検査を適用しました（`46f3d65`、直接検証16件成功）。Providerは検索投影の実サービス上限を検証し、201列を送信前に停止、200列の成功を確認しました（直接検証36件成功）。
+
+列数について、レビュー中に参照された既存アダプターの100列制限と、サービスそのものの上限を区別しました。司令塔が[公式Record search文書](https://open.larksuite.com/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-record/search.md)の本文を取得し、`field_names`の上限200と記録済みSHA-256 `cc4fe08fa080a1c1490c1564107f95bb65d2e7da6287fd7d881f45945443a3bf`の一致を確認しました。第三者SDKの記載だけでは採用根拠にせず、既存アダプターの制約は今回変更していません。修正後のRuntime・Provider・Skill接続5項目も1回実行して成功しました。業務サービスへの呼出しは0件です。
 
 [Issue #14](https://github.com/flair-agency/live-agency/issues/14)の次の実装単位です。
 [採用済み契約](../architecture/record-dataset-read-contract.md)に従い、Providerの汎用読取とSkill側の接続を実装しました。
