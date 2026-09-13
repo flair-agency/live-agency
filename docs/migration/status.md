@@ -29,8 +29,14 @@ content/history review and explicit execution selection. Recovery is a scoped
 documentation revert; original knowledge and existing deployments are preserved.
 Local documentation verification is complete. Automatic approval review rejected
 the attempted GitHub synchronization before execution, requesting explicit
-authorization for the document contents and destination. The work branch is
-local only pending that confirmation; no PR, Issue or Project update has run.
+authorization for the document contents and destination. Source synchronization
+remains pending. The owner's subsequent explicit ticket request was completed:
+issue #2 now records the adopted direction, rationale, independent classification
+axes and remaining migration criteria, with `Intake / triage` in LIVE Agency
+Maintenance. Existing partial PR #3 retains a non-closing reference to #2;
+its explanatory additions cannot complete the expanded scope. Issue/PR bodies,
+Project membership/status and removal of the closing relationship were read back.
+No new source PR, visibility change or knowledge relocation occurred.
 
 # Approved avatar and typed-readback release scope — 2026-09-12
 
