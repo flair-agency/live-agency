@@ -6,8 +6,8 @@ TikTok platform `0.1.0-m3.4`, Profile Skill `2.0.0-m3.4` and Lark Base
 `1.4.0-m3.4` with both Profile read and write capabilities. Runtime
 `2.0.0-m3.0` supports their separate configuration references. The
 [current deployment and recovery record](../docs/migration/status.md#profile-due-view-verification-release-adopted--2026-09-13)
-records publication, verified installation and the host switch separately from
-the pending Work read-only verification. Source edits alone do not establish adoption.
+records publication, verified installation, the host switch and successful Work
+read-only verification separately from new business writes. Source edits alone do not establish adoption.
 
 The previously adopted catalog `0.1.0-m3.2` remains available as an
 [immutable release](https://github.com/flair-agency/live-agency/releases/tag/catalog-v0.1.0-m3.2).

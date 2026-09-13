@@ -24,11 +24,20 @@ verified and switched to generation
 `cc6e10d79df863780606e52111b2c2af34b0de2c629c90fb47480aa8aa9aea62`.
 The private deployment record `profile-due-verification-20260913` retains the
 publication receipts, installed selection, host hashes and registration receipt.
-Actual Work read-only reconciliation remains pending. This deployment has not
-created business records, uploaded images or replayed an earlier write plan.
-[Profile issue #10](https://github.com/flair-agency/live-agency-creator-profile-record/issues/10)
-remains open through that verification; [cutover #32](https://github.com/flair-agency/live-agency/issues/32)
-retains the broader acceptance scope. Earlier issue #61 is closed and its old
+Actual read-only reconciliation in the designated Work project passed in
+166.695 seconds: the original 20 observations yielded 19 already-applied profiles,
+one unavailable observation, zero target issues, zero remaining creates or image
+attachments, zero conflicts and zero invalid stored profiles. The installed
+Skill performed one creator read and one history read scoped to those 20 creators.
+All 33 original evidence artifacts remained unchanged. No business records were
+created, images uploaded or earlier write plans replayed; the old approval was
+not reused. `businessWorkflowVerified: false` remains appropriate for this new
+read-only receipt: it verifies retained effects, not a new business registration.
+
+Together with the focused source regression, this verifies the correction in
+[Profile issue #10](https://github.com/flair-agency/live-agency-creator-profile-record/issues/10).
+[Cutover #32](https://github.com/flair-agency/live-agency/issues/32) retains the
+broader invitation acceptance scope. Earlier issue #61 is closed and its old
 pending statements below are historical.
 
 Immediate recovery is the retained avatar/readback installation with Profile

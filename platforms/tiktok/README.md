@@ -12,7 +12,7 @@ is absent. The user invokes the installed Skill; Runtime does not launch it.
 Selecting the platform without a Skill remains supported. Installation alone
 does not contact TikTok or establish business acceptance. See the
 [current deployment and recovery record](../../docs/migration/status.md#profile-due-view-verification-release-adopted--2026-09-13)
-for the adopted generation and the pending Work read-only verification.
+for the adopted generation and successful Work read-only verification.
 
 Database and storage Providers are chosen independently from the catalog. Their configuration and permission checks belong to the Providers; a recorded reference does not establish a verified connection. Available Skill packages are metadata choices, not mandatory dependencies.
 
