@@ -1,3 +1,12 @@
+---
+type: review
+visibility: internal
+status: pending
+date: 2026-09-13
+author: "Codex (implementation and review preparation; owner adoption pending)"
+context: "Invitation selected source handoff under issues #6 and #14; synthetic integration evidence and source adoption review"
+---
+
 # 招待Skill：選択した取得元から計画へ渡す接続
 
 状態：ソース採用のレビュー案。対象は [#6](https://github.com/flair-agency/live-agency/issues/6) と [#14](https://github.com/flair-agency/live-agency/issues/14) の接続部分です。本番受け入れは未完了です。
@@ -51,6 +60,8 @@ Skillの直接検証19件、接続検証8項目が成功しました。親の独
 [文書・知識方針](../governance/document-knowledge-policy.md)、[言語方針](../governance/document-language-policy.md)、[開発方針](../governance/development-policy.md)、完全な [Private Source Integration Guide](../governance/private-source-integration-guide.md) と既存のRuntime契約を照合しました。
 
 初回手順応答の検証でProviderの失敗理由を汎用エラーへ落とす箇所を発見し、元の安全な原因コードを保持するよう修正し、直接検証も成功しました。図にはホストによる実取得を独立した工程として記載しています。Skillの詳細手順は既存の `references/environment-workflow.md` を更新し、重複したマニュアルは追加しません。
+
+PRレビューの指摘に従い、本記録の識別情報を追加し、Skillの分類ガイドに残っていた「選択環境との接続が未実装」という説明を訂正しました。接続済みの手順受け渡しと、未検証の実取得・未実装の書込経路を区別しています。文書だけの修正では、成功済みの実装テストを繰り返していません。
 
 # 残る作業と復旧
 
