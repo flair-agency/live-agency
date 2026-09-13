@@ -30,7 +30,8 @@ documentation revert; original knowledge and existing deployments are preserved.
 Local documentation verification is complete. Earlier automatic approval review
 rejected source synchronization pending explicit authorization; the owner's
 subsequent request to PR `domain-knowledge-ownership-ja.md` and the related
-documents now selects that source push and policy PR. The owner also explicitly
+documents authorized the source push and [policy PR #70](https://github.com/flair-agency/live-agency/pull/70),
+which is now open against `main`. The owner also explicitly
 separated policy documentation from implementation alignment: integration of the
 policy PR completes this documentation package without waiting for relocation
 or publication clearance. Those remaining actions stay open under issue #2.
@@ -40,6 +41,9 @@ axes and remaining migration criteria, with `Intake / triage` in LIVE Agency
 Maintenance. Existing partial PR #3 retains a non-closing reference to #2;
 its explanatory additions cannot complete the expanded scope. Issue/PR bodies,
 Project membership/status and removal of the closing relationship were read back.
+PR #70 itself is tracked in LIVE Agency Maintenance and references #2 without
+closing it. The remote diff contains the expected 11 documents and is mergeable
+at the creation checkpoint. CI was still running at that checkpoint.
 The policy PR does not change repository visibility, relocate knowledge or adopt
 operational changes. Latest main documentation is retained during integration.
 
