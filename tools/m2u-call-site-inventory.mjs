@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOTS = ["packages/lark-transport/src", "providers/lark-base/src", "providers/lark-chat/src",
   "mcp/operations/src", "runtime/scripts", "skills"];
-const METHODS = /\b(listFields|listRecords|batchUpdate|batchCreate|batchDelete|appendAttachment|uploadMedia|downloadAttachment|attachmentSha256|temporaryDownloadUrl|fromResolvedApiPrincipal|fromCredentialReference|createLarkBaseClient|createLarkApiTransportForPrincipal|createLarkCliUserApiTransportForPrincipal)\s*\(/g;
+const METHODS = /\b(listFields|listRecords|getRecords|getRecord|batchUpdate|batchCreate|batchDelete|appendAttachment|uploadMedia|downloadAttachment|attachmentSha256|temporaryDownloadUrl|fromResolvedApiPrincipal|fromCredentialReference|createLarkBaseClient|createLarkApiTransportForPrincipal|createLarkCliUserApiTransportForPrincipal)\s*\(/g;
 const SIGNAL = /\/open-apis\/|\bLarkClient\b|\blark-cli\b|\bLARK_(?:APP_ID|TENANT_ACCESS_TOKEN)\b/;
 const PACKAGES = {
   "@flair-agency/lark-transport": "packages/lark-transport/src/index.js",
