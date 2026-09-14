@@ -243,8 +243,9 @@ export async function verifyInvitationEnvironmentConnection(args) {
     assert.equal(typeof actualModule.createRecordDatasetReadExecutor, 'function');
     assert.equal(typeof actualModule.executeRecordDatasetRead, 'function');
     const writeBindings = providerManifest.liveAgencyProvider.bindings.filter(binding => binding.provides.includes(writeCapability));
-    assert(writeBindings.length <= 1, 'write capability must not be ambiguous');
+    assert.equal(writeBindings.length, 1, 'actual Provider package must declare exactly one dataset write capability');
     const writeBinding = writeBindings[0];
+    let writeConfigurationFile;
     if (writeBinding) {
       assert.equal(writeBinding.execution.kind, 'module');
       assert.equal(writeBinding.execution.entry, providerManifest.exports['./record-dataset-write']);
@@ -287,15 +288,15 @@ export async function verifyInvitationEnvironmentConnection(args) {
           observedAt: { fieldId: 'fldTime', serviceType: 'DateTime', operations: ['update'] },
         } } }, budgets: { maxRecords: 100, maxPages: 10, maxRequests: 100, maxElapsedMs: 10000,
           maxImages: 10, maxImageBytes: 5242880, maxTotalImageBytes: 52428800 } };
-      const writeFile = path.join(fixture.out, 'synthetic-write-configuration.json');
-      await save(writeFile, writeConfiguration);
+      writeConfigurationFile = path.join(fixture.out, 'synthetic-write-configuration.json');
+      await save(writeConfigurationFile, writeConfiguration);
       adapterManifest.liveAgencyProvider.bindings.push({ id: 'synthetic-dataset-write', provides: [writeCapability],
         knowledgeVersion: writeBinding.knowledgeVersion, execution: { kind: 'module', entry: './synthetic-invitation.mjs' } });
       await save(adapterManifestFile, adapterManifest);
       environment.platforms.first.bindings[writeCapability] = { contractVersion: '1.0.0',
         dependencyPath: environment.platforms.first.bindings[capability].dependencyPath,
-        bindingId: 'synthetic-dataset-write', exportName: 'executeWrite', configurationRef: writeFile,
-        configurationSha256: sha256(await readFile(writeFile)) };
+        bindingId: 'synthetic-dataset-write', exportName: 'executeWrite', configurationRef: writeConfigurationFile,
+        configurationSha256: sha256(await readFile(writeConfigurationFile)) };
     }
     let observationDirectory, observationBinding;
     if (args['observation-provider-source']) {
@@ -348,10 +349,11 @@ export async function verifyInvitationEnvironmentConnection(args) {
     assert.equal(searches.length, 1);
     assert.deepEqual(result.reads.find(read => read.dataset === 'history').scope, { recordIds: [state.creator] });
     assert.equal(result.reads.find(read => read.dataset === 'history').rowCount, 1);
-    let writeEvidence;
+    let writeEvidence, writeDriftArgs;
     if (writeBinding) {
       const before = structuredClone(state.rows);
       const writeArgs = { access, configuration: inputs.skillConfiguration, targets, preparedPlan: result };
+      writeDriftArgs = writeArgs;
       const preparedWrite = await skill.prepareEnvironmentInvitationWrite(writeArgs);
       const events = [];
       const applied = await skill.applyEnvironmentInvitationWrite({ ...writeArgs, preparedWrite,
@@ -439,10 +441,22 @@ export async function verifyInvitationEnvironmentConnection(args) {
     await assert.rejects(prepareEnvironmentInvitationTargets({ access, configuration: inputs.skillConfiguration }),
       error => error.code === 'PROVIDER_CONFIGURATION_CHANGED');
     assert.equal(state.calls.length, callCount, 'Runtime configuration drift must stop before Provider transport');
+    configuration.budgets.maxRecords += 1;
+    await save(configurationFile, configuration);
+
+    const writeCallCount = state.writeCalls.length;
+    const writeConfiguration = await json(writeConfigurationFile);
+    writeConfiguration.budgets.maxRecords -= 1;
+    await save(writeConfigurationFile, writeConfiguration);
+    await assert.rejects(skill.prepareEnvironmentInvitationWrite(writeDriftArgs),
+      error => error.code === 'PROVIDER_CONFIGURATION_CHANGED');
+    assert.equal(state.writeCalls.length, writeCallCount,
+      'Runtime write-configuration drift must stop before Provider write transport');
 
     return { status: 'passed', synthetic: true, businessWorkflowVerified: false,
       cases: ['actual-provider-manifest-and-export', 'runtime-provider-skill-connection', 'same-state-timestamp-update',
         'server-filtered-history-search', 'provider-configuration-drift-stops-before-transport',
+        'write-configuration-drift-stops-before-write-transport',
         ...(writeEvidence ? ['runtime-selected-write-binding', 'trusted-write-hooks', 'targeted-write-readback', 'read-only-reconcile'] : []),
         ...(sourceEvidence ? ['selected-actual-instruction-resources', 'source-v2-category-and-avatar-to-same-plan', 'altered-avatar-stops-before-history'] : [])],
       counts: { timestampUpdates: 1, baselineHistorySearches: searches.length,
