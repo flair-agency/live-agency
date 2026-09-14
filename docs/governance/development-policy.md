@@ -54,6 +54,11 @@ One work package to begin now and its definition of done:
 Required gate before the next package:
 Verification and rollback/no-mutation statement:
 Parallel work, if any, and why it is independent:
+Task-routing record (for a new/replaced coordinator and each created task):
+- Role and coordinating task ID to which the task reports:
+- Explicit selected model and reasoning effort, and selection reason:
+- Completion condition and required outcome report (complete, decision needed, or failed):
+- For a user-visible task: transient `clientThreadId`, if any; resolved `threadId`; and coordinator tracking method:
 ```
 
 The card is an intake decision, not a request to write a roadmap. It belongs in
@@ -278,6 +283,44 @@ reloading it. Do not split work merely to change models: keep work with the
 same change, authority, and approval scope together, and split only under the
 work-package rules in Section 4.
 
+### Operational routing and traceability
+
+This routing policy is an operating control, not a platform-level enforcement
+mechanism. It detects deviations through the required record and review; it
+does not claim that Codex automatically selects a model, changes a running
+task, delivers a callback, or prevents an unrecorded dispatch.
+
+When creating or replacing a coordinator, explicitly select
+`gpt-5.6-sol` / `low` through the supported host controls and record that
+selection in the task-routing record. A document change does not switch an
+existing active task. If the host cannot make or expose the selection at that
+point, record that limit and the next eligible selection rather than claiming a
+switch occurred.
+
+For every created work task, put in its handoff or change card the selected
+model, reasoning effort, selection reason, completion condition, and the
+coordinating task ID that receives its report. Instruct the task to report
+completion, a decision needed, or failure to that coordinator. For a clear,
+accepted implementation, the record selects `gpt-5.6-terra` / `low`; it does
+not reduce the task's existing authority, approval, or verification gates.
+
+Create a user-visible task only when explicitly requested. A queued
+`clientThreadId` is not the task's resolved identity: obtain and record the
+actual `threadId` before treating it as dispatched and tracked. The coordinator
+uses available Codex task-management functions, such as `wait_threads`, to
+follow completion, decision-needed, or failure states. Prefer event-driven or bounded provided
+waits and the required outcome report over unnecessary periodic polling; do
+not spend credits repeatedly polling an unchanged task. These facilities do
+not promise an automatic callback, so the coordinator remains responsible for
+checking the recorded task at appropriate checkpoints.
+
+For an Astra exception, record the specific unresolved design, authority, or
+contract decision, why it requires `gpt-6-astra`, the selected effort, and the
+condition that resolves it. At that condition, record the return of remaining
+work to the ordinary Sol/Terra route. Reviewers verify this record along with
+the task outcome; a model selection never supplies missing evidence, authority,
+approval, or verification.
+
 Avoid reloading entire long plans/history, unnecessary package splitting, and
 repeating passing verification. Keep a coherent repair and its focused tests
 together when existing scope and authority permit; no token/percentage savings
@@ -302,8 +345,10 @@ or verification. Validate only models actually adopted for the affected
 workflow; do not create a new all-model benchmark gate.
 
 Record the chosen model and any evidence-based exception in the package
-checkpoint. A model change never supplies missing evidence, authority, or
-verification. See the approved
+checkpoint. Review the task-routing record for each new/replaced coordinator
+and created task against its actual task identity, route, outcome report, and
+tracking evidence. A model change never supplies missing evidence, authority,
+or verification. See the approved
 [instruction audit plan](../archive/instruction-audit-and-simplification-plan.md#6-accepted-model-policy).
 
 ## 7. Coordination and handoff
