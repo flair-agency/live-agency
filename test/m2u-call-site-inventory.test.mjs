@@ -15,6 +15,7 @@ test("inventory finds direct API, independent activity clients and transitive wr
       await mkdir(path.join(root, directory), { recursive: true });
     }
     await writeFile(path.join(root, "providers/lark-base/src/index.js"), 'export const route = "/open-apis/synthetic/read";');
+    await writeFile(path.join(root, "providers/lark-base/src/target-reader.js"), 'reader.getRecords(ids); reader.getRecord(id);');
     await writeFile(path.join(root, "runtime/scripts/adapter.mjs"), 'import { route } from "@flair-agency/lark-base-provider";');
     await writeFile(path.join(root, "runtime/scripts/runner.mjs"), 'import "./adapter.mjs";');
     await writeFile(path.join(root, "runtime/scripts/activity.mjs"), 'const client = await LarkClient.fromEnvironment();');
@@ -24,10 +25,12 @@ test("inventory finds direct API, independent activity clients and transitive wr
     await writeFile(path.join(root, "skills/_shared/client.mjs"), 'client.listFields("base", "table");');
     const result = await buildM2uCallSiteInventory(root);
     assert.deepEqual(result.callers.map((entry) => entry.file), [
-      "providers/lark-base/src/index.js", "runtime/scripts/activity.mjs", "runtime/scripts/adapter.mjs", "runtime/scripts/runner.mjs",
+      "providers/lark-base/src/index.js", "providers/lark-base/src/target-reader.js", "runtime/scripts/activity.mjs", "runtime/scripts/adapter.mjs", "runtime/scripts/runner.mjs",
       "skills/_shared/client.mjs", "skills/example/scripts/read.mjs",
     ]);
     assert.deepEqual(result.callers.find((entry) => entry.file === "runtime/scripts/runner.mjs").dependencies, ["runtime/scripts/adapter.mjs"]);
+    assert.deepEqual(result.callers.find(entry => entry.file === 'providers/lark-base/src/target-reader.js')
+      .signals.map(signal => signal.operationHint), ['getRecords', 'getRecord']);
     assert.equal(result.callers.find(entry => entry.file === 'skills/example/scripts/read.mjs').category, 'skill:example');
     assert.equal(result.callers.find(entry => entry.file === 'skills/_shared/client.mjs').category, 'shared-skill-adapter');
     assert.deepEqual(result.unclassified, []);

@@ -9,6 +9,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 // source paths are required; no installation, CLI, network or production access.
 // The temporary copied packages and local content lock are removed even on failure.
 const capability = 'record-dataset-read/v1';
+const writeCapability = 'record-dataset-write/v1';
 const load = file => import(pathToFileURL(file).href);
 const json = async file => JSON.parse(await readFile(file, 'utf8'));
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -166,6 +167,43 @@ export const execute = createRecordDatasetReadExecutor({ transportFactory({ sele
 } });
 `;
 
+// A separate transport substitutes service responses only. It cannot perform
+// business mapping or write orchestration on Runtime's behalf.
+const writeAdapterSource = `
+import { createRecordDatasetWriteExecutor } from '@flair-agency/lark-base-provider/record-dataset-write';
+state.writeCalls = [];
+export const executeWrite = createRecordDatasetWriteExecutor({ transportFactory({ selection, authorizeRequest }) {
+  const audit = [];
+  return { binding: selection.binding, bindingSha256: selection.bindingSha256, getAudit: () => audit,
+    async preflight() {},
+    async request(id, options) {
+      assert(['fields:list', 'records:batch-get', 'records:batch-update'].includes(id), 'unexpected write-proof operation');
+      const operation = selection.binding.operationContracts.find(item => item.operationId === id);
+      assert.equal(authorizeRequest({ operation, ...structuredClone(options) }, selection.binding), true);
+      assert.equal(options.pathParameters.table_id, 'tblHistory');
+      state.writeCalls.push({ id, options: structuredClone(options) });
+      let response;
+      if (id === 'fields:list') response = { code: 0, data: { items: structuredClone(state.fields.tblHistory), has_more: false } };
+      if (id === 'records:batch-get') {
+        assert.deepEqual(options.json.record_ids, [state.historyId], 'readback must be restricted to the approved row');
+        response = { code: 0, data: { records: structuredClone(state.rows.tblHistory.filter(row => row.record_id === state.historyId)), absent_record_ids: [] } };
+      }
+      if (id === 'records:batch-update') {
+        assert.equal(options.json.records.length, 1);
+        const patch = options.json.records[0];
+        assert.equal(patch.record_id, state.historyId);
+        assert.deepEqual(Object.keys(patch.fields), ['Synthetic observed at']);
+        Object.assign(state.rows.tblHistory.find(row => row.record_id === patch.record_id).fields, patch.fields);
+        response = { code: 0, data: { records: structuredClone(options.json.records) } };
+      }
+      audit.push({ bindingSha256: selection.bindingSha256, operationId: id, tokenType: selection.binding.tokenType,
+        result: 'success', attempt: 1, uncertainWrite: false });
+      return response;
+    }
+  };
+} });
+`;
+
 export async function verifyInvitationEnvironmentConnection(args) {
   const runtimeSource = args['runtime-source'], protocolSource = args['protocol-source'];
   const providerSource = args['provider-source'], skillSource = args['skill-source'], dependencyRoot = args['dependency-root'];
@@ -204,6 +242,14 @@ export async function verifyInvitationEnvironmentConnection(args) {
     const actualModule = await load(path.join(providerDirectory, actualBinding.execution.entry));
     assert.equal(typeof actualModule.createRecordDatasetReadExecutor, 'function');
     assert.equal(typeof actualModule.executeRecordDatasetRead, 'function');
+    const writeBindings = providerManifest.liveAgencyProvider.bindings.filter(binding => binding.provides.includes(writeCapability));
+    assert.equal(writeBindings.length, 1, 'actual Provider package must declare exactly one dataset write capability');
+    const writeBinding = writeBindings[0];
+    let writeConfigurationFile;
+    if (writeBinding) {
+      assert.equal(writeBinding.execution.kind, 'module');
+      assert.equal(writeBinding.execution.entry, providerManifest.exports['./record-dataset-write']);
+    }
 
     const environment = await json(fixture.environment);
     const selectedEnvironment = { environmentId: environment.environmentId, environmentKind: environment.environmentKind,
@@ -212,7 +258,7 @@ export async function verifyInvitationEnvironmentConnection(args) {
     const inputs = syntheticInputs(configuration, selectedEnvironment);
     const adapterDirectory = path.join(fixture.out, 'node_modules/@connection-proof/platform/node_modules/@connection-proof/provider');
     const adapterFile = path.join(adapterDirectory, 'synthetic-invitation.mjs');
-    await writeFile(adapterFile, adapterSource, { mode: 0o600 });
+    await writeFile(adapterFile, adapterSource + (writeBinding ? writeAdapterSource : ''), { mode: 0o600 });
     await save(path.join(adapterDirectory, 'synthetic-state.json'), inputs.state);
     const adapterManifestFile = path.join(adapterDirectory, 'package.json'), adapterManifest = await json(adapterManifestFile);
     adapterManifest.dependencies = { [providerManifest.name]: providerManifest.version };
@@ -225,6 +271,33 @@ export async function verifyInvitationEnvironmentConnection(args) {
       dependencyPath: environment.platforms.first.bindings['synthetic-sum/v1'].dependencyPath,
       bindingId: 'synthetic-dataset-read', exportName: 'execute', configurationRef: configurationFile,
       configurationSha256: sha256(await readFile(configurationFile)) } };
+    if (writeBinding) {
+      const writeSelection = structuredClone(configuration.selection);
+      writeSelection.instanceProfile.profileId = 'synthetic-write';
+      writeSelection.instanceProfile.authority = 'write';
+      writeSelection.instanceProfile.primaryRouteId = 'route-write';
+      writeSelection.instanceProfile.allowedOperations = ['records:batch-update'];
+      for (const route of writeSelection.instanceProfile.routes) {
+        route.authority = 'write'; route.routeId = 'route-write';
+      }
+      writeSelection.expected.profileId = 'synthetic-write';
+      writeSelection.expected.authority = 'write';
+      const writeConfiguration = { schemaVersion: 1, authority: 'write', environment: selectedEnvironment,
+        appToken: configuration.appToken, selection: writeSelection, readSelection: configuration.selection,
+        datasets: { history: { tableId: 'tblHistory', fields: {
+          observedAt: { fieldId: 'fldTime', serviceType: 'DateTime', operations: ['update'] },
+        } } }, budgets: { maxRecords: 100, maxPages: 10, maxRequests: 100, maxElapsedMs: 10000,
+          maxImages: 10, maxImageBytes: 5242880, maxTotalImageBytes: 52428800 } };
+      writeConfigurationFile = path.join(fixture.out, 'synthetic-write-configuration.json');
+      await save(writeConfigurationFile, writeConfiguration);
+      adapterManifest.liveAgencyProvider.bindings.push({ id: 'synthetic-dataset-write', provides: [writeCapability],
+        knowledgeVersion: writeBinding.knowledgeVersion, execution: { kind: 'module', entry: './synthetic-invitation.mjs' } });
+      await save(adapterManifestFile, adapterManifest);
+      environment.platforms.first.bindings[writeCapability] = { contractVersion: '1.0.0',
+        dependencyPath: environment.platforms.first.bindings[capability].dependencyPath,
+        bindingId: 'synthetic-dataset-write', exportName: 'executeWrite', configurationRef: writeConfigurationFile,
+        configurationSha256: sha256(await readFile(writeConfigurationFile)) };
+    }
     let observationDirectory, observationBinding;
     if (args['observation-provider-source']) {
       const manifest = await json(path.join(args['observation-provider-source'], 'package.json'));
@@ -276,6 +349,32 @@ export async function verifyInvitationEnvironmentConnection(args) {
     assert.equal(searches.length, 1);
     assert.deepEqual(result.reads.find(read => read.dataset === 'history').scope, { recordIds: [state.creator] });
     assert.equal(result.reads.find(read => read.dataset === 'history').rowCount, 1);
+    let writeEvidence, writeDriftArgs;
+    if (writeBinding) {
+      const before = structuredClone(state.rows);
+      const writeArgs = { access, configuration: inputs.skillConfiguration, targets, preparedPlan: result };
+      writeDriftArgs = writeArgs;
+      const preparedWrite = await skill.prepareEnvironmentInvitationWrite(writeArgs);
+      const events = [];
+      const applied = await skill.applyEnvironmentInvitationWrite({ ...writeArgs, preparedWrite,
+        execution: { authorizeIntent: intent => intent.intentSha256 === preparedWrite.intentSha256,
+          onEvent: async event => { events.push(structuredClone(event)); } } });
+      assert.equal(applied.status, 'confirmed');
+      assert.equal(applied.businessWorkflowVerified, true, 'synthetic business readback must agree with the write');
+      const afterApply = state.writeCalls.length;
+      const reconciled = await skill.reconcileEnvironmentInvitationWrite({ ...writeArgs, preparedWrite, events });
+      assert.equal(reconciled.status, 'confirmed');
+      assert.equal(reconciled.businessWorkflowVerified, true);
+      assert(state.writeCalls.slice(afterApply).every(call => call.id !== 'records:batch-update'));
+      assert.equal(state.writeCalls.filter(call => call.id === 'records:batch-update').length, 1);
+      assert(events.length > 0, 'actual Provider events must reach Runtime trusted persistence hook');
+      const expected = structuredClone(before);
+      expected.tblHistory.find(row => row.record_id === state.historyId).fields['Synthetic observed at'] = inputs.timestamp;
+      assert.deepEqual(state.rows, expected, 'only the selected timestamp may change');
+      writeEvidence = { timestampUpdates: 1, readOnlyReconcile: true, targetedFullRowReadback: true,
+        trustedHooksOnly: true, eventCount: events.length, syntheticTransportCalls: state.writeCalls.length };
+      state.rows = before; // Isolate the optional source observation proof below.
+    }
     let sourceEvidence;
     if (observationDirectory) {
       // The private Provider owns source syntax and normalizers. The supplied
@@ -342,16 +441,31 @@ export async function verifyInvitationEnvironmentConnection(args) {
     await assert.rejects(prepareEnvironmentInvitationTargets({ access, configuration: inputs.skillConfiguration }),
       error => error.code === 'PROVIDER_CONFIGURATION_CHANGED');
     assert.equal(state.calls.length, callCount, 'Runtime configuration drift must stop before Provider transport');
+    configuration.budgets.maxRecords += 1;
+    await save(configurationFile, configuration);
+
+    const writeCallCount = state.writeCalls.length;
+    const writeConfiguration = await json(writeConfigurationFile);
+    writeConfiguration.budgets.maxRecords -= 1;
+    await save(writeConfigurationFile, writeConfiguration);
+    await assert.rejects(skill.prepareEnvironmentInvitationWrite(writeDriftArgs),
+      error => error.code === 'PROVIDER_CONFIGURATION_CHANGED');
+    assert.equal(state.writeCalls.length, writeCallCount,
+      'Runtime write-configuration drift must stop before Provider write transport');
 
     return { status: 'passed', synthetic: true, businessWorkflowVerified: false,
       cases: ['actual-provider-manifest-and-export', 'runtime-provider-skill-connection', 'same-state-timestamp-update',
         'server-filtered-history-search', 'provider-configuration-drift-stops-before-transport',
+        'write-configuration-drift-stops-before-write-transport',
+        ...(writeEvidence ? ['runtime-selected-write-binding', 'trusted-write-hooks', 'targeted-write-readback', 'read-only-reconcile'] : []),
         ...(sourceEvidence ? ['selected-actual-instruction-resources', 'source-v2-category-and-avatar-to-same-plan', 'altered-avatar-stops-before-history'] : [])],
       counts: { timestampUpdates: 1, baselineHistorySearches: searches.length,
         historySearches: state.calls.filter(call => call.id === 'records:search' && call.options.pathParameters.table_id === 'tblHistory').length,
-        syntheticTransportCalls: callCount, externalCalls: 0 },
+        syntheticReadTransportCalls: callCount,
+        syntheticTransportCalls: callCount + (state.writeCalls?.length ?? 0), externalCalls: 0 },
       sourceProvenance: provenance, verifierSha256: sha256(await readFile(fileURLToPath(import.meta.url))),
       ...(sourceEvidence ? {sourceEvidence} : {}),
+      ...(writeEvidence ? {writeEvidence} : {}),
       limits: ['Local copied source fixture with content-addressed lock; no registry installation or complete dependency acceptance.',
         'Real Runtime, Provider executor and Skill planning; only raw service transport responses are synthetic.',
         'Empty stored attachments only; optional source uses a synthetic image file, not a browser acquisition.',
