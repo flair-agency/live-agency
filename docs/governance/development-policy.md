@@ -221,13 +221,21 @@ inspection shows that it does.
 
 ## 6. Model and reasoning routing
 
-Owner-approved adoption, 2026-09-13: the existing Codex task remains the
-coordinator for priority, unresolved design, owner approvals, and integration.
-It may remain selected on `gpt-6-astra`; this policy does not claim that its
-model changed. For initially delegated scoped implementation, dispatch a
-worker as `gpt-5.6-terra` / `low`. Choose model and reasoning effort
-separately. A worker does not inherit the coordinator's current effort, and
-implementation or diagnosis alone does not justify medium.
+Owner-approved adoption, 2026-09-14: use `gpt-5.6-sol` / `low` for ordinary
+coordination. The coordinating task retains priority, unresolved design,
+owner approvals, and integration. Use `gpt-5.6-terra` / `low` for a scoped
+implementation only when its design, authority, procedure, and acceptance
+criteria are already clear and accepted. Choose model and reasoning effort
+separately: a coordinator is a role, a worker is a role, and neither role
+implies a particular model or effort.
+
+Delegate only the local unresolved decision to `gpt-6-astra` when it is a
+difficult design, authority, or contract question. Record the question and
+the condition that resolves the exception. Do not use Astra merely because a
+task has multiple files, an implementation, a test failure, an
+authentication-related name, or a request for review. Once the question is
+resolved, return the remaining ordinary coordination to `gpt-5.6-sol` / `low`
+and accepted implementation to `gpt-5.6-terra` / `low`.
 
 | Effort | Selection condition | Examples |
 | --- | --- | --- |
@@ -241,27 +249,34 @@ an already accepted sensitive design may use low while retaining every required
 rejection test, approval, preflight, and readback condition. Missing authority
 or evidence is not solved by increasing reasoning effort.
 
-At dispatch, explicitly set the supported model/effort fields to
-`gpt-5.6-terra` / `low` for an initially delegated scoped implementation unless
-a justified exception applies. Record the selection in the existing task brief;
-for medium/high add one sentence naming the unresolved question and the
-condition that ends the exception. When a worker encounters a difficult
-unresolved decision, escalate it to `gpt-6-astra` with that reason instead of
-inventing domain knowledge. No separate approval, planning document, or extra
-task is required just to choose effort.
+At dispatch, explicitly set `gpt-5.6-terra` / `low` for an initially delegated
+scoped implementation unless a justified exception applies. Record the
+selection in the existing task brief; for medium/high add one sentence naming
+the unresolved question and the condition that ends the exception. A difficult
+unresolved design, authority, or contract decision may be delegated locally to
+`gpt-6-astra` with that reason instead of inventing domain knowledge. No
+separate approval, planning document, or extra task is required just to choose
+effort.
 
 Do not require an artificial failed low run when the unresolved question is
 already evident. Conversely, a test failure alone does not require escalation:
 first distinguish a routine repair, missing dependency, or absent evidence from
 a reasoning problem. Escalate only the unresolved scope and retain passing work.
-After resolving it, return to low for subsequent routine work or dispatches;
-change an active task's effort only through supported host controls. If such a
-change is unavailable mid-turn, record the next selection without claiming the
-setting changed. Selecting a worker model does not change the parent's model;
-this task has not selected a supported control for automatic parent switching.
-Do not interrupt or restart running workers
-solely for this policy. Historical checkpoint efforts remain records, not new
-routing rules.
+After resolving it, return to the ordinary model route and low effort for
+subsequent routine work or dispatches. Change an active task's model or effort
+only through supported host controls. If a change is unavailable mid-turn,
+record the next selection without claiming the setting changed. Selecting a
+worker model does not change the parent's model; this policy does not select a
+supported control for automatic parent switching. Do not interrupt or restart
+running workers solely for this policy. Historical checkpoint selections remain
+records, not new routing rules.
+
+At a natural checkpoint, a coordinator may be replaced with a compact current
+state (accepted decision, changed artifact, evidence, remaining gate, and next
+action). Keep detailed history separately and link it instead of repeatedly
+reloading it. Do not split work merely to change models: keep work with the
+same change, authority, and approval scope together, and split only under the
+work-package rules in Section 4.
 
 Avoid reloading entire long plans/history, unnecessary package splitting, and
 repeating passing verification. Keep a coherent repair and its focused tests
@@ -275,14 +290,16 @@ infer Codex consumption directly from API token prices. No measured-benefit
 prerequisite applies before initially trying `gpt-5.6-terra` / `low`, and this
 policy creates no new artificial benchmark gate.
 
-This decision supersedes the earlier `gpt-6-astra` / `low` worker default and
-the measured-benefit prerequisite for initially trying Terra, as well as older
-mandatory Luna/Terra/Sol assignments and the Astra-exception-only rule in
-migration and companion package tables for new work. Those older assignments
-are historical recommendations, not required steps before using Astra. It does
-not switch or restart running tasks or change configured automation models.
-Validate only models actually adopted for the affected workflow; do not create
-a new all-model benchmark gate.
+This decision supersedes the 2026-09-13 routing default: ordinary coordination
+now uses `gpt-5.6-sol` / `low`; clear accepted implementation uses
+`gpt-5.6-terra` / `low`; and Astra is a local unresolved-decision exception.
+It also supersedes earlier mandatory Luna/Terra/Sol assignments, the former
+`gpt-6-astra` worker default, and the measured-benefit prerequisite for trying
+Terra. Those older assignments are historical recommendations, not required
+steps before using Astra. This policy does not switch or restart running tasks,
+change configured automation models, or alter production authority, approval,
+or verification. Validate only models actually adopted for the affected
+workflow; do not create a new all-model benchmark gate.
 
 Record the chosen model and any evidence-based exception in the package
 checkpoint. A model change never supplies missing evidence, authority, or
